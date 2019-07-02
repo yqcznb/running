@@ -33,7 +33,7 @@ export default {
     methods:
     {
         login(){
-            this.$router.replace('footer/index');
+            this.$router.replace('/footer/index');
         }
     }
 }
