@@ -5,6 +5,7 @@ import footer from '@/components/footer/footer'
 import my from '@/components/my/my'
 import pet from '@/components/pet/pet'
 import index from '@/components/index/index'
+
 Vue.use(Router)
 
 export default new Router({
