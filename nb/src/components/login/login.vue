@@ -7,7 +7,7 @@
         <form>
             <input tyoe=“text” placeholder="用户名/邮箱号/手机号">
             <input type="password" placeholder="登录密码">
-            <button>登录</button>
+            <button @click="login">登录</button>
             <div class="jump_bar">
                 <router-link to="register"><span class="jump register">手机快速注册</span></router-link>
                 <router-link to="forget"><span class="jump forget">忘记密码</span></router-link>
@@ -28,6 +28,12 @@ export default {
     data() {
         return {
             msg: 'Here is login component'
+        }
+    },
+    methods:
+    {
+        login(){
+            this.$router.replace('footer/index');
         }
     }
 }
