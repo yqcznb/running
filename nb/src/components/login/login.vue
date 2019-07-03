@@ -39,6 +39,9 @@ export default {
 }
 </script>
 <style scoped>
+    form{
+        margin-top: 60px;  
+      }
     a {
         text-decoration: none;
     }
@@ -66,7 +69,7 @@ export default {
         position: fixed;
         top: 0;
         text-align: center;
-        background-color: #f2f2f2;
+        background-color: #fffbfb;
         line-height: 44px;
     }
     .continue {
@@ -80,7 +83,7 @@ export default {
         width: 90%;
         height: 44px;
         border: 0;
-        background-color: #f2f2f2;
+        background-color: #d1cfcf94;
         margin: 10px auto;
         display: block;
         font-size: 13px;
