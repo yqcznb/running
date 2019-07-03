@@ -92,6 +92,5 @@ flex-direction: column;
     -webkit-transform: translate(-50%, -50%);
     -moz-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
-
 }
 </style>

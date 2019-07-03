@@ -6,7 +6,7 @@
 				<span class="mui-tab-label">宠物</span>
 			</router-link>
 			<router-link class="mui-tab-item" to="/footer/index">
-				<i class="iconfont iconpaobu"></i>
+				<i class="{{class}}"></i>
 				<span class="mui-tab-label">{{msg}}</span>
 			</router-link>
 			<router-link class="mui-tab-item" to="/footer/my">
