@@ -11,31 +11,40 @@
             <div class="head_right">
                 <img :src='headportrait' alt="" class="headportrait">
                 <img :src="duanImg" alt="" class="duanimg">
+            </div>  
+        </div>
+        <img :src="nearImg" alt="" class="nearimg">
+        <div id="run_data">
+            <div id="details">
+                <i class="iconfont icontiyu-paobu"></i><span class="">跑步数据详情</span><i class="iconfont iconfanhui"></i>
             </div>
-            
-            
+            <div id="rank_list">
+                <i class="iconfont iconpaihangbang rankimg"></i><span class="">排行榜</span><i class="iconfont iconfanhui"></i>
+            </div>
+        </div>
+        <div id="settings">
+            <i class="iconfont iconsettings"></i><span>设置</span><i class="iconfont iconfanhui"></i>
         </div>
         
         
         
-        
-        {{ msg }}
+    
 
     </div>
 </template>
 <script>
 export default {
-name: 'my',
-data() {
-    return{
-        msg: 'aaaaa',
-        levelImg: require('../../assets/img/my/schedual_level/first.png'),
-        indImg:require('../../assets/img/my/identify/跑神认证.png'),
-        headportrait:require('../../assets/img/my/headportrait/tx.jpeg'),
-        duanImg:require('../../assets/img/my/duan/5.png'),
-        
+    name: 'my',
+    data() {
+        return{
+            msg: 'aaaaa',
+            levelImg: require('../../assets/img/my/schedual_level/first.png'),
+            indImg:require('../../assets/img/my/identify/跑神认证.png'),
+            headportrait:require('../../assets/img/my/headportrait/tx.jpeg'),
+            duanImg:require('../../assets/img/my/duan/5.png'),
+            nearImg:require('../../assets/img/my/run_data/near.png'),
+        }
     }
-}
 }
 </script>
 <style scoped>
@@ -50,15 +59,20 @@ data() {
         left: 0;
         background-color: #dec674;
     }
-    #my_head {
+
+    #my_head,#run_data,#settings {
         width: 90%;
-        height: 25%;
         border: 1px solid red;
-        border-radius: 0 0 7px 7px;
         display: flex;
         margin: 0 auto;
-        padding: 5%;
         background-color: white;
+    }
+
+    #my_head {
+        height: 25%;
+        border-radius: 0 0 7px 7px;
+        padding: 5%;
+        
     }
     .head_left {
         width: 70%;
@@ -88,10 +102,7 @@ data() {
         align-items: center;
     }
     .headportrait {
-        /* position: relative;
-        top: 14%; */
-        /* margin-top: -12%; */        border: 1px solid red;
-
+        border: 1px solid red;
         width: 80%;
         border-radius: 50%;
         z-index: 1;
@@ -100,9 +111,28 @@ data() {
         position: relative;
         width: 100%;
         border: 1px solid red;
-        /* margin-top: -48%;  */
         margin-top: -30%;
         z-index: 0;
     }
+    .nearimg {
+        width: 100%;
+    }
+    #run_data {
+        display: flex;
 
+    }
+    #run_data,#settings {
+        border-radius: 7px;
+    }
+    #run_data {
+        height: 16%;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    .detimg {
+        height: 100%;
+    }
+    #settings {
+        height: 8%;
+    }
 </style>
