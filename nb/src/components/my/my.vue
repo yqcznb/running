@@ -25,7 +25,7 @@
         <div id="settings">
             <i class="iconfont iconsettings"></i><span>设置</span><i class="iconfont iconfanhui"></i>
         </div>
-        
+        {{msg}}
         
         
     
