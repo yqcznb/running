@@ -16,20 +16,16 @@
         <img :src="nearImg" alt="" class="nearimg">
         <div id="run_data">
             <div id="details">
-                <i class="iconfont icontiyu-paobu"></i><span class="">跑步数据详情</span><i class="iconfont iconfanhui"></i>
+                <i class="iconfont icontiyu-paobu"></i><span class="">跑步数据详情</span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>
+            <hr>
             <div id="rank_list">
-                <i class="iconfont iconpaihangbang rankimg"></i><span class="">排行榜</span><i class="iconfont iconfanhui"></i>
+                <i class="iconfont iconpaihangbang rankimg"></i><span class="">排行榜</span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>
         </div>
         <div id="settings">
-            <i class="iconfont iconsettings"></i><span>设置</span><i class="iconfont iconfanhui"></i>
+            <i class="iconfont iconsettings"></i><span>设置</span><i class="iconfont iconfanhui iconfont-right"></i>
         </div>
-        {{msg}}
-        
-        
-    
-
     </div>
 </template>
 <script>
@@ -117,22 +113,52 @@ export default {
     .nearimg {
         width: 100%;
     }
-    #run_data {
-        display: flex;
-
+    .iconfont {
+        color: #d5a269;
+        font-size: 130%;
     }
     #run_data,#settings {
         border-radius: 7px;
     }
+    #settings span {
+        text-indent: 0.5em;
+    }
+    #run_data {
+        display: flex;
+
+    }
     #run_data {
         height: 16%;
+        padding: 0 10px;
         flex-direction: column;
         justify-content: space-around;
+        text-align: left;
     }
-    .detimg {
-        height: 100%;
+    #details,#rank_list {
+        display: flex;
+        align-items: center;
+        text-align: left;
+    }
+    hr {
+        width: 85%;
+        position: absolute;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+    }
+    #details span,#rank_list span {
+        text-indent: 0.5em;
     }
     #settings {
         height: 8%;
+        margin-top: 2%;
+        padding: 0 10px;
+        display: flex;
+        align-items: center;
+        text-align: left;
+    }
+    .iconfont-right {
+        text-align: right !important;
+        color: #999999;
     }
 </style>
