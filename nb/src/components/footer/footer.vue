@@ -6,8 +6,8 @@
 				<span class="mui-tab-label">宠物</span>
 			</router-link>
 			<router-link class="mui-tab-item" to="/footer/index">
-				<i class=""></i>
-				<span class="mui-tab-label">{{msg}}</span>
+				<i class="iconfont iconzhuye"></i>
+				<span class="mui-tab-label">主页</span>
 			</router-link>
 			<router-link class="mui-tab-item" to="/footer/my">
 				<i class="iconfont iconwode"></i>
@@ -23,7 +23,7 @@
 export default {
   name: 'footer',
   data(){
-	  msg:开跑
+	  
   },
   methods:{
 	

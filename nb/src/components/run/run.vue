@@ -1,6 +1,6 @@
 <template>
   <div class="run">
-    
+    跑步界面
   </div>
 </template>
 
