@@ -6,6 +6,12 @@
     </ul>
     <div class="caochang">
         <div class="xinxi">
+            <div>
+              <router-link to="/run">
+              <i class="iconfont iconpaobu"></i>
+				      <span class="mui-tab-label">开跑</span>
+              </router-link>
+            </div>
             <p>当前已跑</p>
             <p>22</p>
             <p>晨跑</p>
@@ -54,24 +60,20 @@ flex-direction: column;
  font-size: 20px;
  background:rgb(238, 242, 243);
  padding: 10px;
-
 }
 .index .heard li{
   list-style: none;
-  
 }
 .index .heard li i{
   padding: 5px 10px;
   color: rgb(231, 46, 170);
-  font-size: 20px;
-  
+  font-size: 20px; 
 }
 .index .heard .tongzhi{
  text-align: left;
  background:rgb(208, 210, 211);
  padding: 3px;
 }
-
 .index .caochang{
   display: flex;
   justify-content: center;
@@ -83,7 +85,6 @@ flex-direction: column;
   background-size:auto 90%;
   height:75%;
 }
-
 .index .caochang .xinxi{
     position: absolute;
     top: 50%;
