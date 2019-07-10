@@ -5,6 +5,8 @@ import footer from '@/components/footer/footer'
 import my from '@/components/my/my'
 import pet from '@/components/pet/pet'
 import index from '@/components/index/index'
+import run from '@/components/run/run'
+
 Vue.use(Router)
 
 export default new Router({
@@ -14,6 +16,11 @@ export default new Router({
       path: '/',
       name: 'login',
       component: login
+    },
+    {
+      path: '/run',
+      name: 'run',
+      component: run
     },
     {
       path: '/footer',
