@@ -3,6 +3,8 @@ import Router from 'vue-router'
 import login from '@/components/login/login'
 import footer from '@/components/footer/footer'
 import my from '@/components/my/my'
+import pinform from '@/components/my/pinform'
+
 import pet from '@/components/pet/pet'
 import index from '@/components/index/index'
 import run from '@/components/run/run'
@@ -46,6 +48,11 @@ export default new Router({
           meta: { checkLogined: true },
         },
       ]
-    }
+    },
+    {
+      path: '/pinform',
+      name: 'pinform',
+      component: pinform,
+    },
   ]
 })

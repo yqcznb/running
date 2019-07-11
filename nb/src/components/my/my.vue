@@ -1,31 +1,41 @@
 <template>
     <div id="my">
-        <div id="my_head">
-            <div class="head_left">
-                <p class="user_name">叭叭叭</p>
-                <p class="user_level">天下跑神段位</p>
-                <img :src='levelImg' class="levelimg">
-                <img :src='indImg' class="indimg">
-                
+        <router-link to="/pinform">
+            <div id="my_head">
+                <div class="head_left">
+                    <p class="user_name">叭叭叭</p>
+                    <p class="user_level">天下跑神段位</p>
+                    <img :src='levelImg' class="levelimg">
+                    <img :src='indImg' class="indimg">
+                    
+                </div>
+                <div class="head_right">
+                    <img :src='headportrait' alt="" class="headportrait">
+                    <img :src="duanImg" alt="" class="duanimg">
+                </div>  
             </div>
-            <div class="head_right">
-                <img :src='headportrait' alt="" class="headportrait">
-                <img :src="duanImg" alt="" class="duanimg">
-            </div>  
-        </div>
+        </router-link>
+        
         <img :src="nearImg" alt="" class="nearimg">
         <div id="run_data">
-            <div id="details">
-                <i class="iconfont icontiyu-paobu"></i><span class="">跑步数据详情</span><i class="iconfont iconfanhui iconfont-right"></i>
-            </div>
+            <router-link to="/">
+                <div id="details">
+                    <i class="iconfont icontiyu-paobu"></i><span class="">跑步数据详情</span><i class="iconfont iconfanhui iconfont-right"></i>
+                </div>
+            </router-link>
             <hr>
-            <div id="rank_list">
-                <i class="iconfont iconpaihangbang rankimg"></i><span class="">排行榜</span><i class="iconfont iconfanhui iconfont-right"></i>
+            <router-link to="/">
+                <div id="rank_list">
+                    <i class="iconfont iconpaihangbang rankimg"></i><span class="">排行榜</span><i class="iconfont iconfanhui iconfont-right"></i>
+                </div>
+            </router-link>
+           
+        </div>
+        <router-link to="/">
+            <div id="settings">
+                <i class="iconfont iconsettings"></i><span>设置</span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>
-        </div>
-        <div id="settings">
-            <i class="iconfont iconsettings"></i><span>设置</span><i class="iconfont iconfanhui iconfont-right"></i>
-        </div>
+        </router-link>
     </div>
 </template>
 <script>
@@ -44,9 +54,10 @@ export default {
 }
 </script>
 <style scoped>
-    /* body {
-        background-color: #dec674;
-    } */
+    a {
+        text-decoration: none;
+        color: black;
+    }
     #my {
         width: 100%;
         height: 100%;
