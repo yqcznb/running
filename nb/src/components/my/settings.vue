@@ -5,7 +5,7 @@
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
         </div>
-        <router-link to="">
+        <router-link to="/idsafe">
             <div id="safe_id">
                 <span>账号与安全</span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>
@@ -72,7 +72,7 @@ export default {
     #back_bar {
         text-align: left;
         text-indent: 0.3em;
-        line-height: 170%;
+        line-height: 200%;
         background-color: rgb(83, 83, 83);
         margin-bottom: 2%;
     }
