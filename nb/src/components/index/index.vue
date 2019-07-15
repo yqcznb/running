@@ -86,12 +86,9 @@ flex-direction: column;
   height:75%;
 }
 .index .caochang .xinxi{
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    border-radius: 5px;
-    -webkit-transform: translate(-50%, -50%);
-    -moz-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
+   display: flex;
+  
+   flex-direction: column;
+   justify-content: center;
 }
 </style>
