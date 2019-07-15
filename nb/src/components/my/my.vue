@@ -54,6 +54,9 @@ export default {
 }
 </script>
 <style scoped>
+    body {
+        background-color: #dec674;
+    }
     a {
         text-decoration: none;
         color: black;
@@ -134,10 +137,7 @@ export default {
     #settings span {
         text-indent: 0.5em;
     }
-    #run_data {
-        display: flex;
-
-    }
+    
     #run_data {
         height: 16%;
         padding: 0 10px;
@@ -167,9 +167,13 @@ export default {
         display: flex;
         align-items: center;
         text-align: left;
+        border: 1px solid black;
     }
     .iconfont-right {
-        text-align: right !important;
+        /* text-align: right !important; */
         color: #999999;
+        margin-right: 0;
+        position: absolute;
+        right: 7%;
     }
 </style>
