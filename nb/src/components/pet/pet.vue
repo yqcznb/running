@@ -100,18 +100,22 @@ export default {
     }
 
     /* 圆圈 */
+    .pet_interface_pet_top ul{
+        margin-left: 10%;
+    }
+
+
     .pet_interface_pet_top ul li div{
         width: 40px;
         height: 40px;
         border-radius: 50%;
         background-color: #aaa;
         margin-bottom: 10px;
-        margin-left: 20px;
     }
 
     /* 背包 */
     .pet_interface_pet_top .bag_img{
-        margin-right: 20px;
+        margin-right: 10%;
     }
 
     /* 设置背包图片的大小 */
