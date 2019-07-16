@@ -6,7 +6,15 @@
 
             <!-- 弹窗部分 -->
             <div class="pet_interface_alert">
-                弹窗
+                <div class="alert">
+                    <div class="content">
+                        <div class="word">是否前去跑步抓取宠物？</div>
+                        <div class="botton">
+                            <div class="yes">是</div>
+                            <div class="no">否</div>
+                        </div>
+                    </div> 
+                </div>
             </div>
 
             <!-- 宠物部分 -->
@@ -17,9 +25,9 @@
 
                     <!-- 三个圈 -->
                     <ul>
-                        <li><div></div></li>
-                        <li><div></div></li>
-                        <li><div></div></li>
+                        <li><img src="../../assets/img/circle.png"></li>
+                        <li><img src="../../assets/img/circle.png"></li>
+                        <li><img src="../../assets/img/circle.png"></li>
                     </ul>
 
                     <!-- 背包 -->
@@ -81,6 +89,49 @@ export default {
         /* background-color: aquamarine; */
     }
 
+    .pet_interface_alert .alert{
+        width: 100%;
+        height: 100%;
+        border: 1px solid #ccc;
+    }
+
+    .pet_interface_alert .alert .content{
+        width: 100%;
+        height: 60%;
+    }
+
+    .pet_interface_alert .alert .content .word{
+        margin-top: 50px;
+        font-size: 30px;
+        /* letter-spacing: 20px; */
+        margin-bottom: 20px;
+    }
+
+    .pet_interface_alert .alert .content .botton{
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .pet_interface_alert .alert .content .botton .yes{
+        width: 80px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 5px;
+        border: 1px solid #eee;
+        background: #ccc; 
+        margin-left: 10%;
+    }
+
+    .pet_interface_alert .alert .content .botton .no{
+        width: 80px;
+        height: 30px;
+        line-height: 30px;
+        border-radius: 5px;
+        border: 1px solid #eee;
+        background: #ccc;
+        margin-right: 10%;
+    }
+
     /* 宠物部分 */
     .pet_interface_pet{
         /* position: absolute; */
@@ -100,28 +151,26 @@ export default {
     }
 
     /* 圆圈 */
-    .pet_interface_pet_top ul{
-        margin-left: 10%;
+    .pet_interface_pet_top ul li{
+        margin-bottom: 10px;
     }
 
-
-    .pet_interface_pet_top ul li div{
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background-color: #aaa;
-        margin-bottom: 10px;
+    .pet_interface_pet_top ul li img{
+        width: 35%;
+        height: 35%;
+        max-width: 100%;
+        max-height: 100%;
     }
 
     /* 背包 */
     .pet_interface_pet_top .bag_img{
-        margin-right: 10%;
+        margin-right: 1px;
     }
 
     /* 设置背包图片的大小 */
     .pet_interface_pet_top .bag_img img{
-        width: 50px;
-        height: 50px;    
+        width: 30%;
+        height: 30%;    
     }
 
     /* 宠物部分 下半部分 */
@@ -135,9 +184,9 @@ export default {
 
     /* 进度条 */
     .pet_interface_pet_bottom .progress_bar{
-        width: 150px;
-        height: 30px;
-        border-radius: 12px;
+        width: 50%;
+        height: 3%;
+        border-radius: 15px;
         background-color: #ccc;
         line-height: 30px;
         text-align: center;
@@ -151,8 +200,8 @@ export default {
 
     /* 设置蛋的大小 */
     .pet_interface_pet_bottom .egg_img img{
-        width: 250px;
-        height: 250px;
+        width: 80%;
+        height: 80%;
     }
 </style>
 
