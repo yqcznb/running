@@ -4,9 +4,12 @@ import login from '@/components/login/login'
 import footer from '@/components/footer/footer'
 import my from '@/components/my/my'
 import pinform from '@/components/my/pinform'
-import settings from '@/components/my/settings'
-import funnymode from '@/components/my/funnymode'
-import idsafe from '@/components/my/idsafe'
+import settings from '@/components/my/settings/settings'
+import funnymode from '@/components/my/settings/funnymode'
+import idsafe from '@/components/my/settings/idsafe'
+import privacy from '@/components/my/settings/privacy/privacy'
+import on from '@/components/my/settings/on'
+import ppolicy from '@/components/my/settings/privacy/ppolicy'
 
 import pet from '@/components/pet/pet'
 import index from '@/components/index/index'
@@ -71,6 +74,21 @@ export default new Router({
       path: '/idsafe',
       name: 'idsafe',
       component: idsafe,
+    },
+    {
+      path: '/privacy',
+      name: 'privacy',
+      component: privacy,
+    },
+    {
+      path: '/on',
+      name: 'on',
+      component: on,
+    },
+    {
+      path: '/ppolicy',
+      name:'ppolicy',
+      component: ppolicy,
     },
   ]
 })
