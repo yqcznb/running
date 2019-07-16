@@ -11,19 +11,19 @@
             </div>
         </router-link>
         <div id="mode-privacy-on">
-            <router-link to="/funnymode">
+            <router-link to="funnymode">
                 <div id="mode">
                     <span>经典模式</span><i class="iconfont icon1 iconfont-right"></i>
                 </div>
             </router-link>
             <hr>
-            <router-link to="/privacy">
+            <router-link to="privacy">
                 <div id="privacy">
                     <span>隐私</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
             <hr>
-            <router-link to="/on">
+            <router-link to="on">
                 <div id="on">
                     <span>关于</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
