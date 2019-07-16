@@ -1,5 +1,5 @@
 <template>
-    <div id="funny-mode">
+    <div id="settings">
         <div id="back_bar">
             <router-link to="footer/my">
                 <i class="iconfont iconfanhui-copy"></i>返回
@@ -11,9 +11,9 @@
             </div>
         </router-link>
         <div id="mode-privacy-on">
-            <router-link to="settings">
+            <router-link to="funnymode">
                 <div id="mode">
-                    <span>经典模式</span><i class="iconfont icon1-copy iconfont-right"></i>
+                    <span>经典模式</span><i class="iconfont icon1 iconfont-right"></i>
                 </div>
             </router-link>
             <hr>
@@ -23,7 +23,7 @@
                 </div>
             </router-link>
             <hr>
-            <router-link to="">
+            <router-link to="on">
                 <div id="on">
                     <span>关于</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
@@ -51,7 +51,7 @@ export default {
 }
 </script>
 <style scoped>
-    #funny-mode {
+    #settings {
         width: 100%;
         height: 100%;
         position: absolute;
@@ -118,8 +118,9 @@ export default {
     #mode-privacy-on span {
         color: black;
     }
-    .icon1-copy {
+    .icon1 {
         font-size: 28px;
+        color: #dec674;
     }
     #mode,#privacy,#on,#change,#lougout {
         display: flex;

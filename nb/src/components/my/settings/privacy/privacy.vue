@@ -10,7 +10,7 @@
                 <span><span class="left">系统权限</span><span class="right">授权使用的手机权限</span></span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>
         </router-link>
-        <router-link to="">
+        <router-link to="ppolicy">
             <div id="ppolicy">
                 <span>隐私政策</span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>
@@ -19,7 +19,7 @@
 </template>
 <script>
 export default {
-    name: 'idsafe',
+    name: 'privacy',
     data() {
         return {
             backlink: 'settings',
