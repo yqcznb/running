@@ -17,7 +17,7 @@
                 </div>
             </router-link>
             <hr>
-            <router-link to="">
+            <router-link to="privacy">
                 <div id="privacy">
                     <span>隐私</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
