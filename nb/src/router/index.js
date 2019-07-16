@@ -7,6 +7,7 @@ import pinform from '@/components/my/pinform'
 import settings from '@/components/my/settings'
 import funnymode from '@/components/my/funnymode'
 import idsafe from '@/components/my/idsafe'
+import privacy from '@/components/my/privacy'
 
 import pet from '@/components/pet/pet'
 import index from '@/components/index/index'
@@ -71,6 +72,11 @@ export default new Router({
       path: '/idsafe',
       name: 'idsafe',
       component: idsafe,
+    },
+    {
+      path: '/privacy',
+      name: 'privacy',
+      component: privacy,
     },
   ]
 })
