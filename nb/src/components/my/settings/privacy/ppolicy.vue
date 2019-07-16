@@ -5,7 +5,7 @@
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
         </div>
-        隐私政策，此处省略八万字
+        隐私政策，此处省略八万字sadadadasdadas
     </div>
 </template>
 <script>
