@@ -1,7 +1,7 @@
 <template>
     <div id="settings">
         <div id="back_bar">
-            <router-link to="footer/my">
+            <router-link to="/footer/my">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
         </div>

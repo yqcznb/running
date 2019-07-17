@@ -6,7 +6,11 @@ import router from './router'
 import "./assets/mui/css/mui.min.css"
 import "./assets/mui/css/icons-extra.css"
 import VueAMap from 'vue-amap'
+import { Button,MessageBox} from 'mint-ui';
 
+
+Vue.component(Button.name, Button);
+Vue.component(MessageBox.name, MessageBox);
 Vue.use(VueAMap)
 Vue.config.productionTip = false
 VueAMap.initAMapApiLoader({
