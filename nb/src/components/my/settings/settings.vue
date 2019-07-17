@@ -31,7 +31,7 @@
             </router-link>
         </div>
         <div id="change-logout">
-            <router-link to="">
+            <router-link to="switchid">
                 <div id="change">
                     <span>切换账号</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>

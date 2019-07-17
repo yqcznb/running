@@ -1,20 +1,28 @@
 <template>
-    <div id="pinform">
+    <div id="switchid">
         <div id="back_bar">
-            <router-link to="footer/my">
+            <router-link :to='backlink'>
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
         </div>
-        这里是个人资料页面
+        <div id="headprotrait">
+
+        </div>
     </div>
 </template>
 <script>
 export default {
-    
+    name: 'switchid',
+    data() {
+        return {
+            backlink: 'settings',
+            hportSrc: ['tx.jpeg','叭叭怪.jpg','巴啦啦小魔仙.jpg'],
+        }
+    }
 }
 </script>
 <style scoped>
-    #pinform {
+    #switchid {
         width: 100%;
         height: 100%;
         position: absolute;
@@ -34,4 +42,3 @@ export default {
         margin-bottom: 2%;
     }
 </style>
-
