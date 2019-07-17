@@ -63,10 +63,13 @@ export default {
     }
     #my {
         width: 100%;
+        max-width: 600px;
         height: 100%;
         position: absolute;
         top: 0;
         left: 0;
+        right: 0;
+        margin: 0 auto;
         background-color: #dec674;
     }
 
@@ -79,19 +82,29 @@ export default {
     }
 
     #my_head {
-        height: 25%;
+        position: relative;
+        max-width: 600px;
+        /* height: 25%; */
         border-radius: 0 0 7px 7px;
         padding: 5%;
         
     }
     .head_left {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
         width: 70%;
-        height: 100%;
+        /* height: 100%; */
         border: 1px solid red;
 
     }
-    .user_name,.user_level {
+    .user_name {
         text-align: left;
+        font-size: 100%;
+    }
+    .user_level {
+        text-align: left;
+        font-size: 80%;
     }
     .levelimg {
         width: 80%;
@@ -163,6 +176,7 @@ export default {
     #settings {
         height: 8%;
         margin-top: 2%;
+        margin-bottom: 8%;
         padding: 0 10px;
         display: flex;
         align-items: center;
