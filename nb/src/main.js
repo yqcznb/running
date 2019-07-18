@@ -9,8 +9,11 @@ import VueAMap from 'vue-amap'
 import { Button,MessageBox} from 'mint-ui';
 
 
+
+
 Vue.component(Button.name, Button);
 Vue.component(MessageBox.name, MessageBox);
+
 Vue.use(VueAMap)
 Vue.config.productionTip = false
 VueAMap.initAMapApiLoader({
