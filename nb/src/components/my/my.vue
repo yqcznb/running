@@ -2,17 +2,16 @@
     <div id="my">
         <router-link to="/pinform">
             <div id="my_head">
-                <div class="head_left">
-                    <p class="user_name">叭叭叭</p>
-                    <p class="user_level">天下跑神段位</p>
+                <div id="head_left">
+                    <h4>叭叭叭</h4>
+                    <h5>天下跑神段位》</h5>
                     <img :src='levelImg' class="levelimg">
                     <img :src='indImg' class="indimg">
-                    
                 </div>
-                <div class="head_right">
-                    <img :src='headportrait' alt="" class="headportrait">
-                    <img :src="duanImg" alt="" class="duanimg">
-                </div>  
+                <div id="head_right">
+                    <img :src='headportrait' class="headportrait">
+                    <img :src='duanImg' class="duanimg">
+                </div>
             </div>
         </router-link>
         
@@ -46,7 +45,7 @@ export default {
             msg: 'aaaaa',
             levelImg: require('../../assets/img/my/schedual_level/first.png'),
             indImg:require('../../assets/img/my/identify/跑神认证.png'),
-            headportrait:require('../../assets/img/my/headportrait/tx.jpeg'),
+            headportrait:require('../../assets/img/my/headportrait/4.jpg'),
             duanImg:require('../../assets/img/my/duan/5.png'),
             nearImg:require('../../assets/img/my/run_data/near.png'),
         }
@@ -63,69 +62,84 @@ export default {
     }
     #my {
         width: 100%;
+        /* max-width: 600px; */
         height: 100%;
         position: absolute;
         top: 0;
         left: 0;
+        right: 0;
+        margin: 0 auto;
         background-color: #dec674;
     }
 
     #my_head,#run_data,#settings {
         width: 90%;
-        border: 1px solid red;
+        /* border: 1px solid red; */
         display: flex;
         margin: 0 auto;
         background-color: white;
     }
-
     #my_head {
-        height: 25%;
+        height: 22%;
         border-radius: 0 0 7px 7px;
-        padding: 5%;
-        
+        padding: 15px 20px;
+        display: flex;
+        justify-content: space-between;
     }
-    .head_left {
-        width: 70%;
+    #head_left,#head_right {
         height: 100%;
-        border: 1px solid red;
-
+        /* border: 1px solid red; */
+        /* display: flex; */
+        /* justify-content: space-between; */
     }
-    .user_name,.user_level {
-        text-align: left;
-    }
-    .levelimg {
-        width: 80%;
-        display: flex;
-    }
-    .indimg {
-        width: 35%;
-        display: flex;
-    }
-    .head_right {
-        border: 1px solid red;
-        
-        width: 30%;
+    #head_left {
+        /* width: 70%; */
         height: 100%;
         display: flex;
         flex-direction: column;
         justify-content: space-between;
-        align-items: center;
     }
+    h4,h5 {
+        font-weight: normal;
+        text-align: left;
+    }
+    h4 {
+        /* margin-bottom: 20%; */
+    }
+    h5 {
+        color: rgba(253, 185, 51, 0.89);
+    }
+    .levelimg {
+        width: 70%;
+        max-width: 336px;
+    }
+    .indimg {
+        width: 20%;
+    }
+    #head_right {
+        /* width: 30%; */
+        /* height: 100%; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    } 
     .headportrait {
-        border: 1px solid red;
-        width: 80%;
+        border: 1px solid #bbb;
+        /* position: relative; */
         border-radius: 50%;
-        z-index: 1;
+        height: 63%;
+        z-index: 4;
     }
     .duanimg {
+        /* border: 1px solid #bbb; */
+        height: 50%;
+        margin-top: -25%;
         position: relative;
-        width: 100%;
-        border: 1px solid red;
-        margin-top: -30%;
         z-index: 0;
     }
     .nearimg {
-        width: 100%;
+        /* width: 100%; */
+        height: 20%;
     }
     .iconfont {
         color: #d5a269;
@@ -163,11 +177,12 @@ export default {
     #settings {
         height: 8%;
         margin-top: 2%;
+        /* margin-bottom: 8%; */
         padding: 0 10px;
         display: flex;
         align-items: center;
         text-align: left;
-        border: 1px solid black;
+        /* border: 1px solid black; */
     }
     .iconfont-right {
         /* text-align: right !important; */

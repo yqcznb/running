@@ -9,6 +9,7 @@ import funnymode from '@/components/my/settings/funnymode'
 import idsafe from '@/components/my/settings/idsafe'
 import privacy from '@/components/my/settings/privacy/privacy'
 import on from '@/components/my/settings/on'
+import switchid from '@/components/my/settings/switchid'
 import ppolicy from '@/components/my/settings/privacy/ppolicy'
 
 import pet from '@/components/pet/pet'
@@ -89,6 +90,11 @@ export default new Router({
       path: '/ppolicy',
       name:'ppolicy',
       component: ppolicy,
+    },
+    {
+      path: '/switchid',
+      name: 'switchid',
+      component: switchid,
     },
   ]
 })

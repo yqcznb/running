@@ -1,7 +1,7 @@
 <template>
     <div id="settings">
         <div id="back_bar">
-            <router-link to="footer/my">
+            <router-link to="/footer/my">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
         </div>
@@ -31,7 +31,7 @@
             </router-link>
         </div>
         <div id="change-logout">
-            <router-link to="">
+            <router-link to="switchid">
                 <div id="change">
                     <span>切换账号</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
