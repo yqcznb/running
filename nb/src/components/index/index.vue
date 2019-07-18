@@ -11,6 +11,7 @@
               <i class="iconfont iconpaobu"></i>
 				      <span class="mui-tab-label">开跑</span>
               </router-link>
+            
             </div>
             <p>当前已跑</p>
             <p>22</p>
@@ -44,7 +45,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: aqua;
+  background-color: #dec674;
 }
 .index .heard{
 display: flex;
