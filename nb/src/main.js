@@ -7,6 +7,8 @@ import "./assets/mui/css/mui.min.css"
 import "./assets/mui/css/icons-extra.css"
 import VueAMap from 'vue-amap'
 
+
+
 Vue.use(VueAMap)
 Vue.config.productionTip = false
 VueAMap.initAMapApiLoader({
