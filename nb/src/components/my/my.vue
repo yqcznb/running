@@ -2,17 +2,15 @@
     <div id="my">
         <router-link to="/pinform">
             <div id="my_head">
-                <div class="head_left">
-                    <p class="user_name">叭叭叭</p>
-                    <p class="user_level">天下跑神段位</p>
-                    <img :src='levelImg' class="levelimg">
-                    <img :src='indImg' class="indimg">
-                    
+                <div id="head_left">
+                    <h3>叭叭叭</h3>
+                    <!-- <p>叭叭叭</p>
+                    <p>天下跑神段位》</p> -->
+                    <h5>天下跑神段位》</h5>
                 </div>
-                <div class="head_right">
-                    <img :src='headportrait' alt="" class="headportrait">
-                    <img :src="duanImg" alt="" class="duanimg">
-                </div>  
+                <div id="head_right">
+
+                </div>
             </div>
         </router-link>
         
@@ -63,7 +61,7 @@ export default {
     }
     #my {
         width: 100%;
-        max-width: 600px;
+        /* max-width: 600px; */
         height: 100%;
         position: absolute;
         top: 0;
@@ -80,65 +78,35 @@ export default {
         margin: 0 auto;
         background-color: white;
     }
-
     #my_head {
-        position: relative;
-        max-width: 600px;
-        /* height: 25%; */
+        height: 25%;
         border-radius: 0 0 7px 7px;
-        padding: 5%;
-        
-    }
-    .head_left {
+        padding: 3%;
         display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        width: 70%;
-        /* height: 100%; */
+        justify-content: space-between;
+    }
+    #head_left,#head_right {
+        height: 100%;
         border: 1px solid red;
-
+        /* display: flex; */
+        /* justify-content: space-between; */
     }
-    .user_name {
+     #head_left {
+        /* width: 70%; */
+        height: 100%;
+    }
+    h3,h5 {
+        font-weight: normal;
         text-align: left;
-        font-size: 100%;
     }
-    .user_level {
-        text-align: left;
-        font-size: 80%;
-    }
-    .levelimg {
-        width: 80%;
-        display: flex;
-    }
-    .indimg {
-        width: 35%;
-        display: flex;
-    }
-    .head_right {
-        border: 1px solid red;
-        
+    #head_right {
         width: 30%;
         height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .headportrait {
-        border: 1px solid red;
-        width: 80%;
-        border-radius: 50%;
-        z-index: 1;
-    }
-    .duanimg {
-        position: relative;
-        width: 100%;
-        border: 1px solid red;
-        margin-top: -30%;
-        z-index: 0;
-    }
+    } 
+   
     .nearimg {
-        width: 100%;
+        /* width: 100%; */
+        height: 20%;
     }
     .iconfont {
         color: #d5a269;
@@ -176,7 +144,7 @@ export default {
     #settings {
         height: 8%;
         margin-top: 2%;
-        margin-bottom: 8%;
+        /* margin-bottom: 8%; */
         padding: 0 10px;
         display: flex;
         align-items: center;
