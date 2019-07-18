@@ -14,8 +14,7 @@
                 </div>
             </div>
         </router-link>
-        
-        <img :src="nearImg" alt="" class="nearimg">
+        <div id="myChart" :style="{width: '300px', height: '300px'}"></div>
         <div id="run_data">
             <router-link to="/">
                 <div id="details">
@@ -49,7 +48,29 @@ export default {
             duanImg:require('../../assets/img/my/duan/5.png'),
             nearImg:require('../../assets/img/my/run_data/near.png'),
         }
+    },
+  mounted(){
+    this.drawLine();
+  },
+  methods: {
+    drawLine(){
+        // 基于准备好的dom，初始化echarts实例
+        let myChart = this.$echarts.init(document.getElementById('myChart'))
+        // 绘制图表
+        myChart.setOption({
+            tooltip: {},
+            xAxis: {
+                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            },
+            yAxis: {},
+            series: [{
+                name: '销量',
+                type: 'bar',
+                data: [5, 20, 36, 10, 10, 20]
+            }]
+        });
     }
+  }
 }
 </script>
 <style scoped>
@@ -136,6 +157,14 @@ export default {
         margin-top: -25%;
         position: relative;
         z-index: 0;
+    }
+    #myChart {
+        border: 1px solid red;
+        display: flex;
+        justify-content: center;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
     }
     .nearimg {
         /* width: 100%; */
