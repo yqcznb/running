@@ -6,7 +6,9 @@ import router from './router'
 import "./assets/mui/css/mui.min.css"
 import "./assets/mui/css/icons-extra.css"
 import VueAMap from 'vue-amap'
+import echarts from 'echarts'
 
+Vue.prototype.$echarts = echarts
 Vue.use(VueAMap)
 Vue.config.productionTip = false
 VueAMap.initAMapApiLoader({
