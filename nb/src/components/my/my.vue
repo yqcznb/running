@@ -3,13 +3,14 @@
         <router-link to="/pinform">
             <div id="my_head">
                 <div id="head_left">
-                    <h3>叭叭叭</h3>
-                    <!-- <p>叭叭叭</p>
-                    <p>天下跑神段位》</p> -->
+                    <h4>叭叭叭</h4>
                     <h5>天下跑神段位》</h5>
+                    <img :src='levelImg' class="levelimg">
+                    <img :src='indImg' class="indimg">
                 </div>
                 <div id="head_right">
-
+                    <img :src='headportrait' class="headportrait">
+                    <img :src='duanImg' class="duanimg">
                 </div>
             </div>
         </router-link>
@@ -44,7 +45,7 @@ export default {
             msg: 'aaaaa',
             levelImg: require('../../assets/img/my/schedual_level/first.png'),
             indImg:require('../../assets/img/my/identify/跑神认证.png'),
-            headportrait:require('../../assets/img/my/headportrait/tx.jpeg'),
+            headportrait:require('../../assets/img/my/headportrait/4.jpg'),
             duanImg:require('../../assets/img/my/duan/5.png'),
             nearImg:require('../../assets/img/my/run_data/near.png'),
         }
@@ -73,37 +74,69 @@ export default {
 
     #my_head,#run_data,#settings {
         width: 90%;
-        border: 1px solid red;
+        /* border: 1px solid red; */
         display: flex;
         margin: 0 auto;
         background-color: white;
     }
     #my_head {
-        height: 25%;
+        height: 22%;
         border-radius: 0 0 7px 7px;
-        padding: 3%;
+        padding: 15px 20px;
         display: flex;
         justify-content: space-between;
     }
     #head_left,#head_right {
         height: 100%;
-        border: 1px solid red;
+        /* border: 1px solid red; */
         /* display: flex; */
         /* justify-content: space-between; */
     }
-     #head_left {
+    #head_left {
         /* width: 70%; */
         height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
     }
-    h3,h5 {
+    h4,h5 {
         font-weight: normal;
         text-align: left;
     }
+    h4 {
+        /* margin-bottom: 20%; */
+    }
+    h5 {
+        color: rgba(253, 185, 51, 0.89);
+    }
+    .levelimg {
+        width: 70%;
+        max-width: 336px;
+    }
+    .indimg {
+        width: 20%;
+    }
     #head_right {
-        width: 30%;
-        height: 100%;
+        /* width: 30%; */
+        /* height: 100%; */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     } 
-   
+    .headportrait {
+        border: 1px solid #bbb;
+        /* position: relative; */
+        border-radius: 50%;
+        height: 63%;
+        z-index: 4;
+    }
+    .duanimg {
+        /* border: 1px solid #bbb; */
+        height: 50%;
+        margin-top: -25%;
+        position: relative;
+        z-index: 0;
+    }
     .nearimg {
         /* width: 100%; */
         height: 20%;
@@ -149,7 +182,7 @@ export default {
         display: flex;
         align-items: center;
         text-align: left;
-        border: 1px solid black;
+        /* border: 1px solid black; */
     }
     .iconfont-right {
         /* text-align: right !important; */
