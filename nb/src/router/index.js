@@ -13,6 +13,7 @@ import switchid from '@/components/my/settings/switchid'
 import ppolicy from '@/components/my/settings/privacy/ppolicy'
 
 import pet from '@/components/pet/pet'
+
 import index from '@/components/index/index'
 import run from '@/components/run/run'
 
