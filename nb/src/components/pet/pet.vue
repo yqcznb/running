@@ -29,9 +29,7 @@
                 </div>
 
                 <!-- 宠物蛋 -->
-                <div class="egg_img"></div>
-
-                <!-- <el-button type="text" @click="open2">查看</el-button> -->
+                <div class="egg_img" @click="open"></div>
                 
             </div>
             
@@ -40,27 +38,24 @@
 
       
 <script>
-    
+    import { MessageBox } from 'mint-ui'
     export default {
-    //    methods: {
-    //   open2() {
-    //     MessageBox.confirm('将前往跑步抓取宠物, 是否继续?', '提示', {
-    //       confirmButtonText: '确定',
-    //       cancelButtonText: '取消',
-    //       type: 'warning'
-    //     }).then(() => {
-    //       MessageBox.message({
-    //         type: 'success',
-    //         message: '成功!'
-    //       });  
-    //     }).catch(() => {
-    //       MessageBox.message({
-    //         type: 'info',
-    //         message: '已取消'
-    //       });          
-    //     });
-    //   }
-    // }
+       methods: {
+      open() {
+        MessageBox.confirm('将前往跑步抓取宠物, 是否继续?', '提示', {
+          confirmButtonText: '确定',
+          cancelButtonText: '取消',
+          type: 'warning'
+        }).then(() => {
+          window.location.href='../run#/run'; 
+        }).catch(() => {
+          MessageBox.message({
+            type: 'info',
+            message: '已取消'
+          });          
+        });
+      }
+    }
     }
 
 </script>
