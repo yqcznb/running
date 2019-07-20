@@ -57,27 +57,27 @@ export default {
     drawLine(){
         // 基于准备好的dom，初始化echarts实例
         let myChart = this.$echarts.init(document.getElementById('myChart'));
-
         window.onresize = function(){myChart.resize();}
         // 绘制图表
         myChart.setOption({
             title: {
                 left: 'center',
                 bottom: '0%',
-                text: '近期跑步数据',
+                text: '近 期 跑 步 数 据',
                 textStyle: {
                     fontFamily: '方正汉真广标简体',
                     color: 'white',
                     fontSize: 14,
                     fontWeight: 'normal',
+                    fontStyle: 100,
                 },
             },
             tooltip : {
 				trigger : 'axis'
 			},
 			grid : {
-                right : '13%',
-                left: '13%',
+                right : '10.5%',
+                left: '15.5%',
                 // bottom: '14%',
 			},
 			toolbox : {
