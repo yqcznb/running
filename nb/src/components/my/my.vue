@@ -14,7 +14,7 @@
                 </div>
             </div>
         </router-link>
-        <div id="myChart" :style="{width: '300px', height: '300px'}"></div>
+        <div id="myChart" :auto-resize='autoresize'></div>
         <div id="run_data">
             <router-link to="/">
                 <div id="details">
@@ -41,6 +41,7 @@ export default {
     name: 'my',
     data() {
         return{
+            autoresize: true,
             msg: 'aaaaa',
             levelImg: require('../../assets/img/my/schedual_level/first.png'),
             indImg:require('../../assets/img/my/identify/跑神认证.png'),
@@ -55,19 +56,116 @@ export default {
   methods: {
     drawLine(){
         // 基于准备好的dom，初始化echarts实例
-        let myChart = this.$echarts.init(document.getElementById('myChart'))
+        let myChart = this.$echarts.init(document.getElementById('myChart'));
+
+        window.onresize = function(){myChart.resize();}
         // 绘制图表
         myChart.setOption({
-            tooltip: {},
-            xAxis: {
-                data: ["衬衫","羊毛衫","雪纺衫","裤子","高跟鞋","袜子"]
+            title: {
+                left: 'center',
+                bottom: '0%',
+                text: '近期跑步数据',
+                textStyle: {
+                    fontFamily: '方正汉真广标简体',
+                    color: 'white',
+                    fontSize: 14,
+                    fontWeight: 'normal',
+                },
             },
-            yAxis: {},
-            series: [{
-                name: '销量',
-                type: 'bar',
-                data: [5, 20, 36, 10, 10, 20]
-            }]
+            tooltip : {
+				trigger : 'axis'
+			},
+			grid : {
+                right : '13%',
+                left: '13%',
+                // bottom: '14%',
+			},
+			toolbox : {
+				feature : {
+					dataView : {
+						show : false,
+						readOnly : false
+					},
+					restore : {
+						show : false
+					},
+					saveAsImage : {
+						show : false
+					}
+				}
+			},
+			legend : {
+				data : [ '里程' ,'配速']
+			},
+			xAxis : [ {
+                type : 'category',
+                boundaryGap: false,
+                splitLine:{show: false},
+				axisTick : {
+					alignWithLabel : false,
+				},
+                axisLine : {
+					lineStyle : {
+                        color: '#e7e7e7',
+                    },
+				},
+                axisLabel: {
+                    show: true,
+                    textStyle: {
+                        fontSize: 12,
+                        color: 'white',
+                    },
+                },
+				data : [ '07-07', '07-08', '07-09', '07-10', '07-11','07-12', '07-13', '07-14', '07-15', '07-16','07-17', '07-18' ]
+			} ],
+			yAxis : [ {
+				type : 'value',
+                position : 'left',
+                splitLine:{show: false},
+				axisLine : {
+					lineStyle : {
+                        color: '#e7e7e7',
+                    },
+				},
+				axisLabel : {
+					formatter : '{value}',
+                    textStyle: {
+                        fontSize: 12,
+                        color: 'white',
+                    },
+				}
+			},{
+                type : 'value',
+                position : 'right',
+                splitLine:{show: false},
+				axisLine : {
+                    lineStyle : {
+                        color: '#e7e7e7',
+                    },
+				},
+				axisLabel : {formatter : '{value}',
+                textStyle: {
+                    fontSize: 12,
+                    color: 'white',
+                },
+            }}],
+			series: [ {
+                name : '里程',
+                smooth: 'true',
+                type : 'line',
+                itemStyle: {normal: { color: '#5eb5d7',lineStyle: {color: '#5eb5d7'}}},
+                areaStyle: {
+                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: '#84eded'},{offset: 0.8, color: '#f3fffc'}])},
+				data : [ 10000, 20000, 12065, 3620,16530, 9510, 20100, 13002, 13580,15063, 15200, 9000 ]
+			},{
+                name : '配速',
+                smooth: 'true',
+                type : 'line',                                itemStyle: {normal: { color: '#e56f7f'}},
+                yAxisIndex : 1,
+                areaStyle: {
+                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: '#efc7b4'},{offset: 0.8, color: '#f6ebd5'}])},
+				data : [ 3.1, 5.55, 5.59, 6.20, 4.39, 5.00, 6.1, 7.4,7.34, 8.26, 3.58,8.12 ]
+            } ]
         });
     }
   }
@@ -104,6 +202,7 @@ export default {
         height: 22%;
         border-radius: 0 0 7px 7px;
         padding: 15px 20px;
+        margin-bottom: 1%;
         display: flex;
         justify-content: space-between;
     }
@@ -159,16 +258,14 @@ export default {
         z-index: 0;
     }
     #myChart {
-        border: 1px solid red;
+        width: 100%;
+        height: 30%;
+        /* border: 1px solid red; */
         display: flex;
         justify-content: center;
         left: 0;
         right: 0;
         margin: 0 auto;
-    }
-    .nearimg {
-        /* width: 100%; */
-        height: 20%;
     }
     .iconfont {
         color: #d5a269;
@@ -183,6 +280,7 @@ export default {
     
     #run_data {
         height: 16%;
+        margin-top: 2%;
         padding: 0 10px;
         flex-direction: column;
         justify-content: space-around;
