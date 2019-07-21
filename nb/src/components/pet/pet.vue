@@ -50,8 +50,7 @@
           window.location.href='../run#/run'; 
         }).catch(() => {
           MessageBox.message({
-            type: 'info',
-            message: '已取消'
+            
           });          
         });
       }
