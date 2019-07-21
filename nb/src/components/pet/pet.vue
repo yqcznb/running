@@ -47,7 +47,8 @@
           cancelButtonText: '取消',
           type: 'warning'
         }).then(() => {
-          window.location.href='../run#/run'; 
+          window.location.href='../run#/run';    
+         
         }).catch(() => {
           MessageBox.message({
             
