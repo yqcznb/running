@@ -36,7 +36,7 @@
         </router-link>
     </div>
 </template>
-<script>
+<script> 
 export default {
     name: 'my',
     data() {
@@ -55,8 +55,25 @@ export default {
   },
   methods: {
     drawLine(){
+        // 近12日日期
+        function get_date() {
+            var myDate = new Date(); //获取今天日期
+            myDate.setDate(myDate.getDate() - 12);
+            var dateArray = []; 
+            var dateTemp; 
+            var flag = 1; 
+            for (var i = 0; i < 12; i++) {
+                dateTemp = (myDate.getMonth()+1)+"-"+myDate.getDate();
+                dateArray.push(dateTemp);
+                myDate.setDate(myDate.getDate() + flag);
+            }
+            return dateArray;
+        }
+        let date = get_date();
+
         // 基于准备好的dom，初始化echarts实例
         let myChart = this.$echarts.init(document.getElementById('myChart'));
+        // 图表自适应
         window.onresize = function(){myChart.resize();}
         // 绘制图表
         myChart.setOption({
@@ -106,7 +123,7 @@ export default {
 				},
                 axisLine : {
 					lineStyle : {
-                        color: '#e7e7e7',
+                        color: '#c8c6c9',
                     },
 				},
                 axisLabel: {
@@ -116,7 +133,7 @@ export default {
                         color: 'white',
                     },
                 },
-				data : [ '07-07', '07-08', '07-09', '07-10', '07-11','07-12', '07-13', '07-14', '07-15', '07-16','07-17', '07-18' ]
+                data: date
 			} ],
 			yAxis : [ {
 				type : 'value',
@@ -124,7 +141,7 @@ export default {
                 splitLine:{show: false},
 				axisLine : {
 					lineStyle : {
-                        color: '#e7e7e7',
+                        color: '#c8c6c9',
                     },
 				},
 				axisLabel : {
@@ -140,7 +157,7 @@ export default {
                 splitLine:{show: false},
 				axisLine : {
                     lineStyle : {
-                        color: '#e7e7e7',
+                        color: '#c8c6c9',
                     },
 				},
 				axisLabel : {formatter : '{value}',
