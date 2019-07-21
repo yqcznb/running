@@ -13,6 +13,7 @@ import switchid from '@/components/my/settings/switchid'
 import ppolicy from '@/components/my/settings/privacy/ppolicy'
 
 import pet from '@/components/pet/pet'
+import gpet from '@/components/pet/gpet'
 
 import index from '@/components/index/index'
 import run from '@/components/run/run'
@@ -48,6 +49,11 @@ export default new Router({
           name: 'pet',
           component: pet,
           meta: { checkLogined: true },
+        },
+        {
+          path: 'pet',
+          name: 'gpet',
+          component: gpet,
         },
         {
           path: 'index',
