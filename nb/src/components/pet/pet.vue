@@ -12,14 +12,14 @@
 
                     <!-- 三个圈 -->
                     <ul>
-                        <li><img src="../../assets/img/circle.png"></li>
-                        <li><img src="../../assets/img/circle.png"></li>
-                        <li><img src="../../assets/img/circle.png"></li>
+                        <li><img src="../../assets/img/pet/circle.png"></li>
+                        <li><img src="../../assets/img/pet/circle.png"></li>
+                        <li><img src="../../assets/img/pet/circle.png"></li>
                     </ul>
 
                     <!-- 背包 -->
                     <div class="bag_img">
-                        <img src="../../assets/img/bag.png" alt="">
+                        <img src="../../assets/img/pet/bag.png" alt="">
                     </div>
                 </div>
 
@@ -130,7 +130,7 @@
     /* 宠物蛋 */
      .egg_img{
         display: flex;
-        background-image: url(../../assets/img/egg.png);
+        background-image: url(../../assets/img/pet/egg.png);
         background-repeat: no-repeat;
         width: 100%;
         background-position: center;

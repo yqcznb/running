@@ -17,20 +17,20 @@
 
                     <!-- 三个圈 -->
                     <ul>
-                        <li><img src="../../assets/img/blood.png"></li>
-                        <li><img src="../../assets/img/skill.png"></li>
-                        <li><img src="../../assets/img/force.png"></li>
+                        <li><img src="../../assets/img/pet/blood.png"></li>
+                        <li><img src="../../assets/img/pet/skill.png"></li>
+                        <li><img src="../../assets/img/pet/force.png"></li>
                     </ul>
 
                     <!-- 背包 -->
                     <div class="bag_img">
-                        <img src="../../assets/img/bag.png" alt="">
+                        <img src="../../assets/img/pet/gbag.png" alt="">
                     </div>
                 </div>
 
                 <!-- 进度条 -->
                 <div class="progress_bar">
-                    <p>孵化进度</p>
+                    <!-- <p>孵化进度</p> -->
                 </div>
 
                 <!-- 宠物蛋 -->
@@ -121,6 +121,7 @@
         display: flex;
         width: 120px;
         height: 6%;
+        background-image: url(../../assets/img/pet/gbar.png);
         background-color: #ccc;
         border-radius: 20px;
         margin: 20% auto 0;
@@ -135,7 +136,7 @@
     /* 宠物蛋 */
      .egg_img{
         display: flex;
-        background-image: url(../../assets/img/egg.png);
+        background-image: url(../../assets/img/pet/gegg.png);
         background-repeat: no-repeat;
         width: 100%;
         background-position: center;
