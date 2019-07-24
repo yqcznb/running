@@ -3,7 +3,8 @@ import Router from 'vue-router'
 import login from '@/components/login/login'
 import footer from '@/components/footer/footer'
 import my from '@/components/my/my'
-import pinform from '@/components/my/pinform'
+import pinform from '@/components/my/my_head/pinform'
+import drole from '@/components/my/my_head/drole'
 import settings from '@/components/my/settings/settings'
 import funnymode from '@/components/my/settings/funnymode'
 import idsafe from '@/components/my/settings/idsafe'
@@ -11,6 +12,8 @@ import privacy from '@/components/my/settings/privacy/privacy'
 import on from '@/components/my/settings/on'
 import switchid from '@/components/my/settings/switchid'
 import ppolicy from '@/components/my/settings/privacy/ppolicy'
+import run_data_detail from '@/components/my/run_data_detail'
+import rank_list from '@/components/my/rank_list'
 
 import pet from '@/components/pet/pet'
 
@@ -63,6 +66,11 @@ export default new Router({
       component: pinform,
     },
     {
+      path: '/drole',
+      name: 'drole',
+      component: drole,
+    },
+    {
       path: '/settings',
       name: 'settings',
       component: settings,
@@ -96,6 +104,16 @@ export default new Router({
       path: '/switchid',
       name: 'switchid',
       component: switchid,
+    },
+    {
+      path: '/run_data_detail',
+      name: 'run_data_detail',
+      component: run_data_detail,
+    },
+    {
+      path: '/rank_list',
+      name: 'rank_list',
+      component: rank_list,
     },
   ]
 })

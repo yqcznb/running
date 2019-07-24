@@ -4,7 +4,7 @@
             <div id="my_head">
                 <div id="head_left">
                     <h4>叭叭叭</h4>
-                    <h5>天下跑神段位》</h5>
+                    <h5><router-link to="/drole">{{ msg }}》</router-link></h5>
                     <img :src='levelImg' class="levelimg">
                     <img :src='indImg' class="indimg">
                 </div>
@@ -16,13 +16,13 @@
         </router-link>
         <div id="myChart" :auto-resize='autoresize'></div>
         <div id="run_data">
-            <router-link to="/">
+            <router-link to="/run_data_detail">
                 <div id="details">
                     <i class="iconfont icontiyu-paobu"></i><span class="">跑步数据详情</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
             <hr>
-            <router-link to="/">
+            <router-link to="/rank_list">
                 <div id="rank_list">
                     <i class="iconfont iconpaihangbang rankimg"></i><span class="">排行榜</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
@@ -42,7 +42,7 @@ export default {
     data() {
         return{
             autoresize: true,
-            msg: 'aaaaa',
+            msg: '天下跑神段位',
             levelImg: require('../../assets/img/my/schedual_level/first.png'),
             indImg:require('../../assets/img/my/identify/跑神认证.png'),
             headportrait:require('../../assets/img/my/headportrait/4.jpg'),
@@ -243,7 +243,7 @@ export default {
     h4 {
         /* margin-bottom: 20%; */
     }
-    h5 {
+    h5 a {
         color: rgba(253, 185, 51, 0.89);
     }
     .levelimg {
