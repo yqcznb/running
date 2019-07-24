@@ -30,7 +30,7 @@
 
                 <!-- 进度条 -->
                 <div class="progress_bar">
-                    <p>孵化进度</p>
+                    <!-- <p>孵化进度</p> -->
                 </div>
 
                 <!-- 宠物蛋 -->
@@ -121,6 +121,7 @@
         display: flex;
         width: 120px;
         height: 6%;
+        background-image: url(../../assets/img/gbar.png);
         background-color: #ccc;
         border-radius: 20px;
         margin: 20% auto 0;
@@ -135,7 +136,7 @@
     /* 宠物蛋 */
      .egg_img{
         display: flex;
-        background-image: url(../../assets/img/egg.png);
+        background-image: url(../../assets/img/gegg.png);
         background-repeat: no-repeat;
         width: 100%;
         background-position: center;
