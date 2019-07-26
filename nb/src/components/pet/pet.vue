@@ -48,7 +48,7 @@
           type: 'warning'
         }).then(() => {
           window.location.href='../run#/run';    
-         
+        //   window.location.href='#/footer/pet/gpet';
         }).catch(() => {
           MessageBox.message({
             
