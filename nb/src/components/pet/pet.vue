@@ -29,8 +29,9 @@
                 </div>
 
                 <!-- 宠物蛋 -->
-                <div class="egg_img" @click="open"></div>
+                 <div class="egg_img" @click="open"></div>
                 
+                <router-link to="/gpet">点击</router-link>
             </div>
             
     </div>
@@ -48,7 +49,7 @@
           type: 'warning'
         }).then(() => {
           window.location.href='../run#/run';    
-        //   window.location.href='#/footer/pet/gpet';
+        //   window.location.href='../run#/footer/pet/gpet';
         }).catch(() => {
           MessageBox.message({
             
@@ -116,13 +117,13 @@
         display: flex;
         width: 120px;
         height: 6%;
-        background-color: #ccc;
+        background-color: rgb(204, 204, 204);
         border-radius: 20px;
         margin: 20% auto 0;
     }
 
     .progress_bar p{
-        color: aliceblue;
+        color: rgb(240, 248, 255);
         margin: 3% auto 0;
     }
 

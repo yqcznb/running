@@ -53,11 +53,7 @@ export default new Router({
           component: pet,
           meta: { checkLogined: true },
         },
-        {
-          path: 'pet',
-          name: 'gpet',
-          component: gpet,
-        },
+       
         {
           path: 'index',
           name: 'index',
@@ -67,10 +63,17 @@ export default new Router({
       ]
     },
     {
+      path: '/gpet',
+      name: 'gpet',
+      component: gpet,
+      meta: { checkLogined: true },
+    },
+    {
       path: '/pinform',
       name: 'pinform',
       component: pinform,
     },
+    
     {
       path: '/drole',
       name: 'drole',
