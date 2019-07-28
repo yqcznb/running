@@ -6,7 +6,7 @@
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
     </div>
-    
+    <router-view :key="yy"></router-view>
       <div class="left">
         <div class="limbs">
           <div class="hands"></div>
@@ -95,6 +95,9 @@ export default {
         }
       ]
     }
+  },
+   activated: function() {
+    this.getCase()
   },
   methods: {
     //把经纬度传到父组件
