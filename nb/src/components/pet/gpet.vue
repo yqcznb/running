@@ -30,7 +30,7 @@
 
                 <!-- 进度条 -->
                 <div class="progress_bar">
-                    <!-- <p>孵化进度</p> -->
+                    <p>孵化进度</p>
                 </div>
 
                 <!-- 宠物蛋 -->
@@ -77,6 +77,25 @@
         margin-top: 0;
         flex-direction: column;
     }
+
+    .pet_head .head .xiaoqu{
+        border-bottom:2px solid rgb(102, 96, 92);
+        text-align: left;
+        font-size: 20px;
+        background:rgb(238, 242, 243);
+        padding: 10px;
+    }
+
+    .pet_head .head li i{
+        padding: 5px 10px;
+        color: rgb(231, 46, 170);
+        font-size: 20px; 
+    }
+    .pet_head .head .tongzhi{
+        text-align: left;
+        background:rgb(208, 210, 211);
+        padding: 3px;
+    }
     
 
     /* 宠物部分 */
@@ -120,15 +139,14 @@
     .progress_bar{
         display: flex;
         width: 120px;
-        height: 6%;
-        background-image: url(../../assets/img/pet/gbar.png);
-        background-color: #ccc;
+        height: 60px;
+        border: 1px solid #ccc;
         border-radius: 20px;
         margin: 20% auto 0;
     }
 
     .progress_bar p{
-        color: aliceblue;
+        color: rgb(104, 206, 247);
         margin: 3% auto 0;
     }
 
