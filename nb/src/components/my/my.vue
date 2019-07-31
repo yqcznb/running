@@ -3,7 +3,7 @@
         <router-link to="/pinform">
             <div id="my_head">
                 <div id="head_left">
-                    <h4>叭叭叭</h4>
+                    <h4>{{ uname }}</h4>
                     <h5><router-link to="/drole">{{ msg }}》</router-link></h5>
                     <img :src='levelImg' class="levelimg">
                     <img :src='indImg' class="indimg">
@@ -42,6 +42,7 @@ export default {
     data() {
         return{
             autoresize: true,
+            uname: '叭叭叭',
             msg: '天下跑神段位',
             levelImg: require('../../assets/img/my/schedual_level/first.png'),
             indImg:require('../../assets/img/my/identify/跑神认证.png'),
