@@ -5,7 +5,7 @@
                 <div id="head_left">
                     <h4>{{ uname }}</h4>
                     <h5><router-link to="/drole">{{ msg }}》</router-link></h5>
-                    <img :src='levelImg' class="levelimg">
+                    <img :src='levelImg' class="levelimg" >
                     <img :src='indImg' class="indimg">
                 </div>
                 <div id="head_right">

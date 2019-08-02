@@ -67,4 +67,7 @@ export default {
         /* border: 1px solid red; */
         border-radius: 10%;
     }
+    i {
+        color: #dec674;
+    }
 </style>
