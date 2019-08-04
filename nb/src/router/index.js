@@ -18,6 +18,8 @@ import rank_list from '@/components/my/rank_list'
 import pet from '@/components/pet/pet'
 import gpet from '@/components/pet/gpet'
 
+
+
 import index from '@/components/index/index'
 import run from '@/components/run/run'
 
@@ -66,7 +68,9 @@ export default new Router({
       path: '/gpet',
       name: 'gpet',
       component: gpet,
-      meta: { checkLogined: true },
+      children:[
+       
+      ]
     },
     {
       path: '/pinform',
