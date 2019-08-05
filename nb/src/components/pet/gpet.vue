@@ -17,14 +17,27 @@
 
                     <!-- 三个圈 -->
                     <ul>
-                        <li><img src="../../assets/img/pet/blood.png" id="mcontent" @click="blood"></li>
-                        <li><img src="../../assets/img/pet/skill.png" id="mcontent" @click="skill"></li>
-                        <li><img src="../../assets/img/pet/force.png" id="mcontent" @click="force"></li>
+                        <li>
+                            <p>血量</p>
+                            <img src="../../assets/img/pet/blood.png" id="mcontent" @click="blood">
+                            
+                        </li>
+                        <li>
+                            <p>技能</p>
+                            <img src="../../assets/img/pet/skill.png" id="mcontent" @click="skill">
+                            
+                         </li>
+                        <li>
+                            <p>武力</p>
+                            <img src="../../assets/img/pet/force.png" id="mcontent" @click="force">
+                            
+                        </li>
                     </ul>
 
                     <!-- 背包 -->
                     <div class="bag_img">
-                           <img src="../../assets/img/pet/gbag.png" alt="">
+                        <p>背包</p>
+                        <img src="../../assets/img/pet/gbag.png" alt="">
                     </div>
                 </div>
                
@@ -36,17 +49,10 @@
 
                 <!-- 宠物蛋 -->
                 <div class="egg_img"></div>
-
-                <!-- <el-button type="text" @click="open2">查看</el-button> -->
                 
             </div>
 
-                <!-- <div id="div"></div>
-
-                <div id="popover" class="mui-popover">
-                    <div class="mui-popover-arrow"></div>
-                    <a href="">点击此处</a>
-                </div> -->
+               
                 <div class="frame">
                     <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="visible" style="width:100%;height:60%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">   
                         <ul>
@@ -67,7 +73,7 @@
                                 <div class="head_frame">
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
-                                昵称{{user_name}}(我自己)
+                                {{user_name}}(我自己)
                                 <span>{{f_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_one">
@@ -75,7 +81,7 @@
                                 <div class="head_frame">
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
-                                昵称{{user_name}}
+                                {{user_name}}
                                 <span>{{f_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_two">
@@ -83,7 +89,7 @@
                                 <div class="head_frame">
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
-                                昵称{{user_name}}
+                                {{user_name}}
                                 <span>{{f_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_three">
@@ -91,7 +97,7 @@
                                 <div class="head_frame">
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
-                                昵称{{user_name}}
+                                {{user_name}}
                                 <span>{{f_title}}值为{{blood_one}}</span>
                             </li>
                         </ul>
@@ -118,7 +124,7 @@
                                 <div class="head_frame">
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
-                                昵称{{user_name}}(我自己)
+                                {{user_name}}(我自己)
                                 <span>{{s_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_one">
@@ -126,7 +132,7 @@
                                 <div class="head_frame">
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
-                                昵称{{user_name}}
+                                {{user_name}}
                                 <span>{{s_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_two">
@@ -134,7 +140,7 @@
                                 <div class="head_frame">
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
-                                昵称{{user_name}}
+                                {{user_name}}
                                 <span>{{s_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_three">
@@ -142,7 +148,7 @@
                                 <div class="head_frame">
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
-                                昵称{{user_name}}
+                                {{user_name}}
                                 <span>{{s_title}}值为{{blood_one}}</span>
                             </li>
                         </ul>
@@ -170,7 +176,7 @@
                                 <div class="head_frame">
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
-                                昵称{{user_name}}(我自己)
+                                {{user_name}}(我)
                                 <span>{{e_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_one">
@@ -178,7 +184,7 @@
                                 <div class="head_frame">
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
-                                昵称{{user_name}}
+                                {{user_name}}
                                 <span>{{e_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_two">
@@ -186,7 +192,7 @@
                                 <div class="head_frame">
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
-                                昵称{{user_name}}
+                                {{user_name}}
                                 <span>{{e_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_three">
@@ -194,7 +200,7 @@
                                 <div class="head_frame">
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
-                                昵称{{user_name}}
+                                {{user_name}}
                                 <span>{{e_title}}值为{{blood_one}}</span>
                             </li>
                         </ul>
@@ -219,6 +225,8 @@
                 f_title: '血量',
                 s_title: '技能',
                 e_title: '武力',
+                blood_one: 10,
+                user_name: 'hjw',
             }
         },
         methods:{
@@ -252,7 +260,7 @@
 		top: 70%;
 		left: 50%;
 	}
-			/*移除底部或顶部三角,需要在删除此代码*/
+			
 	.mui-popover .mui-popover-arrow:after {
 		width: 0px;
 	}
@@ -314,7 +322,7 @@
 
     /* 圆圈 */
     .pet_interface_pet_top ul li{
-        margin-bottom: 10%;
+        /* margin-bottom: 3%; */
     }
 
     .pet_interface_pet_top ul li img{
@@ -415,7 +423,7 @@
         height: 30px;
         border: 1px solid rgb(184, 181, 181);
         border-radius: 50%;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     .frame .list_one .head_frame img{
@@ -426,7 +434,7 @@
 
     .frame .list_one span{
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
 
@@ -452,7 +460,7 @@
         height: 30px;
         border: 1px solid rgb(184, 181, 181);
         border-radius: 50%;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     .frame .list_two .head_frame img{
@@ -463,7 +471,7 @@
 
     .frame .list_two span{
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 10px;
     }
     
 
@@ -489,7 +497,7 @@
         height: 30px;
         border: 1px solid rgb(184, 181, 181);
         border-radius: 50%;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     .frame .list_three .head_frame img{
@@ -500,7 +508,7 @@
 
     .frame .list_three span{
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
 
@@ -526,7 +534,7 @@
         height: 30px;
         border: 1px solid rgb(184, 181, 181);
         border-radius: 50%;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     .frame .list_my .head_frame img{
@@ -537,7 +545,7 @@
 
     .frame .list_my span{
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
 
@@ -595,7 +603,7 @@
         height: 30px;
         border: 1px solid rgb(184, 181, 181);
         border-radius: 50%;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     .frame_skill .list_one .head_frame img{
@@ -606,7 +614,7 @@
 
     .frame_skill .list_one span{
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
 
@@ -632,7 +640,7 @@
         height: 30px;
         border: 1px solid rgb(184, 181, 181);
         border-radius: 50%;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     .frame_skill .list_two .head_frame img{
@@ -643,7 +651,7 @@
 
     .frame_skill .list_two span{
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 10px;
     }
     
 
@@ -669,7 +677,7 @@
         height: 30px;
         border: 1px solid rgb(184, 181, 181);
         border-radius: 50%;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     .frame_skill .list_three .head_frame img{
@@ -680,7 +688,7 @@
 
     .frame_skill .list_three span{
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
 
@@ -706,7 +714,7 @@
         height: 30px;
         border: 1px solid rgb(184, 181, 181);
         border-radius: 50%;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     .frame_skill .list_my .head_frame img{
@@ -717,7 +725,7 @@
 
     .frame_skill .list_my span{
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
 
@@ -776,7 +784,7 @@
         height: 30px;
         border: 1px solid rgb(184, 181, 181);
         border-radius: 50%;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     .frame_force .list_one .head_frame img{
@@ -787,7 +795,7 @@
 
     .frame_force .list_one span{
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
 
@@ -813,7 +821,7 @@
         height: 30px;
         border: 1px solid rgb(184, 181, 181);
         border-radius: 50%;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     .frame_force .list_two .head_frame img{
@@ -824,7 +832,7 @@
 
     .frame_force .list_two span{
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 10px;
     }
     
 
@@ -850,7 +858,7 @@
         height: 30px;
         border: 1px solid rgb(184, 181, 181);
         border-radius: 50%;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     .frame_force .list_three .head_frame img{
@@ -861,7 +869,7 @@
 
     .frame_force .list_three span{
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
 
@@ -887,7 +895,7 @@
         height: 30px;
         border: 1px solid rgb(184, 181, 181);
         border-radius: 50%;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 
     .frame_force .list_my .head_frame img{
@@ -898,7 +906,7 @@
 
     .frame_force .list_my span{
         display: inline-block;
-        margin-left: 20px;
+        margin-left: 10px;
     }
 </style>
 
