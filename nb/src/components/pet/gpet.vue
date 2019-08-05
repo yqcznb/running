@@ -68,7 +68,7 @@
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
                                 昵称{{user_name}}(我自己)
-                                <span>血量值为{{blood_one}}</span>
+                                <span>{{f_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_one">
                                 <i class="iconfont icondiyiming"></i>
@@ -76,7 +76,7 @@
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
                                 昵称{{user_name}}
-                                <span>血量值为{{blood_one}}</span>
+                                <span>{{f_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_two">
                                 <i class="iconfont icondierming1"></i>
@@ -84,7 +84,7 @@
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
                                 昵称{{user_name}}
-                                <span>血量值为{{blood_one}}</span>
+                                <span>{{f_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_three">
                                 <i class="iconfont icondisanming1"></i>
@@ -92,7 +92,7 @@
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
                                 昵称{{user_name}}
-                                <span>血量值为{{blood_one}}</span>
+                                <span>{{f_title}}值为{{blood_one}}</span>
                             </li>
                         </ul>
                     </mt-popup>
@@ -119,7 +119,7 @@
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
                                 昵称{{user_name}}(我自己)
-                                <span>技能值为{{blood_one}}</span>
+                                <span>{{s_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_one">
                                 <i class="iconfont icondiyiming"></i>
@@ -127,7 +127,7 @@
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
                                 昵称{{user_name}}
-                                <span>技能值为{{blood_one}}</span>
+                                <span>{{s_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_two">
                                 <i class="iconfont icondierming1"></i>
@@ -135,7 +135,7 @@
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
                                 昵称{{user_name}}
-                                <span>技能值为{{blood_one}}</span>
+                                <span>{{s_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_three">
                                 <i class="iconfont icondisanming1"></i>
@@ -143,7 +143,7 @@
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
                                 昵称{{user_name}}
-                                <span>技能值为{{blood_one}}</span>
+                                <span>{{s_title}}值为{{blood_one}}</span>
                             </li>
                         </ul>
                     </mt-popup>
@@ -171,7 +171,7 @@
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
                                 昵称{{user_name}}(我自己)
-                                <span>武力值为{{blood_one}}</span>
+                                <span>{{e_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_one">
                                 <i class="iconfont icondiyiming"></i>
@@ -179,7 +179,7 @@
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
                                 昵称{{user_name}}
-                                <span>武力值为{{blood_one}}</span>
+                                <span>{{e_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_two">
                                 <i class="iconfont icondierming1"></i>
@@ -187,7 +187,7 @@
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
                                 昵称{{user_name}}
-                                <span>武力值为{{blood_one}}</span>
+                                <span>{{e_title}}值为{{blood_one}}</span>
                             </li>
                             <li class="list_three">
                                 <i class="iconfont icondisanming1"></i>
@@ -195,7 +195,7 @@
                                     <img src="../../assets/img/tx.jpeg" alt="">
                                 </div>
                                 昵称{{user_name}}
-                                <span>武力值为{{blood_one}}</span>
+                                <span>{{e_title}}值为{{blood_one}}</span>
                             </li>
                         </ul>
                     </mt-popup>
@@ -238,11 +238,6 @@
         }
 
     }
-    // mui.init();
-    // document.getElementById('mcontent').addEventListener('tap',function(){
-    //     mui("#popover").popover('toggle', document.getElementById("div"));
-    // })
-
 </script>
 
 
@@ -403,7 +398,7 @@
         height: 50px;
         line-height: 40px;
         padding: 10px 10px;
-        background-color: rgb(145, 236, 217);
+        background-color: rgb(255, 255, 255, 0.8);
         border-bottom: 1px solid rgb(184, 181, 181);
         text-align: left;
         font-size: 5px;
@@ -440,7 +435,7 @@
         height: 50px;
         line-height: 40px;
         padding: 10px 10px;
-        background-color: rgb(145, 236, 217);
+        background-color: rgb(255, 255, 255, 0.8);
         border-bottom: 1px solid rgb(184, 181, 181);
         text-align: left;
         font-size: 5px;
@@ -477,7 +472,7 @@
         height: 50px;
         line-height: 40px;
         padding: 10px 10px;
-        background-color: rgb(145, 236, 217);
+        background-color: rgb(255, 255, 255, 0.8);
         border-bottom: 1px solid rgb(184, 181, 181);
         text-align: left;
         font-size: 5px;
@@ -514,7 +509,7 @@
         height: 50px;
         line-height: 40px;
         padding: 10px 10px;
-        background-color: rgb(207, 238, 121);
+        background-color: rgb(121, 211, 238, 0.8);
         border-bottom: 1px solid rgb(184, 181, 181);
         text-align: left;
         font-size: 5px;
@@ -583,7 +578,7 @@
         height: 50px;
         line-height: 40px;
         padding: 10px 10px;
-        background-color: rgb(145, 236, 217);
+        background-color: rgb(255, 255, 255, 0.8);
         border-bottom: 1px solid rgb(184, 181, 181);
         text-align: left;
         font-size: 5px;
@@ -620,7 +615,7 @@
         height: 50px;
         line-height: 40px;
         padding: 10px 10px;
-        background-color: rgb(145, 236, 217);
+        background-color: rgb(255, 255, 255, 0.8);
         border-bottom: 1px solid rgb(184, 181, 181);
         text-align: left;
         font-size: 5px;
@@ -657,7 +652,7 @@
         height: 50px;
         line-height: 40px;
         padding: 10px 10px;
-        background-color: rgb(145, 236, 217);
+        background-color: rgb(255, 255, 255, 0.8);
         border-bottom: 1px solid rgb(184, 181, 181);
         text-align: left;
         font-size: 5px;
@@ -694,7 +689,7 @@
         height: 50px;
         line-height: 40px;
         padding: 10px 10px;
-        background-color: rgb(207, 238, 121);
+        background-color: rgb(121, 215, 238, 0.8);
         border-bottom: 1px solid rgb(184, 181, 181);
         text-align: left;
         font-size: 5px;
@@ -737,7 +732,7 @@
     }
 
      .frame_force .f_title i{
-         color: rgb(28, 173, 230);
+         color: rgb(230, 28, 163);
      }
 
     .frame_force .haoyou{
@@ -764,7 +759,7 @@
         height: 50px;
         line-height: 40px;
         padding: 10px 10px;
-        background-color: rgb(145, 236, 217);
+        background-color: rgb(255, 255, 255, 0.8);
         border-bottom: 1px solid rgb(184, 181, 181);
         text-align: left;
         font-size: 5px;
@@ -801,7 +796,7 @@
         height: 50px;
         line-height: 40px;
         padding: 10px 10px;
-        background-color: rgb(145, 236, 217);
+        background-color: rgb(255, 255, 255, 0.8);
         border-bottom: 1px solid rgb(184, 181, 181);
         text-align: left;
         font-size: 5px;
@@ -838,7 +833,7 @@
         height: 50px;
         line-height: 40px;
         padding: 10px 10px;
-        background-color: rgb(145, 236, 217);
+        background-color: rgb(255, 255, 255, 0.8);
         border-bottom: 1px solid rgb(184, 181, 181);
         text-align: left;
         font-size: 5px;
@@ -875,7 +870,7 @@
         height: 50px;
         line-height: 40px;
         padding: 10px 10px;
-        background-color: rgb(207, 238, 121);
+        background-color: rgb(121, 215, 238, 0.8);
         border-bottom: 1px solid rgb(184, 181, 181);
         text-align: left;
         font-size: 5px;
