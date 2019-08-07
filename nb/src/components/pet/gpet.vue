@@ -43,9 +43,12 @@
                
 
                 <!-- 进度条 -->
-                <div class="progress_bar">
-                    <p>孵化进度</p>
+                
+                <div class="progress_bar" @click="bar">
+                    <p v-if="see">孵化进度</p>
+                    <div class="clip" :style="{width: num + 'px'}"></div>
                 </div>
+                <span class="bar_number" v-if="ber">{{ber_num}}<i>%</i></span>
 
                 <!-- 宠物蛋 -->
                 <div class="egg_img"></div>
@@ -222,11 +225,18 @@
                 visible: false,
                 visible_skill: false,
                 visible_force: false,
+                see: false,
+                ber: true,
                 f_title: '血量',
                 s_title: '技能',
                 e_title: '武力',
                 blood_one: 10,
                 user_name: 'hjw',
+                num: 30,
+                ber_num: 0,
+                Width:{
+                    'width': '0px',
+                },
             }
         },
         methods:{
@@ -239,10 +249,26 @@
             force(){
                 this.visible_force = true;
             },
+            bar(){
+                this.Width = {
+                    'width': this.num + 'px',
+                }
+                this.ber_num = (this.num / 120)*100;
+                if(this.num == 0){
+                    this.see = true;
+                    this.ber = false;
+                }
+                // if(this.num >= 120){
+                //     this.num = 120;
+                // }
+            },
         },
-        mounted(){},
+        mounted(){
+            this.bar()
+        },
         components:{
             picker
+            
         }
 
     }
@@ -348,11 +374,23 @@
         border: 1px solid rgb(204, 204, 204);
         border-radius: 20px;
         margin: 20% auto 0;
+        /* background-color: #ffdacb; */
     }
 
     .progress_bar p{
         color: rgb(104, 206, 247);
         margin: 3% auto 0;
+    }
+
+    .progress_bar .clip{
+       
+        height: 30px;
+        border-radius: 20px;
+        background-color: rgb(255, 218, 203);
+    }
+
+    .bar_number{
+        color: rgb(85, 175, 236);
     }
 
 
