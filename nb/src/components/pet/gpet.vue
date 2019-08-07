@@ -232,7 +232,7 @@
                 e_title: '武力',
                 blood_one: 10,
                 user_name: 'hjw',
-                num: 30,
+                num: 40,
                 ber_num: 0,
                 Width:{
                     'width': '0px',
@@ -254,13 +254,14 @@
                     'width': this.num + 'px',
                 }
                 this.ber_num = (this.num / 120)*100;
+                this.ber_num = this.ber_num.toFixed(2);
                 if(this.num == 0){
                     this.see = true;
                     this.ber = false;
                 }
-                // if(this.num >= 120){
-                //     this.num = 120;
-                // }
+                if(this.num >= 120){
+                    this.num = 120;
+                }
             },
         },
         mounted(){
