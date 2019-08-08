@@ -265,7 +265,7 @@
             },
         },
         mounted(){
-            this.bar()
+            this.bar();
         },
         components:{
             picker
@@ -374,7 +374,7 @@
         height: 60px;
         border: 1px solid rgb(204, 204, 204);
         border-radius: 20px;
-        margin: 20% auto 0;
+        margin: 25% auto 0;
         /* background-color: #ffdacb; */
     }
 
