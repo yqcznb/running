@@ -5,8 +5,8 @@
             <router-link to=""><span class="continue">跳过</span></router-link>
         </div>
         <form>
-            <input tyoe=“text” placeholder="用户名/邮箱号/手机号">
-            <input type="password" placeholder="登录密码">
+            <input tyoe=“text” placeholder="手机号" v-model="username">
+            <input type="password" placeholder="登录密码"  v-model="password">
             <button @click="login">登录</button>
             <div class="jump_bar">
                 <router-link to="register"><span class="jump register">手机快速注册</span></router-link>
@@ -27,13 +27,19 @@ export default {
     name: 'login',
     data() {
         return {
-            msg: 'Here is login component'
+            msg: 'Here is login component',
+            username: '',
+            password: '',
         }
     },
     methods:
     {
         login(){
-            this.$router.replace('/footer/index');
+             if (this.username === '' || this.password === '') {
+                    alert('请输入用户名或密码')
+                    }
+             else{
+            this.$router.replace('/footer/index');}
         }
     }
 }
