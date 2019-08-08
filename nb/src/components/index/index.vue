@@ -8,7 +8,7 @@
     <div class="caochang">
         <div class="xinxi">
             <div>
-              <router-link to="/run" append>
+              <router-link to="/footer/index/run" append>
               <i class="iconfont iconpaobu"></i>
 				      <span class="mui-tab-label">开跑</span>
               </router-link>
@@ -92,5 +92,8 @@ flex-direction: column;
   
    flex-direction: column;
    justify-content: center;
+}
+a{
+      color: #007aff;
 }
 </style>

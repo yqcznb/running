@@ -34,11 +34,6 @@ export default new Router({
       component: login
     },
     {
-      path: '/run',
-      name: 'run',
-      component: run
-    },
-    {
       path: '/footer',
       name: 'footer',
       component: footer,
@@ -61,6 +56,13 @@ export default new Router({
           name: 'index',
           component: index,
           meta: { checkLogined: true },
+          children:[
+            {
+              path: 'run',
+              name: 'run',
+              component: run
+            },
+          ]
         },
       ]
     },
