@@ -7,14 +7,9 @@ import "./assets/mui/css/mui.min.css"
 import "./assets/mui/css/icons-extra.css"
 import "./assets/mui/fonts/fzhzgb.ttf"
 import VueAMap from 'vue-amap'
-
-
-
 import { Button,MessageBox} from 'mint-ui';
-
 import echarts from 'echarts'
-
-
+import axios from 'axios'
 Vue.component(Button.name, Button);
 Vue.component(MessageBox.name, MessageBox);
 

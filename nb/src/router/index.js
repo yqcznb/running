@@ -73,7 +73,6 @@ export default new Router({
       name: 'pinform',
       component: pinform,
     },
-    
     {
       path: '/drole',
       name: 'drole',

@@ -4,7 +4,7 @@
             <div id="my_head">
                 <div id="head_left">
                     <h4>{{ uname }}</h4>
-                    <h5><router-link to="/drole">{{ msg }}》</router-link></h5>
+                    <h5><router-link to="/drole">{{ uduan }}》</router-link></h5>
                     <img :src='levelImg' class="levelimg" >
                     <img :src='indImg' class="indimg">
                 </div>
@@ -43,7 +43,7 @@ export default {
         return{
             autoresize: true,
             uname: '叭叭叭',
-            msg: '天下跑神段位',
+            uduan: '天下跑神段位',
             levelImg: require('../../assets/img/my/schedual_level/first.png'),
             indImg:require('../../assets/img/my/identify/跑神认证.png'),
             headportrait:require('../../assets/img/my/headportrait/4.jpg'),
@@ -51,142 +51,147 @@ export default {
             nearImg:require('../../assets/img/my/run_data/near.png'),
         }
     },
-  mounted(){
-    this.drawLine();
-  },
-  methods: {
-    drawLine(){
-        // 近12日日期
-        function get_date() {
-            var myDate = new Date(); //获取今天日期
-            myDate.setDate(myDate.getDate() - 12);
-            var dateArray = []; 
-            var dateTemp; 
-            var flag = 1; 
-            for (var i = 0; i < 12; i++) {
-                dateTemp = (myDate.getMonth()+1)+"-"+myDate.getDate();
-                dateArray.push(dateTemp);
-                myDate.setDate(myDate.getDate() + flag);
+    created() {
+        axios.get('')
+        .then()
+        .catch()
+    },
+    mounted(){
+        this.drawLine();
+    },
+    methods: {
+        drawLine(){
+            // 近12日日期
+            function get_date() {
+                var myDate = new Date(); //获取今天日期
+                myDate.setDate(myDate.getDate() - 12);
+                var dateArray = []; 
+                var dateTemp; 
+                var flag = 1; 
+                for (var i = 0; i < 12; i++) {
+                    dateTemp = (myDate.getMonth()+1)+"-"+myDate.getDate();
+                    dateArray.push(dateTemp);
+                    myDate.setDate(myDate.getDate() + flag);
+                }
+                return dateArray;
             }
-            return dateArray;
-        }
-        let date = get_date();
+            let date = get_date();
 
-        // 基于准备好的dom，初始化echarts实例
-        let myChart = this.$echarts.init(document.getElementById('myChart'));
-        // 图表自适应
-        window.onresize = function(){myChart.resize();}
-        // 绘制图表
-        myChart.setOption({
-            title: {
-                left: 'center',
-                bottom: '0%',
-                text: '近 期 跑 步 数 据',
-                textStyle: {
-                    fontFamily: '方正汉真广标简体',
-                    color: 'white',
-                    fontSize: 14,
-                    fontWeight: 'normal',
-                    fontStyle: 100,
-                },
-            },
-            tooltip : {
-				trigger : 'axis'
-			},
-			grid : {
-                right : '10.5%',
-                left: '15.5%',
-                // bottom: '14%',
-			},
-			toolbox : {
-				feature : {
-					dataView : {
-						show : false,
-						readOnly : false
-					},
-					restore : {
-						show : false
-					},
-					saveAsImage : {
-						show : false
-					}
-				}
-			},
-			legend : {
-				data : [ '里程' ,'配速']
-			},
-			xAxis : [ {
-                type : 'category',
-                boundaryGap: false,
-                splitLine:{show: false},
-				axisTick : {
-					alignWithLabel : false,
-				},
-                axisLine : {
-					lineStyle : {
-                        color: '#c8c6c9',
+            // 基于准备好的dom，初始化echarts实例
+            let myChart = this.$echarts.init(document.getElementById('myChart'));
+            // 图表自适应
+            window.onresize = function(){myChart.resize();}
+            // 绘制图表
+            myChart.setOption({
+                title: {
+                    left: 'center',
+                    bottom: '0%',
+                    text: '近 期 跑 步 数 据',
+                    textStyle: {
+                        fontFamily: '方正汉真广标简体',
+                        color: 'white',
+                        fontSize: 14,
+                        fontWeight: 'normal',
+                        fontStyle: 100,
                     },
-				},
-                axisLabel: {
-                    show: true,
+                },
+                tooltip : {
+                    trigger : 'axis'
+                },
+                grid : {
+                    right : '10.5%',
+                    left: '15.5%',
+                    // bottom: '14%',
+                },
+                toolbox : {
+                    feature : {
+                        dataView : {
+                            show : false,
+                            readOnly : false
+                        },
+                        restore : {
+                            show : false
+                        },
+                        saveAsImage : {
+                            show : false
+                        }
+                    }
+                },
+                legend : {
+                    data : [ '里程' ,'配速']
+                },
+                xAxis : [ {
+                    type : 'category',
+                    boundaryGap: false,
+                    splitLine:{show: false},
+                    axisTick : {
+                        alignWithLabel : false,
+                    },
+                    axisLine : {
+                        lineStyle : {
+                            color: '#c8c6c9',
+                        },
+                    },
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            fontSize: 12,
+                            color: 'white',
+                        },
+                    },
+                    data: date
+                } ],
+                yAxis : [ {
+                    type : 'value',
+                    position : 'left',
+                    splitLine:{show: false},
+                    axisLine : {
+                        lineStyle : {
+                            color: '#c8c6c9',
+                        },
+                    },
+                    axisLabel : {
+                        formatter : '{value}',
+                        textStyle: {
+                            fontSize: 12,
+                            color: 'white',
+                        },
+                    }
+                },{
+                    type : 'value',
+                    position : 'right',
+                    splitLine:{show: false},
+                    axisLine : {
+                        lineStyle : {
+                            color: '#c8c6c9',
+                        },
+                    },
+                    axisLabel : {formatter : '{value}',
                     textStyle: {
                         fontSize: 12,
                         color: 'white',
                     },
-                },
-                data: date
-			} ],
-			yAxis : [ {
-				type : 'value',
-                position : 'left',
-                splitLine:{show: false},
-				axisLine : {
-					lineStyle : {
-                        color: '#c8c6c9',
-                    },
-				},
-				axisLabel : {
-					formatter : '{value}',
-                    textStyle: {
-                        fontSize: 12,
-                        color: 'white',
-                    },
-				}
-			},{
-                type : 'value',
-                position : 'right',
-                splitLine:{show: false},
-				axisLine : {
-                    lineStyle : {
-                        color: '#c8c6c9',
-                    },
-				},
-				axisLabel : {formatter : '{value}',
-                textStyle: {
-                    fontSize: 12,
-                    color: 'white',
-                },
-            }}],
-			series: [ {
-                name : '里程',
-                smooth: 'true',
-                type : 'line',
-                itemStyle: {normal: { color: '#5eb5d7',lineStyle: {color: '#5eb5d7'}}},
-                areaStyle: {
-                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: '#84eded'},{offset: 0.8, color: '#f3fffc'}])},
-				data : [ 10000, 20000, 12065, 3620,16530, 9510, 20100, 13002, 13580,15063, 15200, 9000 ]
-			},{
-                name : '配速',
-                smooth: 'true',
-                type : 'line',                                itemStyle: {normal: { color: '#e56f7f'}},
-                yAxisIndex : 1,
-                areaStyle: {
-                    color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: '#efc7b4'},{offset: 0.8, color: '#f6ebd5'}])},
-				data : [ 3.1, 5.55, 5.59, 6.20, 4.39, 5.00, 6.1, 7.4,7.34, 8.26, 3.58,8.12 ]
-            } ]
-        });
+                }}],
+                series: [ {
+                    name : '里程',
+                    smooth: 'true',
+                    type : 'line',
+                    itemStyle: {normal: { color: '#5eb5d7',lineStyle: {color: '#5eb5d7'}}},
+                    areaStyle: {
+                        color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: '#84eded'},{offset: 0.8, color: '#f3fffc'}])},
+                    data : [ 10000, 20000, 12065, 3620,16530, 9510, 20100, 13002, 13580,15063, 15200, 9000 ]
+                },{
+                    name : '配速',
+                    smooth: 'true',
+                    type : 'line',                                itemStyle: {normal: { color: '#e56f7f'}},
+                    yAxisIndex : 1,
+                    areaStyle: {
+                        color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: '#efc7b4'},{offset: 0.8, color: '#f6ebd5'}])},
+                    data : [ 3.1, 5.55, 5.59, 6.20, 4.39, 5.00, 6.1, 7.4,7.34, 8.26, 3.58,8.12 ]
+                } ]
+            });
+        }
     }
-  }
 }
 </script>
 <style scoped>
