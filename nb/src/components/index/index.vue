@@ -4,10 +4,11 @@
         <li class="xiaoqu">{{xiaoqu}}</li>
         <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{tongzhi}}</li>
     </ul>
+    <router-view :key="aa"></router-view>
     <div class="caochang">
         <div class="xinxi">
             <div>
-              <router-link to="/run">
+              <router-link to="/footer/index/run" append>
               <i class="iconfont iconpaobu"></i>
 				      <span class="mui-tab-label">开跑</span>
               </router-link>
@@ -45,7 +46,7 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  background-color: #dec674;
+  background: linear-gradient(top,rgb(199, 195, 197),#fff);
 }
 .index .heard{
 display: flex;
@@ -91,5 +92,8 @@ flex-direction: column;
   
    flex-direction: column;
    justify-content: center;
+}
+a{
+      color: #007aff;
 }
 </style>

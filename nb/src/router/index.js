@@ -16,7 +16,9 @@ import run_data_detail from '@/components/my/run_data_detail'
 import rank_list from '@/components/my/rank_list'
 
 import pet from '@/components/pet/pet'
-import gpet from '@/components/pet/gpet'
+import gpet from '@/components/gpet/gpet'
+
+
 
 import index from '@/components/index/index'
 import run from '@/components/run/run'
@@ -30,11 +32,6 @@ export default new Router({
       path: '/',
       name: 'login',
       component: login
-    },
-    {
-      path: '/run',
-      name: 'run',
-      component: run
     },
     {
       path: '/footer',
@@ -51,7 +48,14 @@ export default new Router({
           path: 'pet',
           name: 'pet',
           component: pet,
-          meta: { checkLogined: true },
+          children:[
+            {
+              path: 'gpet',
+              name: 'gpet',
+              component: gpet,
+            },
+          ],
+        
         },
        
         {
@@ -59,15 +63,17 @@ export default new Router({
           name: 'index',
           component: index,
           meta: { checkLogined: true },
+          children:[
+            {
+              path: 'run',
+              name: 'run',
+              component: run
+            },
+          ]
         },
       ]
     },
-    {
-      path: '/gpet',
-      name: 'gpet',
-      component: gpet,
-      meta: { checkLogined: true },
-    },
+    
     {
       path: '/pinform',
       name: 'pinform',

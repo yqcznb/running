@@ -7,11 +7,16 @@ import "./assets/mui/css/mui.min.css"
 import "./assets/mui/css/icons-extra.css"
 import "./assets/mui/fonts/fzhzgb.ttf"
 import VueAMap from 'vue-amap'
-import { Button,MessageBox} from 'mint-ui';
-import echarts from 'echarts'
+
 import axios from 'axios'
+import { Button,MessageBox} from 'mint-ui';
+import { Popup } from 'mint-ui';
+import echarts from 'echarts'
+Vue.prototype.axios = axios
+
 Vue.component(Button.name, Button);
 Vue.component(MessageBox.name, MessageBox);
+Vue.component(Popup.name, Popup);
 
 Vue.prototype.$echarts = echarts
 Vue.use(VueAMap)
