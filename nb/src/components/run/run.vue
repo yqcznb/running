@@ -35,8 +35,14 @@
         </span>
         <span v-else>正在定位</span>
     </div>
-</div>
 
+    <div>
+      <mt-popup position='bottom' class="times" popup-transition="popup-fade" v-model="visible" style="width:100%;height:100%;background-color:rgb(255, 255, 255, 0.8);">
+          <div>{{count}}</div>
+      </mt-popup>
+    </div>
+
+</div>
 </template>
 
 <script>
@@ -50,6 +56,8 @@ export default {
       lng: 0,
       lat: 0,
       loaded: false,
+      visible: false,
+      count:"",//倒计时
       plugin: [   //一些工具插件
         {
           pName: 'Geolocation',   //定位
@@ -112,7 +120,26 @@ export default {
          cancelButtonText: '取消' 
          }).then(action => { 
          if (action == 'confirm') {     //确认的回调
-         console.log(1); 
+            this.visible = true;
+        const TIME_COUNT = 3;
+        if(!this.timer){
+            this.count = TIME_COUNT;
+            this.show = false;
+            this.timer = setInterval(()=>{
+            if(this.count > 0 && this.count <= TIME_COUNT){
+                this.count--;
+            }else{
+                this.show = true;
+                clearInterval(this.timer);
+                this.timer = null;
+                //跳转的页面写在此处
+                this.$router.push({
+                    path: '/footer/index/time'
+                });
+            }
+          },1000)
+        }
+
          }
          }).catch(err => { 
          if (err == 'cancel') {     //取消的回调
@@ -120,8 +147,10 @@ export default {
          } 
          });
     }
-  }
+  },
+  
 }
+
 </script>
 
 <style>
@@ -137,15 +166,23 @@ export default {
   left: 0;
  
 }
- #back_bar {
-        text-align: left;
-        text-indent: 0.3em;
-        line-height: 200%;
-        background-color: rgb(83, 83, 83);
-        margin-bottom: 2%;
-        font-size: 18px;
-    }
-    a{
-       color: #dec674;    
-    }
+#back_bar {
+      text-align: left;
+      text-indent: 0.3em;
+      line-height: 200%;
+      background-color: rgb(83, 83, 83);
+      margin-bottom: 2%;
+      font-size: 18px;
+  }
+a{
+    color: #dec674;    
+}
+.times{
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  font-size: 100px;
+  color: rgb(226, 68, 19);
+  font-weight: bold;
+}
 </style>

@@ -22,7 +22,7 @@ import gpet from '@/components/gpet/gpet'
 
 import index from '@/components/index/index'
 import run from '@/components/run/run'
-
+import time from '@/components/run/time'
 Vue.use(Router)
 
 export default new Router({
@@ -49,11 +49,7 @@ export default new Router({
           name: 'pet',
           component: pet,
           children:[
-            {
-              path: 'gpet',
-              name: 'gpet',
-              component: gpet,
-            },
+           
           ],
         
         },
@@ -69,11 +65,20 @@ export default new Router({
               name: 'run',
               component: run
             },
+            {
+              path: 'time',
+              name: 'time',
+              component: time
+            },
           ]
         },
       ]
     },
-    
+    {
+      path: '/gpet',
+      name: 'gpet',
+      component: gpet,
+    },
     {
       path: '/pinform',
       name: 'pinform',

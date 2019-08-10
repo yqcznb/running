@@ -31,7 +31,7 @@
                 <!-- 宠物蛋 -->
                  <div class="egg_img" @click="open"></div>
                 
-                <router-link to="/footer/pet/gpet">点击</router-link>
+                <router-link to="/gpet">点击</router-link>
             </div>
             
     </div>
