@@ -34,6 +34,13 @@ export default new Router({
       component: login
     },
     {
+      
+        path: '/time',
+        name: 'time',
+        component: time
+      
+    },
+    {
       path: '/footer',
       name: 'footer',
       component: footer,
@@ -64,11 +71,6 @@ export default new Router({
               path: 'run',
               name: 'run',
               component: run
-            },
-            {
-              path: 'time',
-              name: 'time',
-              component: time
             },
           ]
         },

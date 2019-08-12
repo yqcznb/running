@@ -134,7 +134,7 @@ export default {
                 this.timer = null;
                 //跳转的页面写在此处
                 this.$router.push({
-                    path: '/footer/index/time'
+                    path: '/time'
                 });
             }
           },1000)

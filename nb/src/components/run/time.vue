@@ -1,5 +1,12 @@
 <template>
   <div class="time">
+    <div class="head">
+      
+        <div>00'00"<p>平均配速</p></div>
+        <div>00:00:00<p>用时</p></div>
+        <div>0.0<p>热量（千卡）</p></div>
+        <div class="gl">0.00<span>公里</span></div>
+    </div>
     <el-amap 
         vid="amap"  
         :zoom="zoom"  
@@ -7,13 +14,14 @@
         class="amap-demo" 
         :center="center"
     >  
+    
     </el-amap>
-
+    
     <div class="toolbar">
-        <span v-if="loaded">
+        <p v-if="loaded">
         location: lng = {{ lng }} lat = {{ lat }}
-        </span>
-        <span v-else>正在定位</span>
+        </p>
+        <p v-else>正在定位</p>
     </div>
   </div>
 </template>
@@ -99,5 +107,33 @@ export default {
   left: 0;
  
 }
- 
+.head{
+  background-color: #fff;
+  position: absolute;
+  z-index: 100;
+  top: 5%;
+  left: 50%;
+  width: 260px;
+  height: 150px;
+  margin-left: -130px;
+  border-radius: 20%;
+  display:flex;
+  justify-content:space-around;
+  color: black;
+  flex-wrap:wrap-reverse;
+  font-size: 20px;
+}
+p,span{
+  font-size: 13px;
+  color:#aaa;
+}
+.head>div{
+  font-weight:bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.gl{
+  font-size:33px;
+}
 </style>
