@@ -14,9 +14,8 @@
         class="amap-demo" 
         :center="center"
     >  
-    
     </el-amap>
-    
+      <button>长按结束</button>
     <div class="toolbar">
         <p v-if="loaded">
         location: lng = {{ lng }} lat = {{ lat }}
@@ -123,7 +122,7 @@ export default {
   flex-wrap:wrap-reverse;
   font-size: 20px;
 }
-p,span{
+.head>div span,p{
   font-size: 13px;
   color:#aaa;
 }
@@ -135,5 +134,46 @@ p,span{
 }
 .gl{
   font-size:33px;
+}
+button{
+  background:#1AAB8A;
+  color:#fff;
+  border:none;
+  height:60px;
+  font-size:1.6em;
+  padding:0 2em;
+  cursor:pointer;
+  transition:300ms ease all;
+  outline:none;
+  position: absolute;
+  z-index: 100;
+   top: 80%;
+  left: 50%;
+  width: 260px;
+  margin-left: -130px;
+}
+button:hover{
+  background:#fff;
+  color:#1AAB8A;
+}
+button:before,button:after{
+  content:'';
+  position:absolute;
+  top:0;
+  right:0;
+  height:2px;
+  width:0;
+  background: #1AAB8A;
+  transition:400ms ease all;
+}
+button:after{
+  right:inherit;
+  top:inherit;
+  left:0;
+  bottom:0;
+}
+button:hover:before,button:hover:after{
+  width:100%;
+  transition:3000ms ease all;
 }
 </style>
