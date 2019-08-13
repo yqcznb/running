@@ -5,11 +5,19 @@
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
         </div>
-        <router-link to="/idsafe">
-            <div id="safe_id">
-                <span>账号与安全</span><i class="iconfont iconfanhui iconfont-right"></i>
-            </div>
-        </router-link>
+        <div id="id_msg-safe">
+            <router-link to="/pinform">
+                <div id="id_msg">
+                    <span>个人信息</span><i class="iconfont iconfanhui iconfont-right"></i>
+                </div>
+            </router-link>
+            <hr>
+            <router-link to="/idsafe">
+                <div id="id_safe">
+                    <span>账号与安全</span><i class="iconfont iconfanhui iconfont-right"></i>
+                </div>
+            </router-link>
+        </div>
         <div id="mode-privacy-on">
             <router-link to="funnymode">
                 <div id="mode">
@@ -57,7 +65,7 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        background-color: #dec674;
+        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
     }
     a {
         text-decoration: none;
@@ -75,6 +83,20 @@ export default {
         line-height: 200%;
         background-color: rgb(83, 83, 83);
         margin-bottom: 2%;
+    }
+    #id_msg-safe,#mode-privacy-on,#change-logout {
+        width: 93%;
+        border: 1px solid red;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        text-align: left;
+        text-indent: 1em;
+        margin: 0 auto;
+        margin-bottom: 2%;
+        background-color: white;
+        border-radius: 7px;
+        font-size: 110%;
     }
     #safe_id {
         width: 93%;
@@ -97,22 +119,9 @@ export default {
         position: absolute;
         right: 7%;
     }
-    #mode-privacy-on,#change-logout {
-        width: 93%;
-        border: 1px solid red;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        text-align: left;
-        text-indent: 1em;
-        margin: 0 auto;
-        background-color: white;
-        border-radius: 7px;
-        font-size: 110%;
-    }
     #mode-privacy-on {
         height: 24%;
-        margin-bottom: 3%;
+        /* margin-bottom: 3%; */
         line-height: 260%; 
     }
     #mode-privacy-on span {
@@ -126,14 +135,14 @@ export default {
         display: flex;
         align-items: center;
     }
-    #change-logout {
+    #id_msg-safe,#change-logout {
         height: 16%;
         line-height: 100%;
     }
-    #change-logout span {
+    #id_msg-safe span,#change-logout span {
         color: black;
     }
-    #change-logout hr {
+    #id_msg-safe hr,#change-logout hr {
         width: 88%;
         position: absolute;
     }

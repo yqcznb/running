@@ -22,7 +22,7 @@ export default {
         left: 0;
         right: 0;
         margin: 0 auto;
-        background-color: #dec674;
+        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
     }
     a {
         text-decoration: none;

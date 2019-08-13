@@ -5,7 +5,7 @@
             <router-link to=""><span class="continue">跳过</span></router-link>
         </div>
         <form>
-            <input tyoe=“text” placeholder="手机号" v-model="username">
+            <input type="text" placeholder="手机号" v-model="username">
             <input type="password" placeholder="登录密码"  v-model="password">
             <button @click="login">登录</button>
             <div class="jump_bar">
