@@ -1,10 +1,10 @@
 <template>
     <div id="my">
-        <router-link to="/pinform">
+        <router-link to="">
             <div id="my_head">
                 <div id="head_left">
                     <h4>{{ uname }}</h4>
-                    <h5><router-link to="/drole">{{ uduan }}》</router-link></h5>
+                    <h5>{{ uduan }}》</h5>
                     <img :src='levelImg' class="levelimg" >
                     <img :src='indImg' class="indimg">
                 </div>
@@ -45,7 +45,7 @@ export default {
             uname: '叭叭叭',
             uduan: '天下跑神段位',
             levelImg: require('../../assets/img/my/schedual_level/first.png'),
-            indImg:require('../../assets/img/my/identify/跑神认证.png'),
+            indImg:require('../../assets/img/my/identify/我太难啦.png'),
             headportrait:require('../../assets/img/my/headportrait/4.jpg'),
             duanImg:require('../../assets/img/my/duan/5.png'),
             nearImg:require('../../assets/img/my/run_data/near.png'),
@@ -211,7 +211,7 @@ export default {
         left: 0;
         right: 0;
         margin: 0 auto;
-        background-color: #dec674;
+        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
     }
 
     #my_head,#run_data,#settings {
@@ -231,12 +231,8 @@ export default {
     }
     #head_left,#head_right {
         height: 100%;
-        /* border: 1px solid red; */
-        /* display: flex; */
-        /* justify-content: space-between; */
     }
     #head_left {
-        /* width: 70%; */
         height: 100%;
         display: flex;
         flex-direction: column;
@@ -249,7 +245,7 @@ export default {
     h4 {
         /* margin-bottom: 20%; */
     }
-    h5 a {
+    h5 {
         color: rgba(253, 185, 51, 0.89);
     }
     .levelimg {
@@ -257,7 +253,7 @@ export default {
         max-width: 336px;
     }
     .indimg {
-        width: 20%;
+        width: 27%;
     }
     #head_right {
         /* width: 30%; */

@@ -34,7 +34,7 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        background-color: #dec674;
+        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
     }
     a {
         text-decoration: none;
