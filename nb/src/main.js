@@ -12,6 +12,7 @@ import VueAxios from 'vue-axios'
 
 import { Button,MessageBox} from 'mint-ui';
 import { Popup } from 'mint-ui';
+
 import echarts from 'echarts'
 
 Vue.use(VueAxios, axios)
