@@ -12,14 +12,14 @@ import axios from 'axios'
 import { Button,MessageBox} from 'mint-ui';
 import { Popup } from 'mint-ui';
 import echarts from 'echarts'
-
-Vue.use(VueAxios, axios)
+import VueAxios from 'vue-axios'
 
 Vue.component(Button.name, Button);
 Vue.component(MessageBox.name, MessageBox);
 Vue.component(Popup.name, Popup);
 Vue.prototype.$echarts = echarts
 Vue.use(VueAMap)
+Vue.use(VueAxios, axios)
 Vue.config.productionTip = false
 VueAMap.initAMapApiLoader({
   key: '8a3371b727138ef195759ae5be614d8d',
