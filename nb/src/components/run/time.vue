@@ -95,7 +95,8 @@ export default {
    mouseEnter(){
        setTimeout(()=>{
          
-      this.show = false;
+      this
+      .show = false;
    }, 3000);
     }
    
