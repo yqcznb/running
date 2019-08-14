@@ -15,7 +15,7 @@
         :center="center"
     >  
     </el-amap>
-      <button>长按结束</button>
+      <button @mouseenter="mouseEnter" v-if="show">长按结束</button>
     <div class="toolbar">
         <p v-if="loaded">
         location: lng = {{ lng }} lat = {{ lat }}
@@ -37,6 +37,7 @@ export default {
       lat: 0,
       loaded: false,
       visible: false,
+      show:true,
       plugin: [   //一些工具插件
         {
           pName: 'Geolocation',   //定位
@@ -91,6 +92,12 @@ export default {
     sendlnglat (){ 
       this.$emit('register', this.lng, this.lat)
     },
+   mouseEnter(){
+       setTimeout(()=>{
+         
+      this.show = false;
+   }, 3000);
+    }
    
   },
 }
@@ -136,7 +143,7 @@ export default {
   font-size:33px;
 }
 button{
-  background:#1AAB8A;
+  background:#007aff;
   color:#fff;
   border:none;
   height:60px;
@@ -154,7 +161,7 @@ button{
 }
 button:hover{
   background:#fff;
-  color:#1AAB8A;
+  color:#007aff;
 }
 button:before,button:after{
   content:'';
@@ -163,7 +170,7 @@ button:before,button:after{
   right:0;
   height:2px;
   width:0;
-  background: #1AAB8A;
+  background: #007aff;
   transition:400ms ease all;
 }
 button:after{

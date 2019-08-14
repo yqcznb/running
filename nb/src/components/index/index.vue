@@ -15,7 +15,7 @@
             
             </div>
             <p>当前已跑</p>
-            <p>22</p>
+            <p>{{id}}</p>
             <p>晨跑</p>
             <p>16次</p>
             <p>夜跑</p>
@@ -28,6 +28,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 export default {
   name: 'index',
   data(){
@@ -35,7 +36,32 @@ export default {
         xiaoqu:'青岛工学院校区',
         tongzhi:'官方通知：XXXXXXXX'
     }
+  },created(){
+ 
+      axios.get('http://no37.store:8080/kf/show')
+ 
+              //then获取成功；response成功后的返回值（对象）
+ 
+      .then(response=>{
+ 
+         console.log(response);
+ 
+         this.id=response.id;
+ 
+      })
+ 
+              //获取失败
+ 
+      .catch(error=>{
+ 
+          console.log(error);
+ 
+          alert('网络错误，不能访问');
+ 
+      })
+ 
   }
+
 }
 </script>
 
