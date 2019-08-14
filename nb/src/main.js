@@ -8,11 +8,9 @@ import "./assets/mui/css/icons-extra.css"
 import "./assets/mui/fonts/fzhzgb.ttf"
 import VueAMap from 'vue-amap'
 import axios from 'axios'
-import VueAxios from 'vue-axios'
 
 import { Button,MessageBox} from 'mint-ui';
 import { Popup } from 'mint-ui';
-
 import echarts from 'echarts'
 
 Vue.use(VueAxios, axios)
