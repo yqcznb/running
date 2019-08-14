@@ -20,7 +20,6 @@ Vue.use(VueAxios, axios)
 Vue.component(Button.name, Button);
 Vue.component(MessageBox.name, MessageBox);
 Vue.component(Popup.name, Popup);
-
 Vue.prototype.$echarts = echarts
 Vue.use(VueAMap)
 Vue.config.productionTip = false
