@@ -1,12 +1,15 @@
 <template>
     <div id="my">
-        <router-link to="">
+        <router-view :key="key" v-if="routerAlive"></router-view>
+        <router-link :to="{name:'pinform',params:{backey:'/footer/my'}}" @click.native="routerRefresh">
             <div id="my_head">
                 <div id="head_left">
                     <h4>{{ uname }}</h4>
-                    <h5>{{ uduan }}》</h5>
+                    <h5><router-link to="/drole">{{ uduan }} <i class="iconfont drole-c iconchongwu"></i> </router-link></h5>
                     <img :src='levelImg' class="levelimg" >
-                    <img :src='indImg' class="indimg">
+                    <router-link to="/ex_bonus" >
+                        <img :src='bonusImg' class="bonusimg"> <span class="iconfont bonus-c iconchongwu"></span>
+                    </router-link>
                 </div>
                 <div id="head_right">
                     <img :src='headportrait' class="headportrait">
@@ -39,16 +42,22 @@
 <script> 
 export default {
     name: 'my',
+    computed: {
+        key() {
+            return this.$route.path
+        }
+    },
     data() {
         return{
             autoresize: true,
             uname: '叭叭叭',
             uduan: '天下跑神段位',
             levelImg: require('../../assets/img/my/schedual_level/first.png'),
-            indImg:require('../../assets/img/my/identify/我太难啦.png'),
+            bonusImg:require('../../assets/img/my/identify/我太难啦.png'),
             headportrait:require('../../assets/img/my/headportrait/4.jpg'),
             duanImg:require('../../assets/img/my/duan/5.png'),
             nearImg:require('../../assets/img/my/run_data/near.png'),
+            routerAlive:true,
         }
     },
     created() {
@@ -60,6 +69,13 @@ export default {
         this.drawLine();
     },
     methods: {
+        routerRefresh() {
+            this.routerAlive = false;
+            this.$nextTick(()=>{
+                this.routerAlive = true;
+            });
+            // window.location.reload();
+        },
         drawLine(){
             // 近12日日期
             function get_date() {
@@ -245,19 +261,37 @@ export default {
     h4 {
         /* margin-bottom: 20%; */
     }
-    h5 {
+    h5 a{
+        text-decoration: none;
+        color: rgba(253, 185, 51, 0.89);
+        /* color: #999999; */
+    }
+    .drole-c:before {
+        font-size: 80%;
         color: rgba(253, 185, 51, 0.89);
     }
     .levelimg {
         width: 70%;
         max-width: 336px;
     }
-    .indimg {
-        width: 27%;
+    .bonusimg {
+        width: 33%;
+        float: left;
+        display: flex;
+        justify-content: flex-start;
+    }
+    .bonus-c:before {
+        height: 100%;
+        display: inline-flex;
+        align-items: center;
+        float: left;
+        /* vertical-align: middle; */
+        margin-left: 2%;
+        /* float: left; */
+        color: rgba(253, 185, 51, 0.89);
+
     }
     #head_right {
-        /* width: 30%; */
-        /* height: 100%; */
         display: flex;
         flex-direction: column;
         justify-content: center;

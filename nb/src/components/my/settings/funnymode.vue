@@ -5,11 +5,19 @@
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
         </div>
-        <router-link to="/idsafe">
-            <div id="safe_id">
-                <span>账号与安全</span><i class="iconfont iconfanhui iconfont-right"></i>
-            </div>
-        </router-link>
+        <div id="id_msg-safe">
+            <router-link :to="{name:'pinform',params:{backey:'/funnymode'}}">
+                <div id="id_msg">
+                    <span>个人信息</span><i class="iconfont iconfanhui iconfont-right"></i>
+                </div>
+            </router-link>
+            <hr>
+            <router-link :to="{name:'idsafe',params:{backey:'/funnymode'}}">
+                <div id="id_safe">
+                    <span>账号与安全</span><i class="iconfont iconfanhui iconfont-right"></i>
+                </div>
+            </router-link>
+        </div>
         <div id="mode-privacy-on">
             <router-link to="settings">
                 <div id="mode">
@@ -17,13 +25,13 @@
                 </div>
             </router-link>
             <hr>
-            <router-link to="privacy">
+            <router-link :to="{name:'privacy',params:{backey:'/funnymode'}}">
                 <div id="privacy">
                     <span>隐私</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
             <hr>
-            <router-link to="on">
+            <router-link :to="{name:'on',params:{backey:'/funnymode'}}">
                 <div id="on">
                     <span>关于</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
@@ -31,7 +39,7 @@
             </router-link>
         </div>
         <div id="change-logout">
-            <router-link to="">
+            <router-link :to="{name:'switchid',params:{backey:'/funnymode'}}">
                 <div id="change">
                     <span>切换账号</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
@@ -76,20 +84,6 @@ export default {
         background-color: rgb(83, 83, 83);
         margin-bottom: 2%;
     }
-    #safe_id {
-        width: 93%;
-        border: 1px solid red;
-        display: flex;
-        margin: 0 auto;
-        background-color: white;
-        color: black;
-        border-radius: 7px;
-        height: 8%;
-        align-items: center;
-        text-indent: 1em;
-        font-size: 110%;
-        margin-bottom: 2%;
-    }
     .iconfont-right {
         font-size: 20px;
         color: #999999;
@@ -97,7 +91,7 @@ export default {
         position: absolute;
         right: 7%;
     }
-    #mode-privacy-on,#change-logout {
+    #id_msg-safe,#mode-privacy-on,#change-logout {
         width: 93%;
         border: 1px solid red;
         display: flex;
@@ -106,13 +100,14 @@ export default {
         text-align: left;
         text-indent: 1em;
         margin: 0 auto;
+        margin-bottom: 2%;
         background-color: white;
         border-radius: 7px;
         font-size: 110%;
     }
     #mode-privacy-on {
         height: 24%;
-        margin-bottom: 3%;
+        margin-bottom: 2%;
         line-height: 260%; 
     }
     #mode-privacy-on span {
@@ -125,14 +120,14 @@ export default {
         display: flex;
         align-items: center;
     }
-    #change-logout {
+    #id_msg-safe,#change-logout {
         height: 16%;
         line-height: 100%;
     }
-    #change-logout span {
+    #id_msg-safe span,#change-logout span {
         color: black;
     }
-    #change-logout hr {
+    #id_msg-safe hr,#change-logout hr {
         width: 88%;
         position: absolute;
     }

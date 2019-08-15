@@ -1,7 +1,7 @@
 <template>
     <div id="privacy">
         <div id="back_bar">
-            <router-link :to='backlink'>
+            <router-link :to='$route.params.backey'>
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
         </div>
@@ -10,7 +10,7 @@
                 <span><span class="left">系统权限</span><span class="right">授权使用的手机权限</span></span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>
         </router-link>
-        <router-link to="ppolicy">
+        <router-link :to="{name:'ppolicy',params:{backey:$route.params.backey}}">
             <div id="ppolicy">
                 <span>隐私政策</span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>
