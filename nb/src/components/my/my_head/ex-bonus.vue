@@ -1,7 +1,7 @@
 <template>
     <div id="ex_bonus">
         <div id="back_bar">
-            <router-link to="/footer/my">
+            <router-link to="/footer/my" @click.native="routerRefresh">
                 <i class="iconfont iconfanhui-copy">返回</i> 
             </router-link>
             <span>我的积分</span>
@@ -11,7 +11,17 @@
 </template>
 <script>
 export default {
-    
+    name: 'ex_bonus',
+    data() {
+        return{
+        
+        }
+    },
+    methods: {
+        routerRefresh() {
+            window.location.reload();
+        },
+    },
 }
 </script>
 <style scoped>

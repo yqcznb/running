@@ -28,7 +28,6 @@ export default {
         return{
             name: '叭叭叭',
             headportrait:require('../../../assets/img/my/headportrait/4.jpg'),
-            routerAlive:true,
         }
     },
     methods: {
