@@ -38,7 +38,7 @@
 
     <div>
       <mt-popup position='bottom' class="times" popup-transition="popup-fade" v-model="visible" style="width:100%;height:100%;background-color:rgb(255, 255, 255, 0.8);">
-          <div>{{count}}</div>
+          <div class="big">{{count}}</div>
       </mt-popup>
     </div>
 
@@ -128,7 +128,10 @@ export default {
             this.timer = setInterval(()=>{
             if(this.count > 0 && this.count <= TIME_COUNT){
                 this.count--;
-            }else{
+                if(this.count==0){
+                this.count="GO!"
+            }
+            } else{
                 this.show = true;
                 clearInterval(this.timer);
                 this.timer = null;
@@ -181,8 +184,19 @@ a{
   display: flex;
   flex-direction:column;
   justify-content:center;
-  font-size: 100px;
-  color: rgb(226, 68, 19);
+  color: #007aff;
   font-weight: bold;
+  animation: am1 1s linear infinite ;
+  animation-fill-mode: forwards;
 }
+@keyframes am1 {      
+            0% {  /* 或者写成这样:  from {} */    
+                font-size: 0px;  /* 多个属性相当于多组动画一起执行 */  
+            }      
+            100% {  /* 或者写成这样:  to {} */    
+              font-size: 200px;      
+            }      
+        }      
+
+
 </style>
