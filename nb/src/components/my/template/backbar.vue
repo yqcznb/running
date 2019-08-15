@@ -3,22 +3,18 @@
         <router-link to="footer/my" @click.native="routerRefresh">
             <i class="iconfont iconfanhui-copy"></i>返回
         </router-link>
-        <router-view v-if="routerAlive"></router-view>
+        <router-view :key="key"></router-view>
     </div>
 </template>
 <script>
 export default {
     data() {
         return {
-            routerAlive:true
         }
     },
     methods: {
-        routerRefresh() {
-            this.routerAlive = false;
-            this.$nextTick(()=>{
-                this.routerAlive = true;
-            });
+        key() {
+            return this.$route.path;
         }
     }
 }

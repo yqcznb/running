@@ -6,7 +6,7 @@
             </router-link>
         </div>
         <div id="id_msg-safe">
-            <router-link :to="{name:'pinform',params:{backey:'/settings'}}" @click.native="routerRefresh">
+            <router-link :to="{name:'pinform',params:{backey:'/settings'}}">
                 <div id="id_msg">
                     <span>个人信息</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
