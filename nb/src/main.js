@@ -14,6 +14,7 @@ import { Popup } from 'mint-ui';
 import echarts from 'echarts'
 import VueAxios from 'vue-axios'
 
+Vue.prototype.axios = axios
 Vue.component(Button.name, Button);
 Vue.component(MessageBox.name, MessageBox);
 Vue.component(Popup.name, Popup);
