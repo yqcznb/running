@@ -32,6 +32,9 @@ export default {
         }
     },
     methods: {
+        routerRefresh() {
+            window.location.reload();
+        },
     },
 }
 </script>
