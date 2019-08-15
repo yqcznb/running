@@ -1,18 +1,18 @@
 <template>
     <div id="settings">
         <div id="back_bar">
-            <router-link to="/footer/my">
+            <router-link to="/footer/my" @click.native="routerRefresh">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
         </div>
         <div id="id_msg-safe">
-            <router-link to="/pinform">
+            <router-link :to="{name:'pinform',params:{backey:'/settings'}}" @click.native="routerRefresh">
                 <div id="id_msg">
                     <span>个人信息</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
             <hr>
-            <router-link to="/idsafe">
+            <router-link :to="{name:'idsafe',params:{backey:'/settings'}}">
                 <div id="id_safe">
                     <span>账号与安全</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
@@ -25,13 +25,13 @@
                 </div>
             </router-link>
             <hr>
-            <router-link to="privacy">
+            <router-link :to="{name:'privacy',params:{backey:'/settings'}}">
                 <div id="privacy">
                     <span>隐私</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
             <hr>
-            <router-link to="on">
+            <router-link :to="{name:'on',params:{backey:'/settings'}}">
                 <div id="on">
                     <span>关于</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
@@ -39,7 +39,7 @@
             </router-link>
         </div>
         <div id="change-logout">
-            <router-link to="switchid">
+            <router-link :to="{name:'switchid',params:{backey:'/settings'}}">
                 <div id="change">
                     <span>切换账号</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
@@ -55,7 +55,20 @@
 </template>
 <script>
 export default {
-    
+    name: 'settings',
+    computed: {
+        
+    },
+    data() {
+        return{
+            
+        }
+    },
+    methods: {
+        routerRefresh() {
+            window.location.reload();
+        },
+    },
 }
 </script>
 <style scoped>
@@ -97,20 +110,6 @@ export default {
         background-color: white;
         border-radius: 7px;
         font-size: 110%;
-    }
-    #safe_id {
-        width: 93%;
-        border: 1px solid red;
-        display: flex;
-        margin: 0 auto;
-        background-color: white;
-        color: black;
-        border-radius: 7px;
-        height: 8%;
-        align-items: center;
-        text-indent: 1em;
-        font-size: 110%;
-        margin-bottom: 2%;
     }
     .iconfont-right {
         font-size: 20px;

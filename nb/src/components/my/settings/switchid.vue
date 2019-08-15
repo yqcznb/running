@@ -1,7 +1,7 @@
 <template>
     <div id="switchid">
         <div id="back_bar">
-            <router-link :to='backlink'>
+            <router-link :to='$route.params.backey'>
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
         </div>

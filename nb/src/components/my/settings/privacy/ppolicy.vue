@@ -1,7 +1,7 @@
 <template>
     <div id="ppolicy">
         <div id="back_bar">
-            <router-link to="/privacy">
+            <router-link :to="{name:'privacy',params:{backey:$route.params.backey}}">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
         </div>

@@ -28,8 +28,8 @@ export default {
     data() {
         return {
             msg: 'Here is login component',
-            username: '',
-            password: '',
+            username: ' ',
+            password: ' ',
         }
     },
     methods:
