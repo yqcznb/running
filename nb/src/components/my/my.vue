@@ -1,7 +1,7 @@
 <template>
     <div id="my">
         <router-view :key="key" v-if="routerAlive"></router-view>
-        <router-link :to="{name:'pinform',params:{backey:'/footer/my'}}" @click.native="routerRefresh">
+        <router-link :to="{name:'pinform',params:{backey:'/footer/my'}}">
             <div id="my_head">
                 <div id="head_left">
                     <h4>{{ uname }}</h4>
@@ -32,7 +32,7 @@
             </router-link>
            
         </div>
-        <router-link to="/settings">
+        <router-link :to="mode"  @click.native="routerRefresh">
             <div id="settings">
                 <i class="iconfont iconsettings"></i><span>设置</span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>
@@ -57,24 +57,25 @@ export default {
             headportrait:require('../../assets/img/my/headportrait/4.jpg'),
             duanImg:require('../../assets/img/my/duan/5.png'),
             nearImg:require('../../assets/img/my/run_data/near.png'),
+            mode:'/settings',
             routerAlive:true,
         }
     },
     created() {
-        axios.get('')
-        .then()
-        .catch()
+        axios.get('http://no37.store:8080/kf/show')
+        .then(
+            response=>{console.log(response);this.id=response.id;}
+        )
+        .catch(
+            error=>{console.log(error);alert('网络错误，不能访问');}
+        )
     },
     mounted(){
         this.drawLine();
     },
     methods: {
         routerRefresh() {
-            this.routerAlive = false;
-            this.$nextTick(()=>{
-                this.routerAlive = true;
-            });
-            // window.location.reload();
+            window.location.reload();
         },
         drawLine(){
             // 近12日日期
