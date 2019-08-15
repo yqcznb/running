@@ -1,7 +1,7 @@
 <template>
     <div id="drole">
         <div id="back_bar">
-            <router-link to="footer/my">
+            <router-link to="footer/my" @click.native="routerRefresh">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
         </div>
@@ -10,7 +10,17 @@
 </template>
 <script>
 export default {
-    
+    name: 'drole',
+    data() {
+        return{
+            
+        }
+    },
+    methods: {
+        routerRefresh() {
+            window.location.reload();
+        },
+    },
 }
 </script>
 <style scoped>
