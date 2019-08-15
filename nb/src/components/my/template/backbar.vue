@@ -1,13 +1,22 @@
 <template>
     <div id="back_bar">
-        <router-link to="footer/my">
+        <router-link to="footer/my" @click.native="routerRefresh">
             <i class="iconfont iconfanhui-copy"></i>返回
         </router-link>
+        <router-view :key="key"></router-view>
     </div>
 </template>
 <script>
 export default {
-    
+    data() {
+        return {
+        }
+    },
+    methods: {
+        key() {
+            return this.$route.path;
+        }
+    }
 }
 </script>
 <style scoped>

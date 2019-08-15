@@ -3,8 +3,10 @@ import Router from 'vue-router'
 import login from '@/components/login/login'
 import footer from '@/components/footer/footer'
 import my from '@/components/my/my'
+import backbar from '@/components/my/template/backbar'
 import pinform from '@/components/my/settings/pinform'
 import drole from '@/components/my/my_head/drole'
+import ex_bonus from '@/components/my/my_head/ex-bonus'
 import settings from '@/components/my/settings/settings'
 import funnymode from '@/components/my/settings/funnymode'
 import idsafe from '@/components/my/settings/idsafe'
@@ -34,11 +36,9 @@ export default new Router({
       component: login
     },
     {
-      
-        path: '/time',
-        name: 'time',
-        component: time
-      
+      path: '/time',
+      name: 'time',
+      component: time
     },
     {
       path: '/footer',
@@ -50,6 +50,7 @@ export default new Router({
           name: 'my',
           component: my,
           meta: { checkLogined: true },
+          
         },
         {
           path: 'pet',
@@ -82,6 +83,38 @@ export default new Router({
       component: gpet,
     },
     {
+      path: '/backbar',
+      name: 'backbar',
+      component: backbar,
+      // children:[
+      //   {
+      //     path: 'idsafe',
+      //     name: 'idsafe',
+      //     component: idsafe,
+      //   },
+      //   {
+      //     path: 'privacy',
+      //     name: 'privacy',
+      //     component: privacy,
+      //   },
+      //   {
+      //     path: 'on',
+      //     name: 'on',
+      //     component: on,
+      //   },
+      //   {
+      //     path: 'ppolicy',
+      //     name:'ppolicy',
+      //     component: ppolicy,
+      //   },
+      //   {
+      //     path: 'switchid',
+      //     name: 'switchid',
+      //     component: switchid,
+      //   },
+      // ]
+    },
+    {
       path: '/pinform',
       name: 'pinform',
       component: pinform,
@@ -90,6 +123,11 @@ export default new Router({
       path: '/drole',
       name: 'drole',
       component: drole,
+    },
+    {
+      path: '/ex_bonus',
+      name: 'ex_bonus',
+      component: ex_bonus,
     },
     {
       path: '/settings',

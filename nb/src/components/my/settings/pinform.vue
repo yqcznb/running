@@ -1,7 +1,7 @@
 <template>
     <div id="pinform">
         <div id="back_bar">
-            <router-link to="/settings">
+            <router-link :to='$route.params.backey' @click.native="routerRefresh">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
         </div>
@@ -28,8 +28,11 @@ export default {
         return{
             name: '叭叭叭',
             headportrait:require('../../../assets/img/my/headportrait/4.jpg'),
+            routerAlive:true,
         }
-    }
+    },
+    methods: {
+    },
 }
 </script>
 <style scoped>
