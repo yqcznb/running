@@ -15,7 +15,9 @@
         :center="center"
     >  
     </el-amap>
-      <button @mouseenter="mouseEnter" v-if="show">长按结束</button>
+      <button class="js"  @mouseenter="mouseEnter" v-if="show">长按结束</button>
+      <mt-button class="left"  type="primary"  v-if="left" @click="con">继续</mt-button>
+      <mt-button class="right"  type="danger"  v-if="right" @click="end">结束</mt-button>
     <div class="toolbar">
         <p v-if="loaded">
         location: lng = {{ lng }} lat = {{ lat }}
@@ -26,6 +28,7 @@
 </template>
 
 <script>
+import { MessageBox } from 'mint-ui'
 export default {
   name: 'time',
    data() {
@@ -38,6 +41,8 @@ export default {
       loaded: false,
       visible: false,
       show:true,
+      left:false,
+      right:false,
       plugin: [   //一些工具插件
         {
           pName: 'Geolocation',   //定位
@@ -95,9 +100,34 @@ export default {
    mouseEnter(){
        setTimeout(()=>{
          
-      this
-      .show = false;
+      this.show = false;
+      this.left = true;
+      this.right = true;
    }, 3000);
+    },
+    con(){
+      this.show = true;
+      this.left = false;
+      this.right = false;
+    },
+    end(){
+      MessageBox.confirm('', { 
+         message: '当前活动距离过短，将不会记录成绩', 
+         title: '提示', 
+         confirmButtonText: '结束', 
+         cancelButtonText: '继续' 
+         }).then(action => { 
+         if (action == 'confirm') {     //确认的回调
+            this.$router.push({
+                    path: '/footer/index'
+                });
+
+         }
+         }).catch(err => { 
+         if (err == 'cancel') {     //取消的回调
+        
+         } 
+         });
     }
    
   },
@@ -105,6 +135,22 @@ export default {
 </script>
 
 <style scoped>
+.left{
+  position:absolute;
+  top: 80%;
+  left: 10%;
+  z-index: 100;
+  font-size:1.6em;
+  padding:0 2em;
+}
+.right{
+  position:absolute;
+  top: 80%;
+  right: 10%;
+  z-index: 100;
+  font-size:1.6em;
+  padding:0 2em;
+}
 .time {
   color: #fff;
   width: 100%;
@@ -143,7 +189,7 @@ export default {
 .gl{
   font-size:33px;
 }
-button{
+.js{
   background:#007aff;
   color:#fff;
   border:none;
@@ -160,11 +206,11 @@ button{
   width: 260px;
   margin-left: -130px;
 }
-button:hover{
+.js:hover{
   background:#fff;
   color:#007aff;
 }
-button:before,button:after{
+.js:before,.js:after{
   content:'';
   position:absolute;
   top:0;
@@ -174,13 +220,13 @@ button:before,button:after{
   background: #007aff;
   transition:400ms ease all;
 }
-button:after{
+.js:after{
   right:inherit;
   top:inherit;
   left:0;
   bottom:0;
 }
-button:hover:before,button:hover:after{
+.js:hover:before,.js:hover:after{
   width:100%;
   transition:3000ms ease all;
 }

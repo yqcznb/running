@@ -34,7 +34,8 @@ export default {
   data(){
     return{
         xiaoqu:'青岛工学院校区',
-        tongzhi:'官方通知：XXXXXXXX'
+        tongzhi:'官方通知：XXXXXXXX',
+        id:""
     }
   },created(){
  
