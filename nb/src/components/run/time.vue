@@ -3,7 +3,7 @@
     <div class="head">
       
         <div>00'00"<p>平均配速</p></div>
-        <div>00:00:00<p>用时</p></div>
+        <div>{{str}}<p>用时</p></div>
         <div>0.0<p>热量（千卡）</p></div>
         <div class="gl">0.00<span>公里</span></div>
     </div>
@@ -43,6 +43,13 @@ export default {
       show:true,
       left:false,
       right:false,
+        h:0,//定义时，分，秒，毫秒并初始化为0；
+        m:0,
+        s:0,
+        ms:0,
+        time:0, //定时器
+        str:'00:00:00',
+        times:'', //统计共多少秒时间
       plugin: [   //一些工具插件
         {
           pName: 'Geolocation',   //定位
@@ -92,6 +99,9 @@ export default {
    activated: function() {
     this.getCase()
   },
+   created: function () {
+     this.time=setInterval(this.timer,50);
+  },
   methods: {
     //把经纬度传到父组件
     sendlnglat (){ 
@@ -103,34 +113,66 @@ export default {
       this.show = false;
       this.left = true;
       this.right = true;
+       clearInterval(this.time);
    }, 3000);
     },
     con(){
       this.show = true;
       this.left = false;
       this.right = false;
+      this.time=setInterval(this.timer,50);
     },
     end(){
       MessageBox.confirm('', { 
          message: '当前活动距离过短，将不会记录成绩', 
          title: '提示', 
          confirmButtonText: '结束', 
-         cancelButtonText: '继续' 
+         cancelButtonText: '取消' 
          }).then(action => { 
          if (action == 'confirm') {     //确认的回调
             this.$router.push({
                     path: '/footer/index'
                 });
-
+            clearInterval(this.time);
+            this.h=0;
+            this.m=0;
+            this.ms=0;
+            this.s=0;
+            this.str="00:00:00";
          }
          }).catch(err => { 
          if (err == 'cancel') {     //取消的回调
         
          } 
          });
+    },
+      timer(){                //定义计时函数
+        this.ms=this.ms+50;        //毫秒
+        if(this.ms>=1000){
+          this.ms=0;
+          this.s=this.s+1;        //秒
+        }
+        if(this.s>=60){
+          this.s=0;
+          this.m=this.m+1;       //分钟
+        }
+        if(this.m>=60){
+          this.m=0;
+          this.h=this.h+1;        //小时
+        }
+        this.str =this.toDub(this.h)+":"+this.toDub(this.m)+":"+this.toDub(this.s);
+        //统计共看了多少秒
+        this.times=this.s + this.m*60 + this.h*3600 ;
+      },
+      toDub(n){  //补0操作
+        if(n<10){
+          return "0"+n;
+        }
+        else {
+          return ""+n;
+        }
+      }
     }
-   
-  },
 }
 </script>
 
