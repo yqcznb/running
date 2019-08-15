@@ -3,7 +3,7 @@ import Router from 'vue-router'
 import login from '@/components/login/login'
 import footer from '@/components/footer/footer'
 import my from '@/components/my/my'
-import pinform from '@/components/my/my_head/pinform'
+import pinform from '@/components/my/settings/pinform'
 import drole from '@/components/my/my_head/drole'
 import settings from '@/components/my/settings/settings'
 import funnymode from '@/components/my/settings/funnymode'
@@ -86,7 +86,6 @@ export default new Router({
       name: 'pinform',
       component: pinform,
     },
-    
     {
       path: '/drole',
       name: 'drole',

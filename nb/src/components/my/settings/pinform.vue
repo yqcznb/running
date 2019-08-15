@@ -1,7 +1,7 @@
 <template>
     <div id="pinform">
         <div id="back_bar">
-            <router-link to="footer/my">
+            <router-link to="/settings">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
         </div>
@@ -39,7 +39,7 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        background-color: #dec674;
+        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
     }
     #back_bar a {
         text-decoration: none;
