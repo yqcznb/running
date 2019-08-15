@@ -139,6 +139,7 @@ export default {
                 this.$router.push({
                     path: '/time'
                 });
+                 window.location.reload();
             }
           },1000)
         }
@@ -186,6 +187,7 @@ a{
   justify-content:center;
   color: #007aff;
   font-weight: bold;
+  font-size: 0px;
   animation: am1 1s linear infinite ;
   animation-fill-mode: forwards;
 }

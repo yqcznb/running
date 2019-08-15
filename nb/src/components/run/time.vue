@@ -103,6 +103,7 @@ export default {
      this.time=setInterval(this.timer,50);
   },
   methods: {
+    
     //把经纬度传到父组件
     sendlnglat (){ 
       this.$emit('register', this.lng, this.lat)
