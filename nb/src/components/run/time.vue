@@ -1,11 +1,14 @@
 <template>
   <div class="time">
     <div class="head">
-      
-        <div>00'00"<p>平均配速</p></div>
-        <div>{{str}}<p>用时</p></div>
-        <div>0.0<p>热量（千卡）</p></div>
-        <div class="gl">0.00<span>公里</span></div>
+     <div class="top">
+          <div class="gl">{{miles}}<span>公里</span></div><br>
+      </div>
+      <div class="under">
+           <div class="one">{{speed}}<p>平均配速</p></div>
+           <div>{{str}}<p>用时</p></div>
+           <div>{{ calories}}<p>热量（千卡）</p></div>
+      </div>
     </div>
     <el-amap 
         vid="amap"  
@@ -43,6 +46,11 @@ export default {
       show:true,
       left:false,
       right:false,
+       distance: 0,  // 表示运动的累计距离
+        miles: 0.0,    // 表示运动的累计距离，单位是公里用于界面显示
+        path: [],    // 运动坐标数据
+        speed: '0000',    // 配速 
+        calories: 0.0,  // 运动的消耗，单位千卡
         h:0,//定义时，分，秒，毫秒并初始化为0；
         m:0,
         s:0,
@@ -68,31 +76,7 @@ export default {
             }
           }
         },
-        {
-          pName: 'ToolBar',  //工具栏
-          events: {
-            init(instance) {
-              // console.log(instance);
-            }
-          }
-        },
-        {
-          pName: 'OverView',  //鹰眼
-          events: {
-            init(instance) {
-              // console.log(instance);
-            }
-          }
-        },
-        {
-          pName: 'MapType',  //地图类型
-          defaultType: 0,
-          events: {
-            init(instance) {
-              // console.log(instance);
-            }
-          }
-        }
+       
       ]
     }
   },
@@ -214,23 +198,31 @@ export default {
   margin-left: -130px;
   border-radius: 20%;
   display:flex;
-  justify-content:space-around;
   color: black;
-  flex-wrap:wrap-reverse;
+  flex-direction:column;
   font-size: 20px;
 }
 .head>div span,p{
   font-size: 13px;
   color:#aaa;
 }
-.head>div{
+.head .under div{
   font-weight:bold;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
+}
+.top{
+  padding-top: 30px;
+}
+.under{
+  display: flex;
+  flex-direction:row;
+  justify-content: space-between;
 }
 .gl{
   font-size:33px;
+  font-weight: bold;
 }
 .js{
   background:#007aff;

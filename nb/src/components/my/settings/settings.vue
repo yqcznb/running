@@ -45,7 +45,7 @@
                 </div>
             </router-link>
             <hr>
-            <router-link to="">
+            <router-link to="/">
                 <div id="logout">
                     <span>退出登录</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>

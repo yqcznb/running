@@ -76,31 +76,7 @@ export default {
             }
           }
         },
-        {
-          pName: 'ToolBar',  //工具栏
-          events: {
-            init(instance) {
-              // console.log(instance);
-            }
-          }
-        },
-        {
-          pName: 'OverView',  //鹰眼
-          events: {
-            init(instance) {
-              // console.log(instance);
-            }
-          }
-        },
-        {
-          pName: 'MapType',  //地图类型
-          defaultType: 0,
-          events: {
-            init(instance) {
-              // console.log(instance);
-            }
-          }
-        }
+       
       ]
     }
   },
