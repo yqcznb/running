@@ -4,6 +4,7 @@ import Vue from 'vue'
 import App from './App'
 import router from './router'
 import "./assets/mui/css/mui.min.css"
+import "./assets/mui/css/mui.css"
 import "./assets/mui/css/icons-extra.css"
 import "./assets/mui/fonts/fzhzgb.ttf"
 import VueAMap from 'vue-amap'

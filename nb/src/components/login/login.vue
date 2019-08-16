@@ -2,17 +2,15 @@
     <div id="login">
         <div class="login_continue">
             <span>趣跑登录</span> 
-            <router-link to=""><span class="continue">跳过</span></router-link>
-        </div>
+             </div>
         <form>
             <input type="text" placeholder="手机号" v-model="username">
             <input type="password" placeholder="登录密码"  v-model="password">
             <button @click="login">登录</button>
             <div class="jump_bar">
-                <router-link to="register"><span class="jump register">手机快速注册</span></router-link>
-                <router-link to="forget"><span class="jump forget">忘记密码</span></router-link>
+                <router-link to="/register"><span class="jump register">手机快速注册</span></router-link>
+                <router-link to="/forget"><span class="jump forget">忘记密码</span></router-link>
             </div>
-            
         </form>
         <span class="other_login">第三方登录</span> <hr>
         <div class="login_bar">
@@ -28,8 +26,8 @@ export default {
     data() {
         return {
             msg: 'Here is login component',
-            username: ' ',
-            password: ' ',
+            username: 1,
+            password: 1,
         }
     },
     methods:
@@ -98,7 +96,9 @@ export default {
     button {
         width: 90%;
         height: 44px;
-        background-color: #d5a269;
+        background-color: #007aff;
+        color: #FFF;
+        font-weight: bolder;
         border: 0;
     }
     .other_login {

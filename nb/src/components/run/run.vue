@@ -76,31 +76,7 @@ export default {
             }
           }
         },
-        {
-          pName: 'ToolBar',  //工具栏
-          events: {
-            init(instance) {
-              // console.log(instance);
-            }
-          }
-        },
-        {
-          pName: 'OverView',  //鹰眼
-          events: {
-            init(instance) {
-              // console.log(instance);
-            }
-          }
-        },
-        {
-          pName: 'MapType',  //地图类型
-          defaultType: 0,
-          events: {
-            init(instance) {
-              // console.log(instance);
-            }
-          }
-        }
+       
       ]
     }
   },
@@ -139,6 +115,7 @@ export default {
                 this.$router.push({
                     path: '/time'
                 });
+                 window.location.reload();
             }
           },1000)
         }
@@ -186,6 +163,7 @@ a{
   justify-content:center;
   color: #007aff;
   font-weight: bold;
+  font-size: 0px;
   animation: am1 1s linear infinite ;
   animation-fill-mode: forwards;
 }

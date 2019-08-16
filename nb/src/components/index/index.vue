@@ -2,7 +2,7 @@
   <div class="index">
     <ul class="heard">
         <li class="xiaoqu">{{xiaoqu}}</li>
-        <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{tongzhi}}</li>
+        <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{ggnr}}</li>
     </ul>
     <router-view :key="aa"></router-view>
     <div class="caochang">
@@ -12,16 +12,15 @@
               <i class="iconfont iconpaobu"></i>
 				      <span class="mui-tab-label">开跑</span>
               </router-link>
-            
             </div>
             <p>当前已跑</p>
-            <p>{{id}}</p>
+            <p>{{dqyp}}次</p>
             <p>晨跑</p>
-            <p>16次</p>
+            <p>{{cp}}次</p>
             <p>夜跑</p>
-            <p>6次</p>
+            <p>{{yp}}次</p>
             <p>学期目标</p>
-            <p>56次</p>
+            <p>{{xqmb}}次</p>
         </div>
     </div>
   </div>
@@ -34,34 +33,46 @@ export default {
   data(){
     return{
         xiaoqu:'青岛工学院校区',
-        tongzhi:'官方通知：XXXXXXXX',
-        id:""
+        id:"",
+        cp:"",
+        yp:"",
+        xqmb:"",
+        ggnr:""
     }
   },created(){
  
-      axios.get('http://no37.store:8080/kf/show')
- 
-              //then获取成功；response成功后的返回值（对象）
- 
-      .then(response=>{
- 
+      axios.get('http://no37.store:8080/kf/zhuye1',{
+    params: {
+        yhid: 1,     
+    }
+}).then(response=>{
          console.log(response);
- 
-         this.id=response.id;
- 
-      })
- 
-              //获取失败
- 
+         this.dqyp=response.data.dqyp;
+          this.cp=response.data.cp;
+           this.yp=response.data.yp;
+         this.xqmb=response.data.xqmb;
+      })      //获取失败
       .catch(error=>{
- 
           console.log(error);
- 
           alert('网络错误，不能访问');
- 
       })
- 
+      
+  axios.get('http://no37.store:8080/kf/gonggao1',{
+    params: {
+        ggid:1,     
+    }
+}).then(response=>{
+         console.log(response);
+         this.ggnr=response.data.ggnr; 
+      })      //获取失败
+      .catch(error=>{
+          console.log(error);
+          alert('网络错误，不能访问');
+      })
   }
+ 
+  
+  
 
 }
 </script>

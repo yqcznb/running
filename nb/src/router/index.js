@@ -19,7 +19,8 @@ import rank_list from '@/components/my/rank_list'
 
 import pet from '@/components/pet/pet'
 import gpet from '@/components/gpet/gpet'
-
+import register from '@/components/login/register'
+import forget from '@/components/login/forget'
 
 
 import index from '@/components/index/index'
@@ -34,6 +35,16 @@ export default new Router({
       path: '/',
       name: 'login',
       component: login
+    },
+    {
+      path: '/forget',
+      name: 'forget',
+      component: forget
+    },
+    {
+      path: '/register',
+      name: 'register',
+      component: register
     },
     {
       path: '/time',

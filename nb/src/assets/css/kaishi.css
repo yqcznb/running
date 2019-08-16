@@ -11,10 +11,10 @@
   z-index: 100;
   top: 50%;
   left: 50%;
-  width: 300px;
-  height: 400px;
+  width: 220px;
+  height: 350px;
   margin-top:100px;
-  margin-left:150px;
+  margin-left:110px;
 }
 .left:before,
 .right:before {
@@ -24,8 +24,8 @@
   left: 50%;
   transform: translate(-50%, -50%);
   background-color: white;
-  width: 220px;
-  height: 280px;
+  width: 200px;
+  height: 260px;
   border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
   box-shadow: 0 20px 0 #41ABE4;
 }
@@ -43,8 +43,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%) translatey(40px);
-  width: 130px;
-  height: 130px;
+  width: 110px;
+  height: 110px;
   border-radius: 50%;
   background-color: #007aff;
   cursor:pointer;
@@ -187,71 +187,7 @@
   animation-name: leftLR;
 }
 
-.right > .limbs > .hands {
-  z-index: -1;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.right > .limbs > .hands:after {
-  position: absolute;
-  content: '';
-  width: 10px;
-  height: 40px;
-  border-radius: 5em;
-  background-color: white;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) translatex(-110px) rotate(-45deg);
-  box-shadow: -14px 14px 0 #41ABE4;
-  animation-name: rightHL;
-}
-.right > .limbs > .hands:before {
-  position: absolute;
-  content: '';
-  width: 10px;
-  height: 40px;
-  border-radius: 5em;
-  background-color: white;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) translatex(110px) rotate(45deg);
-  box-shadow: 14px 14px 0 #41ABE4;
-  animation-name: rightHR;
-}
-.right > .limbs > .legs {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-.right > .limbs > .legs:after {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 30px;
-  background-color: white;
-  border-radius: 5em;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) translate(-50px, 130px) rotate(20deg);
-  box-shadow: 15px 13px 0 #41ABE4;
-  animation-name: rightLL;
-}
-.right > .limbs > .legs:before {
-  content: '';
-  position: absolute;
-  width: 10px;
-  height: 30px;
-  background-color: white;
-  border-radius: 5em;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) translate(50px, 130px) rotate(-20deg);
-  box-shadow: -15px 13px 0 #41ABE4;
-  animation-name: rightLR;
-}
+
 
 .left > .limbs > .hands:after,
 .left > .limbs > .hands:before,
