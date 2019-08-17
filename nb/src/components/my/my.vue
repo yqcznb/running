@@ -4,7 +4,7 @@
         <router-link :to="{name:'pinform',params:{backey:'/footer/my'}}">
             <div id="my_head">
                 <div id="head_left">
-                    <h4>{{ uname }}</h4>
+                    <h4>{{ uname }}<span>  <router-link to='/confirm'> 已认证 </router-link></span></h4>
                     <h5><router-link to="/drole">{{ uduan }} <i class="iconfont drole-c iconchongwu"></i> </router-link></h5>
                     <img :src='levelImg' class="levelimg" >
                     <router-link to="/ex_bonus" >
@@ -261,6 +261,11 @@ export default {
     }
     h4 {
         /* margin-bottom: 20%; */
+    }
+    h4 a{
+        font-size: 13px;
+        color: #d5a269;
+        font-style: italic;
     }
     h5 a{
         text-decoration: none;

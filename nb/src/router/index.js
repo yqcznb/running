@@ -21,6 +21,7 @@ import pet from '@/components/pet/pet'
 import gpet from '@/components/gpet/gpet'
 import register from '@/components/login/register'
 import forget from '@/components/login/forget'
+import confirm from '@/components/login/confirm'
 
 
 import index from '@/components/index/index'
@@ -35,6 +36,11 @@ export default new Router({
       path: '/',
       name: 'login',
       component: login
+    },
+    {
+      path: '/confirm',
+      name: 'confirm',
+      component: confirm
     },
     {
       path: '/forget',
