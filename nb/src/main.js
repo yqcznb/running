@@ -10,11 +10,12 @@ import "./assets/mui/fonts/fzhzgb.ttf"
 import VueAMap from 'vue-amap'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import { Button,MessageBox} from 'mint-ui';
-import { Popup } from 'mint-ui';
+import { Button,MessageBox,Header,Field,Popup} from 'mint-ui';
 import echarts from 'echarts'
 
 
+Vue.component(Field.name, Field);
+Vue.component(Header.name, Header);
 Vue.prototype.axios = axios
 Vue.component(Button.name, Button);
 Vue.component(MessageBox.name, MessageBox);
