@@ -41,7 +41,7 @@ export default {
     }
   },created(){
  
-      axios.get('http://no37.store:8080/kf/zhuye1',{
+      axios.get('http://no37.store:8080/AK/zhuye1',{
     params: {
         yhid: 1,     
     }
@@ -57,7 +57,7 @@ export default {
           alert('网络错误，不能访问');
       })
       
-  axios.get('http://no37.store:8080/kf/gonggao1',{
+  axios.get('http://no37.store:8080/AK/gonggao1',{
     params: {
         ggid:1,     
     }
