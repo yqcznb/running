@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { MessageBox } from 'mint-ui'
+import { MessageBox, Button} from 'mint-ui'
 export default {
   name: 'time',
    data() {
@@ -50,7 +50,7 @@ export default {
       right:false,
        distance: 0,  // 表示运动的累计距离
         miles: 0.0,    // 表示运动的累计距离，单位是公里用于界面显示
-        path: [],    // 运动坐标数据
+        // path: [],    // 运动坐标数据
         speed: "00'00\"",    // 配速 
         calories: 0.0,  // 运动的消耗，单位千卡
         h:0,//定义时，分，秒，毫秒并初始化为0；
@@ -65,7 +65,7 @@ export default {
         times:'', //统计共多少秒时间
          lines: [
             {
-              path: [
+              path: [        
               
               ],
               strokeDasharray: [10, 10],
@@ -75,7 +75,7 @@ export default {
               strokeStyle: "solid", //线样式
               events: {
                 click: () => {
-                  alert(self.lng);
+                  alert('000');
                 }
               }
             }
@@ -91,10 +91,10 @@ export default {
                 if (result && result.position) {
                   self.lng = result.position.lng;             //设置经度
                   self.lat = result.position.lat;             //设置维度
-                  self.path.push([ self.lng, self.lat, self.lng, self.lat]);
+                  self.lines[0].path.push([self.lng,self.lat]);
                 }
               })
-               },3000);
+               },2000);
                 o.getCurrentPosition((status, result) => {
                 if (result && result.position) {
                   self.lng = result.position.lng;             //设置经度
@@ -117,33 +117,31 @@ export default {
   },
    created: function () {
      this.time=setInterval(this.timer,50);
-     //this.lux=setInterval(this.luxian,3000);
+     this.lux=setInterval(this.luxian,3000);
      this.jl=setInterval(()=>{
-       var aa = this.path.length;
+       var aa =  this.lines[0].path.length;
        if(aa>=2){
-         this.distance = this.juli(this.path[aa-1][0],this.path[aa-1][1],this.path[aa-2][0],this.path[aa-2][1]);
+         this.distance = this.juli( this.lines[0].path[aa-1][0], this.lines[0].path[aa-1][1], this.lines[0].path[aa-2][0], this.lines[0].path[aa-2][1]);
          this.miles = this.miles+this.distance;
          if(this.miles!=0){
             var ss = (1/this.miles)*this.times;
-            this.speed = ss/60+"'"+ss%60+"\"";
-            this.calories = 60*(this.times/3600)*8/this.miles*this.times/3600;
+            this.speed =this.toDub(parseInt(ss/60))+"'"+this.toDub(parseInt(ss%60))+"\"";
+            this.calories = parseFloat(60*(this.times/3600)*8/this.miles*this.times/3600).toFixed(2);
          }
        }
      },3000);
   },
   methods: {
-    
     //把经纬度传到父组件
     sendlnglat (){ 
       this.$emit('register', this.lng, this.lat)
     },
    mouseEnter(){
        setTimeout(()=>{
-         
       this.show = false;
       this.left = true;
       this.right = true;
-       clearInterval(this.time);
+      clearInterval(this.time);
       // clearInterval(this.lux);
    }, 3000);
     },
@@ -166,12 +164,12 @@ export default {
                     path: '/footer/index'
                 });
             clearInterval(this.time);
-            this.h=0;
-            this.m=0;
-            this.ms=0;
-            this.s=0;
-            this.str="00:00:00";
-            this.path = " ";
+            // this.h=0;
+            // this.m=0;
+            // this.ms=0;
+            // this.s=0;
+            // this.str="00:00:00";
+            // this.path = " ";
          }
          }).catch(err => { 
          if (err == 'cancel') {     //取消的回调
