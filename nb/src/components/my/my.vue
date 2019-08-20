@@ -62,13 +62,7 @@ export default {
         }
     },
     created() {
-        axios.get('http://no37.store:8080/kf/show')
-        .then(
-            response=>{console.log(response);this.id=response.id;}
-        )
-        .catch(
-            error=>{console.log(error);alert('网络错误，不能访问');}
-        )
+      
     },
     mounted(){
         this.drawLine();

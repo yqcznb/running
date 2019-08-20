@@ -17,6 +17,8 @@
         class="amap-demo" 
         :center="center"
     >  
+      <el-amap-bezier-curve v-for="line in lines" :key="line" :path="line.path" :stroke-color="line.strokeColor" :stroke-style="line.strokeStyle" :events="line.events" :stroke-opacity="line.strokeOpacity"></el-amap-bezier-curve>
+   
     </el-amap>
       <button class="js"  @mouseenter="mouseEnter" v-if="show">长按结束</button>
       <mt-button class="left"  type="primary"  v-if="left" @click="con">继续</mt-button>
@@ -49,22 +51,51 @@ export default {
        distance: 0,  // 表示运动的累计距离
         miles: 0.0,    // 表示运动的累计距离，单位是公里用于界面显示
         path: [],    // 运动坐标数据
-        speed: '0000',    // 配速 
+        speed: "00'00\"",    // 配速 
         calories: 0.0,  // 运动的消耗，单位千卡
         h:0,//定义时，分，秒，毫秒并初始化为0；
         m:0,
         s:0,
         ms:0,
-        time:0, //定时器
+        time:0, //时间定时器
+        lux:0,//路线定时器
+        ll:0,//定位定时器
+        jl:0,//距离定时器
         str:'00:00:00',
         times:'', //统计共多少秒时间
+         lines: [
+            {
+              path: [
+              
+              ],
+              strokeDasharray: [10, 10],
+              strokeColor: "#FF33FF", //线颜色
+              strokeOpacity: 1, //线透明度
+              strokeWeight: 3, //线宽
+              strokeStyle: "solid", //线样式
+              events: {
+                click: () => {
+                  alert(self.lng);
+                }
+              }
+            }
+          ],
       plugin: [   //一些工具插件
         {
           pName: 'Geolocation',   //定位
           events: {
             init(o) {
               // o 是高德地图定位插件实例
-              o.getCurrentPosition((status, result) => {
+               this.ll=setInterval(function(){
+                 o.getCurrentPosition((status, result) => {
+                if (result && result.position) {
+                  self.lng = result.position.lng;             //设置经度
+                  self.lat = result.position.lat;             //设置维度
+                  self.path.push([ self.lng, self.lat, self.lng, self.lat]);
+                }
+              })
+               },3000);
+                o.getCurrentPosition((status, result) => {
                 if (result && result.position) {
                   self.lng = result.position.lng;             //设置经度
                   self.lat = result.position.lat;             //设置维度
@@ -73,6 +104,7 @@ export default {
                   self.$nextTick();                           //页面渲染好后
                 }
               })
+              
             }
           }
         },
@@ -85,6 +117,19 @@ export default {
   },
    created: function () {
      this.time=setInterval(this.timer,50);
+     //this.lux=setInterval(this.luxian,3000);
+     this.jl=setInterval(()=>{
+       var aa = this.path.length;
+       if(aa>=2){
+         this.distance = this.juli(this.path[aa-1][0],this.path[aa-1][1],this.path[aa-2][0],this.path[aa-2][1]);
+         this.miles = this.miles+this.distance;
+         if(this.miles!=0){
+            var ss = (1/this.miles)*this.times;
+            this.speed = ss/60+"'"+ss%60+"\"";
+            this.calories = 60*(this.times/3600)*8/this.miles*this.times/3600;
+         }
+       }
+     },3000);
   },
   methods: {
     
@@ -99,6 +144,7 @@ export default {
       this.left = true;
       this.right = true;
        clearInterval(this.time);
+      // clearInterval(this.lux);
    }, 3000);
     },
     con(){
@@ -106,6 +152,7 @@ export default {
       this.left = false;
       this.right = false;
       this.time=setInterval(this.timer,50);
+      //this.lux=setInterval(this.luxian,3000);
     },
     end(){
       MessageBox.confirm('', { 
@@ -124,6 +171,7 @@ export default {
             this.ms=0;
             this.s=0;
             this.str="00:00:00";
+            this.path = " ";
          }
          }).catch(err => { 
          if (err == 'cancel') {     //取消的回调
@@ -156,6 +204,21 @@ export default {
         else {
           return ""+n;
         }
+      },
+      // luxian(){
+      //   this.path.push([this.lng,this.lat,this.lng,this.lat]);
+        
+      // },
+      juli(lng1,lat1,lng2,lat2){
+          var radLat1 = lat1*Math.PI / 180.0;
+          var radLat2 = lat2*Math.PI / 180.0;
+          var a = radLat1 - radLat2;
+          var  b = lng1*Math.PI / 180.0 - lng2*Math.PI / 180.0;
+          var s = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(a/2),2) +
+          Math.cos(radLat1)*Math.cos(radLat2)*Math.pow(Math.sin(b/2),2)));
+          s = s *6378.137 ;// EARTH_RADIUS;
+          s = Math.round(s * 10000) / 10000;
+          return s;//return的距离单位为km
       }
     }
 }
@@ -165,7 +228,7 @@ export default {
 .left{
   position:absolute;
   top: 80%;
-  left: 10%;
+  left: 3%;
   z-index: 100;
   font-size:1.6em;
   padding:0 2em;
@@ -173,7 +236,7 @@ export default {
 .right{
   position:absolute;
   top: 80%;
-  right: 10%;
+  right: 3%;
   z-index: 100;
   font-size:1.6em;
   padding:0 2em;
@@ -201,6 +264,7 @@ export default {
   color: black;
   flex-direction:column;
   font-size: 20px;
+  opacity:0.8;
 }
 .head>div span,p{
   font-size: 13px;
