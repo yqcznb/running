@@ -1,10 +1,9 @@
 <template>
     <div id="my">
-        <router-view :key="key" v-if="routerAlive"></router-view>
         <router-link :to="{name:'pinform',params:{backey:'/footer/my'}}">
             <div id="my_head">
                 <div id="head_left">
-                    <h4>{{ uname }}<span>  <router-link to='/confirm'> 已认证 </router-link></span></h4>
+                    <h4>{{ uname }}<router-link to='/confirm'><i :class="if_rz" class="iconfont iconwrz"></i></router-link></h4>
                     <h5><router-link to="/drole">{{ uduan }} <i class="iconfont drole-c iconchongwu"></i> </router-link></h5>
                     <img :src='levelImg' class="levelimg" >
                     <router-link to="/ex_bonus" >
@@ -19,7 +18,7 @@
         </router-link>
         <div id="myChart" :auto-resize='autoresize'></div>
         <div id="run_data">
-            <router-link to="/run_data_detail">
+            <router-link to="/run_data_detail" @click.native="routerRefresh">
                 <div id="details">
                     <i class="iconfont icontiyu-paobu"></i><span class="">跑步数据详情</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
@@ -42,15 +41,11 @@
 <script> 
 export default {
     name: 'my',
-    computed: {
-        key() {
-            return this.$route.path
-        }
-    },
     data() {
         return{
             autoresize: true,
             uname: '叭叭叭',
+            if_rz: 'have_rz',
             uduan: '天下跑神段位',
             levelImg: require('../../assets/img/my/schedual_level/first.png'),
             bonusImg:require('../../assets/img/my/identify/我太难啦.png'),
@@ -62,7 +57,7 @@ export default {
         }
     },
     created() {
-      
+
     },
     mounted(){
         this.drawLine();
@@ -224,7 +219,6 @@ export default {
         margin: 0 auto;
         background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
     }
-
     #my_head,#run_data,#settings {
         width: 90%;
         /* border: 1px solid red; */
@@ -260,6 +254,12 @@ export default {
         font-size: 13px;
         color: #d5a269;
         font-style: italic;
+    }
+    .have_rz:before {
+        color: rgba(253, 185, 51, 0.89);
+    }
+    .have_not_rz:before {
+        color:lightgray;
     }
     h5 a{
         text-decoration: none;
