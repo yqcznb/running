@@ -2,7 +2,7 @@
     <div class="confirm">
         <mt-header title="身份认证">
         <router-link to="/footer/my" slot="left">
-            <mt-button icon="back">返回</mt-button>
+            <mt-button icon="back" @click="back">返回</mt-button>
         </router-link>
         <mt-button slot="right">修改信息</mt-button>
         </mt-header>
@@ -29,7 +29,10 @@ export default {
     {
        
         back(){
-             this.$router.replace('/footer/my');
+                this.$router.push({
+                    path: '/footer/my'
+                });
+                 window.location.reload();
         }
     }
 }
