@@ -23,12 +23,7 @@
       <button class="js"  @mouseenter="mouseEnter" v-if="show">长按结束</button>
       <mt-button class="left"  type="primary"  v-if="left" @click="con">继续</mt-button>
       <mt-button class="right"  type="danger"  v-if="right" @click="end">结束</mt-button>
-    <div class="toolbar">
-        <p v-if="loaded">
-        location: lng = {{ lng }} lat = {{ lat }}
-        </p>
-        <p v-else>正在定位</p>
-    </div>
+  
   </div>
 </template>
 
@@ -40,7 +35,7 @@ export default {
     let self = this;
     return {
       center: [121.59996, 31.197646],
-      zoom: 20,
+      zoom: 19,
       lng: 0,
       lat: 0,
       loaded: false,
@@ -63,6 +58,7 @@ export default {
         jl:0,//距离定时器
         str:'00:00:00',
         times:'', //统计共多少秒时间
+        aa:0,
          lines: [
             {
               path: [        
@@ -83,28 +79,38 @@ export default {
       plugin: [   //一些工具插件
         {
           pName: 'Geolocation',   //定位
+          enableHighAcuracy: true,
+          maximumAge: 2000,
           events: {
             init(o) {
-              // o 是高德地图定位插件实例
+             // o 是高德地图定位插件实例
                this.ll=setInterval(function(){
                  o.getCurrentPosition((status, result) => {
                 if (result && result.position) {
                   self.lng = result.position.lng;             //设置经度
                   self.lat = result.position.lat;             //设置维度
-                  self.lines[0].path.push([self.lng,self.lat]);
+                  self.center = [self.lng, self.lat];         //设置坐标
+                  self.loaded = true;                         //load
+                  self.$nextTick();  
+                   var aa =  self.lines[0].path.length;
+                   if(aa==0){
+                     self.lines[0].path.push([self.lng,self.lat]);
+                   }
+                   else if((self.lines[0].path[aa-1][0]!=self.lng)&&(self.lines[0].path[aa-1][1]!=self.lat)){
+                         self.lines[0].path.push([self.lng,self.lat]);
+                   }
                 }
               })
                },2000);
-                o.getCurrentPosition((status, result) => {
+              o.getCurrentPosition((status, result) => {
                 if (result && result.position) {
                   self.lng = result.position.lng;             //设置经度
                   self.lat = result.position.lat;             //设置维度
                   self.center = [self.lng, self.lat];         //设置坐标
                   self.loaded = true;                         //load
-                  self.$nextTick();                           //页面渲染好后
+                  self.$nextTick();  
                 }
               })
-              
             }
           }
         },
@@ -119,8 +125,10 @@ export default {
      this.time=setInterval(this.timer,50);
      this.lux=setInterval(this.luxian,3000);
      this.jl=setInterval(()=>{
-       var aa =  this.lines[0].path.length;
-       if(aa>=2){
+      if((this.aa+1)==this.lines[0].path.length)
+      {
+        this.aa = this.lines[0].path.length;
+        if( this.aa>=2){
          this.distance = this.juli( this.lines[0].path[aa-1][0], this.lines[0].path[aa-1][1], this.lines[0].path[aa-2][0], this.lines[0].path[aa-2][1]);
          this.miles = this.miles+this.distance;
          if(this.miles!=0){
@@ -129,7 +137,9 @@ export default {
             this.calories = parseFloat(60*(this.times/3600)*8/this.miles*this.times/3600).toFixed(2);
          }
        }
-     },3000);
+      }
+       
+     },1000);
   },
   methods: {
     //把经纬度传到父组件
@@ -137,7 +147,7 @@ export default {
       this.$emit('register', this.lng, this.lat)
     },
    mouseEnter(){
-       setTimeout(()=>{
+      setTimeout(()=>{
       this.show = false;
       this.left = true;
       this.right = true;
