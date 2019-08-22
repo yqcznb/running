@@ -17,12 +17,12 @@
         class="amap-demo" 
         :center="center"
     >  
-      <el-amap-bezier-curve v-for="line in lines" :key="line" :path="line.path" :stroke-color="line.strokeColor" :stroke-style="line.strokeStyle" :events="line.events" :stroke-opacity="line.strokeOpacity"></el-amap-bezier-curve>
+      <el-amap-bezier-curve v-for="line in lines"  :key="line" :v-model="lines" :path="line.path" :stroke-color="line.strokeColor" :stroke-style="line.strokeStyle" :events="line.events" :stroke-opacity="line.strokeOpacity"></el-amap-bezier-curve>
    
     </el-amap>
       <button class="js"  @mouseenter="mouseEnter" v-if="show">长按结束</button>
-      <mt-button class="left"  type="primary"  v-if="left" @click="con">继续</mt-button>
-      <mt-button class="right"  type="danger"  v-if="right" @click="end">结束</mt-button>
+      <button class="buleft"   v-if="left" @click="con">继续</button>
+      <button class="buright"  v-if="right" @click="end">结束</button>
   
   </div>
 </template>
@@ -59,6 +59,7 @@ export default {
         str:'00:00:00',
         times:'', //统计共多少秒时间
         aa:0,
+        sx:0,
          lines: [
             {
               path: [        
@@ -70,9 +71,7 @@ export default {
               strokeWeight: 3, //线宽
               strokeStyle: "solid", //线样式
               events: {
-                click: () => {
-                  alert('000');
-                }
+               
               }
             }
           ],
@@ -92,11 +91,12 @@ export default {
                   self.center = [self.lng, self.lat];         //设置坐标
                   self.loaded = true;                         //load
                   self.$nextTick();  
-                   var aa =  self.lines[0].path.length;
-                   if(aa==0){
+                   var a =  self.lines[0].path.length;
+                   console.log("a:"+a)
+                   if(a==0){
                      self.lines[0].path.push([self.lng,self.lat]);
                    }
-                   else if((self.lines[0].path[aa-1][0]!=self.lng)&&(self.lines[0].path[aa-1][1]!=self.lat)){
+                   else if((self.lines[0].path[a-1][0]!=self.lng)||(self.lines[0].path[a-1][1]!=self.lat)){
                          self.lines[0].path.push([self.lng,self.lat]);
                    }
                 }
@@ -123,14 +123,16 @@ export default {
   },
    created: function () {
      this.time=setInterval(this.timer,50);
-     this.lux=setInterval(this.luxian,3000);
+    // this.lux=setInterval(this.luxian,3000);
      this.jl=setInterval(()=>{
       if((this.aa+1)==this.lines[0].path.length)
-      {
+      { 
+      console.log("aa:"+this.aa)
+      console.log("path.length:"+this.lines[0].path.length)
         this.aa = this.lines[0].path.length;
         if( this.aa>=2){
-         this.distance = this.juli( this.lines[0].path[aa-1][0], this.lines[0].path[aa-1][1], this.lines[0].path[aa-2][0], this.lines[0].path[aa-2][1]);
-         this.miles = this.miles+this.distance;
+         this.distance = this.juli( this.lines[0].path[this.aa-1][0], this.lines[0].path[this.aa-1][1], this.lines[0].path[this.aa-2][0], this.lines[0].path[this.aa-2][1]);
+         this.miles = parseFloat(this.miles+this.distance).toFixed(2);
          if(this.miles!=0){
             var ss = (1/this.miles)*this.times;
             this.speed =this.toDub(parseInt(ss/60))+"'"+this.toDub(parseInt(ss%60))+"\"";
@@ -233,21 +235,25 @@ export default {
 </script>
 
 <style scoped>
-.left{
+.buleft{
   position:absolute;
   top: 80%;
   left: 3%;
   z-index: 100;
   font-size:1.6em;
   padding:0 2em;
+  color: #fff;
+  background-color: #26a2ff
 }
-.right{
+.buright{
   position:absolute;
   top: 80%;
   right: 3%;
   z-index: 100;
   font-size:1.6em;
   padding:0 2em;
+  color: #fff;
+  background-color: #ef4f4f
 }
 .time {
   color: #fff;
