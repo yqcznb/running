@@ -4,10 +4,10 @@
             <div id="my_head">
                 <div id="head_left">
                     <h4>{{ uname }}<router-link to='/confirm'><i :class="if_rz" class="iconfont iconwrz"></i></router-link></h4>
-                    <h5><router-link to="/drole">{{ uduan }} <i class="iconfont drole-c iconchongwu"></i> </router-link></h5>
+                    <h5><router-link to="/drole">{{ uduan }}段位 》</router-link></h5>
                     <img :src='levelImg' class="levelimg" >
-                    <router-link to="/ex_bonus" >
-                        <img :src='bonusImg' class="bonusimg"> <span class="iconfont bonus-c iconchongwu"></span>
+                    <router-link to="/ex_bonus" @click.native="routerRefresh" >
+                        <span class="ex-bonus">我的积分 》</span>
                     </router-link>
                 </div>
                 <div id="head_right">
@@ -39,16 +39,16 @@
     </div>
 </template>
 <script> 
+import axios from 'axios'
 export default {
     name: 'my',
     data() {
         return{
             autoresize: true,
-            uname: '叭叭叭',
+            uname: '用户2048',
             if_rz: 'have_rz',
-            uduan: '天下跑神段位',
+            uduan: '青铜萌新',
             levelImg: require('../../assets/img/my/schedual_level/first.png'),
-            bonusImg:require('../../assets/img/my/identify/我太难啦.png'),
             headportrait:require('../../assets/img/my/headportrait/4.jpg'),
             duanImg:require('../../assets/img/my/duan/5.png'),
             nearImg:require('../../assets/img/my/run_data/near.png'),
@@ -57,7 +57,20 @@ export default {
         }
     },
     created() {
-
+        axios.get('http://no37.store:8080/AK/ShowMe',{
+            params: {
+                yhid:1,     
+            }})
+            .then(response=>{
+                console.log(response);
+                this.uname = response.data.yhnc;
+                this.headportrait = response.data.yhtx;
+                this.uduan = response.data.dwmc;
+            })      //获取失败
+            .catch(error=>{
+                console.log(error);
+                alert('网络错误，不能访问');
+            })
     },
     mounted(){
         this.drawLine();
@@ -266,36 +279,21 @@ export default {
         color: rgba(253, 185, 51, 0.89);
         /* color: #999999; */
     }
-    .drole-c:before {
-        font-size: 80%;
-        color: rgba(253, 185, 51, 0.89);
-    }
     .levelimg {
         width: 70%;
         max-width: 336px;
     }
-    .bonusimg {
-        width: 33%;
+    .ex-bonus {
+        font-size: 14px;
         float: left;
-        display: flex;
-        justify-content: flex-start;
-    }
-    .bonus-c:before {
-        height: 100%;
-        display: inline-flex;
-        align-items: center;
-        float: left;
-        /* vertical-align: middle; */
-        margin-left: 2%;
-        /* float: left; */
+        line-height: 100%;
         color: rgba(253, 185, 51, 0.89);
-
     }
     #head_right {
         display: flex;
         flex-direction: column;
         justify-content: center;
-    } 
+    }
     .headportrait {
         border: 1px solid #bbb;
         /* position: relative; */

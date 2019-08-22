@@ -4,17 +4,19 @@
             <router-link to="/footer/my" @click.native="routerRefresh">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
+            <span class="title">跑步数据详情</span>
         </div>
-        
-        
+        <input type="text" @click="csdate" v-model="datedata" class="datedata" readonly>
         <div id="myChart" :auto-resize='autoresize'></div>
         跑步数据详情界面
-        <div class="picker">
+        <div class="Dpicker" v-show="showdate">
             <div class="button-bar">
-                <button class="cancel">取消</button> <button class="confirm">确认</button>
-                
+                <button class="cancel" @click="cancel">取消</button> <button class="confirm" @click="confirm">确认</button>
             </div>
-            <mt-picker class="mt-picker" :slots="slots" @change="onValuesChange" ></mt-picker>
+            <div class="mt-picker">
+                <mt-picker :slots="slots" @change="onValuesChange" ></mt-picker>
+            </div>
+            
         </div>
     </div>
 </template>
@@ -22,12 +24,14 @@
 import echarts from 'echarts'
 export default {
     name: 'run_data_detail',
-    computed: {
-        
-    },
     data() {
         return{
             autoresize: true,
+            showdate: false,
+            datedata: '请选择相关月份',
+            daydate: '',
+            dayend: '',
+            datebrige: '',
             slots: [
                 {
                     flex: 1,
@@ -35,9 +39,10 @@ export default {
                     className: 'slot1',
                     textAlign: 'right'
                     }, {
-                    divider: true,
-                    content: '-',
-                    className: 'slot2'
+                    flex: 1,
+                    values: '-',
+                    className: 'slot2',
+                    textAlign: 'center',
                     }, {
                     flex: 1,
                     values: ['01', '02', '03', '04', '05', '06','07','08','09','10','11','12'],
@@ -48,18 +53,30 @@ export default {
         }
     },
     mounted(){
-        this.drawLine();
+        this.drawDate();
     },
     methods: {
         routerRefresh() {
             window.location.reload();
         },
         onValuesChange(picker, values) {
-            // if (values[0] > values[1]) {
-            //     picker.setSlotValue(1, values[0]);
-            // }
+            this.datebrige = values[0]+values[1]+values[2];
+            this.daydate = this.datebrige+values[1]+"01";
+            let nextValues = 0 + String(Number(values[2])+1) ;
+            this.dayend = values[0]+values[1]+nextValues+"-01";
         },
-        drawLine(){
+        csdate() {
+            this.showdate = !this.showdate; 
+        },
+        cancel() {
+            this.showdate = !this.showdate;
+            this.datedata = "请选择相关月份";
+        },
+        confirm() {
+            this.showdate = !this.showdate;
+            this.datedata = this.datebrige;
+        },
+        drawDate(){
             // 基于准备好的dom，初始化echarts实例
             let myChart = this.$echarts.init(document.getElementById('myChart'));
             // 图表自适应
@@ -71,9 +88,9 @@ export default {
             let cellSize = [xcsize, ycsize];
             let pieRadius = xcsize*3/8;
 
-            function getVirtulData() {
-                var date = +echarts.number.parseDate('2017-04-01');
-                var end = +echarts.number.parseDate('2017-05-01');
+            function getVirtulData(daydate,dayend) {
+                var date = +echarts.number.parseDate(daydate);
+                var end = +echarts.number.parseDate(dayend);
                 var dayTime = 3600 * 24 * 1000;
                 var data = [];
                 for (var time = date; time < end; time += dayTime) {
@@ -117,14 +134,23 @@ export default {
                 });
             }
 
-            var scatterData = getVirtulData();
+            var scatterData = getVirtulData(this.daydate,this.dayend);
 
             // 绘制图表
             myChart.setOption({
+                title: {
+                    text: '本月运动量占比',
+                    left: 'center',
+                    bottom: 0,
+                    textStyle: {
+                        fontFamily: '方正汉真广标简体',
+                    },
+
+                },
                 tooltip : {},
                 legend: {
                     data: ['非运动', '运动'],
-                    bottom: 20,
+                    top: -5,
                 },
                 calendar: {
                     top: 'middle',
@@ -134,11 +160,12 @@ export default {
                     yearLabel: {
                         show: false,
                         textStyle: {
-                            fontSize: 30
+                            fontSize: 30,
+                            fontFamily: '方正汉真广标简体',
                         }
                     },
                     dayLabel: {
-                        margin: 20,
+                        margin: 10,
                         firstDay: 1,
                         nameMap: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
                     },
@@ -161,7 +188,7 @@ export default {
                             offset: [-cellSize[0] / 2 + 10, -cellSize[1] / 2 + 10],
                             textStyle: {
                                 color: '#000',
-                                fontSize: xcsize/4
+                                fontSize: xcsize/4,
                             }
                         }
                     },
@@ -211,41 +238,53 @@ export default {
         background-color: rgb(83, 83, 83);
         margin-bottom: 2%;
     }
+    .title {
+        color: #dec674;
+        position: absolute;
+        text-align: center;
+        width: 50%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
+    .datedata {
+        text-align: center;
+    }
     #myChart {
         width: 100%;
         height: 50%;
-        border: 1px solid red;
         display: flex;
         justify-content: center;
         left: 0;
         right: 0;
         margin: 0 auto;
+        margin-bottom: 10px;
     }
-    .picker {
+    .Dpicker {
         width: 100%;
-        height: 26%;
-        border: 1px solid red;
+        position: fixed;
+        margin-bottom: 0;
+        bottom: 0;
     }
     .button-bar {
         width: 100%;
-        height: 25%;
-        padding: 1%;
-        position: relative;
-        border: 1px solid black;
+        height: 5ex;
+        padding: 5px;
+        border: 1px solid gray;
+        background-color: #f2f4ef;
     }
     .cancel {
         border: 1px solid red;
         float: left;
-        /* margin-left: 2%; */
         
     }
     .confirm {
         border: 1px solid black;
         float: right;
-        /* margin-right: 2%; */
     }
     .mt-picker {
         width: 100%;
-        position: fixed;
+        /* height: 100%; */
+        background-color: white;
     }
 </style>
