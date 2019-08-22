@@ -9,7 +9,7 @@
         <div class="show_bonus">
             <span class="kyjf">可用积分</span>
             <div class="bonus_bg">
-                <img :src="bonus_bag" alt="" class="bag_bg">
+                <img src="../../../assets/img/my/ex_bonus/bonusbag.png" alt="" class="bag_bg">
                 <span class="bonus_data">{{bonus_data}}</span>
             </div>
             
@@ -17,13 +17,27 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     name: 'ex_bonus',
     data() {
         return{
-            bonus_data: '2000',
-            bonus_bag: require('../../../assets/img/my/ex_bonus/bonusbag.png'),
+            bonus_data: '0',
         }
+    },
+    created() {
+        axios.get('http://no37.store:8080/AK/jf',{
+            params: {
+                yhid:1,     
+            }})
+            .then(response=>{
+                console.log(response);
+                this.bonus_data = response.data.yhjf;
+            })      //获取失败
+            .catch(error=>{
+                console.log(error);
+                alert('网络错误，不能访问');
+            })
     },
     methods: {
         routerRefresh() {
@@ -31,6 +45,7 @@ export default {
         },
     },
 }
+
 </script>
 <style scoped>
     #ex_bonus {
@@ -56,9 +71,6 @@ export default {
         margin-bottom: 2%;
         display: flex;
         justify-content: flex-start;
-    }
-    i,span {
-        /* border: 1px solid red; */
     }
     span {
         color: #dec674;
