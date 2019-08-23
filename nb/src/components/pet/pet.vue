@@ -31,7 +31,7 @@
                 <!-- 宠物蛋 -->
                  <div class="egg_img" @click="open"></div>
                 
-                <router-link to="/gpet">点击</router-link>
+                <router-link to="/gpet"  @click.native="routerRefresh">点击</router-link>
             </div>
             
     </div>
@@ -42,21 +42,25 @@
     import { MessageBox } from 'mint-ui'
     export default {
        methods: {
-      open() {
-        MessageBox.confirm('将前往跑步抓取宠物, 是否继续?', '提示', {
-          confirmButtonText: '确定',
-          cancelButtonText: '取消',
-          type: 'warning'
-        }).then(() => {
-          window.location.href='../run#/run';    
-        //   window.location.href='../run#/footer/pet/gpet';
-        }).catch(() => {
-          MessageBox.message({
-            
-          });          
-        });
-      }
-    }
+           routerRefresh() {
+            window.location.reload();
+        },
+            open() {
+                MessageBox.confirm('将前往跑步抓取宠物, 是否继续?', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+                type: 'warning'
+                }).then(() => {
+                window.location.href='../run#/run';    
+                //   window.location.href='../run#/footer/pet/gpet';
+                }).catch(() => {
+                MessageBox.message({
+                    
+                    });          
+                });
+            }
+        },
+        
     }
 
 </script>
