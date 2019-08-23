@@ -35,32 +35,50 @@ export default new Router({
     {
       path: '/',
       name: 'login',
-      component: login
+      component: login,
+      meta: {
+        isLogin: false
+      }
     },
     {
       path: '/confirm',
       name: 'confirm',
-      component: confirm
+      component: confirm,
+      meta: {
+        isLogin: false
+      }
     },
     {
       path: '/forget',
       name: 'forget',
-      component: forget
+      component: forget,
+      meta: {
+        isLogin: false
+      }
     },
     {
       path: '/register',
       name: 'register',
-      component: register
+      component: register,
+      meta: {
+        isLogin: false
+      }
     },
     {
       path: '/time',
       name: 'time',
-      component: time
+      component: time,
+      meta: {
+        isLogin: true
+      }
     },
     {
       path: '/footer',
       name: 'footer',
       component: footer,
+      meta: {
+        isLogin: true
+      },
       children:[
         {
           path: 'my',
@@ -73,6 +91,9 @@ export default new Router({
           path: 'pet',
           name: 'pet',
           component: pet,
+          meta: {
+            isLogin: true
+          },
           children:[
            
           ],
@@ -83,12 +104,17 @@ export default new Router({
           path: 'index',
           name: 'index',
           component: index,
-          meta: { checkLogined: true },
+          meta: {
+            isLogin: true
+          },
           children:[
             {
               path: 'run',
               name: 'run',
-              component: run
+              component: run,
+              meta: {
+                isLogin: false
+              }
             },
           ]
         },

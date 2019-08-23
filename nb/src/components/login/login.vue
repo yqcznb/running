@@ -26,8 +26,9 @@ export default {
     data() {
         return {
             msg: 'Here is login component',
-            username: 1,
-            password: 1,
+            username:"" ,
+            password:"" ,
+            num:""
         }
     },
     methods:
@@ -37,7 +38,30 @@ export default {
                     alert('请输入用户名或密码')
                     }
              else{
-            this.$router.replace('/footer/index');}
+                   this.axios.get('http://no37.store:8080/AK/denglu1',{
+                params: {
+                    yhzh:this.username,  
+                    yhmm:this.password   
+                }
+            }).then(response=>{
+                    console.log(response);
+                    this.num=response.data.jg;
+                    console.log(this.num)
+                    if(this.num==1){
+                        alert("登陆成功")
+                        this.$router.replace('/footer/index');
+                        this.$store.dispatch('id',response.data.id )
+                        console.log(this.$store.id)
+                    }else if(this.num==0){
+                        alert("账号或密码错误")
+                    }
+                    
+                })      //获取失败
+                .catch(error=>{
+                    console.log(error);
+                    alert('网络错误，不能访问');
+                })
+            }
         }
     }
 }

@@ -46,7 +46,7 @@ export default {
         yhid: 1,     
     }
 }).then(response=>{
-         console.log(response);
+        // console.log(response);
          this.dqyp=response.data.dqyp;
           this.cp=response.data.cp;
            this.yp=response.data.yp;
@@ -62,7 +62,7 @@ export default {
         ggid:1,     
     }
 }).then(response=>{
-         console.log(response);
+       
          this.ggnr=response.data.ggnr; 
       })      //获取失败
       .catch(error=>{
