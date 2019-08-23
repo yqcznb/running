@@ -12,7 +12,14 @@
                 <img src="../../../assets/img/my/ex_bonus/bonusbag.png" alt="" class="bag_bg">
                 <span class="bonus_data">{{bonus_data}}</span>
             </div>
-            
+        </div>
+        <div class="goods_box">
+asdsdadasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasd
+
+
+<br>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<br>
         </div>
     </div>
 </template>
@@ -57,6 +64,8 @@ export default {
         right: 0;
         margin: 0 auto;
         background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+        background-attachment: scroll;
+        overflow: scroll;
     }
     a {
         text-decoration: none;
@@ -64,13 +73,15 @@ export default {
         z-index: 1;
     }
     #back_bar {
+        position: fixed;
+        width: 100%;
         text-align: left;
         text-indent: 0.3em;
         line-height: 200%;
         background-color: rgb(83, 83, 83);
-        margin-bottom: 2%;
         display: flex;
         justify-content: flex-start;
+        z-index: 3;
     }
     span {
         color: #dec674;
@@ -86,9 +97,11 @@ export default {
         background-color: white;
         width: 93%;
         height: 25%;
-        /* position: relative; */
         margin: 0 auto;
+        margin-top: 11%;
+        margin-bottom: 2%;
         padding: 7px;
+        
     }
     .kyjf {
         /* border: 1px solid red; */
@@ -133,5 +146,16 @@ export default {
         right: 0;
         margin: 0 auto;
         /* background-color: black; */
+    }
+    .goods_box {
+        border: 1px solid red;
+        border-radius: 7px;
+        background-color: white;
+        width: 93%;
+        /* height: 50%; */
+        /* position: relative; */
+        margin: 0 auto;
+        padding: 7px;
+        overflow: hidden;
     }
 </style>
