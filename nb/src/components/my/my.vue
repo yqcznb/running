@@ -64,7 +64,6 @@ export default {
                 yhid:4,     
             }})
             .then(response=>{
-                console.log(response);
                 this.uname = response.data.yhnc;
                 this.headportrait = "http://no37.store/eclipse-jee-neon-2-win32-x86_64/eclipse/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/AK/qupao/"+response.data.yhtx;
                 this.uduan = response.data.dwmc;
@@ -72,7 +71,6 @@ export default {
                 this.levelImg = "http://no37.store/image/schedual_level/"+response.data.dwjdtp;
             })      //获取失败
             .catch(error=>{
-                console.log(error);
                 alert('网络错误，不能访问');
             })
     },

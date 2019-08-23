@@ -14,12 +14,7 @@
             </div>
         </div>
         <div class="goods_box">
-asdsdadasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaasd
-
-
-<br>
-<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-<br>
+            
         </div>
     </div>
 </template>
@@ -30,19 +25,33 @@ export default {
     data() {
         return{
             bonus_data: '0',
+            goodslist: '',
         }
     },
+    mounted() {
+        this.test();
+    },
     created() {
+        // 用户积分
         axios.get('http://no37.store:8080/AK/jf',{
             params: {
                 yhid:1,     
             }})
             .then(response=>{
-                console.log(response);
                 this.bonus_data = response.data.yhjf;
             })      //获取失败
             .catch(error=>{
-                console.log(error);
+                alert('网络错误，不能访问');
+            })
+        // 商品信息
+        axios.get('http://no37.store:8080/AK/lookShop',{
+            })
+            .then(response=>{
+                console.log(response);
+                this.goodslist[0] = response.data[0];
+                // this.bonus_data = response.data.yhjf;
+            })      //获取失败
+            .catch(error=>{
                 alert('网络错误，不能访问');
             })
     },
@@ -50,9 +59,12 @@ export default {
         routerRefresh() {
             window.location.reload();
         },
+        test() {
+            console.log(this.goodslist);
+        },
     },
 }
-
+// http://no37.store/eclipse-jee-neon-2-win32-x86_64/eclipse/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/AK/ShopPhoto/
 </script>
 <style scoped>
     #ex_bonus {
@@ -98,7 +110,7 @@ export default {
         width: 93%;
         height: 25%;
         margin: 0 auto;
-        margin-top: 11%;
+        margin-top: 40px;
         margin-bottom: 2%;
         padding: 7px;
         
@@ -135,7 +147,6 @@ export default {
         background: -o-radial-gradient(#bc9260, #d5c7ab, transparent);
         background: -moz-radial-gradient(#bc9260, #d5c7ab, transparent);
         background: radial-gradient(#bc9260, #d5c7ab, transparent);
-        /* background-color: transparent; */
         opacity: 0.9;
     }
     .bag_bg {
@@ -148,7 +159,7 @@ export default {
         /* background-color: black; */
     }
     .goods_box {
-        border: 1px solid red;
+        /* border: 1px solid red; */
         border-radius: 7px;
         background-color: white;
         width: 93%;
