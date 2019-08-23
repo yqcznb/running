@@ -45,7 +45,7 @@ export default {
                 }
             }).then(response=>{
                     console.log(response);
-                    this.num=response.data;
+                    this.num=response.data.jg;
                     console.log(this.num)
                     if(this.num==1){
                         alert("登陆成功")

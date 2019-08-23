@@ -30,13 +30,14 @@ export default {
     {
         register(){
     
-        if (!(/^1[34578]\d{9}$/.test(this.username))) {
-            alert("电话号码格式错误");
-        
-          
-        } else if (this.username == "" || !this.username) {
+        if (this.username == "" || !this.username) {
                alert("请输入电话号码");
-        } 
+        } else if (!(/^1[34578]\d{9}$/.test(this.username))) {
+            alert("电话号码格式错误");
+        }
+        else if(this.password==""){
+                alert("请输入密码！")
+            }
         else if(this.password!==this.password2){
                 alert("两次密码输入不一样，请重新输入！")
             }else{
