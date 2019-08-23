@@ -12,6 +12,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import { Button,MessageBox,Header,Field,Popup,Picker} from 'mint-ui';
 import echarts from 'echarts'
+import store from './store'
 
 Vue.component(Field.name, Field);
 Vue.component(Header.name, Header);
@@ -36,6 +37,7 @@ VueAMap.initAMapApiLoader({
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>'
 });

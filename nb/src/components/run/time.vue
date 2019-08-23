@@ -17,13 +17,11 @@
         class="amap-demo" 
         :center="center"
     >  
-      <el-amap-bezier-curve v-for="line in lines"  :key="line" :v-model="lines" :path="line.path" :stroke-color="line.strokeColor" :stroke-style="line.strokeStyle" :events="line.events" :stroke-opacity="line.strokeOpacity"></el-amap-bezier-curve>
-   
+      <el-amap-bezier-curve v-for="line in lines"  :key="line" :v-model="lines" :path="line.path" :stroke-color="line.strokeColor" :stroke-style="line.strokeStyle" :events="line.events" :stroke-opacity="line.strokeOpacity"></el-amap-bezier-curve>  
     </el-amap>
       <button class="js"  @mouseenter="mouseEnter" v-if="show">长按结束</button>
       <button class="buleft"   v-if="left" @click="con">继续</button>
       <button class="buright"  v-if="right" @click="end">结束</button>
-  
   </div>
 </template>
 
