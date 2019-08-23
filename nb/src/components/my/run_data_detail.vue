@@ -8,16 +8,18 @@
         </div>
         <input type="text" @click="csdate" v-model="datedata" class="datedata" readonly>
         <div id="myChart" :auto-resize='autoresize'></div>
-        跑步数据详情界面
-        <div class="Dpicker" v-show="showdate">
-            <div class="button-bar">
-                <button class="cancel" @click="cancel">取消</button> <button class="confirm" @click="confirm">确认</button>
+        <span class="chartitle">本月运动量占比</span>
+
+        <transition name="Dpicker">
+            <div class="Dpicker" v-show="showdate">
+                <div class="button-bar">
+                    <button class="cancel" @click="cancel">取消</button> <button class="confirm" @click="confirm">确认</button>
+                </div>
+                <div class="mt-picker">
+                    <mt-picker :slots="slots" @change="onValuesChange" ></mt-picker>
+                </div>
             </div>
-            <div class="mt-picker">
-                <mt-picker :slots="slots" @change="onValuesChange" ></mt-picker>
-            </div>
-            
-        </div>
+        </transition>
     </div>
 </template>
 <script>
@@ -28,7 +30,7 @@ export default {
         return{
             autoresize: true,
             showdate: false,
-            datedata: '请选择相关月份',
+            datedata: '',
             daydate: '',
             dayend: '',
             datebrige: '',
@@ -53,11 +55,23 @@ export default {
         }
     },
     mounted(){
-        this.drawDate();
+        this.dateDefault();
     },
     methods: {
         routerRefresh() {
             window.location.reload();
+        },
+        // 默认日期
+        dateDefault() {
+            let today = new Date();
+            let dateMonth = today.getMonth()+1;
+            let nextMonth = today.getMonth()+2;
+            let dateYear = today.getFullYear();
+            this.datebrige = dateYear + "-" + 0 + String(dateMonth);
+            this.datedata = this.datebrige;
+            this.daydate = this.datebrige + "-01";
+            this.dayend = dateYear + "-" + 0 + String(nextMonth) + "-01";
+            this.drawDate();
         },
         onValuesChange(picker, values) {
             this.datebrige = values[0]+values[1]+values[2];
@@ -75,6 +89,7 @@ export default {
         confirm() {
             this.showdate = !this.showdate;
             this.datedata = this.datebrige;
+            this.drawDate();
         },
         drawDate(){
             // 基于准备好的dom，初始化echarts实例
@@ -82,8 +97,12 @@ export default {
             // 图表自适应
             window.onresize = function(){myChart.resize();location.reload()}
             
+            let screeWidth = document.body.clientWidth;
             let screeHeight = window.innerHeight;
             let xcsize = screeHeight/14;
+            if(xcsize*8 >= screeWidth) {
+                xcsize = screeWidth/8;
+            }
             let ycsize = xcsize;
             let cellSize = [xcsize, ycsize];
             let pieRadius = xcsize*3/8;
@@ -138,19 +157,10 @@ export default {
 
             // 绘制图表
             myChart.setOption({
-                title: {
-                    text: '本月运动量占比',
-                    left: 'center',
-                    bottom: 0,
-                    textStyle: {
-                        fontFamily: '方正汉真广标简体',
-                    },
-
-                },
                 tooltip : {},
                 legend: {
                     data: ['非运动', '运动'],
-                    top: -5,
+                    bottom: 0,
                 },
                 calendar: {
                     top: 'middle',
@@ -165,14 +175,14 @@ export default {
                         }
                     },
                     dayLabel: {
-                        margin: 10,
+                        margin: 15,
                         firstDay: 1,
                         nameMap: ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六']
                     },
                     monthLabel: {
                         show: false
                     },
-                    range: ['2017-04']
+                    range: this.datebrige,
                 },
                 series: [{
                     id: 'label',
@@ -194,7 +204,7 @@ export default {
                     },
                     data: scatterData
                 }]
-            });
+            },true);
             if (!app.inNode) {
                 var pieInitialized;
                 setTimeout(function () {
@@ -248,6 +258,7 @@ export default {
         margin: 0 auto;
     }
     .datedata {
+        background-color: rgba(255,255,255,0.6);
         text-align: center;
     }
     #myChart {
@@ -260,6 +271,10 @@ export default {
         margin: 0 auto;
         margin-bottom: 10px;
     }
+    .chartitle {
+        font-family: '方正汉真广标简体';
+        letter-spacing: 0.5ex;
+    }
     .Dpicker {
         width: 100%;
         position: fixed;
@@ -270,16 +285,16 @@ export default {
         width: 100%;
         height: 5ex;
         padding: 5px;
-        border: 1px solid gray;
+        border: 1px solid rgba(1,1,1,0.4);
         background-color: #f2f4ef;
     }
     .cancel {
-        border: 1px solid red;
+        border: 1px solid #dec674;
         float: left;
         
     }
     .confirm {
-        border: 1px solid black;
+        border: 1px solid rgba(1,1,1,0.4);
         float: right;
     }
     .mt-picker {

@@ -48,24 +48,28 @@ export default {
             uname: '用户2048',
             if_rz: 'have_rz',
             uduan: '青铜萌新',
-            levelImg: require('../../assets/img/my/schedual_level/first.png'),
-            headportrait:require('../../assets/img/my/headportrait/4.jpg'),
-            duanImg:require('../../assets/img/my/duan/5.png'),
+            levelImg: require('../../assets/img/my/schedual_level/default.png'),
+            headportrait:require('../../assets/img/my/headportrait/default.png'),
+            duanImg:require('../../assets/img/my/duan/default.png'),
             nearImg:require('../../assets/img/my/run_data/near.png'),
             mode:'/settings',
             routerAlive:true,
+            miledate: [ 10000, 20000, 12065, 3620,16530, 9510, 20100, 13002, 13580,15063, 15200, 9000 ],
+            speeddate: [ 3.1, 5.55, 5.59, 6.20, 4.39, 5.00, 6.1, 7.4,7.34, 8.26, 3.58, 8.12 ],
         }
     },
     created() {
         axios.get('http://no37.store:8080/AK/ShowMe',{
             params: {
-                yhid:1,     
+                yhid:4,     
             }})
             .then(response=>{
                 console.log(response);
                 this.uname = response.data.yhnc;
-                this.headportrait = response.data.yhtx;
+                this.headportrait = "http://no37.store/eclipse-jee-neon-2-win32-x86_64/eclipse/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/AK/qupao/"+response.data.yhtx;
                 this.uduan = response.data.dwmc;
+                this.duanImg = "http://no37.store/image/duan/"+response.data.dwtp;
+                this.levelImg = "http://no37.store/image/schedual_level/"+response.data.dwjdtp;
             })      //获取失败
             .catch(error=>{
                 console.log(error);
@@ -101,6 +105,8 @@ export default {
             // 图表自适应
             window.onresize = function(){myChart.resize();}
             // 绘制图表
+            let miledate = this.miledate;
+            let speeddate = this.speeddate;
             myChart.setOption({
                 title: {
                     left: 'center',
@@ -198,7 +204,7 @@ export default {
                     itemStyle: {normal: { color: '#5eb5d7',lineStyle: {color: '#5eb5d7'}}},
                     areaStyle: {
                         color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: '#84eded'},{offset: 0.8, color: '#f3fffc'}])},
-                    data : [ 10000, 20000, 12065, 3620,16530, 9510, 20100, 13002, 13580,15063, 15200, 9000 ]
+                    data: miledate
                 },{
                     name : '配速',
                     smooth: 'true',
@@ -206,7 +212,7 @@ export default {
                     yAxisIndex : 1,
                     areaStyle: {
                         color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: '#efc7b4'},{offset: 0.8, color: '#f6ebd5'}])},
-                    data : [ 3.1, 5.55, 5.59, 6.20, 4.39, 5.00, 6.1, 7.4,7.34, 8.26, 3.58,8.12 ]
+                    data: speeddate,
                 } ]
             });
         }

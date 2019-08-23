@@ -10,7 +10,7 @@ import "./assets/mui/fonts/fzhzgb.ttf"
 import VueAMap from 'vue-amap'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import { Button,MessageBox,Header,Field,Popup,Picker} from 'mint-ui';
+import { Button,MessageBox,Header,Field,Popup,Picker,Lazyload} from 'mint-ui';
 import echarts from 'echarts'
 
 Vue.component(Field.name, Field);
@@ -25,6 +25,7 @@ Vue.prototype.$echarts = echarts
 
 Vue.use(VueAMap)
 Vue.use(VueAxios, axios)
+Vue.use(Lazyload)
 Vue.config.productionTip = false
 VueAMap.initAMapApiLoader({
   key: '8a3371b727138ef195759ae5be614d8d',
