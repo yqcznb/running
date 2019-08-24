@@ -48,7 +48,6 @@ export default {
     #headportrait {
         width: 93%;
         height: 8%;
-        border: 1px solid red;
         display: flex;
         margin: 0 auto;
         background-color: white;

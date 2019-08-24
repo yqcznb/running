@@ -93,7 +93,6 @@ export default {
     }
     #id_msg-safe,#mode-privacy-on,#change-logout {
         width: 93%;
-        border: 1px solid red;
         display: flex;
         flex-direction: column;
         justify-content: space-around;

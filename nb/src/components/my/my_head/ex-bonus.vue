@@ -22,10 +22,10 @@
                     <span class="text_box">
                         <span class="maletitle">{{ value.spms }}</span><span class="malejg">{{ value.spjg }}积分</span>
                     </span>
-                    
                     <button class="ex_btn">马上兑</button>
                 </li>
             </ul>
+            <span class="nomore">————————没有更多了————————</span>
         </div>
     </div>
 </template>
@@ -176,7 +176,7 @@ export default {
         border-radius: 7px;
         background-color: rgba(255, 255, 255, 0.5);
         width: 93%;
-        margin: 0 auto;
+        margin: 0 auto 2%;
         padding: 7px;
         overflow: hidden;
     }
@@ -227,5 +227,10 @@ export default {
     }
     .ex_btn {
         margin-right: 0;
+    }
+    .nomore {
+        line-height: 28px;
+        font-size: 14px;
+        color: lightgray;
     }
 </style>
