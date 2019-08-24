@@ -11,24 +11,35 @@
         </div>
         <div class="list_box" id="container">
             <ul>
-                <li v-for="item in list">
+                <!-- <li v-for="item in list">
                     <img src="" alt="" v-lazy.comtainer="item">
-                </li>
+                </li> -->
             </ul>
         </div>
         
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     name: 'rank_list',
-    computed: {
-        
-    },
     data() {
         return{
             
         }
+    },
+    created() {
+        // 用户积分
+        axios.get('http://no37.store:8080/AK/MoveTop',{
+            params: {
+                ydrqn:2019,ydrqy:'09',
+            }})
+            .then(response=>{
+                console.log(response);
+            })      //获取失败
+            .catch(error=>{
+                alert('网络错误，不能访问');
+            })
     },
     methods: {
         routerRefresh() {
@@ -37,6 +48,7 @@ export default {
     },
 }
 </script>
+
 <style scoped>
     #rank_list {
         width: 100%;
