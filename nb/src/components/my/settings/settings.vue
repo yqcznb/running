@@ -46,7 +46,7 @@
             </router-link>
             <hr>
             <router-link to="/">
-                <div id="logout">
+                <div id="logout" @click="tui">
                     <span>退出登录</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
@@ -68,6 +68,10 @@ export default {
         routerRefresh() {
             window.location.reload();
         },
+        tui(){
+            localStorage.removeItem("Flag")
+            localStorage.removeItem("yhid")
+        }
     },
 }
 </script>
