@@ -4,7 +4,7 @@
             <router-link to="/footer/my" @click.native="routerRefresh">
                 <i class="iconfont iconfanhui-copy">返回</i> 
             </router-link>
-            <span>我的积分</span>
+            <span class="title">我的积分</span>
         </div>
         <div class="show_bonus">
             <span class="kyjf">可用积分</span>
@@ -14,7 +14,18 @@
             </div>
         </div>
         <div class="goods_box">
-            
+            <ul>
+                <li v-for="(value, key) in goodslist" class="goodslist" >
+                    <div class="imgbox">
+                        <img :src="value.sptp" class="maleimg" >
+                    </div>
+                    <span class="text_box">
+                        <span class="maletitle">{{ value.spms }}</span><span class="malejg">{{ value.spjg }}积分</span>
+                    </span>
+                    
+                    <button class="ex_btn">马上兑</button>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
@@ -25,11 +36,8 @@ export default {
     data() {
         return{
             bonus_data: '0',
-            goodslist: '',
+            goodslist: [],
         }
-    },
-    mounted() {
-        this.test();
     },
     created() {
         // 用户积分
@@ -47,20 +55,22 @@ export default {
         axios.get('http://no37.store:8080/AK/lookShop',{
             })
             .then(response=>{
-                console.log(response);
-                this.goodslist[0] = response.data[0];
-                // this.bonus_data = response.data.yhjf;
+                this.goodslist = response.data;
             })      //获取失败
             .catch(error=>{
                 alert('网络错误，不能访问');
             })
     },
+    mounted() {
+        this.changeWH();
+    },
     methods: {
         routerRefresh() {
             window.location.reload();
         },
-        test() {
-            console.log(this.goodslist);
+        changeWH() {
+            let realWidth = document.getElementsByClassName("maleimg").naturalWidth;
+            let reaHeight = document.getElementsByClassName("maleimg").naturalHeight;
         },
     },
 }
@@ -84,6 +94,10 @@ export default {
         color: #dec674;
         z-index: 1;
     }
+    ul {
+        list-style: none;
+        float: left;
+    }
     #back_bar {
         position: fixed;
         width: 100%;
@@ -95,7 +109,7 @@ export default {
         justify-content: flex-start;
         z-index: 3;
     }
-    span {
+    .title {
         color: #dec674;
         position: absolute;
         left: 0;
@@ -106,7 +120,7 @@ export default {
     .show_bonus {
         /* border: 1px solid red; */
         border-radius: 7px;
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0.5);
         width: 93%;
         height: 25%;
         margin: 0 auto;
@@ -159,14 +173,59 @@ export default {
         /* background-color: black; */
     }
     .goods_box {
-        /* border: 1px solid red; */
         border-radius: 7px;
-        background-color: white;
+        background-color: rgba(255, 255, 255, 0.5);
         width: 93%;
-        /* height: 50%; */
-        /* position: relative; */
         margin: 0 auto;
         padding: 7px;
         overflow: hidden;
+    }
+    ul {
+        left: 0;
+        right: 0;
+        /* margin: 0 auto; */
+        padding: 0;
+        margin: 0 2%;
+    }
+    .goodslist {
+        /* border: 1px solid red; */
+        padding: 3px;
+        width: 100%;
+        max-width: 800px;
+        height: 100px;
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        border-bottom: 1px solid gray;
+    }
+    .imgbox {
+        width: 30%;
+        max-width: 120px;
+        background-color: white;
+        height: 100%;
+        padding: 10px;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    .maleimg {
+        position: relative;
+        max-width: 100%;
+        max-height: 100%;
+        z-index: 1;
+        
+    }
+    .text_box {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        height: 100%;
+    }
+    .malejg {
+        color: #2177b8;
+    }
+    .ex_btn {
+        margin-right: 0;
     }
 </style>
