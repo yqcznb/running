@@ -21,6 +21,7 @@
     </div>
 </template>
 <script>
+import {mapActions, mapState,mapGetters} from 'vuex' //注册 action 、 state 、getter
 export default {
     name: 'login',
     data() {
@@ -44,14 +45,15 @@ export default {
                     yhmm:this.password   
                 }
             }).then(response=>{
-                    console.log(response);
                     this.num=response.data.jg;
-                    console.log(this.num)
+                    console.log(response.data.yhid)
                     if(this.num==1){
                         alert("登陆成功")
                         this.$router.replace('/footer/index');
-                        this.$store.dispatch('id',response.data.id )
-                        console.log(this.$store.id)
+                        this.$store.dispatch("userLogin", true);
+                        this.$store.dispatch("yh",response.data.yhid);
+                        localStorage.setItem("Flag", "isLogin");
+                        localStorage.setItem("yhid",response.data.yhid);
                     }else if(this.num==0){
                         alert("账号或密码错误")
                     }

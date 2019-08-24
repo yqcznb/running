@@ -32,7 +32,7 @@ export default {
   name: 'index',
   data(){
     return{
-        xiaoqu:'青岛工学院校区',
+        xiaoqu:'未认证(点击认证)',
         id:"",
         cp:"",
         yp:"",
@@ -64,6 +64,22 @@ export default {
 }).then(response=>{
        
          this.ggnr=response.data.ggnr; 
+      })      //获取失败
+      .catch(error=>{
+          console.log(error);
+          alert('网络错误，不能访问');
+      })
+  
+
+   axios.get('http://no37.store:8080/AK/SelectXsID',{
+    params: {
+        yhid:localStorage.getItem("yhid"),     
+    }
+}).then(response=>{
+          if(response.data.yhxx==""||response.data.yhxx==null||response.data.yhxx==undefined){
+              
+          }
+        
       })      //获取失败
       .catch(error=>{
           console.log(error);
