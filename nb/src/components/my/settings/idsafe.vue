@@ -87,7 +87,6 @@ export default {
     }
     #number,#password,#device-center {
         width: 93%;
-        border: 1px solid red;
         border-radius: 7px;
         background-color: white;
         display: flex;

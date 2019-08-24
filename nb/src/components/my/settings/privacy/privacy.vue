@@ -55,7 +55,6 @@ export default {
         right: 7%;
     }
     #permission,#ppolicy {
-        border: 1px solid red;
         width: 93%;
         height: 8%;
         border-radius: 7px;
