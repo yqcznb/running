@@ -24,7 +24,7 @@
                 </div>
             </router-link>
             <hr>
-            <router-link to="/rank_list">
+            <router-link to="/rank_list" @click.native="routerRefresh">
                 <div id="rank_list">
                     <i class="iconfont iconpaihangbang rankimg"></i><span class="">排行榜</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
@@ -54,21 +54,65 @@ export default {
             nearImg:require('../../assets/img/my/run_data/near.png'),
             mode:'/settings',
             routerAlive:true,
+            date: [],
+            ydrqOne: '',
+            ydrqTwo: '',
             miledate: [ 10000, 20000, 12065, 3620,16530, 9510, 20100, 13002, 13580,15063, 15200, 9000 ],
             speeddate: [ 3.1, 5.55, 5.59, 6.20, 4.39, 5.00, 6.1, 7.4,7.34, 8.26, 3.58, 8.12 ],
         }
     },
+    beforeCreate() {
+            
+    },
     created() {
+        // 近12日日期
+            let myDate = new Date(); //获取今天日期
+            myDate.setDate(myDate.getDate() - 12);
+            let dateArray = []; 
+            let dateTemp; 
+            let flag = 1; 
+            for (var i = 0; i < 12; i++) {
+                dateTemp = (myDate.getMonth()+1)+"-"+myDate.getDate();
+                dateArray.push(dateTemp);
+                myDate.setDate(myDate.getDate() + flag);
+            }
+            this.date = dateArray;
+            let t_Month = myDate.getMonth()+1;
+            if(String(t_Month).length == 1) {
+                this.ydrqOne = myDate.getFullYear()+'-0'+dateArray[0];
+                this.ydrqTwo = myDate.getFullYear()+'-0'+dateArray[11];
+            }
+            else if(t_Month == 10 && myDate.getDate() <= 11) {
+                this.ydrqOne = myDate.getFullYear()+'-0'+dateArray[0];
+                this.ydrqTwo = myDate.getFullYear()+'-'+dateArray[11];
+            }
+            else {
+                this.ydrqOne = myDate.getFullYear()+'-'+dateArray[0];
+                this.ydrqTwo = myDate.getFullYear()+'-'+dateArray[11];
+            }
+        // 个人信息请求
         axios.get('http://no37.store:8080/AK/ShowMe',{
             params: {
-                yhid:4,     
+                yhid:1,
             }})
             .then(response=>{
+                console.log(response);
                 this.uname = response.data.yhnc;
-                this.headportrait = "http://no37.store/eclipse-jee-neon-2-win32-x86_64/eclipse/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/AK/qupao/"+response.data.yhtx;
+                this.headportrait = response.data.yhtx;
                 this.uduan = response.data.dwmc;
                 this.duanImg = "http://no37.store/image/duan/"+response.data.dwtp;
                 this.levelImg = "http://no37.store/image/schedual_level/"+response.data.dwjdtp;
+            })      //获取失败
+            .catch(error=>{
+                alert('网络错误，不能访问');
+            })
+        // 近期跑步数据请求
+        axios.get('http://no37.store:8080/AK/SelectMove',{
+            params: {
+                yhid:1,ydrqOne:this.ydrqOne,ydrqTwo:this.ydrqTwo,
+            }})
+            .then(response=>{
+                console.log(response);
             })      //获取失败
             .catch(error=>{
                 alert('网络错误，不能访问');
@@ -82,22 +126,7 @@ export default {
             window.location.reload();
         },
         drawLine(){
-            // 近12日日期
-            function get_date() {
-                var myDate = new Date(); //获取今天日期
-                myDate.setDate(myDate.getDate() - 12);
-                var dateArray = []; 
-                var dateTemp; 
-                var flag = 1; 
-                for (var i = 0; i < 12; i++) {
-                    dateTemp = (myDate.getMonth()+1)+"-"+myDate.getDate();
-                    dateArray.push(dateTemp);
-                    myDate.setDate(myDate.getDate() + flag);
-                }
-                return dateArray;
-            }
-            let date = get_date();
-
+           
             // 基于准备好的dom，初始化echarts实例
             let myChart = this.$echarts.init(document.getElementById('myChart'));
             // 图表自适应
@@ -162,7 +191,7 @@ export default {
                             color: 'white',
                         },
                     },
-                    data: date
+                    data: this.date,
                 } ],
                 yAxis : [ {
                     type : 'value',

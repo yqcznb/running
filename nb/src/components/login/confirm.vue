@@ -1,34 +1,33 @@
 <template>
-
     <div id="confirm" :backgroud="backimg">
         <div id="back_bar"> 
             <router-link to="/footer/my" @click.native="routerRefresh">
                 <i class="iconfont iconfanhui-copy">返回</i> 
             </router-link>
             <span class="title">身份认证</span>
-            <button class="modify_btn">修改信息</button>
+            <button class="modify_btn" @click="c_disabled">修改信息</button>
         </div>
         <div class="msg_box">
             <span class="modify_msg">
-                <label for="school_name" class="left">学校</label><input type="text" id="school_name"> <label for="school_name"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="school_name" class="left">学校</label><input type="text" id="school_name" :disabled="disabled"> <label for="school_name"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="department" class="left">院系</label><input type="text" id="department"> <label for="department"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="department" class="left">院系</label><input type="text" id="department" :disabled="disabled"> <label for="department"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="profes" class="left">专业</label><input type="text" id="profes"> <label for="profes"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="profes" class="left">专业</label><input type="text" id="profes" :disabled="disabled"> <label for="profes"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="stuname" class="left">姓名</label><input type="text" id="stuname"> <label for="stuname"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="stuname" class="left">姓名</label><input type="text" id="stuname" :disabled="disabled"> <label for="stuname"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="stunum" class="left">学号</label><input type="text" id="stunum"> <label for="stunum"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="stunum" class="left">学号</label><input type="text" id="stunum" :disabled="disabled"> <label for="stunum"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="stusex" class="left">性别</label><input type="text" id="stusex"> <label for="stusex"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="stusex" class="left">性别</label><input type="text" id="stusex" :disabled="disabled"> <label for="stusex"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="entryDate" class="left">入学日期</label><input type="text" id="entryDate"> <label for="entryDate"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="entryDate" class="left">入学日期</label><input type="text" id="entryDate" :disabled="disabled"> <label for="entryDate"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span>
         </div>
         <span>{{if_modify}}</span>
@@ -36,64 +35,58 @@
 
 </template>
 <script>
+import axios from 'axios'
 export default {
     name: 'confirm',
     data() {
         return {
-            disabled:false,
+            backimg: '',
+            if_modify: '未认证',
+            disabled: true,
         }
     },
     created(){
-         axios.get('http://no37.store:8080/AK/SelectXsID',{
-    params: {
-        yhid:localStorage.getItem("yhid"),     
-    }
-}).then(response=>{
-          if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
-              this.disabled = true
-          }
+        axios.get('http://no37.store:8080/AK/SelectXsID',{
+            params: {
+                yhid:localStorage.getItem("yhid"),     
+            }
+        }).then(response=>{
+            if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
+                this.disabled = true
+            }
         
-      })      //获取失败
-      .catch(error=>{
-          console.log(error);
-          alert('网络错误，不能访问');
-      })
+        })      //获取失败
+        .catch(error=>{
+            console.log(error);
+            alert('网络错误，不能访问');
+        })
     },
     methods:
     {
-       
-        back(){
-                this.$router.push({
-                    path: '/footer/index'
-                });
-                 window.location.reload();
-        },
         renzhen(){
-               axios.get('http://no37.store:8080/AK/xsID',{
-        params: {
-            yhid:localStorage.getItem("yhid"),    
-            
-        }
-    }).then(response=>{
-           
-            
-        })      //获取失败
-      .catch(error=>{
-          console.log(error);
-          alert('网络错误，不能访问');
-      })
-        },
-           
-             routerRefresh() {
-            window.location.reload();
-        }
-        }
-    }
-    
-   
-      
-    
+            axios.get('http://no37.store:8080/AK/xsID',{
+                params: {
+                    yhid:localStorage.getItem("yhid"),    
+                }
+            }).then(response=>{
 
+            })      //获取失败
+            .catch(error=>{
+                console.log(error);
+                alert('网络错误，不能访问');
+            })
+        },
+        routerRefresh() {
+            window.location.reload();
+        },
+        c_disabled() {
+            if(this.disabled) {
+                this.disabled = !this.disabled;
+            }
+        },
+
+    },
+}
 </script>
 <style scoped>
     #confirm {
