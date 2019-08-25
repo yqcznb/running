@@ -1622,13 +1622,10 @@ input[type='submit']:enabled:active, input[type='submit'].mui-active:enabled,
 }
 .mui-bar-tab .mui-tab-item.mui-active
 {
-<<<<<<< HEAD
-    color: rgba(253, 185, 51, 0.89);
-=======
+
 
     color: rgba(253, 185, 51, 0.89);
 
->>>>>>> c7a8126ca4c4e7a82301ec41ee1176194b61384c
 }
 .mui-bar-tab .mui-tab-item .mui-icon
 {
