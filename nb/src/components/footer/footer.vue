@@ -25,6 +25,9 @@ export default {
   data(){
 	  
   },
+  mounted(){
+    mui('body').on('click','a',function(){document.location.href=this.href;})
+  },
   methods:{
 	
   }

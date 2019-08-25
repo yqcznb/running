@@ -9,7 +9,7 @@
            <div>{{str}}<p>用时</p></div>
            <div>{{ calories}}<p>热量（千卡）</p></div>
       </div>
-     <!--<div class="ceshi" v-for="line in lines"  :key="line" :v-model="lines" :path="line.path">miles:{{miles}}$$distance:{{distance}}^^aa:{{aa}}**当前经纬度：{{lng}},{{lat}}***数组：{{line.path}}</div>-->
+     <div class="ceshi" v-for="line in lines"  :key="line" :v-model="lines" :path="line.path">miles:{{miles}}$$distance:{{distance}}^^aa:{{aa}}**当前经纬度：{{lng}},{{lat}}***数组：{{line.path}}</div>
     </div>
     <el-amap 
         vid="amap"  
