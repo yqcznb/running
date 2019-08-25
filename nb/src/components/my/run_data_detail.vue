@@ -6,7 +6,7 @@
             </router-link>
             <span class="title">跑步数据详情</span>
         </div>
-        <input type="text" @click="csdate" v-model="datedata" class="datedata" readonly>
+        <span class="datetitle">请选择日期</span> <input type="text" @click="csdate" v-model="datedata" class="datedata" readonly>
         <div id="myChart" :auto-resize='autoresize'></div>
         <span class="chartitle">本月运动量占比</span>
 
@@ -242,6 +242,8 @@ export default {
         color: #dec674;    
     }
     #back_bar {
+        width: 100%;
+        position: fixed;
         text-align: left;
         text-indent: 0.3em;
         line-height: 200%;
@@ -256,6 +258,12 @@ export default {
         left: 0;
         right: 0;
         margin: 0 auto;
+    }
+    .datetitle {
+        display: inline-block;
+        margin-top: 40px;
+        font-size: 12px;
+        opacity: 0.8;
     }
     .datedata {
         background-color: rgba(255,255,255,0.6);
