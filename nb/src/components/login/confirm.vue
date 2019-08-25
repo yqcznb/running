@@ -84,16 +84,16 @@ export default {
       })
         },
            
-           
-        
-    
+             routerRefresh() {
+            window.location.reload();
+        }
+        }
+    }
     
    
-        routerRefresh() {
-            window.location.reload();
-        },
-    }
-}
+      
+    
+
 </script>
 <style scoped>
     #confirm {
