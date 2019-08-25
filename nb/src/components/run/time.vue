@@ -101,7 +101,7 @@ export default {
                      self.lines[0].path.push([self.lng,self.lat]);
                    }
                    else if((self.lines[0].path[a-1][0]!=self.lng)||(self.lines[0].path[a-1][1]!=self.lat)){
-                         self.lines[0].path.push([self.lng,self.lat],);
+                         self.lines[0].path.push([self.lng,self.lat]+",");
                    }
                 }
               })

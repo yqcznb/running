@@ -12,7 +12,9 @@ import VueAxios from 'vue-axios'
 import { Button,MessageBox,Header,Field,Popup,Picker,Lazyload} from 'mint-ui';
 import echarts from 'echarts'
 import store from './store'
+import Mui from 'vue-awesome-mui'
 
+Vue.use(Mui);
 Vue.component(Field.name, Field);
 Vue.component(Header.name, Header);
 Vue.component(Button.name, Button);
