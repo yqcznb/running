@@ -6,14 +6,19 @@
             </router-link>
             <span class="title">排行榜</span>
         </div>
-        <div class="zw">
-
+        <div class="toper">
+            <br><br><br><br>
+            {{run_list[0].yhnc}}
         </div>
         <div class="list_box" id="container">
             <ul>
-                <!-- <li v-for="item in list">
-                    <img src="" alt="" v-lazy.comtainer="item">
-                </li> -->
+                <li v-for="(value, key) in run_list">
+                    <!-- {{value}} -->
+                    <span v-text="key+1"></span>
+                    <img :src="value.yhtx" alt="">
+                    <span v-text="value.yhnc"></span>
+                    <span v-text="value.ydjl"></span>
+                </li>
             </ul>
         </div>
         
@@ -25,7 +30,8 @@ export default {
     name: 'rank_list',
     data() {
         return{
-            
+            run_list: [],
+
         }
     },
     created() {
@@ -35,7 +41,9 @@ export default {
                 ydrqn:2019,ydrqy:'09',
             }})
             .then(response=>{
-                console.log(response);
+                // console.log(response);
+                this.run_list = response.data;
+                console.log(this.run_list);
             })      //获取失败
             .catch(error=>{
                 alert('网络错误，不能访问');
@@ -60,7 +68,7 @@ export default {
         margin: 0 auto;
         overflow: scroll;
         background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
-        background-image: url(../../assets/img/my/rank_list/sports3.jpg);
+        background-image: url(../../assets/img/my/rank_list/sports2.jpg);
         background-size: auto 100%;
         background-repeat: no-repeat;
         background-position: center bottom;
@@ -88,7 +96,7 @@ export default {
         right: 0;
         margin: 0 auto;
     }
-    .zw {
+    .toper {
         width: 100%;
         height: 20%;
     }
@@ -97,15 +105,15 @@ export default {
         border-radius: 7px;
         width: 95%;
         background-color: white;
-        background: rgba(255, 255, 255, 0.6);
+        background: rgba(255, 255, 255, 0.7);
         left: 0;
         right: 0;
         margin: 0 auto;
         position: relative;
     }
-    img[lazy=loading] {
-        width: 40px;
-        height: 40px;
-        
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
     }
 </style>
