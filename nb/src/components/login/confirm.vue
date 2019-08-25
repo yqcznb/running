@@ -1,4 +1,5 @@
 <template>
+
     <div id="confirm" :backgroud="backimg">
         <div id="back_bar"> 
             <router-link to="/footer/my" @click.native="routerRefresh">
@@ -38,6 +39,51 @@ export default {
     name: 'confirm',
     data() {
         return {
+
+            disabled:false,
+        }
+    },
+    created(){
+         axios.get('http://no37.store:8080/AK/SelectXsID',{
+    params: {
+        yhid:localStorage.getItem("yhid"),     
+    }
+}).then(response=>{
+          if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
+              this.disabled = true
+          }
+        
+      })      //获取失败
+      .catch(error=>{
+          console.log(error);
+          alert('网络错误，不能访问');
+      })
+    },
+    methods:
+    {
+       
+        back(){
+                this.$router.push({
+                    path: '/footer/index'
+                });
+                 window.location.reload();
+        },
+        renzhen(){
+               axios.get('http://no37.store:8080/AK/xsID',{
+        params: {
+            yhid:localStorage.getItem("yhid"),    
+            
+        }
+    }).then(response=>{
+           
+            
+        })      //获取失败
+      .catch(error=>{
+          console.log(error);
+          alert('网络错误，不能访问');
+      })
+        }
+
             backimg: '',
             if_modify: '未认证',
         }

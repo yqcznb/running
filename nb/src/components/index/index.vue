@@ -1,7 +1,10 @@
 <template>
   <div class="index">
     <ul class="heard">
-        <li class="xiaoqu">{{xiaoqu}}</li>
+        <router-link to="/confirm" v-if="show">
+               <li class="xiaoqu">{{xiaoqu}}</li>
+        </router-link>
+         <li class="xiaoqu" v-if="ow" >{{xiaoqu}}</li>
         <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{ggnr}}</li>
     </ul>
     <router-view :key="aa"></router-view>
@@ -10,7 +13,7 @@
             <div>
               <router-link to="/footer/index/run" append>
               <i class="iconfont iconpaobu"></i>
-				      <span class="mui-tab-label">开跑</span>
+				      <span>开跑</span>
               </router-link>
             </div>
             <p>当前已跑</p>
@@ -37,7 +40,9 @@ export default {
         cp:"",
         yp:"",
         xqmb:"",
-        ggnr:""
+        ggnr:"",
+        show:true,
+        ow:false
     }
   },created(){
  
@@ -76,8 +81,10 @@ export default {
         yhid:localStorage.getItem("yhid"),     
     }
 }).then(response=>{
-          if(response.data.yhxx==""||response.data.yhxx==null||response.data.yhxx==undefined){
-              
+          if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
+                this.xiaoqu = response.data.yhxx;
+                this.show = false;
+                this.ow = true;
           }
         
       })      //获取失败
@@ -148,6 +155,9 @@ flex-direction: column;
    justify-content: center;
 }
 a{
-      color: #007aff;
+      color: #dec674;
+}
+.index .caochang .xinxi span,.index .caochang .xinxi i{
+  color: rgb(235, 14, 198)
 }
 </style>

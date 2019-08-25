@@ -9,6 +9,7 @@
            <div>{{str}}<p>用时</p></div>
            <div>{{ calories}}<p>热量（千卡）</p></div>
       </div>
+      <div class="ceshi" v-for="line in lines"  :key="line" :v-model="lines" :path="line.path">miles:{{miles}}$$distance:{{distance}}^^aa:{{aa}}**当前经纬度：{{lng}},{{lat}}***数组：{{line.path}}</div>
     </div>
     <el-amap 
         vid="amap"  
@@ -41,7 +42,7 @@ export default {
       show:true,
       left:false,
       right:false,
-       distance: 0,  // 表示运动的累计距离
+       distance: 0.0,  // 表示运动的累计距离
         miles: 0.0,    // 表示运动的累计距离，单位是公里用于界面显示
         // path: [],    // 运动坐标数据
         speed: "00'00\"",    // 配速 
@@ -90,7 +91,7 @@ export default {
                   self.loaded = true;                         //load
                   self.$nextTick();  
                    var a =  self.lines[0].path.length;
-                   console.log("a:"+a)
+                  console.log("a:"+a)
                    if(a==0){
                      self.lines[0].path.push([self.lng,self.lat]);
                    }
@@ -130,7 +131,8 @@ export default {
         this.aa = this.lines[0].path.length;
         if( this.aa>=2){
          this.distance = this.juli( this.lines[0].path[this.aa-1][0], this.lines[0].path[this.aa-1][1], this.lines[0].path[this.aa-2][0], this.lines[0].path[this.aa-2][1]);
-         this.miles = parseFloat(this.miles+this.distance).toFixed(2);
+         this.miles = parseFloat(this.miles)+ parseFloat(this.distance);
+         this.miles = parseFloat(this.miles).toFixed(2);
          if(this.miles!=0){
             var ss = (1/this.miles)*this.times;
             this.speed =this.toDub(parseInt(ss/60))+"'"+this.toDub(parseInt(ss%60))+"\"";
@@ -277,6 +279,22 @@ export default {
   flex-direction:column;
   font-size: 20px;
   opacity:0.8;
+}
+.ceshi{
+  background-color: #fff;
+  position: absolute;
+  z-index: 110;
+  top: 130%;
+  left: 50%;
+  width: 200px;
+  height: 150px;
+  margin-left: -100px;
+  border-radius: 20%;
+  display:flex;
+  color: black;
+  flex-direction:column;
+  font-size: 20px;
+  opacity:1;
 }
 .head>div span,p{
   font-size: 13px;

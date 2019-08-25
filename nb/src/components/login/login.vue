@@ -122,7 +122,7 @@ export default {
     button {
         width: 90%;
         height: 44px;
-        background-color: #007aff;
+        background-color: #dec674;
         color: #FFF;
         font-weight: bolder;
         border: 0;
