@@ -9,7 +9,7 @@
            <div>{{str}}<p>用时</p></div>
            <div>{{ calories}}<p>热量（千卡）</p></div>
       </div>
-      <div class="ceshi" v-for="line in lines"  :key="line" :v-model="lines" :path="line.path">miles:{{miles}}$$distance:{{distance}}^^aa:{{aa}}**当前经纬度：{{lng}},{{lat}}***数组：{{line.path}}</div>
+     <!--<div class="ceshi" v-for="line in lines"  :key="line" :v-model="lines" :path="line.path">miles:{{miles}}$$distance:{{distance}}^^aa:{{aa}}**当前经纬度：{{lng}},{{lat}}***数组：{{line.path}}</div>-->
     </div>
     <el-amap 
         vid="amap"  
@@ -20,7 +20,7 @@
     >  
       <el-amap-bezier-curve v-for="line in lines"  :key="line" :v-model="lines" :path="line.path" :stroke-color="line.strokeColor" :stroke-style="line.strokeStyle" :events="line.events" :stroke-opacity="line.strokeOpacity"></el-amap-bezier-curve>  
     </el-amap>
-      <button class="js"  @mouseenter="mouseEnter" v-if="show">长按结束</button>
+      <button class="jsun"  @mouseenter="mouseEnter" v-if="showw">长按结束</button>
       <button class="buleft"   v-if="left" @click="con">继续</button>
       <button class="buright"  v-if="right" @click="end">结束</button>
   </div>
@@ -39,9 +39,12 @@ export default {
       lat: 0,
       loaded: false,
       visible: false,
-      show:true,
+      showw:true,
       left:false,
       right:false,
+      year:"",
+      month:"",
+      date:"",
        distance: 0.0,  // 表示运动的累计距离
         miles: 0.0,    // 表示运动的累计距离，单位是公里用于界面显示
         // path: [],    // 运动坐标数据
@@ -62,6 +65,8 @@ export default {
          lines: [
             {
               path: [        
+                //[120.02112, 36.24094]
+             
               
               ],
               strokeDasharray: [10, 10],
@@ -91,12 +96,12 @@ export default {
                   self.loaded = true;                         //load
                   self.$nextTick();  
                    var a =  self.lines[0].path.length;
-                  console.log("a:"+a)
+                 // console.log("a:"+a)
                    if(a==0){
                      self.lines[0].path.push([self.lng,self.lat]);
                    }
                    else if((self.lines[0].path[a-1][0]!=self.lng)||(self.lines[0].path[a-1][1]!=self.lat)){
-                         self.lines[0].path.push([self.lng,self.lat]);
+                         self.lines[0].path.push([self.lng,self.lat],);
                    }
                 }
               })
@@ -126,8 +131,8 @@ export default {
      this.jl=setInterval(()=>{
       if((this.aa+1)==this.lines[0].path.length)
       { 
-      console.log("aa:"+this.aa)
-      console.log("path.length:"+this.lines[0].path.length)
+     // console.log("aa:"+this.aa)
+     //console.log("path.length:"+this.lines[0].path.length)
         this.aa = this.lines[0].path.length;
         if( this.aa>=2){
          this.distance = this.juli( this.lines[0].path[this.aa-1][0], this.lines[0].path[this.aa-1][1], this.lines[0].path[this.aa-2][0], this.lines[0].path[this.aa-2][1]);
@@ -149,23 +154,24 @@ export default {
       this.$emit('register', this.lng, this.lat)
     },
    mouseEnter(){
-      setTimeout(()=>{
-      this.show = false;
+    this.ll =  setTimeout(()=>{
+      this.showw = false;
       this.left = true;
       this.right = true;
       clearInterval(this.time);
-      // clearInterval(this.lux);
+    
    }, 3000);
     },
     con(){
-      this.show = true;
+      this.showw = true;
       this.left = false;
       this.right = false;
       this.time=setInterval(this.timer,50);
-      //this.lux=setInterval(this.luxian,3000);
+      clearTimeout(this.ll);
     },
     end(){
-      MessageBox.confirm('', { 
+        if(this.miles<0.3){
+            MessageBox.confirm('', { 
          message: '当前活动距离过短，将不会记录成绩', 
          title: '提示', 
          confirmButtonText: '结束', 
@@ -176,18 +182,33 @@ export default {
                     path: '/footer/index'
                 });
             clearInterval(this.time);
-            // this.h=0;
-            // this.m=0;
-            // this.ms=0;
-            // this.s=0;
-            // this.str="00:00:00";
-            // this.path = " ";
+          
          }
          }).catch(err => { 
          if (err == 'cancel') {     //取消的回调
         
          } 
          });
+        }else{
+            MessageBox.confirm('', { 
+         message: '您的运动距离为'+this.miles+'千米是否确定结束运动?', 
+         title: '提示', 
+         confirmButtonText: '结束', 
+         cancelButtonText: '取消' 
+         }).then(action => { 
+         if (action == 'confirm') {     //确认的回调
+            this.$router.push({
+                    path: '/footer/index'
+                });
+            clearInterval(this.time);
+          
+         }
+         }).catch(err => { 
+         if (err == 'cancel') {     //取消的回调
+        
+         } 
+         });
+        }
     },
       timer(){                //定义计时函数
         this.ms=this.ms+50;        //毫秒
@@ -318,7 +339,7 @@ export default {
   font-size:33px;
   font-weight: bold;
 }
-.js{
+.jsun{
   background:#007aff;
   color:#fff;
   border:none;
@@ -335,11 +356,11 @@ export default {
   width: 260px;
   margin-left: -130px;
 }
-.js:hover{
+.jsun:hover{
   background:#fff;
   color:#007aff;
 }
-.js:before,.js:after{
+.jsun:before,.jsun:after{
   content:'';
   position:absolute;
   top:0;
@@ -349,13 +370,13 @@ export default {
   background: #007aff;
   transition:400ms ease all;
 }
-.js:after{
+.jsun:after{
   right:inherit;
   top:inherit;
   left:0;
   bottom:0;
 }
-.js:hover:before,.js:hover:after{
+.jsun:hover:before,.jsun:hover:after{
   width:100%;
   transition:3000ms ease all;
 }

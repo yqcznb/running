@@ -33,13 +33,13 @@
         </div>
         <span>{{if_modify}}</span>
     </div>
+
 </template>
 <script>
 export default {
     name: 'confirm',
     data() {
         return {
-
             disabled:false,
         }
     },
@@ -82,18 +82,18 @@ export default {
           console.log(error);
           alert('网络错误，不能访问');
       })
-        }
-
-            backimg: '',
-            if_modify: '未认证',
-        }
-    },
-    methods: {
-        routerRefresh() {
-            window.location.reload();
         },
+           
+             routerRefresh() {
+            window.location.reload();
+        }
+        }
     }
-}
+    
+   
+      
+    
+
 </script>
 <style scoped>
     #confirm {
