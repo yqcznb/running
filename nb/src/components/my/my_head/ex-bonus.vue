@@ -74,7 +74,6 @@ export default {
         },
     },
 }
-// http://no37.store/eclipse-jee-neon-2-win32-x86_64/eclipse/workspace/.metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps/AK/ShopPhoto/
 </script>
 <style scoped>
     #ex_bonus {
