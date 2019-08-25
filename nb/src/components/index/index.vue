@@ -42,7 +42,7 @@ export default {
         xqmb:"",
         ggnr:"",
         show:true,
-        ow:false
+        ow:false,
     }
   },created(){
  
