@@ -29,11 +29,19 @@ export default {
             msg: 'Here is login component',
             username:"" ,
             password:"" ,
-            num:""
+            num:"",
+        }
+    },
+    created:function(){
+        if(localStorage.getItem("yhid")){
+              this.$router.push('/footer/index');
+              
         }
     },
     methods:
-    {
+    {   
+       
+
         login(){
              if (this.username === '' || this.password === '') {
                     alert('请输入用户名或密码')
