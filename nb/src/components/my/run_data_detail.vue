@@ -23,6 +23,7 @@
     </div>
 </template>
 <script>
+import axios from 'axios'
 import echarts from 'echarts'
 export default {
     name: 'run_data_detail',
@@ -53,6 +54,18 @@ export default {
                 }
             ]
         }
+    },
+    created() {
+        axios.get('http://no37.store:8080/AK/MoveAction',{
+            params: {
+                yhid:1,ydrqn:2019,ydrqy:8,
+            }})
+            .then(response=>{
+                console.log(response);
+            })      //获取失败
+            .catch(error=>{
+                alert('网络错误，不能访问');
+            })
     },
     mounted(){
         this.dateDefault();

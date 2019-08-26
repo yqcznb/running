@@ -4,20 +4,19 @@
             <router-link to="/footer/my" @click.native="routerRefresh">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
-            <span class="title">排行榜</span>
+            <span class="title">今日排行</span>
         </div>
         <div class="toper">
-            <br><br><br><br>
+            <img :src="run_list[0].yhtx" alt="" class="top_one">
             {{run_list[0].yhnc}}
         </div>
         <div class="list_box" id="container">
             <ul>
                 <li v-for="(value, key) in run_list">
-                    <!-- {{value}} -->
                     <span v-text="key+1"></span>
-                    <img :src="value.yhtx" alt="">
-                    <span v-text="value.yhnc"></span>
-                    <span v-text="value.ydjl"></span>
+                    <img :src="value.yhtx" alt="" class="list_img">
+                    <span v-text="value.yhnc" class="yhnc"></span>
+                    <span v-text="value.ydjl" class="ydjl"></span>
                 </li>
             </ul>
         </div>
@@ -38,10 +37,10 @@ export default {
         // 用户积分
         axios.get('http://no37.store:8080/AK/MoveTop',{
             params: {
-                ydrqn:2019,ydrqy:'09',
+                yhid:1,ydrqn:2018,ydrqy:8,ydrqr:12,
             }})
             .then(response=>{
-                // console.log(response);
+                console.log(response);
                 this.run_list = response.data;
                 console.log(this.run_list);
             })      //获取失败
@@ -97,13 +96,26 @@ export default {
         margin: 0 auto;
     }
     .toper {
-        width: 100%;
+        border: 1px solid red;
+        width: 93%;
+        max-width: 550px;
         height: 20%;
+        margin: 0 auto;
+        margin-top: 40px;
+        display: flex;
+        align-items: center;
+    }
+    .top_one {
+        position: relative;
+        width: 15%;
+        max-width: 80px;
+        border-radius: 25%;
     }
     .list_box {
         border: 1px solid red;
         border-radius: 7px;
         width: 95%;
+        max-width: 550px;
         background-color: white;
         background: rgba(255, 255, 255, 0.7);
         left: 0;
@@ -115,5 +127,28 @@ export default {
         margin: 0;
         padding: 0;
         list-style: none;
+    }
+    li {
+        border: 1px solid red;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .list_img {
+        border-radius: 7px;
+        position: relative;
+        width: 10%;
+        max-width: 60px;
+        /* width: 20%; */
+    }
+    .yhnc {
+        width: 30%;
+        min-width: 120px;
+        display: inline-block;
+    }
+    .ydjl {
+        width: 10%;
+        min-width: 60px;
+        display: inline-block;
     }
 </style>
