@@ -8,13 +8,13 @@
         <div id="number">
             <router-link to="">
                 <div id="userid">
-                    <span>趣跑号</span><i class="iconfont iconfanhui iconfont-right"></i>
+                    <span>手机号</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
             <hr>
             <router-link to="">
                 <div id="phone">
-                    <span>手机号</span><i class="iconfont iconfanhui iconfont-right"></i>
+                    <span>邮箱号</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
         </div>

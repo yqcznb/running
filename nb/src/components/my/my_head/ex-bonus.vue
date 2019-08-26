@@ -43,7 +43,7 @@ export default {
         // 用户积分
         axios.get('http://no37.store:8080/AK/jf',{
             params: {
-                yhid:1,     
+                yhid:localStorage.getItem("yhid"),
             }})
             .then(response=>{
                 this.bonus_data = response.data.yhjf;

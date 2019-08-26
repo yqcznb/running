@@ -93,7 +93,8 @@ export default {
         // 个人信息请求
         axios.get('http://no37.store:8080/AK/ShowMe',{
             params: {
-                yhid:1,
+                yhid:localStorage.getItem("yhid"),
+                // yhid:25,
             }})
             .then(response=>{
                 console.log(response);
@@ -109,7 +110,7 @@ export default {
         // 近期跑步数据请求
         axios.get('http://no37.store:8080/AK/SelectMove',{
             params: {
-                yhid:1,ydrqOne:this.ydrqOne,ydrqTwo:this.ydrqTwo,
+                yhid:localStorage.getItem("yhid"),drqOne:this.ydrqOne,ydrqTwo:this.ydrqTwo,
             }})
             .then(response=>{
                 console.log(response);

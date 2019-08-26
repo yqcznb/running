@@ -8,27 +8,44 @@
         <div id="photo_name">
             <router-link to="">
                 <div id="photo">
-                    <span class="left left-text">头像</span>
+                    <span class="left-text">头像</span>
                     <img :src='headportrait' class="headportrait">
                 </div>
             </router-link>
             <hr>
             <router-link to="">
                 <div id="name">
-                    <span><span class="left">昵称</span><span class="right">{{name}}</span></span><i class="iconfont iconfanhui iconfont-right"></i>
+                    <span><span>昵称</span><span class="rightname" v-text="user_name"></span></span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
         </div>
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     name: 'pinform',
     data() {
         return{
-            name: '叭叭叭',
-            headportrait:require('../../../assets/img/my/headportrait/4.jpg'),
+            user_name: '',
+            headportrait: '',
         }
+    },
+    created() {
+        // 用户积分
+        axios.get('http://no37.store:8080/AK/ShowMe',{
+            params: {
+                yhid:localStorage.getItem("yhid"),
+            }})
+            .then(response=>{
+                console.log(response);
+                this.user_name = response.data.yhnc;
+                this.headportrait = response.data.yhtx;
+            })      
+            //获取失败
+            .catch(error=>{
+                alert('网络错误，不能访问');
+            })
     },
     methods: {
         routerRefresh() {
@@ -86,6 +103,7 @@ export default {
 
     }
     .headportrait {
+        border-radius: 7px;
         position: relative;
         width: 40px;
     }
@@ -100,7 +118,7 @@ export default {
         display: flex;
         justify-content: space-around;
     }
-    .right {
+    .rightname {
         font-size: 50%;
         color: #999999;
         display: inline-block;

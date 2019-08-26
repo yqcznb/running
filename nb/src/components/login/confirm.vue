@@ -9,28 +9,46 @@
         </div>
         <div class="msg_box">
             <span class="modify_msg">
-                <label for="school_name" class="left">学校</label><input type="text" id="school_name" :disabled="disabled"> <label for="school_name"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="school_name" class="msg_left">学校</label><input type="text" id="school_name" :disabled="disabled"> <label for="school_name"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="department" class="left">院系</label><input type="text" id="department" :disabled="disabled"> <label for="department"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="department" class="msg_left">院系</label><input type="text" id="department" :disabled="disabled"> <label for="department"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="profes" class="left">专业</label><input type="text" id="profes" :disabled="disabled"> <label for="profes"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="profes" class="msg_left">专业</label><input type="text" id="profes" :disabled="disabled"> <label for="profes"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="stuname" class="left">姓名</label><input type="text" id="stuname" :disabled="disabled"> <label for="stuname"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="stuname" class="msg_left">姓名</label><input type="text" id="stuname" :disabled="disabled"> <label for="stuname"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="stunum" class="left">学号</label><input type="text" id="stunum" :disabled="disabled"> <label for="stunum"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="stunum" class="msg_left">学号</label><input type="text" id="stunum" :disabled="disabled"> <label for="stunum"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="stusex" class="left">性别</label><input type="text" id="stusex" :disabled="disabled"> <label for="stusex"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="stusex" class="msg_left">性别</label><input type="text" id="stusex" :disabled="disabled"> <label for="stusex"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="entryDate" class="left">入学日期</label><input type="text" id="entryDate" :disabled="disabled"> <label for="entryDate"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="entryDate" class="msg_left">入学日期</label><input type="text" id="entryDate" :disabled="disabled">
+                <!-- <mt-datetime-picker
+                    ref="picker"
+                    type="time"
+                    v-model="pickerValue">
+                </mt-datetime-picker> -->
+                <label for="entryDate"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span>
         </div>
         <span>{{if_modify}}</span>
+        <!-- <mt-datetime-picker
+            v-model="pickerVisible"
+            type="date"
+            year-format="{value} 年"
+            month-format="{value} 月"
+            date-format="{value} 日">
+        </mt-datetime-picker>
+        <mt-datetime-picker
+            v-model="pickerVisible"
+            type="time"
+            @confirm="handleConfirm">
+        </mt-datetime-picker> -->
     </div>
 
 </template>
@@ -83,6 +101,9 @@ export default {
             if(this.disabled) {
                 this.disabled = !this.disabled;
             }
+        },
+        openPicker() {
+            this.$refs.picker.open();
         },
 
     },
@@ -150,9 +171,11 @@ export default {
         display: inline-block;
         /* border: 1px solid red; */
     }
-    .left {
-        width: 25%;
-        /* letter-spacing: 3ex; */
+    .msg_left {
+        font-size: 18px;
+        margin-left: 0;
+        width: 20%;
+        min-width: 90px;
     }
     input {
         width: 60%;
