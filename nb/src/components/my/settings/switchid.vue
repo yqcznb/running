@@ -6,22 +6,40 @@
             </router-link>
         </div>
         <div id="headportrait">
-            <img :src="hportSrc" alt="">
+            <div class="switchid_img">
+                <img :src="hportSrc" alt=""> <span v-text="id_name"></span>
+            </div>
+            <span class="iconfont icontiyu-paobu"></span>
         </div>
     </div>
 </template>
 <script>
+import axios from 'axios'
 export default {
     name: 'switchid',
     data() {
         return {
             backlink: 'settings',
             hportSrc: '',
+            id_name: '',
         }
     },
     created() {
-        let urlTemp = ["tx.jpeg","叭叭叭.jpg","巴啦啦小魔仙.jpg"];
-        this.hportSrc = require("@/assets/img/my/headportrait/"+urlTemp[0]);
+        // 账号请求
+        axios.get('http://no37.store:8080/AK/ShowMe',{
+            params: {
+                yhid:localStorage.getItem("yhid"),
+                // yhid:28,
+            }})
+            .then(response=>{
+                console.log(response);
+                // this.uname = response.data.yhnc;
+                this.hportSrc = response.data.yhtx;
+                this.id_name = response.data.yhzh;
+            })      //获取失败
+            .catch(error=>{
+                alert('网络错误，不能访问');
+            })
     }
 }
 </script>
@@ -46,9 +64,11 @@ export default {
         margin-bottom: 2%;
     }
     #headportrait {
+        position: relative;
         width: 93%;
         height: 8%;
         display: flex;
+        justify-content: space-between;
         margin: 0 auto;
         background-color: white;
         color: black;
@@ -58,15 +78,25 @@ export default {
         text-indent: 1em;
         font-size: 110%;
         margin-bottom: 2%;
+        padding-right: 2%;
+    }
+    .switchid_img {
+        height: 100%;
+        display: flex;
+        align-items: center;
     }
     img {
-        width: 10%;
-        position: absolute;
-        margin-left: 2%;
-        /* border: 1px solid red; */
+        height: 80%;
+        position: relative;
+        margin-left: 5%;
         border-radius: 10%;
     }
     i {
         color: #dec674;
+    }
+    .icontiyu-paobu:before {
+        color: #dec674;
+        font-size: 30px;
+        float: right;
     }
 </style>

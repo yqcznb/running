@@ -9,7 +9,7 @@ import "./assets/mui/fonts/fzhzgb.ttf"
 import VueAMap from 'vue-amap'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import { Button,MessageBox,Header,Field,Popup,Picker,Lazyload,DatetimePicker} from 'mint-ui';
+import { Button,MessageBox,Header,Field,Popup,Picker,Lazyload,DatetimePicker,Navbar,TabItem,TabContainer, TabContainerItem} from 'mint-ui';
 import echarts from 'echarts'
 import store from './store'
 import Mui from 'vue-awesome-mui'
@@ -22,6 +22,10 @@ Vue.component(MessageBox.name, MessageBox);
 Vue.component(Popup.name, Popup);
 Vue.component(Picker.name,Picker);
 Vue.component(DatetimePicker.name, DatetimePicker);
+Vue.component(Navbar.name, Navbar);
+Vue.component(TabItem.name, TabItem);
+Vue.component(TabContainer.name, TabContainer);
+Vue.component(TabContainerItem.name, TabContainerItem);
 
 Vue.prototype.axios = axios
 Vue.prototype.$echarts = echarts
