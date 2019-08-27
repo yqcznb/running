@@ -9,25 +9,25 @@
         </div>
         <div class="msg_box">
             <span class="modify_msg">
-                <label for="school_name" class="msg_left">学校</label><input type="text" id="school_name" :disabled="disabled"> <label for="school_name"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="school_name" class="msg_left">学校</label><input type="text" v-model="yhxx" id="school_name" :disabled="disabled"> <label for="school_name"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="department" class="msg_left">院系</label><input type="text" id="department" :disabled="disabled"> <label for="department"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="department" class="msg_left">院系</label><input type="text" v-model="yhxy" id="department" :disabled="disabled"> <label for="department"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="profes" class="msg_left">专业</label><input type="text" id="profes" :disabled="disabled"> <label for="profes"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="profes" class="msg_left">专业</label><input type="text" id="profes" v-model="yhzy" :disabled="disabled"> <label for="profes"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="stuname" class="msg_left">姓名</label><input type="text" id="stuname" :disabled="disabled"> <label for="stuname"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="stuname" class="msg_left">姓名</label><input type="text" v-model="yhxm" id="stuname" :disabled="disabled"> <label for="stuname"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="stunum" class="msg_left">学号</label><input type="text" id="stunum" :disabled="disabled"> <label for="stunum"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="stunum" class="msg_left">学号</label><input type="text" v-model="yhxh" id="stunum" :disabled="disabled"> <label for="stunum"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="stusex" class="msg_left">性别</label><input type="text" id="stusex" :disabled="disabled"> <label for="stusex"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                <label for="stusex" class="msg_left">性别</label><input type="text" v-model="yhxb" id="stusex" :disabled="disabled"> <label for="stusex"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span> <hr>
             <span class="modify_msg">
-                <label for="entryDate" class="msg_left">入学日期</label><input type="text" id="entryDate" :disabled="disabled">
+                <label for="entryDate" class="msg_left">入学日期</label><input type="text" v-model="rxnf" id="entryDate" :disabled="disabled">
                 <!-- <mt-datetime-picker
                     ref="picker"
                     type="time"
@@ -36,7 +36,7 @@
                 <label for="entryDate"><i class="iconfont iconfanhui iconfont-right"></i></label>
             </span>
         </div>
-        <span>{{if_modify}}</span>
+       <mt-button type="primary" @click="renzhen" :disabled="disabled">{{if_modify}}</mt-button>
         <!-- <mt-datetime-picker
             v-model="pickerVisible"
             type="date"
@@ -60,13 +60,21 @@ export default {
         return {
             backimg: '',
             if_modify: '未认证',
-            disabled: true,
+            disabled: false,
+            yhid:"",
+            yhxx:"",
+            yhzy:"",
+            yhxy:"",
+            rxnf:"",
+            yhxm:"",
+            yhxh:"",
+            yhxb:""
         }
     },
     created(){
         axios.get('http://no37.store:8080/AK/SelectXsID',{
             params: {
-                yhid:localStorage.getItem("yhid"),     
+                yhid:localStorage.getItem("yhid"),
             }
         }).then(response=>{
             if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
@@ -82,12 +90,23 @@ export default {
     methods:
     {
         renzhen(){
+            
             axios.get('http://no37.store:8080/AK/xsID',{
                 params: {
-                    yhid:localStorage.getItem("yhid"),    
+                    yhid:localStorage.getItem("yhid"),  
+                    yhxh:this.yhxh,
+                    yhxx:this.yhxx,
+                    yhxy:this.yhxy,
+                    yhxm:this.yhxm,
+                    yhxb:this.yhxb,
+                    rxnf:this.rxnf,
+                    yhzy:this.yhzy      
                 }
             }).then(response=>{
-
+                if(response.data==1){
+                    alert("认证成功！")
+                    this.disabled = true
+                }
             })      //获取失败
             .catch(error=>{
                 console.log(error);
@@ -98,8 +117,25 @@ export default {
             window.location.reload();
         },
         c_disabled() {
-            if(this.disabled) {
-                this.disabled = !this.disabled;
+            if(this.yhxx!=""&&this.yhxx!=null&&this.yhxx!=undefined) {
+                MessageBox.confirm('', { 
+             message: '您已认证，只有1次修改认证的机会，为避免影响成绩，请填写正确信息后重新提交！', 
+             title: '提示', 
+             confirmButtonText: '确认修改', 
+             cancelButtonText: '取消' 
+             }).then(action => { 
+             if (action == 'confirm') {     //确认的回调
+                 this.disabled =false;
+            
+             }
+             }).catch(err => { 
+             if (err == 'cancel') {     //取消的回调
+            
+             } 
+             });
+               
+            }else{
+                alert("您还为进行认证，请先认证！")
             }
         },
         openPicker() {

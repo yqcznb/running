@@ -13,6 +13,7 @@ import { Button,MessageBox,Header,Field,Popup,Picker,Lazyload,DatetimePicker} fr
 import echarts from 'echarts'
 import store from './store'
 import Mui from 'vue-awesome-mui'
+import './assets/css/my-mint.scss';//全局修改mint-UI样式
 
 Vue.use(Mui);
 Vue.component(Field.name, Field);
