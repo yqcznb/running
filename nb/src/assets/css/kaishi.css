@@ -46,7 +46,7 @@
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  background-color: #007aff;
+  background-color:  rgba(253, 185, 51, 0.89);
   cursor:pointer;
 }
 .yolk li{

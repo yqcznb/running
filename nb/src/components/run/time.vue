@@ -264,7 +264,7 @@ export default {
   font-size:1.6em;
   padding:0 2em;
   color: #fff;
-  background-color: #26a2ff
+  background-color: rgba(253, 185, 51, 0.89)
 }
 .buright{
   position:absolute;
@@ -274,7 +274,7 @@ export default {
   font-size:1.6em;
   padding:0 2em;
   color: #fff;
-  background-color: #ef4f4f
+  background-color: #8d8a8a
 }
 .time {
   color: #fff;
@@ -340,7 +340,7 @@ export default {
   font-weight: bold;
 }
 .jsun{
-  background:#007aff;
+  background: rgba(253, 185, 51, 0.89);
   color:#fff;
   border:none;
   height:60px;
@@ -358,7 +358,7 @@ export default {
 }
 .jsun:hover{
   background:#fff;
-  color:#007aff;
+  color: rgba(253, 185, 51, 0.89);
 }
 .jsun:before,.jsun:after{
   content:'';
@@ -367,7 +367,7 @@ export default {
   right:0;
   height:2px;
   width:0;
-  background: #007aff;
+  background:  rgba(253, 185, 51, 0.89);
   transition:400ms ease all;
 }
 .jsun:after{
