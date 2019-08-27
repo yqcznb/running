@@ -161,7 +161,7 @@ a{
   display: flex;
   flex-direction:column;
   justify-content:center;
-  color: #007aff;
+  color:  rgba(253, 185, 51, 0.89);
   font-weight: bold;
   font-size: 0px;
   animation: am1 1s linear infinite ;

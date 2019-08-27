@@ -54,6 +54,7 @@
 </template>
 <script>
 import axios from 'axios'
+import { MessageBox, Button} from 'mint-ui'
 export default {
     name: 'confirm',
     data() {
@@ -61,24 +62,32 @@ export default {
             backimg: '',
             if_modify: '未认证',
             disabled: false,
-            yhid:"",
+            yhid:localStorage.getItem("yhid"),
             yhxx:"",
             yhzy:"",
             yhxy:"",
             rxnf:"",
             yhxm:"",
             yhxh:"",
-            yhxb:""
+            yhxb:"",
+            num:1
         }
     },
     created(){
         axios.get('http://no37.store:8080/AK/SelectXsID',{
             params: {
-                yhid:localStorage.getItem("yhid"),
+                yhid:this.yhid,
             }
         }).then(response=>{
-            if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
-                this.disabled = true
+            if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
+                this.disabled = true,
+                this.yhxx = response.data.yhxx,
+                this.yhzy = response.data.yhzy,
+                this.yhxy = response.data.yhxy,
+                this.rxnf = response.data.rxnf,
+                this.yhxm = response.data.yhxm,
+                this.yhxh = response.data.yhxh,
+                this.yhxb = response.data.yhxb
             }
         
         })      //获取失败
@@ -90,10 +99,9 @@ export default {
     methods:
     {
         renzhen(){
-            
             axios.get('http://no37.store:8080/AK/xsID',{
                 params: {
-                    yhid:localStorage.getItem("yhid"),  
+                    yhid:this.yhid,  
                     yhxh:this.yhxh,
                     yhxx:this.yhxx,
                     yhxy:this.yhxy,
@@ -117,8 +125,9 @@ export default {
             window.location.reload();
         },
         c_disabled() {
-            if(this.yhxx!=""&&this.yhxx!=null&&this.yhxx!=undefined) {
-                MessageBox.confirm('', { 
+            if(this.num ==1){
+                  if(this.yhxx!=""||this.yhxx!=null||this.yhxx!=undefined) {
+            MessageBox.confirm('', { 
              message: '您已认证，只有1次修改认证的机会，为避免影响成绩，请填写正确信息后重新提交！', 
              title: '提示', 
              confirmButtonText: '确认修改', 
@@ -126,6 +135,7 @@ export default {
              }).then(action => { 
              if (action == 'confirm') {     //确认的回调
                  this.disabled =false;
+                this.num=0
             
              }
              }).catch(err => { 
@@ -137,6 +147,10 @@ export default {
             }else{
                 alert("您还为进行认证，请先认证！")
             }
+            }else{
+                alert("抱歉本学期认证机会已经用完！")
+            }
+          
         },
         openPicker() {
             this.$refs.picker.open();
