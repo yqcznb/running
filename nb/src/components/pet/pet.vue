@@ -2,7 +2,12 @@
 
     <div class="pet_interface">
 
-        <!-- 弹窗部分 -->
+        <div class="pet_head">
+            <ul class="head">
+                <li class="xiaoqu">{{xiaoqu}}</li>
+                <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{tongzhi}}</li>
+            </ul>
+        </div>
             
             <!-- 宠物部分 -->
             <div class="pet_interface_pet">
@@ -12,135 +17,370 @@
 
                     <!-- 三个圈 -->
                     <ul>
-                        <li><img src="../../assets/img/pet/circle.png"></li>
-                        <li><img src="../../assets/img/pet/circle.png"></li>
-                        <li><img src="../../assets/img/pet/circle.png"></li>
+                        <li>
+                            <p>血量</p>
+                            <img src="../../assets/img/pet/blood.png"  @click="blood">
+                            
+                        </li>
+                        <li>
+                            <p>技能</p>
+                            <img src="../../assets/img/pet/skill.png"  @click="skill">
+                            
+                         </li>
+                        <li>
+                            <p>武力</p>
+                            <img src="../../assets/img/pet/force.png"  @click="force">
+                            
+                        </li>
                     </ul>
 
                     <!-- 背包 -->
-                    <div class="bag_img">
-                        <img src="../../assets/img/pet/bag.png" alt="">
-                    </div>
+
+                    <router-link to="/bag">
+                        <div class="bag_img">
+                            <p>背包</p>
+                            <img src="../../assets/img/pet/gbag.png" alt="" >
+                        </div>
+                    </router-link>
+                    
                 </div>
+               
 
                 <!-- 进度条 -->
-                <div class="progress_bar">
-                    <p>孵化进度</p>
+                
+                <div class="progress_bar" @click="bar">
+                    <p v-if="see">孵化进度</p>
+                    <div class="clip" :style="{width: num + 'px'}"></div>
                 </div>
+                <span class="bar_number" v-if="ber">{{ber_num}}<i>%</i></span>
 
                 <!-- 宠物蛋 -->
-                 <div class="egg_img" @click="open"></div>
+                <div class="egg_img"></div>
                 
-                <router-link to="/gpet"  @click.native="routerRefresh">点击</router-link>
             </div>
-            
+
+               
+                <div class="frame">
+                    <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="visible" style="width:100%;height:60%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">   
+                        <ul>
+                            <li class="f_title">
+                                <i class="iconfont iconcsgo-blood"></i>
+                                {{f_title}}
+                            </li>
+                            <li class="haoyou">
+                                <i class="iconfont iconhaoyou1"></i>
+                                <span>邀请好友一起玩吧</span>
+                                <span class="add_haoyou">添加
+                                    <i class="iconfont icontianjiahaoyou"></i>      
+                                 好友</span>
+                            </li>
+
+                            <li class="list_my">
+                                <i class="iconfont icon5"></i>
+                                <div class="head_frame">
+                                    <img src="../../assets/img/tx.jpeg" alt="">
+                                </div>
+                                {{user_name}}(我自己)
+                                <span>{{f_title}}值为{{blood_one}}</span>
+                            </li>
+                            <li class="list_one">
+                                <i class="iconfont icondiyiming"></i>
+                                <div class="head_frame">
+                                    <img src="../../assets/img/tx.jpeg" alt="">
+                                </div>
+                                {{user_name}}
+                                <span>{{f_title}}值为{{blood_one}}</span>
+                            </li>
+                            <li class="list_two">
+                                <i class="iconfont icondierming1"></i>
+                                <div class="head_frame">
+                                    <img src="../../assets/img/tx.jpeg" alt="">
+                                </div>
+                                {{user_name}}
+                                <span>{{f_title}}值为{{blood_one}}</span>
+                            </li>
+                            <li class="list_three">
+                                <i class="iconfont icondisanming1"></i>
+                                <div class="head_frame">
+                                    <img src="../../assets/img/tx.jpeg" alt="">
+                                </div>
+                                {{user_name}}
+                                <span>{{f_title}}值为{{blood_one}}</span>
+                            </li>
+                        </ul>
+                    </mt-popup>
+                </div>
+
+                <div class="frame_skill">
+                    <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="visible_skill" style="width:100%;height:60%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">   
+                        <ul>
+                            <li class="f_title">
+                                <i class="iconfont icondaoshijineng"></i>
+                                {{s_title}}
+                            </li>
+                            <li class="haoyou">
+                                <i class="iconfont iconhaoyou1"></i>
+                                <span>邀请好友一起玩吧</span>
+                                <span class="add_haoyou">添加
+                                    <i class="iconfont icontianjiahaoyou"></i>      
+                                 好友</span>
+                            </li>
+
+                            <li class="list_my">
+                                <i class="iconfont icon5"></i>
+                                <div class="head_frame">
+                                    <img src="../../assets/img/tx.jpeg" alt="">
+                                </div>
+                                {{user_name}}(我自己)
+                                <span>{{s_title}}值为{{blood_one}}</span>
+                            </li>
+                            <li class="list_one">
+                                <i class="iconfont icondiyiming"></i>
+                                <div class="head_frame">
+                                    <img src="../../assets/img/tx.jpeg" alt="">
+                                </div>
+                                {{user_name}}
+                                <span>{{s_title}}值为{{blood_one}}</span>
+                            </li>
+                            <li class="list_two">
+                                <i class="iconfont icondierming1"></i>
+                                <div class="head_frame">
+                                    <img src="../../assets/img/tx.jpeg" alt="">
+                                </div>
+                                {{user_name}}
+                                <span>{{s_title}}值为{{blood_one}}</span>
+                            </li>
+                            <li class="list_three">
+                                <i class="iconfont icondisanming1"></i>
+                                <div class="head_frame">
+                                    <img src="../../assets/img/tx.jpeg" alt="">
+                                </div>
+                                {{user_name}}
+                                <span>{{s_title}}值为{{blood_one}}</span>
+                            </li>
+                        </ul>
+                    </mt-popup>
+                </div>
+
+
+                <div class="frame_force">
+                    <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="visible_force" style="width:100%;height:60%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">   
+                        <ul>
+                            <li class="f_title">
+                                <i class="iconfont iconbaozhangliliangweihukaobei"></i>
+                                {{e_title}}
+                            </li>
+                            <li class="haoyou">
+                                <i class="iconfont iconhaoyou1"></i>
+                                <span>邀请好友一起玩吧</span>
+                                <span class="add_haoyou">添加
+                                    <i class="iconfont icontianjiahaoyou"></i>      
+                                 好友</span>
+                            </li>
+
+                            <li class="list_my">
+                                <i class="iconfont icon5"></i>
+                                <div class="head_frame">
+                                    <img src="../../assets/img/tx.jpeg" alt="">
+                                </div>
+                                {{user_name}}(我)
+                                <span>{{e_title}}值为{{blood_one}}</span>
+                            </li>
+                            <li class="list_one">
+                                <i class="iconfont icondiyiming"></i>
+                                <div class="head_frame">
+                                    <img src="../../assets/img/tx.jpeg" alt="">
+                                </div>
+                                {{user_name}}
+                                <span>{{e_title}}值为{{blood_one}}</span>
+                            </li>
+                            <li class="list_two">
+                                <i class="iconfont icondierming1"></i>
+                                <div class="head_frame">
+                                    <img src="../../assets/img/tx.jpeg" alt="">
+                                </div>
+                                {{user_name}}
+                                <span>{{e_title}}值为{{blood_one}}</span>
+                            </li>
+                            <li class="list_three">
+                                <i class="iconfont icondisanming1"></i>
+                                <div class="head_frame">
+                                    <img src="../../assets/img/tx.jpeg" alt="">
+                                </div>
+                                {{user_name}}
+                                <span>{{e_title}}值为{{blood_one}}</span>
+                            </li>
+                        </ul>
+                    </mt-popup>
+                </div>
+
+
+                <!-- <div class="bag_interface">
+                    <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="m_bag" style="width:100%;height:60%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">   
+                        <ul class="bag_head">
+                            <li class="title">
+                                <span class="left">装备</span> 
+                                <span class="right">技能</span>
+                            </li>
+                        </ul>
+
+                        <ul class="bag_body">
+                            <li class='zb_title'>
+                                <span>武器</span>
+                                <span>武装</span>
+                                <span>药品</span>
+                            </li>
+
+                            <li class="wuqi" :v-if="wuqi">
+                                <div class="wq_one">
+                                    <i class="iconfont iconwuqihui"></i>
+                                    <p>武力+1</p>
+                                </div>
+                                <div class="wq_one">
+                                    <i class="iconfont iconwuqilan" style="color: blue;"></i>
+                                    <p>武力+1</p>
+                                </div>
+                                <div class="wq_one">
+                                    <i class="iconfont iconkaiheifangjian-iCON_bisai-wuqi"></i>
+                                    <p>武力+1</p>
+                                </div>
+                                <div class="wq_one">
+                                    <i class="iconfont iconwuqi" style="color: purple;"></i>
+                                    <p>武力+1</p>
+                                </div>
+                                <div class="wq_one">
+                                    <i class="iconfont iconwuqix"></i>
+                                    <p>武力+1</p>
+                                </div>
+                                <div class="wq_one">
+                                    <i class="iconfont iconwuqizhuangbeishezhi"></i>
+                                    <p>武力+1</p>
+                                </div>
+                                <div class="wq_one">
+                                    <i class="iconfont iconwuqianniu" style="color: red;"></i>
+                                    <p>武力+1</p>
+                                </div>
+                            </li>
+                        </ul>
+                    </mt-popup>
+                </div> -->
     </div>
 </template>
 
       
 <script>
-    import { MessageBox } from 'mint-ui'
+    import { picker,} from 'mint-ui';
     export default {
-       methods: {
-           routerRefresh() {
-            window.location.reload();
-        },
-            open() {
-                MessageBox.confirm('将前往跑步抓取宠物, 是否继续?', '提示', {
-                confirmButtonText: '确定',
-                cancelButtonText: '取消',
-                type: 'warning'
-                }).then(() => {
-                window.location.href='../run#/run';    
-                //   window.location.href='../run#/footer/pet/gpet';
-                }).catch(() => {
-                MessageBox.message({
-                    
-                    });          
-                });
+        name: 'pet_head',
+        name: 'frame',
+        data(){
+            return{
+                xiaoqu: '青岛工学院校区',
+                tongzhi: '官方通知：-------',
+                visible: false,
+                visible_skill: false,
+                visible_force: false,
+                see: false,
+                wuqi: false,
+                ber: true,
+                f_title: '血量',
+                s_title: '技能',
+                e_title: '武力',
+                blood_one: 10,
+                user_name: 'hjw',
+                num: 120,
+                ber_num: 0,
+                Width:{
+                    'width': '0px',
+                },
             }
         },
-        
-    }
+        methods:{
+            blood:function(){
+                this.visible = true;
+            },
+            skill(){
+                this.visible_skill = true;
+            },
+            force(){
+                this.visible_force = true;
+            },
+            bar(){
+                this.Width = {
+                    'width': this.num + 'px',
+                }
+                this.ber_num = (this.num / 120)*100;
+                this.ber_num = this.ber_num.toFixed(2);
+                if(this.num == 0){
+                    this.see = true;
+                    this.ber = false;
+                }
+                if(this.num >= 120){
+                    this.num = 120;
+                    // this.blood = true;
+                }else{
+                    this.blood = false;
+                    this.skill = false;
+                    this.force = false;
+                }
+            },
+        },
+        mounted(){
+            this.bar();
+            
 
+        },
+        components:{
+            picker  
+        }
+
+    }
 </script>
 
+
 <style scoped>
-    *{margin: 0;padding: 0;list-style: none;}
+   @import "../../../src/assets/css/gpet.css";
+   /* 背包弹窗 */
+   /* 头部 */
+   .bag_interface .bag_head .title{
+       height: 50px;
+       line-height: 50px;
+       border-bottom: 1px solid rgb(184, 181, 181);
+       
+   }
 
-    .pet_interface{
+    .bag_interface .bag_head .title .left{
+        float: left;
+        margin-left: 50px;
+    }
+
+    .bag_interface .bag_head .title .right{
+        float: right;
+        margin-right: 50px;
+    }
+
+/* 内容 */
+    .bag_interface .bag_body .zb_title{
+       height: 40px;
+       line-height: 40px;
+       border-bottom: 1px solid rgb(184, 181, 181);
+    }
+
+    .bag_interface .bag_body .wuqi{
         width: 100%;
-        height: 100%;
-        max-width: 100%;
-        max-height: 100%;
-        position: absolute;
+        height: 60px;
     }
 
-    /* 弹窗部分 */
-    
-
-    /* 宠物部分 */
-    .pet_interface_pet{
-        width: 100%;
-        height: 75%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
+    .bag_interface .bag_body .wuqi .wq_one{
+        display: inline-block;
+        width: 80px;
+        height: 80px;
+        border: 1px solid rgb(85, 175, 236);
     }
 
-    /* 圆圈和背包 */
-    .pet_interface_pet_top{
-        width: 100%;
-        height: 30%;
-        display: flex;
-        justify-content: space-between;
-    }
-
-    /* 圆圈 */
-    .pet_interface_pet_top ul li{
-        margin-bottom: 10%;
-    }
-
-    .pet_interface_pet_top ul li img{
-        width: 40%;
-    }
-
-    /* 背包 */
-    .pet_interface_pet_top .bag_img{
-        /* margin-right: 5%; */
-    }
-
-    /* 设置背包图片的大小 */
-    .pet_interface_pet_top .bag_img img{
-        width: 40%;
-    }
-    
-
-    /* 进度条 */
-    .progress_bar{
-        display: flex;
-        width: 120px;
-        height: 6%;
-        background-color: rgb(204, 204, 204);
-        border-radius: 20px;
-        margin: 20% auto 0;
-    }
-
-    .progress_bar p{
-        color: rgb(240, 248, 255);
-        margin: 3% auto 0;
-    }
-
-
-    /* 宠物蛋 */
-     .egg_img{
-        display: flex;
-        background-image: url(../../assets/img/pet/egg.png);
-        background-repeat: no-repeat;
-        width: 100%;
-        background-position: center;
-        background-size: auto 100%;
-        height: 100%;
+    .bag_interface .bag_body .wuqi .wq_one i{
+        display: block;
+        margin: 10px 0 10px 0;
     }
 </style>
 
