@@ -65,7 +65,7 @@ export default {
          lines: [
             {
               path: [        
-                //[120.02112, 36.24094]
+                //[120.02112, 36.24094],
              
               
               ],
@@ -98,10 +98,10 @@ export default {
                    var a =  self.lines[0].path.length;
                  // console.log("a:"+a)
                    if(a==0){
-                     self.lines[0].path.push([self.lng,self.lat]);
+                     self.lines[0].path.push([self.lng,self.lat],);
                    }
                    else if((self.lines[0].path[a-1][0]!=self.lng)||(self.lines[0].path[a-1][1]!=self.lat)){
-                         self.lines[0].path.push([self.lng,self.lat]+",");
+                         self.lines[0].path.push([self.lng,self.lat],);
                    }
                 }
               })
@@ -170,7 +170,7 @@ export default {
       clearTimeout(this.ll);
     },
     end(){
-        if(this.miles<0.3){
+        if(this.miles<0.1){
             MessageBox.confirm('', { 
          message: '当前活动距离过短，将不会记录成绩', 
          title: '提示', 
