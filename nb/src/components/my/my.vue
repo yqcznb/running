@@ -46,7 +46,7 @@ export default {
         return{
             autoresize: true,
             uname: '用户2048',
-            if_rz: 'have_rz',
+            if_rz: 'have_not_rz',
             uduan: '青铜萌新',
             levelImg: require('../../assets/img/my/schedual_level/default.png'),
             headportrait:require('../../assets/img/my/headportrait/default.png'),
@@ -94,7 +94,7 @@ export default {
         axios.get('http://no37.store:8080/AK/ShowMe',{
             params: {
                 yhid:localStorage.getItem("yhid"),
-                // yhid:25,
+                // yhid:28,
             }})
             .then(response=>{
                 console.log(response);
@@ -103,6 +103,25 @@ export default {
                 this.uduan = response.data.dwmc;
                 this.duanImg = "http://no37.store/image/duan/"+response.data.dwtp;
                 this.levelImg = "http://no37.store/image/schedual_level/"+response.data.dwjdtp;
+            })      //获取失败
+            .catch(error=>{
+                alert('网络错误，不能访问');
+            })
+        // 认证信息
+        axios.get('http://no37.store:8080/AK/SelectXsID',{
+            params: {
+                yhid:localStorage.getItem("yhid"),     
+            }})
+            .then(response=>{
+                console.log(response);
+                if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
+                    this.if_rz = "have_rz";
+                }
+                else {
+                    this.if_rz = "have_not_rz";
+                }
+                console.log(this.ifrz);
+                    
             })      //获取失败
             .catch(error=>{
                 alert('网络错误，不能访问');

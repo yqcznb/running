@@ -6,7 +6,39 @@
             </router-link>
             <span class="title">今日排行</span>
         </div>
-        <div class="toper">
+        <div class="select_list">
+            <mt-navbar v-model="selected">
+                <mt-tab-item id="1">今日排名</mt-tab-item>
+                <mt-tab-item id="2">本周排名</mt-tab-item>
+                <mt-tab-item id="3">当月排名</mt-tab-item>
+            </mt-navbar>
+            <!-- tab-container -->
+            <mt-tab-container v-model="selected">
+                <mt-tab-container-item id="1">
+                    <div class="toper">
+                        <img :src="run_list[0].yhtx" alt="" class="top_one">
+                        {{run_list[0].yhnc}}
+                    </div>
+                    <div class="list_box" id="container">
+                        <ul>
+                            <li v-for="(value, key) in run_list">
+                                <span v-text="key+1"></span>
+                                <img :src="value.yhtx" alt="" class="list_img">
+                                <span v-text="value.yhnc" class="yhnc"></span>
+                                <span v-text="value.ydjl" class="ydjl"></span>
+                            </li>
+                        </ul>
+                    </div>
+                </mt-tab-container-item>
+                <mt-tab-container-item id="2">
+                    劳资
+                </mt-tab-container-item>
+                <mt-tab-container-item id="3">
+                    是你滴爸爸
+                </mt-tab-container-item>
+            </mt-tab-container>
+        </div>
+        <!-- <div class="toper">
             <img :src="run_list[0].yhtx" alt="" class="top_one">
             {{run_list[0].yhnc}}
         </div>
@@ -19,7 +51,7 @@
                     <span v-text="value.ydjl" class="ydjl"></span>
                 </li>
             </ul>
-        </div>
+        </div> -->
         
     </div>
 </template>
@@ -30,7 +62,7 @@ export default {
     data() {
         return{
             run_list: [],
-
+            selected: 1,
         }
     },
     created() {
@@ -77,13 +109,12 @@ export default {
         color: #dec674;    
     }
     #back_bar {
-        position: fixed;
+        position: relative;
         width: 100%;
         text-align: left;
         text-indent: 0.3em;
         line-height: 200%;
         background-color: rgb(83, 83, 83);
-        margin-bottom: 2%;
         z-index: 3;
     }
     .title {
@@ -95,19 +126,37 @@ export default {
         right: 0;
         margin: 0 auto;
     }
-    .toper {
+    .select_list {
+        width: 100%;
         border: 1px solid red;
+    }
+    .mint-navbar{
+        width: 95%;
+        margin: 0 auto;
+        border-radius: 0 0 7px 7px;
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+    .mint-tab-item {
+        color: black;
+        font-size: 15px !important;
+    }
+    .mint-navbar .mint-tab-item.is-selected {
+        color: rgba(253, 185, 51, 0.89);;
+        border-color: rgba(253, 185, 51, 0.89);
+    }
+    .toper {
+        /* border: 1px solid red; */
         width: 93%;
         max-width: 550px;
-        height: 20%;
         margin: 0 auto;
-        margin-top: 40px;
+        padding: 10px;
+        /* margin-top: 40px; */
         display: flex;
         align-items: center;
     }
     .top_one {
         position: relative;
-        width: 15%;
+        width: 20%;
         max-width: 80px;
         border-radius: 25%;
     }

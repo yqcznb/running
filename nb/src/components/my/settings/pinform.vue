@@ -8,14 +8,14 @@
         <div id="photo_name">
             <router-link to="">
                 <div id="photo">
-                    <span class="left-text">头像</span>
+                    <span class="left-text head_title">头像</span>
                     <img :src='headportrait' class="headportrait">
                 </div>
             </router-link>
             <hr>
             <router-link to="">
                 <div id="name">
-                    <span><span>昵称</span><span class="rightname" v-text="user_name"></span></span><i class="iconfont iconfanhui iconfont-right"></i>
+                    <span><span class="name_title">昵称</span><span class="rightname" v-text="user_name"></span></span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
         </div>
@@ -113,6 +113,9 @@ export default {
         margin-right: 0;
         position: absolute;
         right: 7%;
+    }
+    .head_title,.name_title {
+        color: black;
     }
     .left-text,.headportrait {
         display: flex;
