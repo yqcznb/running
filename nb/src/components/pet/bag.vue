@@ -34,39 +34,39 @@
 export default {
     
 }
-var canvas = document.getElementById('my_canvas');
-var obj = canvas.getContext('2d');
+// var canvas = document.getElementById('my_canvas');
+// var obj = canvas.getContext('2d');
 	
-	var img = new Image();
-	img.src = '../../assets/img/pet/04.png';
+// 	var img = new Image();
+// 	img.src = '../../assets/img/pet/04.png';
 
-	img.onload = function(){
-		//完成图片加载
-		//通过图片大小获取每个人物的大小
-		var imgWidth = img.width;
-		var imgHeight = img.height;
-		var personWidth = imgWidth/4;
-		var personHeight = imgHeight/4;
+// 	img.onload = function(){
+// 		//完成图片加载
+// 		//通过图片大小获取每个人物的大小
+// 		var imgWidth = img.width;
+// 		var imgHeight = img.height;
+// 		var personWidth = imgWidth/4;
+// 		var personHeight = imgHeight/4;
 
-		var index = 0;
+// 		var index = 0;
 
-		//找出画布的中心
-		var x0 = obj.canvas.width/2 - personWidth/2;
-		var y0 = obj.canvas.height/2 - personHeight/2;
-		//然后截取图片，绘制到画布中心
-		obj.drawImage(img,0,0,personWidth,personHeight,x0,y0,personWidth,personHeight);
+// 		//找出画布的中心
+// 		var x0 = obj.canvas.width/2 - personWidth/2;
+// 		var y0 = obj.canvas.height/2 - personHeight/2;
+// 		//然后截取图片，绘制到画布中心
+// 		obj.drawImage(img,0,0,personWidth,personHeight,x0,y0,personWidth,personHeight);
 
-		//定时器
-		setInterval(function(){
-			index++;
-			obj.clearRect(0,0,obj.canvas.width,obj.canvas.height);
-			obj.drawImage(img,index*personWidth,0,personWidth,personHeight,x0,y0,personWidth,personHeight);
-			if(index > 3){
-				obj.drawImage(img,0,0,personWidth,personHeight,x0,y0,personWidth,personHeight);
-				index = 0;
-			}
-		},100);
-	};
+// 		//定时器
+// 		setInterval(function(){
+// 			index++;
+// 			obj.clearRect(0,0,obj.canvas.width,obj.canvas.height);
+// 			obj.drawImage(img,index*personWidth,0,personWidth,personHeight,x0,y0,personWidth,personHeight);
+// 			if(index > 3){
+// 				obj.drawImage(img,0,0,personWidth,personHeight,x0,y0,personWidth,personHeight);
+// 				index = 0;
+// 			}
+// 		},100);
+// 	};
 </script>
 
 
