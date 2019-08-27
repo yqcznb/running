@@ -22,10 +22,14 @@
                     <div class="list_box" id="container">
                         <ul>
                             <li v-for="(value, key) in run_list">
-                                <span v-text="key+1"></span>
-                                <img :src="value.yhtx" alt="" class="list_img">
-                                <span v-text="value.yhnc" class="yhnc"></span>
-                                <span v-text="value.ydjl" class="ydjl"></span>
+                                <hr v-if="key" class="list_hr">
+                                <div class="list_details">
+                                    <span v-text="key+1"></span>
+                                    <img :src="value.yhtx" alt="" class="list_img">
+                                    <span v-text="value.yhnc" class="yhnc"></span>
+                                    <span v-text="value.ydjl" class="ydjl"></span>
+                                </div>
+                                
                             </li>
                         </ul>
                     </div>
@@ -62,7 +66,7 @@ export default {
     data() {
         return{
             run_list: [],
-            selected: 1,
+            selected: '1',
         }
     },
     created() {
@@ -141,8 +145,8 @@ export default {
         font-size: 15px !important;
     }
     .mint-navbar .mint-tab-item.is-selected {
-        color: rgba(253, 185, 51, 0.89);;
-        border-color: rgba(253, 185, 51, 0.89);
+        color: #ca884b;
+        border-color: #ca884b;
     }
     .toper {
         /* border: 1px solid red; */
@@ -161,7 +165,7 @@ export default {
         border-radius: 25%;
     }
     .list_box {
-        border: 1px solid red;
+        /* border: 1px solid red; */
         border-radius: 7px;
         width: 95%;
         max-width: 550px;
@@ -174,13 +178,24 @@ export default {
     }
     ul {
         margin: 0;
-        padding: 0;
+        padding: 8px 0;
         list-style: none;
     }
     li {
-        border: 1px solid red;
+        /* border: 1px solid red; */
+        width: 93%;
         display: flex;
-        justify-content: space-around;
+        margin: 0 auto;
+        /* margin-bottom: 10px; */
+        flex-direction: column;
+    }
+    .list_hr {
+        width: 93%;
+        margin: 8px auto;
+    }
+    .list_details {
+        display: flex;
+        justify-content: space-between;
         align-items: center;
     }
     .list_img {
