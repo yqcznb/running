@@ -1,5 +1,5 @@
 <template>
-  <div class="time">
+  <div class="ttime">
     <div class="head">
      <div class="top">
           <div class="gl">{{miles}}<span>公里</span></div><br>
@@ -9,7 +9,7 @@
            <div>{{str}}<p>用时</p></div>
            <div>{{ calories}}<p>热量（千卡）</p></div>
       </div>
-     <div class="ceshi" v-for="line in lines"  :key="line" :v-model="lines" :path="line.path">miles:{{miles}}$$distance:{{distance}}^^aa:{{aa}}**当前经纬度：{{lng}},{{lat}}***数组：{{line.path}}</div>
+     <div class="ceshi" v-for="line in lines"  :key="line.id" :v-model="lines" :path="line.path">miles:{{miles}}$$distance:{{distance}}^^aa:{{aa}}**当前经纬度：{{lng}},{{lat}}***数组：{{line.path}}</div>
     </div>
     <el-amap 
         vid="amap"  
@@ -18,7 +18,7 @@
         class="amap-demo" 
         :center="center"
     >  
-      <el-amap-bezier-curve v-for="line in lines"  :key="line" :v-model="lines" :path="line.path" :stroke-color="line.strokeColor" :stroke-style="line.strokeStyle" :events="line.events" :stroke-opacity="line.strokeOpacity"></el-amap-bezier-curve>  
+      <el-amap-bezier-curve v-for="line in lines"  :key="line.id" :v-model="lines" :path="line.path" :stroke-color="line.strokeColor" :stroke-style="line.strokeStyle" :events="line.events" :stroke-opacity="line.strokeOpacity"></el-amap-bezier-curve>  
     </el-amap>
       <button class="jsun"  @mouseenter="mouseEnter" v-if="showw">长按结束</button>
       <button class="buleft"   v-if="left" @click="con">继续</button>
@@ -29,12 +29,12 @@
 <script>
 import { MessageBox, Button} from 'mint-ui'
 export default {
-  name: 'time',
+  name: 'ttime',
    data() {
     let self = this;
     return {
       center: [121.59996, 31.197646],
-      zoom: 19,
+      zoom: 18,
       lng: 0,
       lat: 0,
       loaded: false,
@@ -54,7 +54,7 @@ export default {
         m:0,
         s:0,
         ms:0,
-        time:0, //时间定时器
+        ttime:0, //时间定时器
         lux:0,//路线定时器
         ll:0,//定位定时器
         jl:0,//距离定时器
@@ -87,7 +87,7 @@ export default {
           events: {
             init(o) {
              // o 是高德地图定位插件实例
-               this.ll=setInterval(function(){
+               self.ll=setInterval(function(){
                  o.getCurrentPosition((status, result) => {
                 if (result && result.position) {
                   self.lng = result.position.lng;             //设置经度
@@ -126,7 +126,7 @@ export default {
     this.getCase()
   },
    created: function () {
-     this.time=setInterval(this.timer,50);
+     this.ttime=setInterval(this.timer,50);
     // this.lux=setInterval(this.luxian,3000);
      this.jl=setInterval(()=>{
       if((this.aa+1)==this.lines[0].path.length)
@@ -154,11 +154,11 @@ export default {
       this.$emit('register', this.lng, this.lat)
     },
    mouseEnter(){
-    this.ll =  setTimeout(()=>{
+    this.sx =  setTimeout(()=>{
       this.showw = false;
       this.left = true;
       this.right = true;
-      clearInterval(this.time);
+      clearInterval(this.ttime);
     
    }, 3000);
     },
@@ -166,12 +166,12 @@ export default {
       this.showw = true;
       this.left = false;
       this.right = false;
-      this.time=setInterval(this.timer,50);
+      this.ttime=setInterval(this.timer,50);
       clearTimeout(this.ll);
     },
     end(){
         if(this.miles<0.1){
-            MessageBox.confirm('', { 
+         MessageBox.confirm('', { 
          message: '当前活动距离过短，将不会记录成绩', 
          title: '提示', 
          confirmButtonText: '结束', 
@@ -181,7 +181,7 @@ export default {
             this.$router.push({
                     path: '/footer/index'
                 });
-            clearInterval(this.time);
+            clearInterval(this.ttime);
           
          }
          }).catch(err => { 
@@ -200,7 +200,7 @@ export default {
             this.$router.push({
                     path: '/footer/index'
                 });
-            clearInterval(this.time);
+            clearInterval(this.ttime);
           
          }
          }).catch(err => { 
@@ -276,7 +276,7 @@ export default {
   color: #fff;
   background-color: #8d8a8a
 }
-.time {
+.ttime {
   color: #fff;
   width: 100%;
   height: 100%;
