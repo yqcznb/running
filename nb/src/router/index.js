@@ -18,7 +18,7 @@ import run_data_detail from '@/components/my/run_data_detail'
 import rank_list from '@/components/my/rank_list'
 
 import pet from '@/components/pet/pet'
-import gpet from '@/components/gpet/gpet'
+import bag from '@/components/pet/bag'
 import register from '@/components/login/register'
 import forget from '@/components/login/forget'
 import confirm from '@/components/login/confirm'
@@ -99,6 +99,11 @@ export default new Router({
           ],
         
         },
+        {
+          path: '/bag',
+          name: 'bag',
+          component: bag,
+        },
        
         {
           path: 'index',
@@ -120,11 +125,7 @@ export default new Router({
         },
       ]
     },
-    {
-      path: '/gpet',
-      name: 'gpet',
-      component: gpet,
-    },
+    
     {
       path: '/backbar',
       name: 'backbar',
