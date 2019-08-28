@@ -7,10 +7,10 @@
             <span class="title">今日排行</span>
         </div>
         <div class="select_list">
-            <mt-navbar v-model="selected">
-                <mt-tab-item id="1">今日排名</mt-tab-item>
-                <mt-tab-item id="2">本周排名</mt-tab-item>
-                <mt-tab-item id="3">当月排名</mt-tab-item>
+            <mt-navbar v-model="selected" @click="showList">
+                <mt-tab-item id="1" @click.native="showList">今日排名</mt-tab-item>
+                <mt-tab-item id="2" @click.native="showList">本周排名</mt-tab-item>
+                <mt-tab-item id="3" @click.native="showList">当月排名</mt-tab-item>
             </mt-navbar>
             <!-- tab-container -->
             <mt-tab-container v-model="selected">
@@ -27,36 +27,52 @@
                                     <span v-text="key+1"></span>
                                     <img :src="value.yhtx" alt="" class="list_img">
                                     <span v-text="value.yhnc" class="yhnc"></span>
-                                    <span v-text="value.ydjl" class="ydjl"></span>
+                                    <span v-text="value.sum" class="ydjl"></span>
                                 </div>
-                                
                             </li>
                         </ul>
                     </div>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="2">
-                    劳资
+                    <div class="toper">
+                        <img :src="run_list[0].yhtx" alt="" class="top_one">
+                        {{run_list[0].yhnc}}
+                    </div>
+                    <div class="list_box" id="container">
+                        <ul>
+                            <li v-for="(value, key) in run_list">
+                                <hr v-if="key" class="list_hr">
+                                <div class="list_details">
+                                    <span v-text="key+1"></span>
+                                    <img :src="value.yhtx" alt="" class="list_img">
+                                    <span v-text="value.yhnc" class="yhnc"></span>
+                                    <span v-text="value.sum" class="ydjl"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="3">
-                    是你滴爸爸
+                    <div class="toper">
+                        <img :src="run_list[0].yhtx" alt="" class="top_one">
+                        {{run_list[0].yhnc}}
+                    </div>
+                    <div class="list_box" id="container">
+                        <ul>
+                            <li v-for="(value, key) in run_list">
+                                <hr v-if="key" class="list_hr">
+                                <div class="list_details">
+                                    <span v-text="key+1"></span>
+                                    <img :src="value.yhtx" alt="" class="list_img">
+                                    <span v-text="value.yhnc" class="yhnc"></span>
+                                    <span v-text="value.sum" class="ydjl"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </mt-tab-container-item>
             </mt-tab-container>
         </div>
-        <!-- <div class="toper">
-            <img :src="run_list[0].yhtx" alt="" class="top_one">
-            {{run_list[0].yhnc}}
-        </div>
-        <div class="list_box" id="container">
-            <ul>
-                <li v-for="(value, key) in run_list">
-                    <span v-text="key+1"></span>
-                    <img :src="value.yhtx" alt="" class="list_img">
-                    <span v-text="value.yhnc" class="yhnc"></span>
-                    <span v-text="value.ydjl" class="ydjl"></span>
-                </li>
-            </ul>
-        </div> -->
-        
     </div>
 </template>
 <script>
@@ -73,12 +89,11 @@ export default {
         // 用户积分
         axios.get('http://no37.store:8080/AK/MoveTop',{
             params: {
-                yhid:1,TimeOne:this.selected,
+                yhid:localStorage.getItem("yhid"),TimeOne:1,
+
             }})
             .then(response=>{
-                console.log(response);
                 this.run_list = response.data;
-                console.log(this.run_list);
             })      //获取失败
             .catch(error=>{
                 alert('网络错误，不能访问');
@@ -87,6 +102,18 @@ export default {
     methods: {
         routerRefresh() {
             window.location.reload();
+        },
+        showList() {
+            axios.get('http://no37.store:8080/AK/MoveTop',{
+                params: {
+                    yhid:localStorage.getItem("yhid"),TimeOne:this.selected,
+                }})
+                .then(response=>{
+                    this.run_list = response.data;
+                })      //获取失败
+                .catch(error=>{
+                    alert('网络错误，不能访问');
+                })
         },
     },
 }
@@ -136,6 +163,7 @@ export default {
     }
     .mint-navbar{
         width: 95%;
+        max-width: 550px;
         margin: 0 auto;
         border-radius: 0 0 7px 7px;
         background-color: rgba(255, 255, 255, 0.7);

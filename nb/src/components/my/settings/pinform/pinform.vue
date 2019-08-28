@@ -25,7 +25,15 @@
             </router-link>
         </div>
         
-        <input class="file" name="file" type="file" accept="image/png,image/gif,image/jpeg" @change="update"/>
+        <ul>
+            <li class="scroll-item first-item" @click="chooseImage">
+                <i class="iconPhoto"></i>
+                <span class="title">拍照</span>
+                <input @change="photoChange($event)" type="file" id="upload_file" multiple style="display: none"/>
+            </li>
+        </ul>
+
+        <!-- <input class="file" name="file" type="file" accept="image/png,image/gif,image/jpeg" @change="update"/> -->
 
     </div>
 </template>
@@ -61,24 +69,79 @@ export default {
         routerRefresh() {
             window.location.reload();
         },
-        update(e){
-            let file = e.target.files[0];
-            console.log(file);
-            console.log(e.target.files);
-            let param = new FormData(); //创建form对象
-            param.append('file',file);//通过append向form对象添加数据
-            console.log(param.get('file')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
-            axios.post('http://no37.store:8080/AK/AddPhoto',{
-                params: {
-                    yhid:localStorage.getItem("yhid"),file:param,
-                }})
-            .then(response=>{
-                console.log(response.data);
-            })
-            .catch(error=>{
-                console.log(error);
-            })
-        }
+        chooseImage(){
+            document.getElementById('upload_file').click(); //触发input-file文件上传控件 事件photoChange
+ 　　　　},
+        photoChange(el) {
+            var file = el.target.files[0];//name: "dangqi1.png" || type: "image/png"
+            var type = file.type.split('/')[0];
+            if ( type === 'image' ){
+                //将图片img转化为base64
+                var reader = new FileReader();
+                reader.readAsDataURL(file);
+                var that = this;
+                reader.onloadend = function () {
+                    var dataURL = reader.result;
+                    var blob = that.dataURItoBlob(dataURL);
+                    that.upload(blob); //执行上传接口
+                };
+            }else{
+                alert('上传了非图片');
+            }
+        },
+        dataURItoBlob (dataURI) {
+                // base64 解码
+                let byteString = window.atob(dataURI.split(',')[1]);
+                let mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+                let T = mimeString.split('/')[1];
+                let ab = new ArrayBuffer(byteString.length);
+                let ia = new Uint8Array(ab);
+                for (let i = 0; i < byteString.length; i++) {
+                    ia[i] = byteString.charCodeAt(i);
+                }
+                return new Blob([ab], {type: mimeString});
+            },
+            upload(imgUrl){
+                var formdata = new FormData();
+                formdata.append('file',imgUrl);//下面是要传递的参数
+                console.log(formdata);
+                axios.get("http://no37.store:8080/AK/AddPhoto",
+                    formdata,
+                    {headers:{'Content-Type':'multipart/form-data'}}
+                ).then((res)=>{
+                    if(res.data.code === 200){
+                        alert('成功上传！');
+                        this.postimg = res.data.data.url;
+                    }else if(res.data.code === 401){
+                        alert('未登录')
+                    }else if(res.data.code === 403){
+                        alert('未授权')
+                    }else if(res.data.code === 422){
+                        alert('验证失败信息')
+                    }else if(res.data.code === 500){
+                        alert('系统错误')
+                    }
+                })
+            },
+
+        // update(e){
+        //     let file = e.target.files[0];
+        //     console.log(file);
+        //     console.log(e.target.files);
+        //     let param = new FormData(); //创建form对象
+        //     param.append('file',file);//通过append向form对象添加数据
+        //     console.log(param.get('file')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
+        //     axios.post('http://no37.store:8080/AK/AddPhoto',{
+        //         params: {
+        //             yhid:localStorage.getItem("yhid"),file:param,
+        //         }})
+        //     .then(response=>{
+        //         console.log(response.data);
+        //     })
+        //     .catch(error=>{
+        //         console.log(error);
+        //     })
+        // }
     },
 }
 </script>
