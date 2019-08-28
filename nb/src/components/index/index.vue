@@ -7,7 +7,7 @@
          <li class="xiaoqu" v-if="ow" >{{xiaoqu}}</li>
         <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{ggnr}}</li>
     </ul>
-    <router-view :key="aa"></router-view>
+    <router-view></router-view>
     <div class="caochang">
         <div class="xinxi">
             <div>
@@ -41,8 +41,9 @@ export default {
         yp:"",
         xqmb:"",
         ggnr:"",
+        dqyp:"",
         show:true,
-        ow:false,
+        ow:false
     }
   },created(){
  
