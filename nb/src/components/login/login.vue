@@ -43,7 +43,7 @@ export default {
        
 
         login(){
-             if (this.username === '' || this.password === '') {
+             if (this.username == '' || this.password =='') {
                     alert('请输入用户名或密码')
                     }
              else{
