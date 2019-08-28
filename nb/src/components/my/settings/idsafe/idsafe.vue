@@ -96,7 +96,8 @@ export default {
         margin: 0 auto;
     }
     .iconfont-right {
-        font-size: 25px;
+        font-size: 22px;
+        font-weight: normal;
         color: #999999;
         margin-right: 0;
         /* position: absolute; */
@@ -117,7 +118,7 @@ export default {
         color: gray;
         display: flex;
         align-items: center;
-        font-size: 12px;
+        font-size: 13px;
         font-weight: bold;
     }
     #number,#password,#device-center {
