@@ -45,8 +45,8 @@
                 </div>
             </router-link>
             <hr>
-            <router-link to="/">
-                <div id="logout" @click="tui">
+            <router-link to="">
+                <div id="logout" @click="log_out">
                     <span>退出登录</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
@@ -54,6 +54,7 @@
     </div>    
 </template>
 <script>
+import { MessageBox } from 'mint-ui'
 export default {
     name: 'settings',
     computed: {
@@ -68,9 +69,28 @@ export default {
         routerRefresh() {
             window.location.reload();
         },
-        tui(){
-            localStorage.removeItem("Flag")
-            localStorage.removeItem("yhid")
+        log_out(){
+            MessageBox.confirm('', { 
+            message: '你确定要退出登录吗?', 
+            title: '提示', 
+            confirmButtonText: '确定', 
+            cancelButtonText: '取消' 
+            })
+            .then(action => { 
+                if (action=='confirm'){     //确认的回调
+                    this.$router.push({
+                        path: '/'
+                    });
+                    localStorage.removeItem("Flag");
+                    localStorage.removeItem("yhid");
+                }
+            })
+            .catch(err => { 
+                if (err == 'cancel') {
+                }
+            });
+
+            
         }
     },
 }
