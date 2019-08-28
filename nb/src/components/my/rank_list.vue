@@ -73,7 +73,7 @@ export default {
         // 用户积分
         axios.get('http://no37.store:8080/AK/MoveTop',{
             params: {
-                yhid:1,ydrqn:2018,ydrqy:8,ydrqr:12,
+                yhid:1,TimeOne:this.selected,
             }})
             .then(response=>{
                 console.log(response);

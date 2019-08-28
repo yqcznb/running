@@ -8,33 +8,49 @@
         <div id="number">
             <router-link to="">
                 <div id="userid">
-                    <span>手机号</span><i class="iconfont iconfanhui iconfont-right"></i>
+                    <span>手机号</span>
+                    <span class="phone_right">
+                        <span >15611111111</span>
+                        <i class="iconfont iconfanhui iconfont-right"></i>
+                    </span>
                 </div>
             </router-link>
             <hr>
             <router-link to="">
-                <div id="phone">
-                    <span>邮箱号</span><i class="iconfont iconfanhui iconfont-right"></i>
+                <div id="mail">
+                    <span>邮箱号</span>
+                    <span class="mail_right">
+                        <span >15611111111@qq.com</span><i class="iconfont iconfanhui iconfont-right"></i>
+                    </span>
                 </div>
             </router-link>
         </div>
         <div id="password">
             <router-link to="">
-                <div id="passwordmsg">
-                    <span>趣跑密码</span><i class="iconfont iconfanhui iconfont-right"></i>
+                <div id="passmsg">
+                    <span>趣跑密码</span>
+                    <span class="pass_right">
+                        <span class="xing" v-for="n in passmsg.length">※</span><i class="iconfont iconfanhui iconfont-right"></i>
+                    </span>
                 </div>
             </router-link>
         </div>
         <div id="device-center">
             <router-link to="">
                 <div id="device">
-                    <span>登陆设备管理</span><i class="iconfont iconfanhui iconfont-right"></i>
+                    <span>登陆设备管理</span>
+                    <span class="device_right">
+                        <i class="iconfont iconfanhui iconfont-right"></i>
+                    </span>
                 </div>
             </router-link>
             <hr>
             <router-link to="">
-                <div id="safe-center">
-                    <span>趣跑安全中心</span><i class="iconfont iconfanhui iconfont-right"></i>
+                <div id="safe_center">
+                    <span>趣跑安全中心</span>
+                    <span class="sc_right">
+                        <i class="iconfont iconfanhui iconfont-right"></i>
+                    </span>
                 </div>
             </router-link>
         </div>
@@ -47,6 +63,7 @@ export default {
     data() {
         return {
             backlink: 'settings',
+            passmsg: '123',
         }
     }
 }
@@ -79,11 +96,29 @@ export default {
         margin: 0 auto;
     }
     .iconfont-right {
-        font-size: 20px;
+        font-size: 25px;
         color: #999999;
         margin-right: 0;
-        position: absolute;
+        /* position: absolute; */
         right: 7%;
+    }
+    #userid,#mail,#passmsg,#device,#safe_center {
+        /* border: 1px solid red; */
+        color: black;
+        width: 100%;
+        margin: 0 auto;
+        padding-right: 2%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .phone_right,.mail_right,.pass_right,.device_right,.sc_right {
+        /* border: 1px solid black; */
+        color: gray;
+        display: flex;
+        align-items: center;
+        font-size: 12px;
+        font-weight: bold;
     }
     #number,#password,#device-center {
         width: 93%;
@@ -104,11 +139,6 @@ export default {
     }
     #password {
         height: 8%;
-    }
-    #userid,#phone,#passwordmsg,#device,#safe-center {
-        color: black;
-        display: flex;
-        align-items: center;
     }
     #prompt {
         display: inline-block;
