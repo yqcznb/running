@@ -78,6 +78,7 @@ export default {
                     });
                     localStorage.removeItem("Flag");
                     localStorage.removeItem("yhid");
+                    localStorage.removeItem("password");
                 }
             })
             .catch(err => { 

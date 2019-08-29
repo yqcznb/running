@@ -7,7 +7,7 @@
             <span class="title">个人信息</span>
         </div>
         <div id="photo_name">
-            <router-link to="">
+            <router-link to="" @click.native="uhShow">
                 <div id="photo">
                     <span class="head_left head_title">头像</span>
                     <span class="head_right">
@@ -25,6 +25,21 @@
                 </div>
             </router-link>
         </div>
+        <!-- 头像修改 -->
+        <mt-popup v-model="popupHeadC" position="bottom">
+            <div class="update_head" :style="uhStyle">
+                <form action="http://no37.store:8080/AK/AddPhoto" method="post" enctype="multipart/form-data" target="the_iframe" id="ch_form">
+                    <div class="control_bar">
+                        <span><button @click="cancelUH" class="cancelUH">取消</button></span> <span class="ch_title">更换头像</span> <span> <button @click="confirmUH"  class="mui-btn mui-btn-success confirmUH"  :disabled="ch_disabled">完成</button>
+                        </span>
+                    </div>
+                    <input type="file" name="file" id="" @change="ch_fun">
+                    <input type="text" :value="yhid" name="yhid">
+                </form>
+                <iframe name="the_iframe" frameborder="0" style="" id="brige_frame"></iframe>
+            </div>
+        </mt-popup>
+        <!-- 昵称修改 -->
         <mt-popup v-model="popupNameC" position="bottom">
             <div class="update_name" :style="unStyle">
                 <div class="control_bar">
@@ -34,25 +49,28 @@
                 <input type="text" v-model="change_name" @change="cn_fun" placeholder="请输入昵称" class="change_name">
             </div>
         </mt-popup>
-
-        <form action="http://no37.store:8080/AK/AddPhoto" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" id="">
-            <input type="text" :value="yhid" name="yhid">
-            <input type="submit">
-        </form>
+        
+        
     </div>
 </template>
 <script>
+import { MessageBox } from 'mint-ui'
 import axios from 'axios'
 export default {
     name: 'pinform',
     data() {
         return{
             yhid: '',
+            headportrait: '',
+            // 头像修改
+            change_head: '',
+            after_change: '',
+            popupHeadC: false,
+            uhStyle: '',
+            ch_disabled: true,
+            // 昵称修改
             user_name: '',
             change_name: '',
-            headportrait: '',
-            file: {},
             popupNameC: false,
             unStyle: '',
             cn_disabled: true,
@@ -80,6 +98,25 @@ export default {
         routerRefresh() {
             window.location.reload();
         },
+        // 头像修改
+        uhShow() {
+            this.popupHeadC =! this.popupHeadC;
+            let uhWidth = document.body.clientWidth;
+            let uhHeight = window.innerHeight;
+            this.uhStyle = "width:" + uhWidth + "px;height:" + uhHeight + "px;";
+        },
+        cancelUH() {
+            this.popupHeadC = !this.popupHeadC;
+        },
+        confirmUH() {
+            let obj1 = window.frames["the_iframe"];
+            alert(obj1.n);
+        },
+        ch_fun() {
+            this.ch_disabled = !this.ch_disabled;
+        },
+
+        // 昵称修改
         unShow() {
             this.popupNameC =! this.popupNameC;
             let unWidth = document.body.clientWidth;
@@ -96,6 +133,7 @@ export default {
                 }
             })
             .then(response=>{
+                MessageBox.alert('昵称更改成功', '提示');
                 // console.log(response.data);
             })
             .catch(error=>{
@@ -212,10 +250,6 @@ export default {
         /* display: inline-block; */
         /* margin-right: 10%; */
     }
-    .update_name {
-        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
-
-    }
     .control_bar {
         /* border: 1px solid red; */
         width: 100%;
@@ -225,13 +259,17 @@ export default {
         align-items: center;
         background-color: transparent;
     }
-    .cancelUN {
+    /* 头像修改 */
+    .update_head,.update_name {
+        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+    }
+    .cancelUH,.cancelUN {
         margin: 1ex;
         border: 0;
         float: left;
         background-color: transparent;
     }
-    .confirmUN {
+    .confirmUH,.confirmUN {
         margin: 1ex;
         border: 0;
         float: right;
