@@ -165,7 +165,7 @@ export default {
     /* 宠物区 */
     .bag_bottom{
         width: 100%;
-        height: 80%;
+        height: 80%;  
         display: flex;
         flex-direction: row;
     }
