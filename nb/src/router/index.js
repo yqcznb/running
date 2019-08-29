@@ -8,7 +8,6 @@ import pinform from '@/components/my/settings/pinform/pinform'
 import drole from '@/components/my/my_head/drole'
 import ex_bonus from '@/components/my/my_head/ex-bonus'
 import settings from '@/components/my/settings/settings'
-import funnymode from '@/components/my/settings/funnymode'
 import idsafe from '@/components/my/settings/idsafe/idsafe'
 import privacy from '@/components/my/settings/privacy/privacy'
 import on from '@/components/my/settings/on'
@@ -29,8 +28,8 @@ import index from '@/components/index/index'
 import run from '@/components/run/run'
 import time from '@/components/run/time'
 
-import DrawerLayout from 'vue-drawer-layout'
-Vue.use(DrawerLayout)
+// import DrawerLayout from 'vue-drawer-layout'
+// Vue.use(DrawerLayout)
 
 Vue.use(Router)
 
@@ -187,11 +186,6 @@ export default new Router({
       path: '/settings',
       name: 'settings',
       component: settings,
-    },
-    {
-      path: '/funnymode',
-      name: 'funnymode',
-      component: funnymode,
     },
     {
       path: '/idsafe',

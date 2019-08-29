@@ -1,12 +1,12 @@
 <template>
-  
-  <div class="amap-page-container">
+  <div class="run">
+      <div class="amap-page-container">
     <div id="back_bar">
             <router-link to="/footer/index">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
     </div>
-    <router-view :key="yy"></router-view>
+    <router-view></router-view>
       <div class="left">
         <div class="limbs">
           <div class="hands"></div>
@@ -18,8 +18,6 @@
         </div>
         <div class="face"></div>
       </div>
-      
-
     <el-amap 
         vid="amap"  
         :zoom="zoom"  
@@ -28,31 +26,29 @@
         :center="center"
     >  
     </el-amap>
-
-    <div class="toolbar">
+   <div class="toolbar">
         <span v-if="loaded">
         location: lng = {{ lng }} lat = {{ lat }}
         </span>
         <span v-else>正在定位</span>
     </div>
-
     <div>
       <mt-popup position='bottom' class="times" popup-transition="popup-fade" v-model="visible" style="width:100%;height:100%;background-color:rgb(255, 255, 255, 0.8);">
           <div class="big">{{count}}</div>
       </mt-popup>
     </div>
-
 </div>
+  </div>
 </template>
-
 <script>
 import { MessageBox } from 'mint-ui'
 export default {
+  name: 'run',
   data() {
     let self = this;
     return {
       center: [121.59996, 31.197646],
-      zoom: 20,
+      zoom: 18,
       lng: 0,
       lat: 0,
       loaded: false,
@@ -75,8 +71,7 @@ export default {
               })
             }
           }
-        },
-       
+        },      
       ]
     }
   },
@@ -119,7 +114,6 @@ export default {
             }
           },1000)
         }
-
          }
          }).catch(err => { 
          if (err == 'cancel') {     //取消的回调
@@ -130,7 +124,6 @@ export default {
   },
   
 }
-
 </script>
 
 <style>
@@ -175,6 +168,4 @@ a{
               font-size: 200px;      
             }      
         }      
-
-
 </style>

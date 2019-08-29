@@ -4,6 +4,7 @@
             <router-link :to='$route.params.backey' @click.native="routerRefresh">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
+            <span class="title">个人信息</span>
         </div>
         <div id="photo_name">
             <router-link to="">
@@ -15,7 +16,7 @@
                 </div>
             </router-link>
             <hr>
-            <router-link to="">
+            <router-link to="" @click.native="unShow">
                 <div id="name">
                     <span class="name_left name_title">昵称</span>
                     <span class="name_right">
@@ -24,9 +25,21 @@
                 </div>
             </router-link>
         </div>
-        
-        <input class="file" name="file" type="file" accept="image/png,image/gif,image/jpeg" @change="update"/>
+        <mt-popup v-model="popupNameC" position="bottom">
+            <div class="update_name" :style="unStyle">
+                <div class="control_bar">
+                    <span><button @click="cancelUN" class="cancelUN">取消</button></span> <span class="cn_title">修改昵称</span> <span> <button type="button" @click="confirmUN"  class="mui-btn mui-btn-success confirmUN"  :disabled="cn_disabled">完成</button>
+                    </span>
+                </div>
+                <input type="text" v-model="change_name" @change="cn_fun" placeholder="请输入昵称" class="change_name">
+            </div>
+        </mt-popup>
 
+        <form action="http://no37.store:8080/AK/AddPhoto" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="">
+            <input type="text" :value="yhid" name="yhid">
+            <input type="submit">
+        </form>
     </div>
 </template>
 <script>
@@ -35,9 +48,14 @@ export default {
     name: 'pinform',
     data() {
         return{
+            yhid: '',
             user_name: '',
+            change_name: '',
             headportrait: '',
             file: {},
+            popupNameC: false,
+            unStyle: '',
+            cn_disabled: true,
         }
     },
     created() {
@@ -47,36 +65,50 @@ export default {
                 yhid:localStorage.getItem("yhid"),
             }})
             .then(response=>{
-                console.log(response);
+                // console.log(response);
+                this.yhid = localStorage.getItem("yhid");
                 this.user_name = response.data.yhnc;
+                this.change_name = this.user_name;
                 this.headportrait = response.data.yhtx;
             })      
             //获取失败
             .catch(error=>{
                 alert('网络错误，不能访问');
             })
-        
     },
     methods: {
         routerRefresh() {
             window.location.reload();
         },
-        update(e){
-            let file = e.target.files[0];
-            let param = new FormData(); //创建form对象
-            param.append('file',file);//通过append向form对象添加数据
-            console.log(param.get('file')); //FormData私有类对象，访问不到，可以通过get判断值是否传进去
-            axios.get('http://no37.store:8080/AK/AddPhoto',{
+        unShow() {
+            this.popupNameC =! this.popupNameC;
+            let unWidth = document.body.clientWidth;
+            let unHeight = window.innerHeight;
+            this.unStyle = "width:" + unWidth + "px;height:" + unHeight + "px;";
+        },
+        cancelUN() {
+            this.popupNameC = !this.popupNameC;
+        },
+        confirmUN() {
+            axios.get('http://no37.store:8080/AK/UpdateID',{
                 params: {
-                    yhid:localStorage.getItem("yhid"),file:param,
-                }})
+                    yhid:localStorage.getItem("yhid"),yhnc:this.change_name,SelectNumber:1,
+                }
+            })
             .then(response=>{
-                console.log(response.data);
+                // console.log(response.data);
             })
             .catch(error=>{
                 console.log(error);
             })
-        }
+            this.user_name = this.change_name;
+            this.popupNameC = !this.popupNameC;
+        },
+        cn_fun() {
+            if(this.change_name != '') {
+                this.cn_disabled = !this.cn_disabled;
+            }
+        },
     },
 }
 </script>
@@ -99,6 +131,15 @@ export default {
         line-height: 200%;
         background-color: rgb(83, 83, 83);
         margin-bottom: 2%;
+    }
+    .title {
+        color: #dec674;
+        position: absolute;
+        text-align: center;
+        width: 50%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
     }
     #photo_name {
         width: 93%;
@@ -137,34 +178,71 @@ export default {
 
     }
     .head_right,.name_right {
-        width: 25%;
-        max-width: 90px;
+        /* border: 1px solid red; */
         display: inline-flex;
-        justify-content: space-between;
+        justify-content: space-around;
         align-items: center;
         margin-right: 12px;
+    }
+    .head_right {
+        width: 27%;
+        max-width: 100px;
     }
     .headportrait {
         border-radius: 7px;
         position: relative;
-        width: 55%;
+        width: 45%;
         min-width: 44px;
         margin-right: 7%;
     }
     .iconfont-right {
         font-size: 20px;
         color: #999999;
-        /* margin-right: 0; */
-        /* right: 7%; */
+        margin-right: 0;
+        right: 7%;
     }
     .head_title,.name_title {
         color: black;
     }
     .user_name {
+        /* border: 1px solid black; */
         font-size: 50%;
         color: #999999;
-        display: inline-block;
+        display: block;
+        /* display: inline-block; */
         /* margin-right: 10%; */
+    }
+    .update_name {
+        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+
+    }
+    .control_bar {
+        /* border: 1px solid red; */
+        width: 100%;
+        /* height: 8%; */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: transparent;
+    }
+    .cancelUN {
+        margin: 1ex;
+        border: 0;
+        float: left;
+        background-color: transparent;
+    }
+    .confirmUN {
+        margin: 1ex;
+        border: 0;
+        float: right;
+    }
+    .change_name {
+        border-left: 0;
+        border-right: 0;
+        border-radius: 0;
+        height: 7%;
+        font-size: 14px;
+        background-color: rgba(255, 255, 255, 0.6);
     }
 </style>
 

@@ -4,6 +4,7 @@
             <router-link to="/footer/my" @click.native="routerRefresh">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
+            <span class="title">设置</span>
         </div>
         <div id="id_msg-safe">
             <router-link :to="{name:'pinform',params:{backey:'/settings'}}">
@@ -19,12 +20,6 @@
             </router-link>
         </div>
         <div id="mode-privacy-on">
-            <router-link to="funnymode">
-                <div id="mode">
-                    <span>经典模式</span><i class="iconfont icon1 iconfont-right"></i>
-                </div>
-            </router-link>
-            <hr>
             <router-link :to="{name:'privacy',params:{backey:'/settings'}}">
                 <div id="privacy">
                     <span>隐私</span><i class="iconfont iconfanhui iconfont-right"></i>
@@ -45,8 +40,8 @@
                 </div>
             </router-link>
             <hr>
-            <router-link to="/">
-                <div id="logout" @click="tui">
+            <router-link to="">
+                <div id="logout" @click="log_out">
                     <span>退出登录</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
@@ -54,6 +49,7 @@
     </div>    
 </template>
 <script>
+import { MessageBox } from 'mint-ui'
 export default {
     name: 'settings',
     computed: {
@@ -68,9 +64,28 @@ export default {
         routerRefresh() {
             window.location.reload();
         },
-        tui(){
-            localStorage.removeItem("Flag")
-            localStorage.removeItem("yhid")
+        log_out(){
+            MessageBox.confirm('', { 
+            message: '你确定要退出登录吗?', 
+            title: '提示', 
+            confirmButtonText: '确定', 
+            cancelButtonText: '取消' 
+            })
+            .then(action => { 
+                if (action=='confirm'){     //确认的回调
+                    this.$router.push({
+                        path: '/'
+                    });
+                    localStorage.removeItem("Flag");
+                    localStorage.removeItem("yhid");
+                }
+            })
+            .catch(err => { 
+                if (err == 'cancel') {
+                }
+            });
+
+            
         }
     },
 }
@@ -101,6 +116,15 @@ export default {
         background-color: rgb(83, 83, 83);
         margin-bottom: 2%;
     }
+    .title {
+        color: #dec674;
+        position: absolute;
+        text-align: center;
+        width: 50%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
     #id_msg-safe,#mode-privacy-on,#change-logout {
         width: 93%;
         display: flex;
@@ -122,7 +146,7 @@ export default {
         right: 7%;
     }
     #mode-privacy-on {
-        height: 24%;
+        height: 16%;
         /* margin-bottom: 3%; */
         line-height: 260%; 
     }
