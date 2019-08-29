@@ -4,7 +4,7 @@
             <router-link to="/footer/my" @click.native="routerRefresh">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
-            <span class="title">今日排行</span>
+            <span class="title">排行榜</span>
         </div>
         <div class="select_list">
             <mt-navbar v-model="selected" @click="showList">

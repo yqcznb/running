@@ -49,7 +49,7 @@ export default {
  
       axios.get('http://no37.store:8080/AK/zhuye1',{
     params: {
-        yhid: 1,     
+        yhid: localStorage.getItem("yhid"),     
     }
 }).then(response=>{
         // console.log(response);

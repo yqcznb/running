@@ -4,6 +4,7 @@
             <router-link to="/footer/my" @click.native="routerRefresh">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
+            <span class="title">设置</span>
         </div>
         <div id="id_msg-safe">
             <router-link :to="{name:'pinform',params:{backey:'/settings'}}">
@@ -19,12 +20,6 @@
             </router-link>
         </div>
         <div id="mode-privacy-on">
-            <router-link to="funnymode">
-                <div id="mode">
-                    <span>经典模式</span><i class="iconfont icon1 iconfont-right"></i>
-                </div>
-            </router-link>
-            <hr>
             <router-link :to="{name:'privacy',params:{backey:'/settings'}}">
                 <div id="privacy">
                     <span>隐私</span><i class="iconfont iconfanhui iconfont-right"></i>
@@ -121,6 +116,15 @@ export default {
         background-color: rgb(83, 83, 83);
         margin-bottom: 2%;
     }
+    .title {
+        color: #dec674;
+        position: absolute;
+        text-align: center;
+        width: 50%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+    }
     #id_msg-safe,#mode-privacy-on,#change-logout {
         width: 93%;
         display: flex;
@@ -142,7 +146,7 @@ export default {
         right: 7%;
     }
     #mode-privacy-on {
-        height: 24%;
+        height: 16%;
         /* margin-bottom: 3%; */
         line-height: 260%; 
     }

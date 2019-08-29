@@ -97,7 +97,7 @@ export default {
                 // yhid:28,
             }})
             .then(response=>{
-                console.log(response);
+                // console.log(response);
                 this.uname = response.data.yhnc;
                 this.headportrait = response.data.yhtx;
                 this.uduan = response.data.dwmc;
@@ -113,14 +113,14 @@ export default {
                 yhid:localStorage.getItem("yhid"),     
             }})
             .then(response=>{
-                console.log(response);
+                // console.log(response);
                 if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
                     this.if_rz = "have_rz";
                 }
                 else {
                     this.if_rz = "have_not_rz";
                 }
-                console.log(this.ifrz);
+                // console.log(this.ifrz);
                     
             })      //获取失败
             .catch(error=>{
@@ -132,7 +132,7 @@ export default {
                 yhid:localStorage.getItem("yhid"),drqOne:this.ydrqOne,ydrqTwo:this.ydrqTwo,
             }})
             .then(response=>{
-                console.log(response);
+                // console.log(response);
             })      //获取失败
             .catch(error=>{
                 alert('网络错误，不能访问');
