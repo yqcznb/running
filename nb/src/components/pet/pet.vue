@@ -70,9 +70,14 @@
                             <li class="haoyou">
                                 <i class="iconfont iconhaoyou1"></i>
                                 <span>邀请好友一起玩吧</span>
-                                <span class="add_haoyou">添加
-                                    <i class="iconfont icontianjiahaoyou"></i>      
-                                 好友</span>
+                                
+                                    <span class="add_haoyou">
+                                        添加
+                                    <router-link to="/addfd"><i class="iconfont icontianjiahaoyou"></i></router-link>    
+                                        好友
+                                    </span>
+                                
+                                
                             </li>
 
                             <li class="list_my">
@@ -122,7 +127,7 @@
                                 <i class="iconfont iconhaoyou1"></i>
                                 <span>邀请好友一起玩吧</span>
                                 <span class="add_haoyou">添加
-                                    <i class="iconfont icontianjiahaoyou"></i>      
+                                    <router-link to="/addfd"><i class="iconfont icontianjiahaoyou"></i>  </router-link>    
                                  好友</span>
                             </li>
 
@@ -174,7 +179,7 @@
                                 <i class="iconfont iconhaoyou1"></i>
                                 <span>邀请好友一起玩吧</span>
                                 <span class="add_haoyou">添加
-                                    <i class="iconfont icontianjiahaoyou"></i>      
+                                    <router-link to="/addfd"><i class="iconfont icontianjiahaoyou"></i>  </router-link>    
                                  好友</span>
                             </li>
 
@@ -282,6 +287,8 @@
                 visible_force: false,
                 see: false,
                 wuqi: false,
+                egg: false,
+                
                 ber: true,
                 f_title: '血量',
                 s_title: '技能',
@@ -293,6 +300,7 @@
                 Width:{
                     'width': '0px',
                 },
+                
             }
         },
         methods:{
