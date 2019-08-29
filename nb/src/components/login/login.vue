@@ -62,6 +62,7 @@ export default {
                         this.$store.dispatch("yh",response.data.yhid);
                         localStorage.setItem("Flag", "isLogin");
                         localStorage.setItem("yhid",response.data.yhid);
+                        localStorage.setItem("password",this.password);
                     }else if(this.num==0){
                         alert("账号或密码错误")
                     }

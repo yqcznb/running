@@ -4,6 +4,7 @@
             <router-link :to="{name:'privacy',params:{backey:$route.params.backey}}">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
+            <span class="title">隐私政策</span>
         </div>
         隐私政策，此处省略八万字
     </div>
@@ -32,5 +33,14 @@ export default {
         line-height: 200%;
         background-color: rgb(83, 83, 83);
         margin-bottom: 2%;
+    }
+    .title {
+        color: #dec674;
+        position: absolute;
+        text-align: center;
+        width: 50%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
     }
 </style>

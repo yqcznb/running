@@ -4,6 +4,7 @@
             <router-link :to='$route.params.backey'>
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
+            <span class="title">关于</span>
         </div>
         这里是关于我们页面
     </div>
@@ -37,5 +38,14 @@ export default {
         line-height: 200%;
         background-color: rgb(83, 83, 83);
         margin-bottom: 2%;
+    }
+    .title {
+        color: #dec674;
+        position: absolute;
+        text-align: center;
+        width: 50%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
     }
 </style>

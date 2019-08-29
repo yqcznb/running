@@ -4,33 +4,34 @@
             <router-link :to='$route.params.backey'>
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
+            <span class="title">账号与安全</span>
         </div>
         <div id="number">
-            <router-link to="">
+            <router-link to="" @click.native="upShow">
                 <div id="userid">
                     <span>手机号</span>
                     <span class="phone_right">
-                        <span >15611111111</span>
+                        <span v-text="phoneNum"></span>
                         <i class="iconfont iconfanhui iconfont-right"></i>
                     </span>
                 </div>
             </router-link>
             <hr>
-            <router-link to="">
+            <router-link to="" @click.native="umShow">
                 <div id="mail">
                     <span>邮箱号</span>
                     <span class="mail_right">
-                        <span >15611111111@qq.com</span><i class="iconfont iconfanhui iconfont-right"></i>
+                        <span v-text="mailNum"></span><i class="iconfont iconfanhui iconfont-right"></i>
                     </span>
                 </div>
             </router-link>
         </div>
         <div id="password">
-            <router-link to="">
+            <router-link to="" @click.native="ucShow">
                 <div id="passmsg">
                     <span>趣跑密码</span>
                     <span class="pass_right">
-                        <span class="xing" v-for="n in passmsg.length">※</span><i class="iconfont iconfanhui iconfont-right"></i>
+                        <span>※ ※ ※ ※ ※ ※</span><i class="iconfont iconfanhui iconfont-right"></i>
                     </span>
                 </div>
             </router-link>
@@ -54,18 +55,219 @@
                 </div>
             </router-link>
         </div>
+        <!-- 手机号更改  -->
+        <mt-popup v-model="popupPhoneC" position="bottom">
+            <div class="update_phone" :style="upStyle">
+                <div class="control_bar">
+                    <span><button @click="cancelUP" class="cancelUP">取消</button></span> <span class="cp_title">修改手机号</span> <span> <button type="button" @click="confirmUP"  class="mui-btn mui-btn-success confirmUP"  :disabled="cp_disabled">完成</button>
+                    </span>
+                </div>
+                <input type="text" v-model="change_phone" @change="cp_fun" placeholder="请输入手机号" class="change_phone">
+            </div>
+        </mt-popup>
+        <!-- 邮箱号更改 -->
+        <mt-popup v-model="popupMailC" position="bottom">
+            <div class="update_mail" :style="umStyle">
+                <div class="control_bar">
+                    <span><button @click="cancelUM" class="cancelUM">取消</button></span> <span class="cm_title">修改邮箱号</span> <span> <button type="button" @click="confirmUM"  class="mui-btn mui-btn-success confirmUM"  :disabled="cm_disabled">完成</button>
+                    </span>
+                </div>
+                <input type="text" v-model="change_mail" @change="cm_fun" placeholder="请输入邮箱号" class="change_mail">
+            </div>
+        </mt-popup>
+        <!-- 密码更改 -->
+        <mt-popup v-model="popupCodeC" position="bottom">
+            <div class="update_code" :style="ucStyle">
+                <div class="control_bar">
+                    <span><button @click="cancelUC" class="cancelUC">取消</button></span> <span class="cc_title">修改密码</span> <span> <button type="button" @click="confirmUC"  class="mui-btn mui-btn-success confirmUC"  :disabled="cc_disabled">完成</button>
+                    </span>
+                </div>
+                <span class="input_area">
+                    <label for="qp_num">趣跑号</label>
+                    <input type="text" id="qu_num" :value="phoneNum" class="showZH" disabled>
+                </span>
+                <span class="input_area">
+                    <label for="old_code">旧密码</label>
+                    <input type="text" id="old_code" v-model="old_code" @change="cc_fun" placeholder="请输入旧密码" class="old_code">
+                </span>
+                <span class="input_area">
+                    <label for="new_code">新密码</label>
+                    <input type="text" id="new_code" v-model="new_code" @change="cc_fun" placeholder="请输入新密码" class="new_code">
+                </span>
+                <span class="input_area">
+                    <label for="confirm_code">确认密码</label>
+                    <input type="text" id="confirm_code" v-model="confirm_code" @change="cc_fun" placeholder="请输入密码" class="confirm_code">
+                </span>
+            </div>
+        </mt-popup>
         <span id="prompt">如果遇到账号信息泄露、忘记密码、诈骗等账号安全问题，可前往趣跑安全中心</span>
     </div>
 </template>
 <script>
+import { MessageBox } from 'mint-ui'
+import axios from 'axios'
 export default {
     name: 'idsafe',
     data() {
         return {
             backlink: 'settings',
-            passmsg: '123',
+            // 手机号修改
+            popupPhoneC: false,
+            upStyle: '',
+            cp_disabled: true,
+            change_phone: '',
+            phoneNum: '',
+            // 邮箱号修改
+            popupMailC: false,
+            umStyle: '',
+            cm_disabled: true,
+            change_mail: '',
+            mailNum: '',
+            // 密码修改
+            yhzh: '',
+            popupCodeC: false,
+            ucStyle: '',
+            cc_disabled: true,
+            old_code: '',
+            new_code: '',
+            confirm_code: '',
+            passmsg: '',
         }
-    }
+    },
+    created() {
+        axios.get('http://no37.store:8080/AK/ShowID',{
+            params: {
+                yhid:localStorage.getItem("yhid"),
+            }})
+            .then(response=>{
+                // console.log(response);
+                this.phoneNum = response.data.yhzh;
+                this.mailNum = response.data.yhyx;
+            })      //获取失败
+            .catch(error=>{
+                alert('网络错误，不能访问');
+            })
+        this.yhzh = localStorage.getItem("yhid");
+        this.passmsg = localStorage.getItem("password");
+    },
+    methods: {
+        // 手机号修改
+        upShow() {
+            this.popupPhoneC =! this.popupPhoneC;
+            let upWidth = document.body.clientWidth;
+            let upHeight = window.innerHeight;
+            this.change_phone = this.phoneNum;
+            this.upStyle = "width:" + upWidth + "px;height:" + upHeight + "px;";
+        },
+        cancelUP() {
+            this.popupPhoneC = !this.popupPhoneC;
+        },
+        confirmUP() {
+            axios.get('http://no37.store:8080/AK/UpdateID',{
+                params: {
+                    yhid:localStorage.getItem("yhid"),yhzh:this.change_phone,SelectNumber:4,
+                }
+            })
+            .then(response=>{
+                // console.log(response.data);
+                this.phoneNum = this.change_phone;
+                MessageBox.alert('手机号更改成功！', '提示');
+            })
+            .catch(error=>{
+                console.log(error);
+            })
+            this.phoneNum = this.change_phone;
+            this.popupPhoneC = !this.popupPhoneC;
+        },
+        cp_fun() {
+            if(this.change_phone != '') {
+                this.cp_disabled = !this.cp_disabled;
+            }
+        },
+        // 邮箱号修改
+        umShow() {
+            this.popupMailC =! this.popupMailC;
+            let umWidth = document.body.clientWidth;
+            let umHeight = window.innerHeight;
+            this.change_mail = this.mailNum;
+            this.umStyle = "width:" + umWidth + "px;height:" + umHeight + "px;";
+        },
+        cancelUM() {
+            this.popupMailC = !this.popupMailC;
+        },
+        confirmUM() {
+            axios.get('http://no37.store:8080/AK/UpdateID',{
+                params: {
+                    yhid:localStorage.getItem("yhid"),yhyx:this.change_mail,SelectNumber:3,
+                }
+            })
+            .then(response=>{
+                // console.log(response.data);
+                this.mailNum = this.change_mail;
+                MessageBox.alert('邮箱号更改成功！', '提示');
+            })
+            .catch(error=>{
+                console.log(error);
+            })
+            this.mailNum = this.change_mail;
+            this.popupMailC = !this.popupMailC;
+        },
+        cm_fun() {
+            if(this.change_mail != '') {
+                this.cm_disabled = !this.cm_disabled;
+            }
+        },
+        // 密码修改
+        ucShow() {
+            this.popupCodeC =! this.popupCodeC;
+            let ucWidth = document.body.clientWidth;
+            let ucHeight = window.innerHeight;
+            this.change_code = this.passmsg;
+            this.ucStyle = "width:" + ucWidth + "px;height:" + ucHeight + "px;";
+        },
+        cancelUC() {
+            this.popupCodeC = !this.popupCodeC;
+        },
+        confirmUC() {
+            if(this.old_code != localStorage.getItem("password")) {
+                MessageBox.alert('账号或密码错误，请重新填写。', '提示').then(action => {
+                    this.popupCodeC = true;
+                });
+            }
+            else if(this.new_code != this.confirm_code) {
+                MessageBox.alert('两次填写的密码不一致，请重新填写。', '提示').then(action => {
+                    this.popupCodeC = true;
+                });
+            }
+            else {
+                axios.get('http://no37.store:8080/AK/UpdateID',{
+                    params: {
+                        yhid:localStorage.getItem("yhid"),yhmm:this.confirm_code,SelectNumber:2,
+                    }
+                })
+                .then(response=>{
+                    // console.log(response.data);
+                    MessageBox.alert('密码更改成功！', '提示');
+                })
+                .catch(error=>{
+                    console.log(error);
+                })
+                this.popupCodeC = !this.popupCodeC;
+                
+            }
+            
+            // this.passmsg = this.change_code;
+            
+        },
+        cc_fun() {
+            if(this.old_code != '' &&this.new_code != '' && this.confirm_code != '') {
+                this.cc_disabled = !this.cc_disabled;
+            }
+            else {
+                this.cc_disabled = true;
+            }
+        },
+    },
 }
 </script>
 <style scoped>
@@ -83,6 +285,15 @@ export default {
         line-height: 200%;
         background-color: rgb(83, 83, 83);
         margin-bottom: 2%;
+    }
+    .title {
+        color: #dec674;
+        position: absolute;
+        text-align: center;
+        width: 50%;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
     }
     a {
         text-decoration: none;
@@ -140,6 +351,63 @@ export default {
     }
     #password {
         height: 8%;
+    }
+    .update_phone,.update_mail,.update_code {
+        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+    }
+    .control_bar {
+        /* border: 1px solid red; */
+        width: 100%;
+        /* height: 8%; */
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        background-color: transparent;
+    }
+    .cancelUP,.cancelUM,.cancelUC {
+        margin: 1ex;
+        border: 0;
+        float: left;
+        background-color: transparent;
+    }
+    .confirmUP,.confirmUM,.confirmUC {
+        margin: 1ex;
+        border: 0;
+        float: right;
+    }
+    .change_phone,.change_mail {
+        border-left: 0;
+        border-right: 0;
+        border-radius: 0;
+        height: 7%;
+        font-size: 14px;
+        background-color: rgba(255, 255, 255, 0.6);
+    }
+    .input_area {
+        border: 1px solid red;
+        width: 100%;
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    .showZH {
+        width: 70%;
+        border-left: 0;
+        border-right: 0;
+        border-radius: 0;
+        border-color: rgba(186, 186, 186, 0.6);
+        height: 7%;
+        font-size: 14px;
+        background-color: rgba(255, 255, 255, 0.5);
+    }
+    .old_code,.new_code,.confirm_code {
+        width: 70%;
+        border-left: 0;
+        border-right: 0;
+        border-radius: 0;
+        height: 7%;
+        font-size: 14px;
+        background-color: rgba(255, 255, 255, 0.5);
     }
     #prompt {
         display: inline-block;
