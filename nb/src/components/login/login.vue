@@ -63,6 +63,7 @@ export default {
                         localStorage.setItem("Flag", "isLogin");
                         localStorage.setItem("yhid",response.data.yhid);
                         localStorage.setItem("password",this.password);
+                        localStorage.setItem("egg_success",1)
                     }else if(this.num==0){
                         alert("账号或密码错误")
                     }

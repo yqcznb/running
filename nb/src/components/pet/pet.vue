@@ -48,14 +48,17 @@
 
                 <!-- 进度条 -->
                 
-                <div class="progress_bar" @click="bar">
+                <div @click="bar" class="progress_bar" v-if="b_bar">
                     <p v-if="see">孵化进度</p>
                     <div class="clip" :style="{width: num + 'px'}"></div>
                 </div>
                 <span class="bar_number" v-if="ber">{{ber_num}}<i>%</i></span>
 
                 <!-- 宠物蛋 -->
-                <div class="egg_img"></div>
+                <div :class="[isTrue, isFalse]" :v-if="g_egg" @click="egg_pet"></div>
+                <!-- 宠物 -->
+                <!-- <div class="bimg"></div> -->
+                
                 
             </div>
 
@@ -76,8 +79,6 @@
                                     <router-link to="/addfd"><i class="iconfont icontianjiahaoyou"></i></router-link>    
                                         好友
                                     </span>
-                                
-                                
                             </li>
 
                             <li class="list_my">
@@ -275,6 +276,7 @@
       
 <script>
     import { picker,} from 'mint-ui';
+    import { MessageBox } from 'mint-ui'
     export default {
         name: 'pet_head',
         name: 'frame',
@@ -287,9 +289,13 @@
                 visible_force: false,
                 see: false,
                 wuqi: false,
-                egg: false,
-                
                 ber: true,
+                g_egg: false,
+                b_bar: true,
+                // isFirst: 1,
+                
+                isTrue: 'bim',
+                isFalse: 'egg_img',
                 f_title: '血量',
                 s_title: '技能',
                 e_title: '武力',
@@ -302,6 +308,9 @@
                 },
                 
             }
+        },
+        created:function(){
+            
         },
         methods:{
             blood:function(){
@@ -330,13 +339,44 @@
                     this.blood = false;
                     this.skill = false;
                     this.force = false;
+                    this.g_egg = true;
                 }
+            },
+            egg_pet(){
+                if(this.num<120){
+                    MessageBox.confirm('当前跑步值不足孵出宠物, 是否前往跑步?', '提示', {
+                        confirmButtonText: '确定',
+                        cancelButtonText: '取消',
+                        type: 'warning'
+                        }).then(() => {
+                        window.location.href='../footer/index/run?#/footer/index/run';    
+                        //   window.location.href='../run#/footer/pet/gpet';
+                        }).catch(() => {
+                        MessageBox.message({
+                            
+                        });          
+                    });
+                }else if(this.num>=120&&localStorage.getItem("egg_success"))
+                {
+                        MessageBox.alert('运动值已满，成功为您孵出宠物', '提示', {
+                        confirmButtonText: '确定',
+                    }).then(()=>{
+                             localStorage.removeItem("egg_success");
+                    })
+                    this.isTrue = 'bimg';
+                    this.b_bar = false;
+                    this.ber = false;
+                }  
+                else{
+                    this.isTrue = 'bimg';
+                    this.b_bar = false;
+                    this.ber = false;
+                } 
             },
         },
         mounted(){
             this.bar();
-            
-
+            this.egg_pet();
         },
         components:{
             picker  
@@ -390,6 +430,45 @@
         display: block;
         margin: 10px 0 10px 0;
     }
+
+    /* 宠物 */
+    .bimg{
+        /* margin: 50% 0 0 40%; */
+        margin:0 auto 20%;
+        width: 83px;
+        height: 100px;
+        animation: run 0.6s steps(1, start) infinite;
+        -webkit-animation:run 0.6s steps(1, start) infinite;
+        background: url('../../assets/img/pet/111.png');
+    }
+    @keyframes run{   
+           0%{
+               background-image: url('../../assets/img/pet/111.png');
+           }
+           30%{
+               background-image: url('../../assets/img/pet/222.png');
+           }
+           60%{
+               background-image: url('../../assets/img/pet/33.png');
+           }
+           100%{
+               background-image: url('../../assets/img/pet/55.png');
+           }
+        }   
+        @-webkit-keyframes run{   
+            0%{
+               background-image: url('../../assets/img/pet/111.png');
+           }
+           30%{
+               background-image: url('../../assets/img/pet/222.png');
+           }
+           60%{
+               background-image: url('../../assets/img/pet/33.png');
+           }
+           100%{
+               background-image: url('../../assets/img/pet/55.png');
+           }
+        }   
 </style>
 
 
