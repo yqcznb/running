@@ -33,10 +33,15 @@
                         <span><button @click="cancelUH" class="cancelUH">取消</button></span> <span class="ch_title">更换头像</span> <span> <button @click="confirmUH"  class="mui-btn mui-btn-success confirmUH"  :disabled="ch_disabled">完成</button>
                         </span>
                     </div>
-                    <input type="file" name="file" id="" @change="ch_fun">
-                    <input type="text" :value="yhid" name="yhid">
+                    <label for="choose_img">
+                        <img src="../../../../assets/img/my/headportrait/1.png" alt="" class="choose_head">
+                    </label>
+                    
+                    <img :src="change_head" alt="" class="head_preview">
+                    <input type="file" name="file" id="choose_img" @change="ch_fun" accept="image/png,image/jpeg,image/gif" style="display:none;">
+                    <input type="text" :value="yhid" name="yhid" style="display:none;">
                 </form>
-                <iframe name="the_iframe" frameborder="0" style="" id="brige_frame"></iframe>
+                <iframe name="the_iframe" frameborder="0" style="" id="brige_frame" style="display:none;"></iframe>
             </div>
         </mt-popup>
         <!-- 昵称修改 -->
@@ -88,6 +93,7 @@ export default {
                 this.user_name = response.data.yhnc;
                 this.change_name = this.user_name;
                 this.headportrait = response.data.yhtx;
+                this.change_head = this.headportrait;
             })      
             //获取失败
             .catch(error=>{
@@ -110,7 +116,7 @@ export default {
         },
         confirmUH() {
             let obj1 = window.frames["the_iframe"];
-            alert(obj1.n);
+            // alert(obj1.n);
         },
         ch_fun() {
             this.ch_disabled = !this.ch_disabled;
@@ -251,13 +257,29 @@ export default {
         /* margin-right: 10%; */
     }
     .control_bar {
-        /* border: 1px solid red; */
         width: 100%;
-        /* height: 8%; */
+        margin-bottom: 1ex;
         display: flex;
         justify-content: space-between;
         align-items: center;
         background-color: transparent;
+    }
+    .head_preview {
+        width: 80%;
+        max-width: 400px;
+        margin: 0 auto;
+        display: block;
+        
+    }
+    .head_preview,.choose_head {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .choose_head {
+        width: 10%;
+        margin-left: 2em;
+        margin-bottom: 1ex;
     }
     /* 头像修改 */
     .update_head,.update_name {
