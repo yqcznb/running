@@ -7,9 +7,6 @@
             <span class="title">背包</span>
         </div>
 
-       
-       
-
          <div class="bag_bottom">
             <div class="bag_pet" :style="{left: num + '%'}">
                 <div class="preview_title">预览区
@@ -29,27 +26,72 @@
                     <p @click="open">预览</p>
                 </div>
                 <div class="equip_wrap">
-                    <ul class="equip_list">
-                        <li>
-                            <div>
-                                <!-- <i class="iconfont iconwuqihui"></i>
-                                <p>武力+1</p> -->
-                                
-
-                                
-                            </div>
-                        </li>
-                    </ul>
+                    <div class="equip_list">
+                        <mt-navbar v-model="equip">
+                            <mt-tab-item id="1">武器区</mt-tab-item>
+                            <mt-tab-item id="2">衣饰区</mt-tab-item>
+                            <mt-tab-item id="3">药品/技能区</mt-tab-item>
+                        </mt-navbar>
+                        <!-- tab-container -->
+                        <mt-tab-container v-model="equip">
+                            <mt-tab-container-item id="1">
+                                <div class="eq_list1">
+                                    <div>
+                                        <i class="iconfont iconwuqihui"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1">
+                                    <div>
+                                        <i class="iconfont iconSubtraction"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1">
+                                    <div>
+                                        <i class="iconfont icondao1"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1">
+                                    <div>
+                                        <i class="iconfont iconfl-futou"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1">
+                                    <div>
+                                        <i class="iconfont iconji"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1">
+                                    <div>
+                                        <i class="iconfont iconrenzhewuqi"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1">
+                                    <div>
+                                        <i class="iconfont iconrenzhewuqi1"></i>
+                                    </div>
+                                </div>
+                            </mt-tab-container-item>
+                            <mt-tab-container-item id="2">
+                                <div class="eq_list1">
+                                    <div>
+                                        <i class="iconfont iconzhuangbei1"></i>
+                                    </div>
+                                </div>
+                            </mt-tab-container-item>
+                            <mt-tab-container-item id="3">
+                                <div class="eq_list1">
+                                    <dir>
+                                        <i class="iconfont iconyaopin1"></i>
+                                    </dir>
+                                </div>
+                            </mt-tab-container-item>
+                        </mt-tab-container>
+                    </div>
                 </div>
-            </div>
+            </div> 
         </div>
 
-    </div>
-    
-    
-    
-
-         
+    </div>      
 </template>
 
 
@@ -62,6 +104,7 @@ export default {
         return{
             // isshow: false,
             num: -100,
+            equip: '1',
             Left:{
                 'left':'0%',
             }
@@ -253,5 +296,24 @@ export default {
         width: 100%;
         height: 550px;
         border-left: 1px solid rgba(204, 204, 204, 0.801);
+    }
+
+    .bag_bottom .bag_equip .equip_wrap .equip_list .eq_list1{
+        margin: 10px 0 0 5px;
+        width: 60px;
+        height: 60px;
+        border: 1px solid rgb(233, 193, 85);
+        display: inline-block;
+    }
+
+    .bag_bottom .bag_equip .equip_wrap .equip_list .eq_list1 div{
+        width: 50px;
+        height: 50px;
+        border: 1px solid rgb(233, 193, 85);
+        margin: 4px 0 0 4px;
+    }
+
+    .bag_bottom .bag_equip .equip_wrap .equip_list .eq_list1 div i{
+        line-height: 50px;
     }
 </style>
