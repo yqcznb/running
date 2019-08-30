@@ -34,6 +34,7 @@ export default {
     let self = this;
     return {
       center: [121.59996, 31.197646],
+      radius:20,
       zoom: 18,
       lng: 0,
       lat: 0,
@@ -42,9 +43,8 @@ export default {
       showw:true,
       left:false,
       right:false,
-      year:"",
-      month:"",
-      date:"",
+     
+      jg:"",
        distance: 0.0,  // 表示运动的累计距离
         miles: 0.0,    // 表示运动的累计距离，单位是公里用于界面显示
         // path: [],    // 运动坐标数据
@@ -62,10 +62,12 @@ export default {
         times:'', //统计共多少秒时间
         aa:0,
         sx:0,
+        nb:"",
+        yhid:localStorage.getItem("yhid"),
          lines: [
             {
               path: [        
-                //[120.02112, 36.24094],
+               [120.03112, 36.24194],
              
               
               ],
@@ -75,7 +77,7 @@ export default {
               strokeWeight: 3, //线宽
               strokeStyle: "solid", //线样式
               events: {
-               
+                   
               }
             }
           ],
@@ -95,13 +97,11 @@ export default {
                   self.center = [self.lng, self.lat];         //设置坐标
                   self.loaded = true;                         //load
                   self.$nextTick();  
-                   var a =  self.lines[0].path.length;
-                 // console.log("a:"+a)
-                   if(a==0){
-                     self.lines[0].path.push([self.lng,self.lat],);
-                   }
-                   else if((self.lines[0].path[a-1][0]!=self.lng)||(self.lines[0].path[a-1][1]!=self.lat)){
-                         self.lines[0].path.push([self.lng,self.lat],);
+                  self.nb = self.lines[0].path.length;
+                 // console.log("nb:"+self.nb)
+                // console.log("path[0]:"+ self.lines[0].path[0])
+                   if((self.lines[0].path[self.nb-1]['lng']!=self.lng)||(self.lines[0].path[self.nb-1]['lat']!=self.lat)){
+                         self.lines[0].path.push([self.lng, self.lat]);
                    }
                 }
               })
@@ -113,6 +113,12 @@ export default {
                   self.center = [self.lng, self.lat];         //设置坐标
                   self.loaded = true;                         //load
                   self.$nextTick();  
+                  self.nb = self.lines[0].path.length;
+                    if(self.nb==1){
+                      self.lines[0].path.pop([self.lng, self.lat],);
+                     self.lines[0].path.push([self.lng, self.lat],);
+                     self.nb=2;
+                   }
                 }
               })
             }
@@ -129,13 +135,13 @@ export default {
      this.ttime=setInterval(this.timer,50);
     // this.lux=setInterval(this.luxian,3000);
      this.jl=setInterval(()=>{
-      if((this.aa+1)==this.lines[0].path.length)
+      if((this.aa)<this.lines[0].path.length)
       { 
      // console.log("aa:"+this.aa)
-     //console.log("path.length:"+this.lines[0].path.length)
+    //console.log("path.length:"+this.lines[0].path.length)
         this.aa = this.lines[0].path.length;
         if( this.aa>=2){
-         this.distance = this.juli( this.lines[0].path[this.aa-1][0], this.lines[0].path[this.aa-1][1], this.lines[0].path[this.aa-2][0], this.lines[0].path[this.aa-2][1]);
+         this.distance = this.juli( this.lines[0].path[this.aa-1]['lng'], this.lines[0].path[this.aa-1]['lat'], this.lines[0].path[this.aa-2]['lng'], this.lines[0].path[this.aa-2]['lat']);
          this.miles = parseFloat(this.miles)+ parseFloat(this.distance);
          this.miles = parseFloat(this.miles).toFixed(2);
          if(this.miles!=0){
@@ -190,17 +196,42 @@ export default {
          } 
          });
         }else{
-            MessageBox.confirm('', { 
+         MessageBox.confirm('', { 
          message: '您的运动距离为'+this.miles+'千米是否确定结束运动?', 
          title: '提示', 
          confirmButtonText: '结束', 
          cancelButtonText: '取消' 
          }).then(action => { 
          if (action == 'confirm') {     //确认的回调
-            this.$router.push({
+
+        this.axios.get('http://no37.store:8080/AK/AddMove',{
+          params: {
+              yhid: this.yhid,
+              ydjl: this.miles,
+              ydsj:this.times,
+              ydsd:this.speed
+          }
+      }).then(response=>{
+              console.log(response)
+              this.jg=response.data.jg; 
+              if(this.jg==1){
+                   this.$router.push({
                     path: '/footer/index'
                 });
             clearInterval(this.ttime);
+              }else{
+                alert("数据存储失败")
+                 this.$router.push({
+                    path: '/footer/index'
+                });
+           
+              }
+            })      //获取失败
+            .catch(error=>{
+                console.log(error);
+                alert('网络错误，不能访问');
+            })
+           
           
          }
          }).catch(err => { 
