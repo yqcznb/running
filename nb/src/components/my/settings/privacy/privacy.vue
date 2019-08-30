@@ -8,12 +8,18 @@
         </div>
         <router-link to="">
             <div id="permission">
-                <span><span class="left">系统权限</span><span class="right">授权使用的手机权限</span></span><i class="iconfont iconfanhui iconfont-right"></i>
+                <span class="qx_title">系统权限</span>
+                <span class="qx_right">
+                    <span>授权使用的手机权限</span><i class="iconfont iconfanhui iconfont-right"></i>
+                </span>
             </div>
         </router-link>
         <router-link :to="{name:'ppolicy',params:{backey:$route.params.backey}}">
             <div id="ppolicy">
-                <span>隐私政策</span><i class="iconfont iconfanhui iconfont-right"></i>
+                <span class="zc_title">隐私政策</span>
+                <span class="zc_right">
+                    <i class="iconfont iconfanhui iconfont-right"></i>
+                </span>
             </div>
         </router-link>
     </div>
@@ -69,25 +75,22 @@ export default {
         height: 8%;
         border-radius: 7px;
         background-color: white;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        text-align: left;
-        text-indent: 1em;
+        display: inline-flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 14px;
         margin: 0 auto;
-        font-size: 110%;
         color: black;
         margin-bottom: 2%;
     }
-    .left {
-        /* display: inline-block; */
+    .qx_right,.zc_right {
+        width: 45%;
+        max-width: 150px;
+        display: flex;
+        align-items: center;
     }
-    .right {
-        font-size: 50%;
+    .qx_right span {
+        font-size: 13px;
         color: #999999;
-        display: inline-block;
-        /* text-align: right; */
-        float: right;
-        margin-right: 10%;
     }
 </style>
