@@ -82,17 +82,12 @@
                     <span><button @click="cancelUC" class="cancelUC">取消</button></span> <span class="cc_title">修改密码</span> <span> <button type="button" @click="confirmUC"  class="mui-btn mui-btn-success confirmUC"  :disabled="cc_disabled">完成</button>
                     </span>
                 </div>
-<<<<<<< HEAD
                 <span class="input_area">
-=======
-                <span class="input_area qp_num_area">
->>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
                     <label for="qp_num">趣跑号</label>
                     <input type="text" id="qu_num" :value="phoneNum" class="showZH" disabled>
                 </span>
                 <span class="input_area">
                     <label for="old_code">旧密码</label>
-<<<<<<< HEAD
                     <input type="text" id="old_code" v-model="old_code" @change="cc_fun" placeholder="请输入旧密码" class="old_code">
                 </span>
                 <span class="input_area">
@@ -102,17 +97,6 @@
                 <span class="input_area">
                     <label for="confirm_code">确认密码</label>
                     <input type="text" id="confirm_code" v-model="confirm_code" @change="cc_fun" placeholder="请输入密码" class="confirm_code">
-=======
-                    <input type="password" id="old_code" v-model="old_code" @change="cc_fun" placeholder="请输入旧密码" class="old_code">
-                </span>
-                <span class="input_area">
-                    <label for="new_code">新密码</label>
-                    <input type="password" id="new_code" v-model="new_code" @change="cc_fun" placeholder="请输入新密码" class="new_code">
-                </span>
-                <span class="input_area">
-                    <label for="confirm_code">确认密码</label>
-                    <input type="password" id="confirm_code" v-model="confirm_code" @change="cc_fun" placeholder="请再次输入密码" class="confirm_code">
->>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
                 </span>
             </div>
         </mt-popup>
@@ -269,15 +253,11 @@ export default {
                     console.log(error);
                 })
                 this.popupCodeC = !this.popupCodeC;
-<<<<<<< HEAD
                 
             }
             
             // this.passmsg = this.change_code;
             
-=======
-            }
->>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
         },
         cc_fun() {
             if(this.old_code != '' &&this.new_code != '' && this.confirm_code != '') {
@@ -379,7 +359,6 @@ export default {
         /* border: 1px solid red; */
         width: 100%;
         /* height: 8%; */
-<<<<<<< HEAD
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -429,75 +408,6 @@ export default {
         height: 7%;
         font-size: 14px;
         background-color: rgba(255, 255, 255, 0.5);
-=======
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        background-color: transparent;
-    }
-    .cancelUP,.cancelUM,.cancelUC {
-        margin: 1ex;
-        border: 0;
-        float: left;
-        background-color: transparent;
-    }
-    .confirmUP,.confirmUM,.confirmUC {
-        margin: 1ex;
-        border: 0;
-        float: right;
-    }
-    .change_phone,.change_mail {
-        border-left: 0;
-        border-right: 0;
-        border-radius: 0;
-        height: 7%;
-        font-size: 14px;
-        background-color: rgba(255, 255, 255, 0.6);
-    }
-    .input_area {
-        /* border: 1px solid red; */
-        width: 100%;
-        height: 7%;
-        margin-bottom: 1%;
-        background-color: rgba(255, 255, 255, 0.6);
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-    .input_area label {
-        /* border: 1px solid red; */
-        display: inline-block;
-        margin: 0 auto;
-        text-indent: 1ex;
-    }
-    .qp_num_area label {
-        color: rgb(138, 138, 138);
-    }
-    .showZH {
-        width: 75%;
-        height: 100%;
-        color: gray;
-        border-left: 0;
-        border-right: 0;
-        border-radius: 0;
-        margin-bottom: 0;
-        border-color: transparent;
-        font-size: 14px;
-        background-color: transparent;
-        text-indent: 1em;
-    }
-    .old_code,.new_code,.confirm_code {
-        width: 75%;
-        border-left: 0;
-        border-right: 0;
-        border-radius: 0;
-        height: 100%;
-        margin-bottom: 0;
-        font-size: 14px;
-        background-color: transparent;
-        border-color: transparent;
-        text-indent: 1em;
->>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
     }
     #prompt {
         display: inline-block;
