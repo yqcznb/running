@@ -25,8 +25,6 @@
                 </div>
             </router-link>
         </div>
-<<<<<<< HEAD
-=======
         <!-- 头像修改 -->
         <mt-popup v-model="popupHeadC" position="bottom">
             <div class="update_head" :style="uhStyle">
@@ -35,14 +33,18 @@
                         <span><button @click="cancelUH" class="cancelUH">取消</button></span> <span class="ch_title">更换头像</span> <span> <button @click="confirmUH"  class="mui-btn mui-btn-success confirmUH"  :disabled="ch_disabled">完成</button>
                         </span>
                     </div>
-                    <input type="file" name="file" id="" @change="ch_fun">
-                    <input type="text" :value="yhid" name="yhid">
+                    <label for="choose_img">
+                        <img src="../../../../assets/img/my/headportrait/1.png" alt="" class="choose_head">
+                    </label>
+                    
+                    <img :src="change_head" alt="" class="head_preview">
+                    <input type="file" name="file" id="choose_img" @change="ch_fun" accept="image/png,image/jpeg,image/gif" style="display:none;">
+                    <input type="text" :value="yhid" name="yhid" style="display:none;">
                 </form>
-                <iframe name="the_iframe" frameborder="0" style="" id="brige_frame"></iframe>
+                <iframe name="the_iframe" frameborder="0" style="" id="brige_frame" style="display:none;"></iframe>
             </div>
         </mt-popup>
         <!-- 昵称修改 -->
->>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
         <mt-popup v-model="popupNameC" position="bottom">
             <div class="update_name" :style="unStyle">
                 <div class="control_bar">
@@ -52,17 +54,8 @@
                 <input type="text" v-model="change_name" @change="cn_fun" placeholder="请输入昵称" class="change_name">
             </div>
         </mt-popup>
-<<<<<<< HEAD
-
-        <form action="http://no37.store:8080/AK/AddPhoto" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" id="">
-            <input type="text" :value="yhid" name="yhid">
-            <input type="submit">
-        </form>
-=======
         
         
->>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
     </div>
 </template>
 <script>
@@ -73,12 +66,6 @@ export default {
     data() {
         return{
             yhid: '',
-<<<<<<< HEAD
-            user_name: '',
-            change_name: '',
-            headportrait: '',
-            file: {},
-=======
             headportrait: '',
             // 头像修改
             change_head: '',
@@ -89,7 +76,6 @@ export default {
             // 昵称修改
             user_name: '',
             change_name: '',
->>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
             popupNameC: false,
             unStyle: '',
             cn_disabled: true,
@@ -107,6 +93,7 @@ export default {
                 this.user_name = response.data.yhnc;
                 this.change_name = this.user_name;
                 this.headportrait = response.data.yhtx;
+                this.change_head = this.headportrait;
             })      
             //获取失败
             .catch(error=>{
@@ -117,8 +104,6 @@ export default {
         routerRefresh() {
             window.location.reload();
         },
-<<<<<<< HEAD
-=======
         // 头像修改
         uhShow() {
             this.popupHeadC =! this.popupHeadC;
@@ -131,14 +116,13 @@ export default {
         },
         confirmUH() {
             let obj1 = window.frames["the_iframe"];
-            alert(obj1.n);
+            // alert(obj1.n);
         },
         ch_fun() {
             this.ch_disabled = !this.ch_disabled;
         },
 
         // 昵称修改
->>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
         unShow() {
             this.popupNameC =! this.popupNameC;
             let unWidth = document.body.clientWidth;
@@ -155,10 +139,7 @@ export default {
                 }
             })
             .then(response=>{
-<<<<<<< HEAD
-=======
                 MessageBox.alert('昵称更改成功', '提示');
->>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
                 // console.log(response.data);
             })
             .catch(error=>{
@@ -275,41 +256,42 @@ export default {
         /* display: inline-block; */
         /* margin-right: 10%; */
     }
-<<<<<<< HEAD
-    .update_name {
-        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
-
-    }
-=======
->>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
     .control_bar {
-        /* border: 1px solid red; */
         width: 100%;
-        /* height: 8%; */
+        margin-bottom: 1ex;
         display: flex;
         justify-content: space-between;
         align-items: center;
         background-color: transparent;
     }
-<<<<<<< HEAD
-    .cancelUN {
-=======
+    .head_preview {
+        width: 80%;
+        max-width: 400px;
+        margin: 0 auto;
+        display: block;
+        
+    }
+    .head_preview,.choose_head {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .choose_head {
+        width: 10%;
+        margin-left: 2em;
+        margin-bottom: 1ex;
+    }
     /* 头像修改 */
     .update_head,.update_name {
         background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
     }
     .cancelUH,.cancelUN {
->>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
         margin: 1ex;
         border: 0;
         float: left;
         background-color: transparent;
     }
-<<<<<<< HEAD
-    .confirmUN {
-=======
     .confirmUH,.confirmUN {
->>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
         margin: 1ex;
         border: 0;
         float: right;
