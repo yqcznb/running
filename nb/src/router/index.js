@@ -18,6 +18,7 @@ import rank_list from '@/components/my/rank_list'
 
 import pet from '@/components/pet/pet'
 import bag from '@/components/pet/bag'
+import addfd from '@/components/pet/addfd'
 import register from '@/components/login/register'
 import forget from '@/components/login/forget'
 import confirm from '@/components/login/confirm'
@@ -26,6 +27,10 @@ import confirm from '@/components/login/confirm'
 import index from '@/components/index/index'
 import run from '@/components/run/run'
 import time from '@/components/run/time'
+
+// import DrawerLayout from 'vue-drawer-layout'
+// Vue.use(DrawerLayout)
+
 Vue.use(Router)
 
 export default new Router({
@@ -102,6 +107,11 @@ export default new Router({
           path: '/bag',
           name: 'bag',
           component: bag,
+        },
+        {
+          path: '/addfd',
+          name: 'addfd',
+          component: addfd,
         },
        
         {

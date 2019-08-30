@@ -25,6 +25,8 @@
                 </div>
             </router-link>
         </div>
+<<<<<<< HEAD
+=======
         <!-- 头像修改 -->
         <mt-popup v-model="popupHeadC" position="bottom">
             <div class="update_head" :style="uhStyle">
@@ -40,6 +42,7 @@
             </div>
         </mt-popup>
         <!-- 昵称修改 -->
+>>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
         <mt-popup v-model="popupNameC" position="bottom">
             <div class="update_name" :style="unStyle">
                 <div class="control_bar">
@@ -49,8 +52,17 @@
                 <input type="text" v-model="change_name" @change="cn_fun" placeholder="请输入昵称" class="change_name">
             </div>
         </mt-popup>
+<<<<<<< HEAD
+
+        <form action="http://no37.store:8080/AK/AddPhoto" method="post" enctype="multipart/form-data">
+            <input type="file" name="file" id="">
+            <input type="text" :value="yhid" name="yhid">
+            <input type="submit">
+        </form>
+=======
         
         
+>>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
     </div>
 </template>
 <script>
@@ -61,6 +73,12 @@ export default {
     data() {
         return{
             yhid: '',
+<<<<<<< HEAD
+            user_name: '',
+            change_name: '',
+            headportrait: '',
+            file: {},
+=======
             headportrait: '',
             // 头像修改
             change_head: '',
@@ -71,6 +89,7 @@ export default {
             // 昵称修改
             user_name: '',
             change_name: '',
+>>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
             popupNameC: false,
             unStyle: '',
             cn_disabled: true,
@@ -98,6 +117,8 @@ export default {
         routerRefresh() {
             window.location.reload();
         },
+<<<<<<< HEAD
+=======
         // 头像修改
         uhShow() {
             this.popupHeadC =! this.popupHeadC;
@@ -117,6 +138,7 @@ export default {
         },
 
         // 昵称修改
+>>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
         unShow() {
             this.popupNameC =! this.popupNameC;
             let unWidth = document.body.clientWidth;
@@ -133,7 +155,10 @@ export default {
                 }
             })
             .then(response=>{
+<<<<<<< HEAD
+=======
                 MessageBox.alert('昵称更改成功', '提示');
+>>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
                 // console.log(response.data);
             })
             .catch(error=>{
@@ -250,6 +275,13 @@ export default {
         /* display: inline-block; */
         /* margin-right: 10%; */
     }
+<<<<<<< HEAD
+    .update_name {
+        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+
+    }
+=======
+>>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
     .control_bar {
         /* border: 1px solid red; */
         width: 100%;
@@ -259,17 +291,25 @@ export default {
         align-items: center;
         background-color: transparent;
     }
+<<<<<<< HEAD
+    .cancelUN {
+=======
     /* 头像修改 */
     .update_head,.update_name {
         background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
     }
     .cancelUH,.cancelUN {
+>>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
         margin: 1ex;
         border: 0;
         float: left;
         background-color: transparent;
     }
+<<<<<<< HEAD
+    .confirmUN {
+=======
     .confirmUH,.confirmUN {
+>>>>>>> f89476122acbb2d51b786255aab1e4dd77536d58
         margin: 1ex;
         border: 0;
         float: right;
