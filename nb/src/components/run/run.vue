@@ -33,7 +33,7 @@
         <span v-else>正在定位</span>
     </div>
     <div>
-      <mt-popup position='bottom' class="times" popup-transition="popup-fade" v-model="visible" style="width:100%;height:100%;background-color:rgb(255, 255, 255, 0.8);">
+      <mt-popup position='bottom' class="times" popup-transition="popup-fade" v-model="visible" style="width:100%;height:100%;background-color:rgb(132, 255, 255, 0.8);">
           <div class="big">{{count}}</div>
       </mt-popup>
     </div>
@@ -110,7 +110,7 @@ export default {
                 this.$router.push({
                     path: '/time'
                 });
-                 window.location.reload();
+              
             }
           },1000)
         }

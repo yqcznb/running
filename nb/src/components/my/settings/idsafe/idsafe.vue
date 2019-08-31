@@ -58,45 +58,51 @@
         <!-- 手机号更改  -->
         <mt-popup v-model="popupPhoneC" position="bottom">
             <div class="update_phone" :style="upStyle">
-                <div class="control_bar">
-                    <span><button @click="cancelUP" class="cancelUP">取消</button></span> <span class="cp_title">修改手机号</span> <span> <button type="button" @click="confirmUP"  class="mui-btn mui-btn-success confirmUP"  :disabled="cp_disabled">完成</button>
-                    </span>
-                </div>
-                <input type="text" v-model="change_phone" @change="cp_fun" placeholder="请输入手机号" class="change_phone">
+                <span id="phone_change">
+                    <div class="control_bar">
+                        <span><button @click="cancelUP" class="cancelUP">取消</button></span> <span class="cp_title">修改手机号</span> <span> <button type="button" @click="confirmUP"  class="mui-btn mui-btn-success confirmUP"  :disabled="cp_disabled">完成</button>
+                        </span>
+                    </div>
+                    <input type="text" v-model="change_phone" @change="cp_fun" placeholder="请输入手机号" class="change_phone">
+                </span>
             </div>
         </mt-popup>
         <!-- 邮箱号更改 -->
         <mt-popup v-model="popupMailC" position="bottom">
             <div class="update_mail" :style="umStyle">
-                <div class="control_bar">
-                    <span><button @click="cancelUM" class="cancelUM">取消</button></span> <span class="cm_title">修改邮箱号</span> <span> <button type="button" @click="confirmUM"  class="mui-btn mui-btn-success confirmUM"  :disabled="cm_disabled">完成</button>
-                    </span>
-                </div>
-                <input type="text" v-model="change_mail" @change="cm_fun" placeholder="请输入邮箱号" class="change_mail">
+                <span id="mail_change">
+                    <div class="control_bar">
+                        <span><button @click="cancelUM" class="cancelUM">取消</button></span> <span class="cm_title">修改邮箱号</span> <span> <button type="button" @click="confirmUM"  class="mui-btn mui-btn-success confirmUM"  :disabled="cm_disabled">完成</button>
+                        </span>
+                    </div>
+                    <input type="text" v-model="change_mail" @change="cm_fun" placeholder="请输入邮箱号" class="change_mail">
+                </span>
             </div>
         </mt-popup>
         <!-- 密码更改 -->
         <mt-popup v-model="popupCodeC" position="bottom">
             <div class="update_code" :style="ucStyle">
-                <div class="control_bar">
-                    <span><button @click="cancelUC" class="cancelUC">取消</button></span> <span class="cc_title">修改密码</span> <span> <button type="button" @click="confirmUC"  class="mui-btn mui-btn-success confirmUC"  :disabled="cc_disabled">完成</button>
+                <span id="code_change">
+                    <div class="control_bar">
+                        <span><button @click="cancelUC" class="cancelUC">取消</button></span> <span class="cc_title">修改密码</span> <span> <button type="button" @click="confirmUC"  class="mui-btn mui-btn-success confirmUC"  :disabled="cc_disabled">完成</button>
+                        </span>
+                    </div>
+                    <span class="input_area qp_num_area">
+                        <label for="qp_num">趣跑号</label>
+                        <input type="text" id="qu_num" :value="phoneNum" class="showZH" disabled>
                     </span>
-                </div>
-                <span class="input_area">
-                    <label for="qp_num">趣跑号</label>
-                    <input type="text" id="qu_num" :value="phoneNum" class="showZH" disabled>
-                </span>
-                <span class="input_area">
-                    <label for="old_code">旧密码</label>
-                    <input type="text" id="old_code" v-model="old_code" @change="cc_fun" placeholder="请输入旧密码" class="old_code">
-                </span>
-                <span class="input_area">
-                    <label for="new_code">新密码</label>
-                    <input type="text" id="new_code" v-model="new_code" @change="cc_fun" placeholder="请输入新密码" class="new_code">
-                </span>
-                <span class="input_area">
-                    <label for="confirm_code">确认密码</label>
-                    <input type="text" id="confirm_code" v-model="confirm_code" @change="cc_fun" placeholder="请输入密码" class="confirm_code">
+                    <span class="input_area">
+                        <label for="old_code">旧密码</label>
+                        <input type="password" id="old_code" v-model="old_code" @change="cc_fun" placeholder="请输入旧密码" class="old_code">
+                    </span>
+                    <span class="input_area">
+                        <label for="new_code">新密码</label>
+                        <input type="password" id="new_code" v-model="new_code" @change="cc_fun" placeholder="请输入新密码" class="new_code">
+                    </span>
+                    <span class="input_area">
+                        <label for="confirm_code">确认密码</label>
+                        <input type="password" id="confirm_code" v-model="confirm_code" @change="cc_fun" placeholder="请再次输入密码" class="confirm_code">
+                    </span>
                 </span>
             </div>
         </mt-popup>
@@ -132,7 +138,16 @@ export default {
             new_code: '',
             confirm_code: '',
             passmsg: '',
+            screenHeight: window.innerHeight,
         }
+    },
+    watch: {
+        screenHeight(val) {
+            let unWidth = document.documentElement.clientWidth;
+            this.upStyle = "width:" + unWidth + "px;height:" + val + "px;";
+            this.umStyle = "width:" + unWidth + "px;height:" + val + "px;";
+            this.ucStyle = "width:" + unWidth + "px;height:" + val + "px;";
+        },
     },
     created() {
         axios.get('http://no37.store:8080/AK/ShowID',{
@@ -149,6 +164,14 @@ export default {
             })
         this.yhzh = localStorage.getItem("yhid");
         this.passmsg = localStorage.getItem("password");
+    },
+    mounted() {
+        window.onresize = () => {
+            return(() => {
+                window.screenHeight = window.innerHeight;
+                this.screenHeight = window.screenHeight;
+            })()
+        }
     },
     methods: {
         // 手机号修改
@@ -253,11 +276,7 @@ export default {
                     console.log(error);
                 })
                 this.popupCodeC = !this.popupCodeC;
-                
             }
-            
-            // this.passmsg = this.change_code;
-            
         },
         cc_fun() {
             if(this.old_code != '' &&this.new_code != '' && this.confirm_code != '') {
@@ -355,6 +374,14 @@ export default {
     .update_phone,.update_mail,.update_code {
         background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
     }
+    #phone_change,#mail_change,#code_change {
+        display: inline-block;
+        width: 100%;
+        position: absolute;
+        left: 0;
+        right: 0;
+        /* border: 1px solid red; */
+    }
     .control_bar {
         /* border: 1px solid red; */
         width: 100%;
@@ -379,35 +406,53 @@ export default {
         border-left: 0;
         border-right: 0;
         border-radius: 0;
-        height: 7%;
+        height: 6.5ex;
         font-size: 14px;
         background-color: rgba(255, 255, 255, 0.6);
     }
     .input_area {
-        border: 1px solid red;
+        /* border: 1px solid red; */
         width: 100%;
-        display: inline-flex;
+        height: 7%;
+        margin-bottom: 1%;
+        background-color: rgba(255, 255, 255, 0.6);
+        display: flex;
         justify-content: space-between;
         align-items: center;
     }
+    .input_area label {
+        /* border: 1px solid red; */
+        display: inline-block;
+        margin: 0 auto;
+        text-indent: 1ex;
+    }
+    .qp_num_area label {
+        color: rgb(138, 138, 138);
+    }
     .showZH {
-        width: 70%;
+        width: 75%;
+        height: 6.5ex;
+        color: gray;
         border-left: 0;
         border-right: 0;
         border-radius: 0;
-        border-color: rgba(186, 186, 186, 0.6);
-        height: 7%;
+        margin-bottom: 0;
+        border-color: transparent;
         font-size: 14px;
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: transparent;
+        text-indent: 1em;
     }
     .old_code,.new_code,.confirm_code {
-        width: 70%;
+        width: 75%;
         border-left: 0;
         border-right: 0;
         border-radius: 0;
-        height: 7%;
+        height: 6.5ex;
+        margin-bottom: 0;
         font-size: 14px;
-        background-color: rgba(255, 255, 255, 0.5);
+        background-color: transparent;
+        border-color: transparent;
+        text-indent: 1em;
     }
     #prompt {
         display: inline-block;
