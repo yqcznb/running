@@ -62,7 +62,7 @@
                 
             </div>
 
-               
+               <!-- 血量界面 -->
                 <div class="frame">
                     <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="visible" style="width:100%;height:60%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">   
                         <ul>
@@ -117,6 +117,7 @@
                     </mt-popup>
                 </div>
 
+                <!-- 技能界面 -->
                 <div class="frame_skill">
                     <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="visible_skill" style="width:100%;height:60%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">   
                         <ul>
@@ -168,7 +169,7 @@
                     </mt-popup>
                 </div>
 
-
+                <!-- 武力界面 -->
                 <div class="frame_force">
                     <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="visible_force" style="width:100%;height:60%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">   
                         <ul>
@@ -218,58 +219,12 @@
                             </li>
                         </ul>
                     </mt-popup>
-                </div>
 
-
-                <!-- <div class="bag_interface">
-                    <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="m_bag" style="width:100%;height:60%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">   
-                        <ul class="bag_head">
-                            <li class="title">
-                                <span class="left">装备</span> 
-                                <span class="right">技能</span>
-                            </li>
-                        </ul>
-
-                        <ul class="bag_body">
-                            <li class='zb_title'>
-                                <span>武器</span>
-                                <span>武装</span>
-                                <span>药品</span>
-                            </li>
-
-                            <li class="wuqi" :v-if="wuqi">
-                                <div class="wq_one">
-                                    <i class="iconfont iconwuqihui"></i>
-                                    <p>武力+1</p>
-                                </div>
-                                <div class="wq_one">
-                                    <i class="iconfont iconwuqilan" style="color: blue;"></i>
-                                    <p>武力+1</p>
-                                </div>
-                                <div class="wq_one">
-                                    <i class="iconfont iconkaiheifangjian-iCON_bisai-wuqi"></i>
-                                    <p>武力+1</p>
-                                </div>
-                                <div class="wq_one">
-                                    <i class="iconfont iconwuqi" style="color: purple;"></i>
-                                    <p>武力+1</p>
-                                </div>
-                                <div class="wq_one">
-                                    <i class="iconfont iconwuqix"></i>
-                                    <p>武力+1</p>
-                                </div>
-                                <div class="wq_one">
-                                    <i class="iconfont iconwuqizhuangbeishezhi"></i>
-                                    <p>武力+1</p>
-                                </div>
-                                <div class="wq_one">
-                                    <i class="iconfont iconwuqianniu" style="color: red;"></i>
-                                    <p>武力+1</p>
-                                </div>
-                            </li>
-                        </ul>
+                    <!-- 进度条提示框 -->
+                    <mt-popup v-model="popupVisible" popup-transition="popup-fade" position="center" style="width: 150px;height:50px;border-radius:15px;margin:50px 0 0 50px;color:rgb(255, 218, 203);border:2px solid rgb(255, 218, 203);">
+                        <p>当前的运动量为xxx,继续加油哦</p>
                     </mt-popup>
-                </div> -->
+                </div>
     </div>
 </template>
 
@@ -277,6 +232,7 @@
 <script>
     import { picker,} from 'mint-ui';
     import { MessageBox } from 'mint-ui'
+    import { Popup } from 'mint-ui';
     export default {
         name: 'pet_head',
         name: 'frame',
@@ -293,7 +249,7 @@
                 g_egg: false,
                 b_bar: true,
                 // isFirst: 1,
-                
+                popupVisible: false,
                 isTrue: 'bim',
                 isFalse: 'egg_img',
                 f_title: '血量',
@@ -301,7 +257,7 @@
                 e_title: '武力',
                 blood_one: 10,
                 user_name: 'hjw',
-                num: 120,
+                num: 110,
                 ber_num: 0,
                 Width:{
                     'width': '0px',
@@ -309,8 +265,15 @@
                 
             }
         },
+        // 后台接口获取官方通知的内容
         created:function(){
+            axios.get('',{
+                params: {
+                    yhid: localStorage.getItem("yhid"),     
+                }
+            }).then(response=>{
             
+                });
         },
         methods:{
             blood:function(){
@@ -323,9 +286,20 @@
                 this.visible_force = true;
             },
             bar(){
+                // 后台获取用户公里数，更新进度
+                let yhid = localStorage.getItem("yhid");
+
+                this.axios.get('',{
+                    params: {
+                        yhid:yhid,
+                    }
+                }).then(response=>{
+                    
+                    });
+
                 this.Width = {
                     'width': this.num + 'px',
-                }
+                };
                 this.ber_num = (this.num / 120)*100;
                 this.ber_num = this.ber_num.toFixed(2);
                 if(this.num == 0){
@@ -335,17 +309,21 @@
                 if(this.num >= 120){
                     this.num = 120;
                     // this.blood = true;
+                    this.popupVisible = false;
                 }else{
                     this.blood = false;
                     this.skill = false;
                     this.force = false;
                     this.g_egg = true;
+                    this.popupVisible = true;
                 }
+                
             },
+            
             egg_pet(){
                 if(this.num<120){
                     MessageBox.confirm('当前跑步值不足孵出宠物, 是否前往跑步?', '提示', {
-                        confirmButtonText: '确定',
+                        confirmButtonText: '前往',
                         cancelButtonText: '取消',
                         type: 'warning'
                         }).then(() => {
@@ -376,7 +354,10 @@
         },
         mounted(){
             this.bar();
-            this.egg_pet();
+            if(this.num >= 120){
+                this.egg_pet();
+            }
+            
         },
         components:{
             picker  

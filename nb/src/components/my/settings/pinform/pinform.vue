@@ -36,9 +36,8 @@
                     <label for="choose_img">
                         <img src="../../../../assets/img/my/headportrait/1.png" alt="" class="choose_head">
                     </label>
-                    
                     <img :src="change_head" alt="" class="head_preview">
-                    <input type="file" name="file" id="choose_img" @change="ch_fun" accept="image/png,image/jpeg,image/gif" style="display:none;">
+                    <input type="file" name="file" id="choose_img" @change="ch_fun" accept="image/png,image/jpeg,image/gif" style="display:none;" ref="inputImage">
                     <input type="text" :value="yhid" name="yhid" style="display:none;">
                 </form>
                 <iframe name="the_iframe" frameborder="0" style="" id="brige_frame" style="display:none;"></iframe>
@@ -47,19 +46,20 @@
         <!-- 昵称修改 -->
         <mt-popup v-model="popupNameC" position="bottom">
             <div class="update_name" :style="unStyle">
-                <div class="control_bar">
-                    <span><button @click="cancelUN" class="cancelUN">取消</button></span> <span class="cn_title">修改昵称</span> <span> <button type="button" @click="confirmUN"  class="mui-btn mui-btn-success confirmUN"  :disabled="cn_disabled">完成</button>
-                    </span>
-                </div>
-                <input type="text" v-model="change_name" @change="cn_fun" placeholder="请输入昵称" class="change_name">
+                <span id="name_change">
+                    <div class="control_bar">
+                        <span><button @click="cancelUN" class="cancelUN">取消</button></span> <span class="cn_title">修改昵称</span> <span> <button type="button" @click="confirmUN"  class="mui-btn mui-btn-success confirmUN"  :disabled="cn_disabled">完成</button>
+                        </span>
+                    </div>
+                    <input type="text" v-model="change_name" @change="cn_fun" placeholder="请输入昵称" class="change_name">
+                </span>
             </div>
         </mt-popup>
-        
-        
     </div>
 </template>
 <script>
 import { MessageBox } from 'mint-ui'
+import { VueCropper }  from 'vue-cropper' 
 import axios from 'axios'
 export default {
     name: 'pinform',
@@ -67,8 +67,10 @@ export default {
         return{
             yhid: '',
             headportrait: '',
+            before_head: '',
             // 头像修改
             change_head: '',
+            cchh: '',
             after_change: '',
             popupHeadC: false,
             uhStyle: '',
@@ -79,6 +81,14 @@ export default {
             popupNameC: false,
             unStyle: '',
             cn_disabled: true,
+            screenHeight: window.innerHeight,
+        }
+    },
+    watch: {
+        screenHeight(val) {
+            let unWidth = document.documentElement.clientWidth;
+            this.uhStyle = "width:" + unWidth + "px;height:" + val + "px;";
+            this.unStyle = "width:" + unWidth + "px;height:" + val + "px;";
         }
     },
     created() {
@@ -93,12 +103,22 @@ export default {
                 this.user_name = response.data.yhnc;
                 this.change_name = this.user_name;
                 this.headportrait = response.data.yhtx;
-                this.change_head = this.headportrait;
+                this.change_head = response.data.yhtx;
+                this.before_head = response.data.yhtx;
             })      
             //获取失败
             .catch(error=>{
                 alert('网络错误，不能访问');
             })
+            
+    },
+    mounted() {
+        window.onresize = () => {
+            return(() => {
+                window.screenHeight = window.innerHeight;
+                this.screenHeight = window.screenHeight;
+            })()
+        };
     },
     methods: {
         routerRefresh() {
@@ -114,14 +134,57 @@ export default {
         cancelUH() {
             this.popupHeadC = !this.popupHeadC;
         },
+        axiosFun() {
+            axios.get('http://no37.store:8080/AK/ShowMe',{
+            params: {
+                yhid:localStorage.getItem("yhid"),
+            }})
+            .then(response=>{
+                console.log(response);
+                this.headportrait = response.data.yhtx;
+                if(this.headportrait != this.before_head) {
+                    MessageBox.alert('头像更改成功', '提示');
+                }
+                else {
+                    MessageBox.alert('头像更改失败，请重试', '抱歉');
+                }
+            })      
+            //获取失败
+            .catch(error=>{
+                alert('网络错误，不能访问');
+            })
+        },
         confirmUH() {
-            let obj1 = window.frames["the_iframe"];
-            // alert(obj1.n);
+            this.popupHeadC = false;
+            setTimeout(this.axiosFun,100);
         },
-        ch_fun() {
-            this.ch_disabled = !this.ch_disabled;
+        ch_fun(e) {
+            this.ch_disabled = false;
+            let _this = this;
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file); // 读出 base64
+            reader.onload = function () {
+                // 图片的 base64 格式, 可以直接当成 img 的 src 属性值        
+                var dataURL = reader.result;
+                var img = new Image();
+                img.src = dataURL;
+                img.onload = function() {
+                    if(img.width != img.height) {
+                        _this.ch_disabled = true;
+                        MessageBox.alert('请重新选择长宽比为一的图片', '提示');
+                    }
+                    else {
+                        _this.ch_disabled = false;
+                    }
+                    console.log(img.width);
+                    console.log(img.height);
+                }
+                _this.change_head = dataURL;
+            };
+            this.txyl_show = true;
+            this.change_show = false;
         },
-
         // 昵称修改
         unShow() {
             this.popupNameC =! this.popupNameC;
@@ -256,6 +319,17 @@ export default {
         /* display: inline-block; */
         /* margin-right: 10%; */
     }
+    #name_change {
+        display: inline-block;
+        width: 100%;
+        height: auto;
+        position: absolute;
+        margin-top: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+        /* border: 1px solid red; */
+    }
     .control_bar {
         width: 100%;
         margin-bottom: 1ex;
@@ -264,12 +338,12 @@ export default {
         align-items: center;
         background-color: transparent;
     }
-    .head_preview {
+    .head_preview,#txyl_area {
         width: 80%;
         max-width: 400px;
+        border-radius: 7px;
         margin: 0 auto;
         display: block;
-        
     }
     .head_preview,.choose_head {
         display: flex;
@@ -284,6 +358,7 @@ export default {
     /* 头像修改 */
     .update_head,.update_name {
         background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+        overflow: hidden;
     }
     .cancelUH,.cancelUN {
         margin: 1ex;
@@ -300,9 +375,12 @@ export default {
         border-left: 0;
         border-right: 0;
         border-radius: 0;
-        height: 7%;
+        height: 6.5ex;
         font-size: 14px;
         background-color: rgba(255, 255, 255, 0.6);
+    }
+    iframe {
+        display: none;
     }
 </style>
 
