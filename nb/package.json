@@ -17,6 +17,7 @@
     "vue-amap": "^0.5.10",
     "vue-awesome-mui": "^1.7.3",
     "vue-axios": "^2.1.4",
+    "vue-cropper": "^0.4.9",
     "vue-router": "^3.0.1",
     "vuex": "^3.1.1",
     "webpack": "^3.12.0"

@@ -58,7 +58,7 @@ export default {
     created() {
         axios.get('http://no37.store:8080/AK/MoveAction',{
             params: {
-                yhid:1,ydrqn:2019,ydrqy:8,
+                yhid:1,ydrqOne:2019,ydrqTwo:6,
             }})
             .then(response=>{
                 console.log(response);

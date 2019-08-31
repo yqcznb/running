@@ -36,8 +36,7 @@
                     <label for="choose_img">
                         <img src="../../../../assets/img/my/headportrait/1.png" alt="" class="choose_head">
                     </label>
-                    <img src="" alt="" id="txyl_area" v-show="txyl_show">
-                    <img :src="change_head" alt="" class="head_preview" v-show="change_show">
+                    <img :src="change_head" alt="" class="head_preview">
                     <input type="file" name="file" id="choose_img" @change="ch_fun" accept="image/png,image/jpeg,image/gif" style="display:none;" ref="inputImage">
                     <input type="text" :value="yhid" name="yhid" style="display:none;">
                 </form>
@@ -54,15 +53,13 @@
                     </div>
                     <input type="text" v-model="change_name" @change="cn_fun" placeholder="请输入昵称" class="change_name">
                 </span>
-                
             </div>
         </mt-popup>
-        
-        
     </div>
 </template>
 <script>
 import { MessageBox } from 'mint-ui'
+import { VueCropper }  from 'vue-cropper' 
 import axios from 'axios'
 export default {
     name: 'pinform',
@@ -72,20 +69,26 @@ export default {
             headportrait: '',
             before_head: '',
             // 头像修改
-            change_head: localStorage.getItem("txyl"),
+            change_head: '',
             cchh: '',
             after_change: '',
             popupHeadC: false,
             uhStyle: '',
             ch_disabled: true,
-            txyl_show: false,
-            change_show: true,
             // 昵称修改
             user_name: '',
             change_name: '',
             popupNameC: false,
             unStyle: '',
             cn_disabled: true,
+            screenHeight: window.innerHeight,
+        }
+    },
+    watch: {
+        screenHeight(val) {
+            let unWidth = document.documentElement.clientWidth;
+            this.uhStyle = "width:" + unWidth + "px;height:" + val + "px;";
+            this.unStyle = "width:" + unWidth + "px;height:" + val + "px;";
         }
     },
     created() {
@@ -107,6 +110,15 @@ export default {
             .catch(error=>{
                 alert('网络错误，不能访问');
             })
+            
+    },
+    mounted() {
+        window.onresize = () => {
+            return(() => {
+                window.screenHeight = window.innerHeight;
+                this.screenHeight = window.screenHeight;
+            })()
+        };
     },
     methods: {
         routerRefresh() {
@@ -141,7 +153,6 @@ export default {
             .catch(error=>{
                 alert('网络错误，不能访问');
             })
-
         },
         confirmUH() {
             this.popupHeadC = false;
@@ -149,19 +160,31 @@ export default {
         },
         ch_fun(e) {
             this.ch_disabled = false;
+            let _this = this;
             var file = e.target.files[0];
             var reader = new FileReader();
             reader.readAsDataURL(file); // 读出 base64
             reader.onload = function () {
                 // 图片的 base64 格式, 可以直接当成 img 的 src 属性值        
                 var dataURL = reader.result;
-                document.getElementById("txyl_area").src = dataURL;
-                document.getElementsByClassName("headportrait").src = dataURL;
+                var img = new Image();
+                img.src = dataURL;
+                img.onload = function() {
+                    if(img.width != img.height) {
+                        _this.ch_disabled = true;
+                        MessageBox.alert('请重新选择长宽比为一的图片', '提示');
+                    }
+                    else {
+                        _this.ch_disabled = false;
+                    }
+                    console.log(img.width);
+                    console.log(img.height);
+                }
+                _this.change_head = dataURL;
             };
             this.txyl_show = true;
             this.change_show = false;
         },
-
         // 昵称修改
         unShow() {
             this.popupNameC =! this.popupNameC;
@@ -299,7 +322,10 @@ export default {
     #name_change {
         display: inline-block;
         width: 100%;
+        height: auto;
         position: absolute;
+        margin-top: 0;
+        top: 0;
         left: 0;
         right: 0;
         /* border: 1px solid red; */
@@ -332,6 +358,7 @@ export default {
     /* 头像修改 */
     .update_head,.update_name {
         background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+        overflow: hidden;
     }
     .cancelUH,.cancelUN {
         margin: 1ex;
