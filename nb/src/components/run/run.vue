@@ -110,7 +110,7 @@ export default {
                 this.$router.push({
                     path: '/time'
                 });
-                 window.location.reload();
+              
             }
           },1000)
         }
