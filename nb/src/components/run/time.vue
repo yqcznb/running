@@ -22,12 +22,25 @@
           :label="label"
            >
         </el-amap-marker>
+           <el-amap-text v-for="(text,index) in texts"
+          :text="text.text"
+          :key="index"
+          :offset="text.offset"
+          :position="text.position"
+          :events="text.events">
+         </el-amap-text>
       <el-amap-bezier-curve v-for="line in lines"  :key="line.id" :v-model="lines" :path="line.path" :stroke-color="line.strokeColor" :stroke-style="line.strokeStyle" :events="line.events" :stroke-opacity="line.strokeOpacity"></el-amap-bezier-curve>  
     </el-amap>
       <button class="jsun"  @mouseenter="mouseEnter" v-if="showw">长按结束</button>
       <button class="buleft"   v-if="left" @click="con">继续</button>
       <button class="buright"  v-if="right" @click="end">结束</button>
+    <div>
+      <mt-popup position='bottom' class="times" popup-transition="popup-fade" v-model="visible" style="width:100%;height:100%;background-color: rgb(172, 205, 155, 0.8);">
+          <div class="big">{{count}}</div>
+      </mt-popup>
+    </div>
   </div>
+  
 </template>
 
 <script>
@@ -49,6 +62,7 @@ export default {
       left:false,
       right:false,   
       jg:"",
+      count:"恭喜你获得宝藏",
        distance: 0.0,  // 表示运动的累计距离
         miles: 0.0,    // 表示运动的累计距离，单位是公里用于界面显示
         // path: [],    // 运动坐标数据
@@ -69,7 +83,7 @@ export default {
         nb:"",
         yhid:localStorage.getItem("yhid"),
         label:{
-        content:"11",
+      
         offset:[10,12]
       },
          lines: [
@@ -111,6 +125,12 @@ export default {
                    if((self.lines[0].path[self.nb-1]['lng']!=self.lng)||(self.lines[0].path[self.nb-1]['lat']!=self.lat)){
                          self.lines[0].path.push([self.lng, self.lat]);
                    }
+                   for(let i=0;i<3;i++){
+                     if(self.lng>=(self.texts[i].position[0]-0.0015)&&self.lng<(self.texts[i].position[0]+0.0015)&&self.lat> (self.texts[i].position[1]-0.0015)&&self.lng<(self.texts[i].position[1]+0.0015)){
+                          self.visible = ture;
+                          self.texts[i].position = [,]
+                     }
+                   }
                 }
               })
                },2000);
@@ -127,19 +147,65 @@ export default {
                      self.lines[0].path.push([self.lng, self.lat],);
                      self.center1 = [self.lng, self.lat];  
                      self.nb=2;
+                     for(let i=1;i<3;i++){
+                        let a = Math.random()%0.003-0.0015;
+                        a = a+self.lng
+                        a = Math.round(a*100000)/100000; 
+                        let b = Math.random()%0.004-0.002;
+                        b=b+self.lat
+                        b = Math.round(b*100000)/100000; 
+                         self.texts[i].position = [a,b]
+                     }
                    }
                 }
               })
             }
           }
         },
+        
        
-      ]
+      ],
+       texts: [
+        {
+          position: [120.0211,36.24092],
+          text: `<img style="width:25px;" src="http://no37.store/12.png"><p>打卡寻宝</p>`,
+          offset: [0,0],
+          events: {
+            click: () => {
+              alert('快来看看这里有什么好东西吧！')
+            }
+          }
+        },
+        {
+          position: [120.02152, 36.24194],
+          text: `<img style="width:25px;" src="http://no37.store/12.png"><p>打卡寻宝</p>`,
+          offset: [0,0],
+          events: {
+            click: () => {
+              alert('快来看看这里有什么好东西吧！')
+            }
+          }
+        },
+        {
+          position: [120.02112, 36.24174],
+          text: `<img style="width:25px;" src="http://no37.store/12.png"><p>打卡寻宝</p>`,
+          offset: [0,0],
+          events: {
+            click: () => {
+              alert('快来看看这里有什么好东西吧！')
+            }
+          }
+        }
+      ],
     }
+  },
+   beforeUpdate:function(){
+    
   },
    activated: function() {
     this.getCase()
   },
+ 
    created: function () {
      this.ttime=setInterval(this.timer,50);
     // this.lux=setInterval(this.luxian,3000);
@@ -297,6 +363,27 @@ export default {
 </script>
 
 <style scoped>
+.times{
+  display: flex;
+  flex-direction:column;
+  justify-content:center;
+  color:  rgba(253, 185, 51, 0.89);
+  font-weight: bold;
+  font-size: 0px;
+  animation: am1 1s linear infinite ;
+  animation-fill-mode: forwards;
+}
+@keyframes am1 {      
+            0% {  /* 或者写成这样:  from {} */    
+                font-size: 0px;  /* 多个属性相当于多组动画一起执行 */  
+            }      
+            100% {  /* 或者写成这样:  to {} */    
+              font-size: 300px;      
+            }      
+}      
+.ttime{
+  overflow: hidden;
+}
 .buleft{
   position:absolute;
   top: 80%;
