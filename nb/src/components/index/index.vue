@@ -17,13 +17,13 @@
               </router-link>
             </div>
             <p>当前已跑</p>
-            <p>{{dqyp}}次</p>
+            <p><em>{{dqyp}}</em>次</p>
             <p>晨跑</p>
-            <p>{{cp}}次</p>
+            <p><em>{{cp}}</em>次</p>
             <p>夜跑</p>
-            <p>{{yp}}次</p>
+            <p><em>{{yp}}</em>次</p>
             <p>学期目标</p>
-            <p>{{xqmb}}次</p>
+            <p><em>{{xqmb}}</em>次</p>
         </div>
     </div>
   </div>
@@ -160,5 +160,9 @@ a{
 }
 .index .caochang .xinxi span,.index .caochang .xinxi i{
   color: rgb(235, 14, 198)
+}
+.xinxi p em{
+  color:rgb(240, 190, 25);
+  font-size: 27px;
 }
 </style>
