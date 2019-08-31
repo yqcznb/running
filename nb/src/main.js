@@ -38,7 +38,7 @@ Vue.use(Lazyload)
 Vue.config.productionTip = false
 VueAMap.initAMapApiLoader({
   key: '8a3371b727138ef195759ae5be614d8d',
-  plugin: ['AMap.Geolocation','AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor'],
+  plugin: ['AMap.Geolocation','AMap.Autocomplete', 'AMap.PlaceSearch', 'AMap.Scale', 'AMap.OverView', 'AMap.ToolBar', 'AMap.MapType', 'AMap.PolyEditor', 'AMap.CircleEditor','AMap.Geocoder','AMap.AMapUI'],
   // 默认高德 sdk 版本为 1.4.4
   v: '1.4.4'
 });
