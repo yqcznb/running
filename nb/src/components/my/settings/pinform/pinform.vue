@@ -36,9 +36,8 @@
                     <label for="choose_img">
                         <img src="../../../../assets/img/my/headportrait/1.png" alt="" class="choose_head">
                     </label>
-                    
                     <img :src="change_head" alt="" class="head_preview">
-                    <input type="file" name="file" id="choose_img" @change="ch_fun" accept="image/png,image/jpeg,image/gif" style="display:none;">
+                    <input type="file" name="file" id="choose_img" @change="ch_fun" accept="image/png,image/jpeg,image/gif" style="display:none;" ref="inputImage">
                     <input type="text" :value="yhid" name="yhid" style="display:none;">
                 </form>
                 <iframe name="the_iframe" frameborder="0" style="" id="brige_frame" style="display:none;"></iframe>
@@ -69,6 +68,7 @@ export default {
             headportrait: '',
             // 头像修改
             change_head: '',
+            cchh: '',
             after_change: '',
             popupHeadC: false,
             uhStyle: '',
@@ -118,8 +118,20 @@ export default {
             let obj1 = window.frames["the_iframe"];
             // alert(obj1.n);
         },
-        ch_fun() {
-            this.ch_disabled = !this.ch_disabled;
+        ch_fun(e) {
+            this.ch_disabled = false;
+            // this.change_head = this.$refs.inputImage.files[0];
+            var file = e.target.files[0];
+            var reader = new FileReader();
+            reader.readAsDataURL(file); // 读出 base64
+            reader.onload = function () {
+                // 图片的 base64 格式, 可以直接当成 img 的 src 属性值        
+                var dataURL = reader.result;
+                localStorage.setItem("txyl",dataURL);
+            };
+            this.change_head = localStorage.getItem("txyl");
+            console.log(this.change_head);
+            // localStorage.removeItem("txyl");
         },
 
         // 昵称修改
