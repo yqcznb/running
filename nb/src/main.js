@@ -11,6 +11,7 @@ import axios from 'axios'
 import VueAxios from 'vue-axios'
 import { Button,MessageBox,Header,Field,Popup,Picker,Lazyload,DatetimePicker,Navbar,TabItem,TabContainer, TabContainerItem} from 'mint-ui';
 import echarts from 'echarts'
+import VueCropper from 'vue-cropper'
 import store from './store'
 import Mui from 'vue-awesome-mui'
 import './assets/css/my-mint.scss';//全局修改mint-UI样式
@@ -28,6 +29,7 @@ Vue.component(Navbar.name, Navbar);
 Vue.component(TabItem.name, TabItem);
 Vue.component(TabContainer.name, TabContainer);
 Vue.component(TabContainerItem.name, TabContainerItem);
+Vue.use(VueCropper);
 
 Vue.prototype.axios = axios
 Vue.prototype.$echarts = echarts

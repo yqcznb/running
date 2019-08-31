@@ -138,7 +138,16 @@ export default {
             new_code: '',
             confirm_code: '',
             passmsg: '',
+            screenHeight: window.innerHeight,
         }
+    },
+    watch: {
+        screenHeight(val) {
+            let unWidth = document.documentElement.clientWidth;
+            this.upStyle = "width:" + unWidth + "px;height:" + val + "px;";
+            this.umStyle = "width:" + unWidth + "px;height:" + val + "px;";
+            this.ucStyle = "width:" + unWidth + "px;height:" + val + "px;";
+        },
     },
     created() {
         axios.get('http://no37.store:8080/AK/ShowID',{
@@ -155,6 +164,14 @@ export default {
             })
         this.yhzh = localStorage.getItem("yhid");
         this.passmsg = localStorage.getItem("password");
+    },
+    mounted() {
+        window.onresize = () => {
+            return(() => {
+                window.screenHeight = window.innerHeight;
+                this.screenHeight = window.screenHeight;
+            })()
+        }
     },
     methods: {
         // 手机号修改

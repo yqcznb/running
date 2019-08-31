@@ -129,10 +129,10 @@ export default {
         // 近期跑步数据请求
         axios.get('http://no37.store:8080/AK/SelectMove',{
             params: {
-                yhid:localStorage.getItem("yhid"),drqOne:this.ydrqOne,ydrqTwo:this.ydrqTwo,
+                yhid:localStorage.getItem("yhid"),ydrqOne:this.ydrqOne,ydrqTwo:this.ydrqTwo,
             }})
             .then(response=>{
-                // console.log(response);
+                console.log(response);
             })      //获取失败
             .catch(error=>{
                 alert('网络错误，不能访问');

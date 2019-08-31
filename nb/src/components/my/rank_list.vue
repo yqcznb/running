@@ -159,7 +159,7 @@ export default {
     }
     .select_list {
         width: 100%;
-        border: 1px solid red;
+        /* border: 1px solid red; */
     }
     .mint-navbar{
         width: 95%;
