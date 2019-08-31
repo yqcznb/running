@@ -21,83 +21,196 @@
             </div>
 
             <div class="bag_equip">
-                <div class="equip_title">
+                <!-- <div class="equip_title">
                     装备区
-                    <p @click="open">预览</p>
-                </div>
+                    
+                </div> -->
                 <div class="equip_wrap">
                     <div class="equip_list">
                         <mt-navbar v-model="equip">
-                            <mt-tab-item id="1">武器区</mt-tab-item>
-                            <mt-tab-item id="2">衣饰区</mt-tab-item>
-                            <mt-tab-item id="3">药品/技能区</mt-tab-item>
+                            <div class="wuqi" @click='wuqi' :style="{color: yangs1}">武器区</div>
+                            <div @click='clothes' class="yishi" :style="{color: yangs2}">衣饰区</div>
+                            <div class='y_jineng' @click='y_jineng' :style="{color: yangs3}">药品/技能区</div>
                         </mt-navbar>
                         <!-- tab-container -->
                         <mt-tab-container v-model="equip">
                             <mt-tab-container-item id="1">
-                                <div class="eq_list1">
+                                <div class="eq_list1" @click="w1">
                                     <div>
                                         <i class="iconfont iconwuqihui"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1">
+                                <div class="eq_list1" @click="w1">
                                     <div>
                                         <i class="iconfont iconSubtraction"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1">
+                                <div class="eq_list1" @click="w1">
                                     <div>
                                         <i class="iconfont icondao1"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1">
+                                <div class="eq_list1" @click="w1">
                                     <div>
                                         <i class="iconfont iconfl-futou"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1">
+                                <div class="eq_list1" @click="w1">
                                     <div>
                                         <i class="iconfont iconji"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1">
+                                <div class="eq_list1" @click="w1">
                                     <div>
                                         <i class="iconfont iconrenzhewuqi"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1">
+                                <div class="eq_list1" @click="w1">
                                     <div>
-                                        <i class="iconfont iconrenzhewuqi1"></i>
+                                        <i class="iconfont icondao"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconbaoleiji"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconwuqi"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconwuqix"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconwuqianniu"></i>
                                     </div>
                                 </div>
                             </mt-tab-container-item>
                             <mt-tab-container-item id="2">
-                                <div class="eq_list1">
+                                <div class="eq_list1" @click="w1">
                                     <div>
                                         <i class="iconfont iconzhuangbei1"></i>
                                     </div>
                                 </div>
+                                <div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconkuzi"></i>
+                                    </div>
+                                </div><div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont icon-xiezi"></i>
+                                    </div>
+                                </div><div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconzhuangbei"></i>
+                                    </div>
+                                </div><div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont icon-kuzi"></i>
+                                    </div>
+                                </div><div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconxiezi3"></i>
+                                    </div>
+                                </div><div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconsv"></i>
+                                    </div>
+                                </div><div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont icon47"></i>
+                                    </div>
+                                </div><div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont icontuoxie"></i>
+                                    </div>
+                                </div>
                             </mt-tab-container-item>
                             <mt-tab-container-item id="3">
-                                <div class="eq_list1">
-                                    <dir>
+                                <div class="eq_list1" @click="w1">
+                                    <div>
                                         <i class="iconfont iconyaopin1"></i>
-                                    </dir>
+                                    </div>
+                                </div>
+                                <div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconyaopin2"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconyaopin"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconpip"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconleidian-"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconlongjuanfeng"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconshuhu"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont iconziyuan1"></i>
+                                    </div>
+                                </div>
+                                <div class="eq_list1" @click="w1">
+                                    <div>
+                                        <i class="iconfont icontingchewei"></i>
+                                    </div>
                                 </div>
                             </mt-tab-container-item>
                         </mt-tab-container>
+                        <mt-button type="primary" size="large" @click="open" class="yulan">预览</mt-button>
                     </div>
                 </div>
             </div> 
         </div>
-
-    </div>      
+        <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="visible" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
+            <ul>
+                <li class="zb_name">
+                    {{zb_name}}
+                </li>
+                <li class="zb_xiaoguo">
+                    <p class="xiaoguo_title">效果</p>
+                    <p>{{xiaoguo_my}}</p>
+                    <p>{{xiaoguo_you}}</p>
+                    <p>{{xiaoguo_bd}}</p>
+                </li>
+                <li class="button">
+                    <mt-button type="primary" size="large" @click="add_wuqi">添加</mt-button>
+                </li>
+                
+            </ul>
+        </mt-popup>
+    </div> 
+         
 </template>
 
 
 <script>
 // import html2canvas from 'html2canvas';
-// import { Navbar, TabItem } from 'mint-ui';
+import { Navbar, TabItem } from 'mint-ui';
+import { Popup } from 'mint-ui';
+import { MessageBox } from 'mint-ui';
 // import DrawerLayout from 'vue-drawer-layout'
 export default {
     data(){
@@ -105,9 +218,26 @@ export default {
             // isshow: false,
             num: -100,
             equip: '1',
+            yangs1: 'rgb(222, 198, 116)',
+            yangs2: '0',
+            yangs3: '0',
+            visible: false,
+            zb_name: '大辟之剑',
+            xiaoguo_my: '自身武力值+1',
+            xiaoguo_you: '每次挥剑对敌造成3点血量伤害',
+            xiaoguo_bd: '挥剑次数为自身血量的50%',
             Left:{
                 'left':'0%',
-            }
+            },
+            Color1:{
+                'color':'0',
+            },
+            Color2:{
+                'color':'0',
+            },
+            Color3:{
+                'color':'0',
+            },
         }
     },
 
@@ -124,7 +254,43 @@ export default {
             this.Left = {
                 'left': this.num + '%',
             }
-        }
+        },
+       
+        wuqi(){
+            this.equip = '1';
+            this.yangs1 = 'rgb(222, 198, 116)';
+            this.yangs2 = 'rgb(88, 177, 236)';
+            this.yangs3 = 'rgb(88, 177, 236)';
+            this.Color1 = {
+                'color': this.yangs1,
+            };
+        },
+         clothes(){
+            this.equip = '2';
+            this.yangs2 = 'rgb(222, 198, 116)';
+            this.yangs1 = 'rgb(88, 177, 236)';
+            this.yangs3 = 'rgb(88, 177, 236)';
+            this.Color2 = {
+                'color': this.yangs2,
+            };
+        },
+        y_jineng(){
+            this.equip = '3';
+            this.yangs3 = 'rgb(222, 198, 116)';
+            this.yangs1 = 'rgb(88, 177, 236)';
+            this.yangs2 = 'rgb(88, 177, 236)';
+            this.Color3 = {
+                'color': this.yangs3,
+            };
+        },
+        w1(){
+            this.visible = true;
+        },
+        add_wuqi(){
+            MessageBox.alert("添加成功，点击预览查看").then(action => {
+  
+                });
+        },
 
     //   initCanvas(){
     //       let canvas = document.getElementById('my_canvas');
@@ -298,6 +464,29 @@ export default {
         border-left: 1px solid rgba(204, 204, 204, 0.801);
     }
 
+    .bag_bottom .bag_equip .equip_wrap .equip_list .wuqi{
+        width: 30%;
+        height: 60px;
+        line-height: 60px;
+        color: rgb(88, 177, 236);
+        margin-right: 5%;
+    }
+
+    .bag_bottom .bag_equip .equip_wrap .equip_list .yishi{
+        width: 30%;
+        height: 60px;
+        line-height: 60px;
+        color: rgb(88, 177, 236);
+        margin-right: 5%;
+    }
+
+    .bag_bottom .bag_equip .equip_wrap .equip_list .y_jineng{
+        width: 30%;
+        height: 60px;
+        line-height: 60px;
+        color: rgb(88, 177, 236);
+    }
+
     .bag_bottom .bag_equip .equip_wrap .equip_list .eq_list1{
         margin: 10px 0 0 5px;
         width: 60px;
@@ -315,5 +504,28 @@ export default {
 
     .bag_bottom .bag_equip .equip_wrap .equip_list .eq_list1 div i{
         line-height: 50px;
+    }
+
+    /* 装备详情 */
+    .zb_name{
+        padding: 20px 0 20px 0;
+        border-bottom: 1px solid rgb(233, 193, 85);
+        color: rgb(88, 177, 236);
+    }
+
+    .zb_xiaoguo .xiaoguo_title{
+        margin-left: -300px;
+        margin-bottom: 10px; 
+        color: rgb(88, 177, 236);
+    }
+
+    .button{
+        margin: auto;
+    }
+
+    /* 预览按钮 */
+    .yulan{
+        position: absolute;
+        top: 550px;
     }
 </style>
