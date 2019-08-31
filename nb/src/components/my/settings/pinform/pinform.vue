@@ -299,7 +299,7 @@ export default {
     #name_change {
         display: inline-block;
         width: 100%;
-        position: fixed;
+        position: absolute;
         left: 0;
         right: 0;
         /* border: 1px solid red; */
