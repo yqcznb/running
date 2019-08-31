@@ -9,7 +9,7 @@
            <div>{{str}}<p>用时</p></div>
            <div>{{ calories}}<p>热量（千卡）</p></div>
       </div>
-     <div class="ceshi" v-for="line in lines"  :key="line.id" :v-model="lines" :path="line.path">miles:{{miles}}$$distance:{{distance}}^^aa:{{aa}}**当前经纬度：{{lng}},{{lat}}***数组：{{line.path}}</div>
+     <!-- <div class="ceshi" v-for="line in lines"  :key="line.id" :v-model="lines" :path="line.path">miles:{{miles}}$$distance:{{distance}}^^aa:{{aa}}**当前经纬度：{{lng}},{{lat}}***数组：{{line.path}}</div> -->
     </div>
     <el-amap 
         vid="amap"  
@@ -17,7 +17,11 @@
         :plugin="plugin" 
         class="amap-demo" 
         :center="center"
-    >  
+    >    <el-amap-marker vid="marker" 
+          :position="center1" 
+          :label="label"
+           >
+        </el-amap-marker>
       <el-amap-bezier-curve v-for="line in lines"  :key="line.id" :v-model="lines" :path="line.path" :stroke-color="line.strokeColor" :stroke-style="line.strokeStyle" :events="line.events" :stroke-opacity="line.strokeOpacity"></el-amap-bezier-curve>  
     </el-amap>
       <button class="jsun"  @mouseenter="mouseEnter" v-if="showw">长按结束</button>
@@ -34,6 +38,7 @@ export default {
     let self = this;
     return {
       center: [121.59996, 31.197646],
+      center1:[121.59996, 31.197646],
       radius:20,
       zoom: 18,
       lng: 0,
@@ -42,8 +47,7 @@ export default {
       visible: false,
       showw:true,
       left:false,
-      right:false,
-     
+      right:false,   
       jg:"",
        distance: 0.0,  // 表示运动的累计距离
         miles: 0.0,    // 表示运动的累计距离，单位是公里用于界面显示
@@ -64,6 +68,10 @@ export default {
         sx:0,
         nb:"",
         yhid:localStorage.getItem("yhid"),
+        label:{
+        content:"11",
+        offset:[10,12]
+      },
          lines: [
             {
               path: [        
@@ -115,8 +123,9 @@ export default {
                   self.$nextTick();  
                   self.nb = self.lines[0].path.length;
                     if(self.nb==1){
-                      self.lines[0].path.pop([self.lng, self.lat],);
+                     self.lines[0].path.pop([self.lng, self.lat],);
                      self.lines[0].path.push([self.lng, self.lat],);
+                     self.center1 = [self.lng, self.lat];  
                      self.nb=2;
                    }
                 }
@@ -209,7 +218,8 @@ export default {
               yhid: this.yhid,
               ydjl: this.miles,
               ydsj:this.times,
-              ydsd:this.speed
+              ydsd:this.speed,
+              p:1
           }
       }).then(response=>{
               console.log(response)
