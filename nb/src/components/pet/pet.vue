@@ -267,7 +267,7 @@
         },
         // 后台接口获取官方通知的内容
         created:function(){
-            axios.get('',{
+            this.axios.get('',{
                 params: {
                     yhid: localStorage.getItem("yhid"),     
                 }
@@ -327,7 +327,8 @@
                         cancelButtonText: '取消',
                         type: 'warning'
                         }).then(() => {
-                        window.location.href='../footer/index/run?#/footer/index/run';    
+                        // window.location.href='../footer/index/run?#/footer/index/run';  
+                        this.$router.replace('/footer/index/run');  
                         //   window.location.href='../run#/footer/pet/gpet';
                         }).catch(() => {
                         MessageBox.message({
