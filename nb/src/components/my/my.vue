@@ -3,7 +3,7 @@
         <router-link :to="{name:'pinform',params:{backey:'/footer/my'}}">
             <div id="my_head">
                 <div id="head_left">
-                    <h4>{{ uname }} <router-link to='/confirm'><i :class="if_rz" class="iconfont iconwrz"></i></router-link></h4>
+                    <h4>{{ uname }} <router-link to='/confirm' @click.native="routerRefresh"><i :class="if_rz" class="iconfont iconwrz"></i></router-link></h4>
                     <h5><router-link to="/drole">{{ uduan }}段位 》</router-link></h5>
                     <img :src='levelImg' class="levelimg" >
                     <router-link to="/ex_bonus" @click.native="routerRefresh" >
