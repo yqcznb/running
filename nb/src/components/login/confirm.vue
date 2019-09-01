@@ -8,45 +8,67 @@
             <button class="modify_btn" @click="c_disabled">修改信息</button>
         </div>
         <div class="confirm_box">
-            <mt-navbar v-model="selected">
+            <mt-navbar v-model="modify_id">
+                <mt-tab-item id="0">我是学生</mt-tab-item>
                 <mt-tab-item id="1">我是老师</mt-tab-item>
-                <mt-tab-item id="2">我是学生</mt-tab-item>
             </mt-navbar>
-
             <!-- tab-container -->
-            <mt-tab-container v-model="selected">
-                <mt-tab-container-item id="1">
-                    1
+            <mt-tab-container v-model="modify_id">
+                <mt-tab-container-item id="0">
+                    <div class="msg_box">
+                        <span class="modify_msg">
+                            <label for="school_name" class="msg_left">学校</label><input type="text" v-model="yhxx" id="school_name" :disabled="disabled"> <label for="school_name"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                        </span> <hr>
+                        <span class="modify_msg">
+                            <label for="department" class="msg_left">院系</label><input type="text" v-model="yhxy" id="department" :disabled="disabled"> <label for="department"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                        </span> <hr>
+                        <span class="modify_msg">
+                            <label for="profes" class="msg_left">专业</label><input type="text" id="profes" v-model="yhzy" :disabled="disabled"> <label for="profes"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                        </span> <hr>
+                        <span class="modify_msg">
+                            <label for="stuname" class="msg_left">姓名</label><input type="text" v-model="yhxm" id="stuname" :disabled="disabled"> <label for="stuname"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                        </span> <hr>
+                        <span class="modify_msg">
+                            <label for="stunum" class="msg_left">学号</label><input type="text" v-model="yhxh" id="stunum" :disabled="disabled"> <label for="stunum"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                        </span> <hr>
+                        <span class="modify_msg">
+                            <label for="stusex" class="msg_left">性别</label><input type="text" v-model="yhxb" id="stusex" :disabled="disabled"> <label for="stusex"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                        </span> <hr>
+                        <span class="modify_msg">
+                            <label for="entryDate" class="msg_left" @click="selectYear">入学日期</label><input type="text" readonly v-model="year" id="entryDate" :disabled="disabled" @click="selectYear">
+                            <label for="entryDate" @click="selectYear"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                        </span>
+                    </div>
                 </mt-tab-container-item>
-                <mt-tab-container-item id="2">
-                    2
+                <mt-tab-container-item id="1">
+                    <div class="msg_box">
+                        <span class="modify_msg">
+                            <label for="school_name" class="msg_left">学校</label><input type="text" v-model="yhxx" id="school_name" :disabled="disabled"> <label for="school_name"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                        </span> <hr>
+                        <span class="modify_msg">
+                            <label for="department" class="msg_left">院系</label><input type="text" v-model="yhxy" id="department" :disabled="disabled"> <label for="department"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                        </span> <hr>
+                        <span class="modify_msg">
+                            <label for="profes" class="msg_left">专业</label><input type="text" id="profes" v-model="yhzy" :disabled="disabled"> <label for="profes"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                        </span> <hr>
+                        <span class="modify_msg">
+                            <label for="stuname" class="msg_left">姓名</label><input type="text" v-model="yhxm" id="stuname" :disabled="disabled"> <label for="stuname"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                        </span> <hr>
+                        <span class="modify_msg">
+                            <label for="stunum" class="msg_left">学号</label><input type="text" v-model="yhxh" id="stunum" :disabled="disabled"> <label for="stunum"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                        </span> <hr>
+                        <span class="modify_msg">
+                            <label for="stusex" class="msg_left">性别</label><input type="text" v-model="yhxb" id="stusex" :disabled="disabled"> <label for="stusex"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                        </span> <hr>
+                        <span class="modify_msg">
+                            <label for="entryDate" class="msg_left" @click="selectYear">入学日期</label><input type="text" readonly v-model="year" id="entryDate" :disabled="disabled" @click="selectYear">
+                            <label for="entryDate" @click="selectYear"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                        </span>
+                    </div>
                 </mt-tab-container-item>
             </mt-tab-container>
         </div>
-        <div class="msg_box">
-            <span class="modify_msg">
-                <label for="school_name" class="msg_left">学校</label><input type="text" v-model="yhxx" id="school_name" :disabled="disabled"> <label for="school_name"><i class="iconfont iconfanhui iconfont-right"></i></label>
-            </span> <hr>
-            <span class="modify_msg">
-                <label for="department" class="msg_left">院系</label><input type="text" v-model="yhxy" id="department" :disabled="disabled"> <label for="department"><i class="iconfont iconfanhui iconfont-right"></i></label>
-            </span> <hr>
-            <span class="modify_msg">
-                <label for="profes" class="msg_left">专业</label><input type="text" id="profes" v-model="yhzy" :disabled="disabled"> <label for="profes"><i class="iconfont iconfanhui iconfont-right"></i></label>
-            </span> <hr>
-            <span class="modify_msg">
-                <label for="stuname" class="msg_left">姓名</label><input type="text" v-model="yhxm" id="stuname" :disabled="disabled"> <label for="stuname"><i class="iconfont iconfanhui iconfont-right"></i></label>
-            </span> <hr>
-            <span class="modify_msg">
-                <label for="stunum" class="msg_left">学号</label><input type="text" v-model="yhxh" id="stunum" :disabled="disabled"> <label for="stunum"><i class="iconfont iconfanhui iconfont-right"></i></label>
-            </span> <hr>
-            <span class="modify_msg">
-                <label for="stusex" class="msg_left">性别</label><input type="text" v-model="yhxb" id="stusex" :disabled="disabled"> <label for="stusex"><i class="iconfont iconfanhui iconfont-right"></i></label>
-            </span> <hr>
-            <span class="modify_msg">
-                <label for="entryDate" class="msg_left" @click="selectYear">入学日期</label><input type="text" readonly v-model="year" id="entryDate" :disabled="disabled" @click="selectYear">
-                <label for="entryDate" @click="selectYear"><i class="iconfont iconfanhui iconfont-right"></i></label>
-            </span>
-        </div>
+        
         <mt-button type="primary" @click="renzhen" :disabled="disabled">{{if_modify}}</mt-button>
         <mt-datetime-picker 
             v-model="dateValue" 
@@ -70,7 +92,7 @@ export default {
         return {
             backimg: '',
             if_modify: '未认证',
-            selected: '1',
+            modify_id: '0',
             disabled: false,
             yhid:localStorage.getItem("yhid"),
             yhxx:"",
@@ -224,6 +246,26 @@ export default {
         font-size: 16px;
         display: inline-flex;
         justify-content: flex-end;
+    }
+    .confirm_box {
+        width: 100%;
+
+    }
+    .mint-navbar{
+        width: 93%;
+        max-width: 550px;
+        margin: 0 auto;
+        margin-bottom: 2%;
+        border-radius: 0 0 7px 7px;
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+    .mint-tab-item {
+        color: black;
+        font-size: 15px !important;
+    }
+    .mint-navbar .mint-tab-item.is-selected {
+        color: #ca884b;
+        border-color: #ca884b;
     }
     .msg_box {
         /* border: 1px solid red; */
