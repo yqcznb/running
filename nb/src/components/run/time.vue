@@ -34,9 +34,12 @@
       <button class="jsun"  @mouseenter="mouseEnter" v-if="showw">长按结束</button>
       <button class="buleft"   v-if="left" @click="con">继续</button>
       <button class="buright"  v-if="right" @click="end">结束</button>
-    <div>
+    <div @click="jieshu">
       <mt-popup position='bottom' class="times" popup-transition="popup-fade" v-model="visible" style="width:100%;height:100%;background-color: rgb(172, 205, 155, 0.8);">
-          <div class="big">{{count}}</div>
+          <div class="big">
+            {{count}}
+            <img :src="imgg" style="width:50%" > 
+          </div>
       </mt-popup>
     </div>
   </div>
@@ -63,6 +66,7 @@ export default {
       right:false,   
       jg:"",
       count:"恭喜你获得宝藏",
+      imgg:require("../../assets/img/bz.png"),
        distance: 0.0,  // 表示运动的累计距离
         miles: 0.0,    // 表示运动的累计距离，单位是公里用于界面显示
         // path: [],    // 运动坐标数据
@@ -125,11 +129,13 @@ export default {
                    if((self.lines[0].path[self.nb-1]['lng']!=self.lng)||(self.lines[0].path[self.nb-1]['lat']!=self.lat)){
                          self.lines[0].path.push([self.lng, self.lat]);
                    }
-                   for(let i=0;i<3;i++){
-                     if(self.lng>=(self.texts[i].position[0]-0.0015)&&self.lng<(self.texts[i].position[0]+0.0015)&&self.lat> (self.texts[i].position[1]-0.0015)&&self.lng<(self.texts[i].position[1]+0.0015)){
-                          self.visible = ture;
-                          self.texts[i].position = [,]
+                   for(var i=0;i<3;i++){
+                     if(self.lng>(self.texts[i].position[0]-0.00015)&&self.lng<(self.texts[i].position[0]+0.00015)&&self.lat> (self.texts[i].position[1]-0.00015)&&self.lat<(self.texts[i].position[1]+0.00015)){
+                          self.visible = true;
+                          self.texts[i].position=["",""]
+                          console.log(self.texts)
                      }
+                   
                    }
                 }
               })
@@ -167,7 +173,7 @@ export default {
       ],
        texts: [
         {
-          position: [120.0211,36.24092],
+          position: [120.02073,36.24183],
           text: `<img style="width:25px;" src="http://no37.store/12.png"><p>打卡寻宝</p>`,
           offset: [0,0],
           events: {
@@ -233,6 +239,10 @@ export default {
     //把经纬度传到父组件
     sendlnglat (){ 
       this.$emit('register', this.lng, this.lat)
+    },
+    jieshu(){
+      this.visible = false;
+      console.log("jieshu")
     },
    mouseEnter(){
     this.sx =  setTimeout(()=>{
@@ -370,7 +380,7 @@ export default {
   color:  rgba(253, 185, 51, 0.89);
   font-weight: bold;
   font-size: 0px;
-  animation: am1 1s linear infinite ;
+  animation: am1 1s linear forwards ;
   animation-fill-mode: forwards;
 }
 @keyframes am1 {      
@@ -378,7 +388,7 @@ export default {
                 font-size: 0px;  /* 多个属性相当于多组动画一起执行 */  
             }      
             100% {  /* 或者写成这样:  to {} */    
-              font-size: 300px;      
+              font-size: 50px;      
             }      
 }      
 .ttime{

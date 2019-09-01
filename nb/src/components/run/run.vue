@@ -139,6 +139,9 @@ export default {
   left: 0;
  
 }
+.run{
+  overflow: hidden;
+}
 #back_bar {
       text-align: left;
       text-indent: 0.3em;
