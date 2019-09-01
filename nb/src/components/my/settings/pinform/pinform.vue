@@ -146,7 +146,9 @@ export default {
                     MessageBox.alert('头像更改成功', '提示');
                 }
                 else {
-                    MessageBox.alert('头像更改失败，请重试', '抱歉');
+                    MessageBox.alert('头像更改失败，请重试', '抱歉').then(action => {
+                        _this.popupHeadC = true;
+                    });
                 }
             })      
             //获取失败
@@ -159,7 +161,7 @@ export default {
             setTimeout(this.axiosFun,100);
         },
         ch_fun(e) {
-            this.ch_disabled = false;
+            // this.ch_disabled = false;
             let _this = this;
             var file = e.target.files[0];
             var reader = new FileReader();
@@ -170,17 +172,20 @@ export default {
                 var img = new Image();
                 img.src = dataURL;
                 img.onload = function() {
-                    if(img.width != img.height) {
+                    if(Math.abs(img.width - img.height) >= 10) {
+                        _this.popupHeadC = false;
+                        MessageBox.alert('请重新选择长宽比为一的图片', '提示').then(action => {
+                            _this.popupHeadC = true;
+                        });
                         _this.ch_disabled = true;
-                        MessageBox.alert('请重新选择长宽比为一的图片', '提示');
                     }
                     else {
                         _this.ch_disabled = false;
+                        _this.change_head = dataURL;
                     }
                     console.log(img.width);
                     console.log(img.height);
                 }
-                _this.change_head = dataURL;
             };
             this.txyl_show = true;
             this.change_show = false;
