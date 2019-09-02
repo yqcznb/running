@@ -10,12 +10,6 @@
     <router-view></router-view>
     <div class="caochang">
         <div class="xinxi">
-            <div>
-              <router-link to="/footer/index/run" append>
-              <i class="iconfont iconpaobu"></i>
-				      <span>开跑</span>
-              </router-link>
-            </div>
             <p>当前已跑</p>
             <p><em>{{dqyp}}</em>次</p>
             <p>晨跑</p>
@@ -24,6 +18,12 @@
             <p><em>{{yp}}</em>次</p>
             <p>学期目标</p>
             <p><em>{{xqmb}}</em>次</p>
+            <div>
+              <router-link to="/footer/index/run" append>
+              <i class="iconfont iconpaobu"></i><br>
+				      <span>开跑</span>
+              </router-link>
+            </div>
         </div>
     </div>
   </div>
@@ -132,6 +132,8 @@ flex-direction: column;
   padding: 5px 10px;
   color: rgb(231, 46, 170);
   font-size: 20px; 
+  font-style: italic;
+  font-weight: bold
 }
 .index .heard .tongzhi{
  text-align: left;
@@ -159,7 +161,9 @@ a{
       color: #dec674;
 }
 .index .caochang .xinxi span,.index .caochang .xinxi i{
-  color: rgb(235, 14, 198)
+  color:rgb(22, 156, 245);
+  font-size: 20px;
+  
 }
 .xinxi p em{
   color:rgb(240, 190, 25);
