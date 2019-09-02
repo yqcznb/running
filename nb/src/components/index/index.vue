@@ -32,73 +32,85 @@
 <script>
 import axios from 'axios'
 export default {
-  name: 'index',
-  data(){
-    return{
-        xiaoqu:'未认证(点击认证)',
-        id:"",
-        cp:"",
-        yp:"",
-        xqmb:"",
-        ggnr:"",
-        dqyp:"",
-        show:true,
-        ow:false
-    }
-  },created(){
- 
-      axios.get('http://no37.store:8080/AK/zhuye1',{
-    params: {
-        yhid: localStorage.getItem("yhid"),     
-    }
-}).then(response=>{
-        // console.log(response);
-         this.dqyp=response.data.dqyp;
-          this.cp=response.data.cp;
-           this.yp=response.data.yp;
-         this.xqmb=response.data.xqmb;
-      })      //获取失败
-      .catch(error=>{
-          console.log(error);
-          alert('网络错误，不能访问');
-      })
-      
-  axios.get('http://no37.store:8080/AK/gonggao1',{
-    params: {
-        ggid:1,     
-    }
-}).then(response=>{
-       
-         this.ggnr=response.data.ggnr; 
-      })      //获取失败
-      .catch(error=>{
-          console.log(error);
-          alert('网络错误，不能访问');
-      })
-  
-
-   axios.get('http://no37.store:8080/AK/SelectXsID',{
-    params: {
-        yhid:localStorage.getItem("yhid"),     
-    }
-}).then(response=>{
-          if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
+    name: 'index',
+    data(){
+        return{
+            xiaoqu:'未认证(点击认证)',
+            id:"",
+            cp:"",
+            yp:"",
+            xqmb:"",
+            ggnr:"",
+            dqyp:"",
+            show:true,
+            ow:false
+        }
+    },
+    created(){
+        axios.get('http://no37.store:8080/AK/zhuye1',{
+            params: {
+                yhid: localStorage.getItem("yhid"),     
+            }
+        })
+        .then(response=>{
+            // console.log(response);
+            this.dqyp=response.data.dqyp;
+            this.cp=response.data.cp;
+            this.yp=response.data.yp;
+            this.xqmb=response.data.xqmb;
+        })      //获取失败
+        .catch(error=>{
+            console.log(error);
+            alert('网络错误，不能访问');
+        })
+        axios.get('http://no37.store:8080/AK/gonggao1',{
+            params: {
+                ggid:1,     
+            }
+        })
+        .then(response=>{
+            this.ggnr=response.data.ggnr; 
+        })      //获取失败
+        .catch(error=>{
+            console.log(error);
+            alert('网络错误，不能访问');
+        })
+        // 学生认证信息
+        axios.get('http://no37.store:8080/AK/SelectXsID',{
+            params: {
+                yhid:localStorage.getItem("yhid"),     
+            }
+        })
+        .then(response=>{
+            if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
                 this.xiaoqu = response.data.yhxx;
                 this.show = false;
                 this.ow = true;
-          }
-        
-      })      //获取失败
-      .catch(error=>{
-          console.log(error);
-          alert('网络错误，不能访问');
-      })
-  }
- 
-  
-  
+            }
+        })      //获取失败
+        .catch(error=>{
+            console.log(error);
+            alert('网络错误，不能访问');
+        })
+      //  老师认证信息
+        axios.get('http://no37.store:8080/AK/SelectJsID',{
+                params: {
+                    yhid:localStorage.getItem("yhid"),
+                }
+            }).then(response=>{
+                if(response.data.jsxx!=""||response.data.jsxx!=null||response.data.jsxx!=undefined){
+                    this.xiaoqu = response.data.jsxx;
+                    this.show = false;
+                    this.ow = true;
+                }
+            })      //获取失败
+            .catch(error=>{
+                console.log(error);
+                alert('网络错误，不能访问');
+            })
+        }
 
-}
+    }
 </script>
 
 <style scoped>

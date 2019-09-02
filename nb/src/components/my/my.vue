@@ -107,7 +107,7 @@ export default {
             .catch(error=>{
                 alert('网络错误，不能访问');
             })
-        // 认证信息
+        // 学生认证信息
         axios.get('http://no37.store:8080/AK/SelectXsID',{
             params: {
                 yhid:localStorage.getItem("yhid"),     
@@ -124,6 +124,23 @@ export default {
                     
             })      //获取失败
             .catch(error=>{
+                alert('网络错误，不能访问');
+            })
+        // 老师认证信息
+        axios.get('http://no37.store:8080/AK/SelectJsID',{
+                params: {
+                    yhid:this.yhid,
+                }
+            }).then(response=>{
+                if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
+                    this.if_rz = "have_rz";
+                }
+                else {
+                    this.if_rz = "have_not_rz";
+                }
+            })      //获取失败
+            .catch(error=>{
+                console.log(error);
                 alert('网络错误，不能访问');
             })
         // 近期跑步数据请求

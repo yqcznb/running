@@ -56,7 +56,7 @@
                             <label for="teasex_tea" class="msg_left">性别</label><input type="text" v-model="lsxb" id="teasex_tea" :disabled="tea_disabled"> <label for="teasex_tea"><i class="iconfont iconfanhui iconfont-right"></i></label>
                         </span>
                     </div>
-                    <mt-button type="primary" @click="tea_modify" v-show="tea_sfm_btn" :disabled="tea_disabled">laoshi{{if_tea_modify}}</mt-button>
+                    <mt-button type="primary" @click="tea_modify" v-show="tea_sfm_btn" :disabled="tea_disabled">{{if_tea_modify}}</mt-button>
                 </mt-tab-container-item>
             </mt-tab-container>
         </div>
@@ -129,6 +129,9 @@ export default {
                     this.xsxb = response.data.yhxb
                     this.if_stu_modify = "已认证";
                 }
+                else {
+                    this.if_stu_modify = "未认证";
+                }
             })      //获取失败
             .catch(error=>{
                 console.log(error);
@@ -163,7 +166,7 @@ export default {
             }).then(response=>{
                 if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
                     this.tea_disabled = true,
-                    this.lsxx = response.data.jsmz,
+                    this.lsxm = response.data.jsmz,
                     this.lsxx = response.data.jsxx,
                     this.lsgh = response.data.jsgh,
                     this.lsxb = response.data.jsxb,
@@ -194,7 +197,7 @@ export default {
             }).then(response=>{
                 if(response.data==1){
                     MessageBox.alert('认证成功', '提示');
-                    this.disabled = true;
+                    this.stu_disabled = true;
                     this.if_stu_modify = "已认证";
                 }
             })      //获取失败
@@ -214,9 +217,10 @@ export default {
                     jsxb:this.lsxb,
                 }
             }).then(response=>{
+                console.log(response);
                 if(response.data.jg==1){
                     MessageBox.alert('认证成功', '提示');
-                    this.disabled = true;
+                    this.tea_disabled = true;
                     this.if_tea_modify = "已认证";
                 }
             })      //获取失败
