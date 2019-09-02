@@ -187,13 +187,13 @@
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="bq_visible" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name1">
-                    <i class="iconfont iconbing"></i>{{zb_name}}
+                    <i class="iconfont iconbing"></i>{{zb1_name}}
                 </li>
                 <li class="zb_xiaoguo">
                     <p class="xiaoguo_title">效果</p>
-                    <p>{{xiaoguo_my}}</p>
-                    <p>{{xiaoguo_you}}</p>
-                    <p>{{xiaoguo_bd}}</p>
+                    <p>{{xiaoguo1_my}}</p>
+                    <p>{{xiaoguo1_you}}</p>
+                    <p>{{xiaoguo1_bd}}</p>
                 </li>
                 <li class="button">
                     <mt-button type="primary" size="large" @click="add_wuqi">添加</mt-button>
@@ -204,13 +204,13 @@
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="ys_visible" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name2">
-                    <i class="iconfont iconzhuang"></i>{{zb_name}}
+                    <i class="iconfont iconzhuang"></i>{{zb2_name}}
                 </li>
                 <li class="zb_xiaoguo">
                     <p class="xiaoguo_title">效果</p>
-                    <p>{{xiaoguo_my}}</p>
-                    <p>{{xiaoguo_you}}</p>
-                    <p>{{xiaoguo_bd}}</p>
+                    <p>{{xiaoguo2_my}}</p>
+                    <p>{{xiaoguo2_you}}</p>
+                    <p>{{xiaoguo2_bd}}</p>
                 </li>
                 <li class="button">
                     <mt-button type="primary" size="large" @click="add_wuqi">添加</mt-button>
@@ -221,13 +221,13 @@
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="jy_visible" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name3">
-                    <i class="iconfont iconitemno_15"></i>{{zb_name}}
+                    <i class="iconfont iconitemno_15"></i>{{zb3_name}}
                 </li>
                 <li class="zb_xiaoguo">
                     <p class="xiaoguo_title">效果</p>
-                    <p>{{xiaoguo_my}}</p>
-                    <p>{{xiaoguo_you}}</p>
-                    <p>{{xiaoguo_bd}}</p>
+                    <p>{{xiaoguo3_my}}</p>
+                    <p>{{xiaoguo3_you}}</p>
+                    <p>{{xiaoguo3_bd}}</p>
                 </li>
                 <li class="button">
                     <mt-button type="primary" size="large" @click="add_wuqi">添加</mt-button>
@@ -258,10 +258,18 @@ export default {
             bq_visible: false,
             ys_visible: false,
             jy_visible: false,
-            zb_name: '大辟之剑',
-            xiaoguo_my: '自身武力值+1',
-            xiaoguo_you: '每次挥剑对敌造成3点血量伤害',
-            xiaoguo_bd: '挥剑次数为自身血量的50%',
+            zb1_name: '大辟之剑',
+            xiaoguo1_my: '自身武力值+1',
+            xiaoguo1_you: '每次挥剑对敌造成3点血量伤害',
+            xiaoguo1_bd: '挥剑次数为自身血量的50%',
+            zb2_name: '甲衣',
+            xiaoguo2_my: '自身血量值+1',
+            xiaoguo2_you: '可承受敌一次小于5点的伤害',
+            xiaoguo2_bd: '若敌人攻击造成的伤害小于3点血量，则对敌造成2点血量的伤害',
+            zb3_name: '小药丸',
+            xiaoguo3_my: '自身血量+1 武力值+1',
+            xiaoguo3_you: '',
+            xiaoguo3_bd: '使用期间受到攻击，可抵消这次的伤害',
             Left:{
                 'left':'0%',
             },

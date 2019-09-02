@@ -132,8 +132,9 @@ export default {
                    for(var i=0;i<3;i++){
                      if(self.lng>(self.texts[i].position[0]-0.00015)&&self.lng<(self.texts[i].position[0]+0.00015)&&self.lat> (self.texts[i].position[1]-0.00015)&&self.lat<(self.texts[i].position[1]+0.00015)){
                           self.visible = true;
-                          self.texts[i].position=["",""]
-                          console.log(self.texts)
+                          self.texts[i].text=`<img style="width:25px;" src="http://no37.store/bzh.png"><p>打卡完成</p>`,
+                          self.texts[i].position = ["",""]
+                        
                      }
                    
                    }
@@ -173,7 +174,7 @@ export default {
       ],
        texts: [
         {
-          position: [120.02073,36.24183],
+          position: [120.02111,36.2409],
           text: `<img style="width:25px;" src="http://no37.store/12.png" class="bz_box"><p>打卡寻宝</p>`,
           offset: [0,0],
           events: {
@@ -295,7 +296,8 @@ export default {
               ydjl: this.miles,
               ydsj:this.times,
               ydsd:this.speed,
-              p:1
+              p:1,
+              cw:0,
           }
       }).then(response=>{
               console.log(response)
