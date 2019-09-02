@@ -18,8 +18,9 @@
                     <!-- 三个圈 -->
                     <ul>
                         <li>
-                            <p>血量</p>
-                            <img src="../../assets/img/pet/blood.png"  @click="blood">
+                            <p class="title">血量</p>
+                            <!-- <img src="../../assets/img/pet/blood.png"  @click="blood"> -->
+                            <div id="mycharts"></div>
                             
                         </li>
                         <li>
@@ -36,12 +37,12 @@
 
                     <!-- 背包 -->
 
-                    <router-link to="/bag">
-                        <div class="bag_img">
+                    <!-- <router-link to="/bag"> -->
+                        <div class="bag_img" @click="bag">
                             <p>背包</p>
                             <img src="../../assets/img/pet/gbag.png" alt="" >
                         </div>
-                    </router-link>
+                    <!-- </router-link> -->
                     
                 </div>
                
@@ -231,8 +232,9 @@
       
 <script>
     import { picker,} from 'mint-ui';
-    import { MessageBox } from 'mint-ui'
+    import { MessageBox } from 'mint-ui';
     import { Popup } from 'mint-ui';
+    import echarts from 'echarts';
     export default {
         name: 'pet_head',
         name: 'frame',
@@ -314,11 +316,56 @@
                     this.blood = false;
                     this.skill = false;
                     this.force = false;
+                    this.bag = false;
                     this.g_egg = true;
                     this.popupVisible = true;
                 }
                 
             },
+            drawdata(){
+                let mycharts = this.$echarts.init(document.getElementById('mycharts'));
+                mycharts.setOption({
+                    // title : {
+                    //     text: '某站点用户访问来源',
+                    //     subtext: '纯属虚构',
+                    //     x:'center'
+                    // },
+                    // tooltip : {
+                    //     trigger: 'item',
+                    //     formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    // },
+                    // legend: {
+                    //     orient: 'vertical',
+                    //     left: 'left',
+                    //     data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+                    // },
+                    series : [
+                        {
+                            // name: '访问来源',
+                            type: 'pie',
+                            radius : '80%',
+                            center: ['50%', '50%'],
+                            data:[
+                                {value:335, name:'',itemStyle: {color: 'rgb(230, 28, 28)'}},
+                                {value:310, name:'',itemStyle: {color: '#eeede2'}},
+                                // {value:234, name:'联盟广告'},
+                                // {value:135, name:'视频广告'},
+                                // {value:1548, name:'搜索引擎'}
+                            ],
+                            // itemStyle: {
+                            //     emphasis: {
+                            //         shadowBlur: 10,
+                            //         shadowOffsetX: 0,
+                            //         shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            //     }
+                            // }
+                        }
+                    ]
+                });
+
+            },
+
+            
             
             egg_pet(){
                 if(this.num<120){
@@ -340,7 +387,7 @@
                         MessageBox.alert('运动值已满，成功为您孵出宠物', '提示', {
                         confirmButtonText: '确定',
                     }).then(()=>{
-                             localStorage.removeItem("egg_success");
+                            localStorage.removeItem("egg_success");
                     })
                     this.isTrue = 'bimg';
                     this.b_bar = false;
@@ -352,12 +399,16 @@
                     this.ber = false;
                 } 
             },
+            bag(){
+                this.$router.replace('/bag'); 
+            }
         },
         mounted(){
             this.bar();
             if(this.num >= 120){
                 this.egg_pet();
-            }
+            };
+            this.drawdata();
             
         },
         components:{

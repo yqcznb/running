@@ -30,7 +30,7 @@
                         <mt-navbar v-model="equip">
                             <div class="wuqi" @click='wuqi' :style="{color: yangs1}">武器区</div>
                             <div @click='clothes' class="yishi" :style="{color: yangs2}">衣饰区</div>
-                            <div class='y_jineng' @click='y_jineng' :style="{color: yangs3}">药品/技能区</div>
+                            <div class='y_jineng' @click='y_jineng' :style="{color: yangs3}">药品/饲料区</div>
                         </mt-navbar>
                         <!-- tab-container -->
                         <mt-tab-container v-model="equip">
@@ -154,27 +154,22 @@
                                 </div>
                                 <div class="eq_list1" @click="w3">
                                     <div>
-                                        <i class="iconfont iconleidian-"></i>
+                                        <i class="iconfont iconsiliao"></i>
                                     </div>
                                 </div>
                                 <div class="eq_list1" @click="w3">
                                     <div>
-                                        <i class="iconfont iconlongjuanfeng"></i>
+                                        <i class="iconfont iconshuichansiliao"></i>
                                     </div>
                                 </div>
                                 <div class="eq_list1" @click="w3">
                                     <div>
-                                        <i class="iconfont iconshuhu"></i>
+                                        <i class="iconfont iconbingjiling"></i>
                                     </div>
                                 </div>
                                 <div class="eq_list1" @click="w3">
                                     <div>
-                                        <i class="iconfont iconziyuan1"></i>
-                                    </div>
-                                </div>
-                                <div class="eq_list1" @click="w3">
-                                    <div>
-                                        <i class="iconfont icontingchewei"></i>
+                                        <i class="iconfont iconmianbao-"></i>
                                     </div>
                                 </div>
                             </mt-tab-container-item>
@@ -190,7 +185,7 @@
                     <i class="iconfont iconbing"></i>{{zb1_name}}
                 </li>
                 <li class="zb_xiaoguo">
-                    <p class="xiaoguo_title">效果</p>
+                    <p class="xiaoguo1_title">效果</p>
                     <p>{{xiaoguo1_my}}</p>
                     <p>{{xiaoguo1_you}}</p>
                     <p>{{xiaoguo1_bd}}</p>
@@ -207,7 +202,7 @@
                     <i class="iconfont iconzhuang"></i>{{zb2_name}}
                 </li>
                 <li class="zb_xiaoguo">
-                    <p class="xiaoguo_title">效果</p>
+                    <p class="xiaoguo2_title">效果</p>
                     <p>{{xiaoguo2_my}}</p>
                     <p>{{xiaoguo2_you}}</p>
                     <p>{{xiaoguo2_bd}}</p>
@@ -224,7 +219,7 @@
                     <i class="iconfont iconitemno_15"></i>{{zb3_name}}
                 </li>
                 <li class="zb_xiaoguo">
-                    <p class="xiaoguo_title">效果</p>
+                    <p class="xiaoguo3_title">效果</p>
                     <p>{{xiaoguo3_my}}</p>
                     <p>{{xiaoguo3_you}}</p>
                     <p>{{xiaoguo3_bd}}</p>
@@ -575,7 +570,19 @@ export default {
         color: rgb(88, 177, 236);
     }
 
-    .zb_xiaoguo .xiaoguo_title{
+    .zb_xiaoguo .xiaoguo1_title{
+        margin-left: -300px;
+        margin-bottom: 10px; 
+        color: rgb(230, 28, 163);
+    }
+    
+    .zb_xiaoguo .xiaoguo2_title{
+        margin-left: -300px;
+        margin-bottom: 10px; 
+        color: rgb(230, 28, 28);
+    }
+    
+    .zb_xiaoguo .xiaoguo3_title{
         margin-left: -300px;
         margin-bottom: 10px; 
         color: rgb(88, 177, 236);
