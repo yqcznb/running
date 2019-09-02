@@ -174,7 +174,7 @@ export default {
        texts: [
         {
           position: [120.02073,36.24183],
-          text: `<img style="width:25px;" src="http://no37.store/12.png"><p>打卡寻宝</p>`,
+          text: `<img style="width:25px;" src="http://no37.store/12.png" class="bz_box"><p>打卡寻宝</p>`,
           offset: [0,0],
           events: {
             click: () => {
@@ -517,5 +517,8 @@ export default {
 .jsun:hover:before,.jsun:hover:after{
   width:100%;
   transition:3000ms ease all;
+}
+.amap-overlay-text-container {
+  background-color: red;
 }
 </style>
