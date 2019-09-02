@@ -17,59 +17,52 @@
                 <mt-tab-container-item id="0">
                     <div class="msg_box">
                         <span class="modify_msg">
-                            <label for="school_name" class="msg_left">学校</label><input type="text" v-model="yhxx" id="school_name" :disabled="disabled"> <label for="school_name"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                            <label for="school_name_stu" class="msg_left">学校</label><input type="text" v-model="xsxx" id="school_name_stu" :disabled="stu_disabled"> <label for="school_name_stu"><i class="iconfont iconfanhui iconfont-right"></i></label>
                         </span> <hr>
                         <span class="modify_msg">
-                            <label for="department" class="msg_left">院系</label><input type="text" v-model="yhxy" id="department" :disabled="disabled"> <label for="department"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                            <label for="department_stu" class="msg_left">院系</label><input type="text" v-model="xsxy" id="department_stu" :disabled="stu_disabled"> <label for="department_stu"><i class="iconfont iconfanhui iconfont-right"></i></label>
                         </span> <hr>
                         <span class="modify_msg">
-                            <label for="profes" class="msg_left">专业</label><input type="text" id="profes" v-model="yhzy" :disabled="disabled"> <label for="profes"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                            <label for="profes_stu" class="msg_left">专业</label><input type="text" id="profes_stu" v-model="xszy" :disabled="stu_disabled"> <label for="profes_stu"><i class="iconfont iconfanhui iconfont-right"></i></label>
                         </span> <hr>
                         <span class="modify_msg">
-                            <label for="stuname" class="msg_left">姓名</label><input type="text" v-model="yhxm" id="stuname" :disabled="disabled"> <label for="stuname"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                            <label for="stuname_stu" class="msg_left">姓名</label><input type="text" v-model="xsxm" id="stuname_stu" :disabled="stu_disabled"> <label for="stuname_stu"><i class="iconfont iconfanhui iconfont-right"></i></label>
                         </span> <hr>
                         <span class="modify_msg">
-                            <label for="stunum" class="msg_left">学号</label><input type="text" v-model="yhxh" id="stunum" :disabled="disabled"> <label for="stunum"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                            <label for="stunum_stu" class="msg_left">学号</label><input type="text" v-model="xsxh" id="stunum_stu" :disabled="stu_disabled"> <label for="stunum_stu"><i class="iconfont iconfanhui iconfont-right"></i></label>
                         </span> <hr>
                         <span class="modify_msg">
-                            <label for="stusex" class="msg_left">性别</label><input type="text" v-model="yhxb" id="stusex" :disabled="disabled"> <label for="stusex"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                            <label for="stusex_stu" class="msg_left">性别</label><input type="text" v-model="xsxb" id="stusex_stu" :disabled="stu_disabled"> <label for="stusex_stu"><i class="iconfont iconfanhui iconfont-right"></i></label>
                         </span> <hr>
                         <span class="modify_msg">
-                            <label for="entryDate" class="msg_left" @click="selectYear">入学日期</label><input type="text" readonly v-model="year" id="entryDate" :disabled="disabled" @click="selectYear">
-                            <label for="entryDate" @click="selectYear"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                            <label for="entryDate_stu" class="msg_left" @click="selectYear">入学日期</label><input type="text" readonly v-model="year" id="entryDate_stu" :disabled="stu_disabled" @click="selectYear">
+                            <label for="entryDate_stu" @click="selectYear"><i class="iconfont iconfanhui iconfont-right"></i></label>
                         </span>
                     </div>
+                    <mt-button type="primary" @click="stu_modify" v-show="stu_sfm_btn" :disabled="stu_disabled">{{if_stu_modify}}</mt-button>
                 </mt-tab-container-item>
                 <mt-tab-container-item id="1">
                     <div class="msg_box">
                         <span class="modify_msg">
-                            <label for="school_name" class="msg_left">学校</label><input type="text" v-model="yhxx" id="school_name" :disabled="disabled"> <label for="school_name"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                            <label for="school_name_tea" class="msg_left">学校</label><input type="text" v-model="lsxx" id="school_name_tea" :disabled="tea_disabled"> <label for="school_name_tea"><i class="iconfont iconfanhui iconfont-right"></i></label>
                         </span> <hr>
                         <span class="modify_msg">
-                            <label for="department" class="msg_left">院系</label><input type="text" v-model="yhxy" id="department" :disabled="disabled"> <label for="department"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                            <label for="teaname_tea" class="msg_left">姓名</label><input type="text" v-model="lsxm" id="teaname_tea" :disabled="tea_disabled"> <label for="teaname_tea"><i class="iconfont iconfanhui iconfont-right"></i></label>
                         </span> <hr>
                         <span class="modify_msg">
-                            <label for="profes" class="msg_left">专业</label><input type="text" id="profes" v-model="yhzy" :disabled="disabled"> <label for="profes"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                            <label for="teanum_tea" class="msg_left">工号</label><input type="text" v-model="lsgh" id="teanum_tea" :disabled="tea_disabled"> <label for="teanum_tea"><i class="iconfont iconfanhui iconfont-right"></i></label>
                         </span> <hr>
                         <span class="modify_msg">
-                            <label for="stuname" class="msg_left">姓名</label><input type="text" v-model="yhxm" id="stuname" :disabled="disabled"> <label for="stuname"><i class="iconfont iconfanhui iconfont-right"></i></label>
-                        </span> <hr>
-                        <span class="modify_msg">
-                            <label for="stunum" class="msg_left">学号</label><input type="text" v-model="yhxh" id="stunum" :disabled="disabled"> <label for="stunum"><i class="iconfont iconfanhui iconfont-right"></i></label>
-                        </span> <hr>
-                        <span class="modify_msg">
-                            <label for="stusex" class="msg_left">性别</label><input type="text" v-model="yhxb" id="stusex" :disabled="disabled"> <label for="stusex"><i class="iconfont iconfanhui iconfont-right"></i></label>
-                        </span> <hr>
-                        <span class="modify_msg">
-                            <label for="entryDate" class="msg_left" @click="selectYear">入学日期</label><input type="text" readonly v-model="year" id="entryDate" :disabled="disabled" @click="selectYear">
-                            <label for="entryDate" @click="selectYear"><i class="iconfont iconfanhui iconfont-right"></i></label>
+                            <label for="teasex_tea" class="msg_left">性别</label><input type="text" v-model="lsxb" id="teasex_tea" :disabled="tea_disabled"> <label for="teasex_tea"><i class="iconfont iconfanhui iconfont-right"></i></label>
                         </span>
                     </div>
+                    <mt-button type="primary" @click="tea_modify" v-show="tea_sfm_btn" :disabled="tea_disabled">laoshi{{if_tea_modify}}</mt-button>
                 </mt-tab-container-item>
             </mt-tab-container>
         </div>
         
-        <mt-button type="primary" @click="renzhen" :disabled="disabled">{{if_modify}}</mt-button>
+        
+        
         <mt-datetime-picker 
             v-model="dateValue" 
             type="date" 
@@ -91,67 +84,140 @@ export default {
     data() {
         return {
             backimg: '',
-            if_modify: '未认证',
             modify_id: '0',
-            disabled: false,
             yhid:localStorage.getItem("yhid"),
-            yhxx:"",
-            yhzy:"",
-            yhxy:"",
-            rxnf:"",
-            yhxm:"",
-            yhxh:"",
-            yhxb:"",
-            num:1,
+            // 学生认证
+            if_stu_modify: '未认证',
+            stu_sfm_btn: true,
+            stu_disabled: true,
+            xsxx:"",
+            xsxy:"",
+            xszy:"",
+            xsxm:"",
+            xsxh:"",
+            xsxb:"",
             year: '',
-            // month: '',
-            // date: '',
+            num:1,
             dateValue: '',
+            // 老师认证
+            if_tea_modify: '未认证',
+            tea_sfm_btn: true,
+            tea_disabled: true,
+            lsxx: '',
+            lsxm: '',
+            lsgh: '',
+            lsxb: '',
         }
     },
     created(){
-        axios.get('http://no37.store:8080/AK/SelectXsID',{
-            params: {
-                yhid:this.yhid,
-            }
-        }).then(response=>{
-            if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
-                this.disabled = true,
-                this.yhxx = response.data.yhxx,
-                this.yhzy = response.data.yhzy,
-                this.yhxy = response.data.yhxy,
-                this.year = response.data.rxnf,
-                this.yhxm = response.data.yhxm,
-                this.yhxh = response.data.yhxh,
-                this.yhxb = response.data.yhxb
-                this.if_modify = "已认证";
-            }
+        this.modify_id = localStorage.getItem("yhsf");
+        // 学生认证信息查询
+        if(localStorage.getItem("yhsf") == 0) {
+            axios.get('http://no37.store:8080/AK/SelectXsID',{
+                params: {
+                    yhid:this.yhid,
+                }
+            }).then(response=>{
+                if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
+                    this.stu_disabled = true,
+                    this.xsxx = response.data.yhxx,
+                    this.xszy = response.data.yhzy,
+                    this.xsxy = response.data.yhxy,
+                    this.year = response.data.rxnf,
+                    this.xsxm = response.data.yhxm,
+                    this.xsxh = response.data.yhxh,
+                    this.xsxb = response.data.yhxb
+                    this.if_stu_modify = "已认证";
+                }
+            })      //获取失败
+            .catch(error=>{
+                console.log(error);
+                alert('网络错误，不能访问');
+            })
+        }
+        // 教师认证信息查询
+        else if(localStorage.getItem("yhsf") == 1) {
+            axios.get('http://no37.store:8080/AK/SelectJsID',{
+                params: {
+                    yhid:this.yhid,
+                }
+            }).then(response=>{
+                if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
+                    this.tea_disabled = true,
+                    this.lsxx = response.data.jsmz,
+                    this.lsxx = response.data.jsxx,
+                    this.lsgh = response.data.jsgh,
+                    this.lsxb = response.data.jsxb,
+                    this.if_stu_modify = "已认证";
+                }
+            })      //获取失败
+            .catch(error=>{
+                console.log(error);
+                alert('网络错误，不能访问');
+            })
+        }
+        axios.get('http://no37.store:8080/AK/SelectJsID',{
+                params: {
+                    yhid:this.yhid,
+                }
+            }).then(response=>{
+                if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
+                    this.tea_disabled = true,
+                    this.lsxx = response.data.jsmz,
+                    this.lsxx = response.data.jsxx,
+                    this.lsgh = response.data.jsgh,
+                    this.lsxb = response.data.jsxb,
+                    this.if_stu_modify = "已认证";
+                }
+            })      //获取失败
+            .catch(error=>{
+                console.log(error);
+                alert('网络错误，不能访问');
+            })
         
-        })      //获取失败
-        .catch(error=>{
-            console.log(error);
-            alert('网络错误，不能访问');
-        })
     },
     methods:
     {
-        renzhen(){
+        // 学生认证
+        stu_modify(){
             axios.get('http://no37.store:8080/AK/xsID',{
                 params: {
                     yhid:this.yhid,  
-                    yhxh:this.yhxh,
-                    yhxx:this.yhxx,
-                    yhxy:this.yhxy,
-                    yhxm:this.yhxm,
-                    yhxb:this.yhxb,
+                    yhxh:this.xsxh,
+                    yhxx:this.xsxx,
+                    yhxy:this.xsxy,
+                    yhxm:this.xsxm,
+                    yhxb:this.xsxb,
                     rxnf:this.year,
-                    yhzy:this.yhzy      
+                    yhzy:this.xszy      
                 }
             }).then(response=>{
                 if(response.data==1){
                     MessageBox.alert('认证成功', '提示');
                     this.disabled = true;
-                    this.if_modify = "已认证";
+                    this.if_stu_modify = "已认证";
+                }
+            })      //获取失败
+            .catch(error=>{
+                console.log(error);
+                MessageBox.alert('认证失败，请重新认证', '提示');
+            })
+        },
+        // 老师认证
+        tea_modify(){
+            axios.get('http://no37.store:8080/AK/teacherID',{
+                params: {
+                    jsid:this.yhid,
+                    jsmz:this.lsxm,
+                    jsxx:this.lsxx,
+                    jsgh:this.lsgh,
+                    jsxb:this.lsxb,
+                }
+            }).then(response=>{
+                if(response.data.jg==1){
+                    MessageBox.alert('认证成功', '提示');
+                    this.disabled = true;
+                    this.if_tea_modify = "已认证";
                 }
             })      //获取失败
             .catch(error=>{
@@ -163,8 +229,8 @@ export default {
             window.location.reload();
         },
         c_disabled() {
-            if(this.num == 1){
-                if(this.yhxx!=""||this.yhxx!=null||this.yhxx!=undefined) {
+            if(this.modify_id == 0 && this.num == 1) {
+                if(this.xsxx!=""||this.xsxx!=null||this.xsxx!=undefined) {
                     MessageBox.confirm('', {
                         message: '您已认证，只有1次修改认证的机会，为避免影响成绩，请填写正确信息后重新提交！', 
                         title: '提示',
@@ -173,11 +239,36 @@ export default {
                     .then(action => {
                         if (action == 'confirm') {
                             //确认的回调
-                            this.disabled =false;
+                            this.stu_disabled =false;
                             this.num=0;
-                            this.if_modify = "保存";
+                            this.if_stu_modify = "保存";
                         }
-                       })
+                    })
+                    .catch(err => { 
+                        if (err == 'cancel') {
+                            //取消的回调
+                        } 
+                    });
+                }
+                else{
+                    alert("您还未进行认证，请先认证！")
+                }
+            }
+            else if(this.modify_id == 1 && this.num == 1) {
+                if(this.lsxx!=""||this.lsxx!=null||this.lsxx!=undefined) {
+                    MessageBox.confirm('', {
+                        message: '您已认证，只有1次修改认证的机会，为避免影响成绩，请填写正确信息后重新提交！', 
+                        title: '提示',
+                        confirmButtonText: '确认修改', 
+                        cancelButtonText: '取消' })
+                    .then(action => {
+                        if (action == 'confirm') {
+                            //确认的回调
+                            this.tea_disabled =false;
+                            this.num=0;
+                            this.if_tea_modify = "保存";
+                        }
+                   })
                     .catch(err => { 
                         if (err == 'cancel') {
                             //取消的回调
@@ -185,7 +276,7 @@ export default {
                     });
                 }
                 else{
-                    alert("您还为进行认证，请先认证！")
+                    alert("您还未进行认证，请先认证！")
                 }
             }
             else{
@@ -253,7 +344,7 @@ export default {
     }
     .mint-navbar{
         width: 93%;
-        max-width: 550px;
+        /* max-width: 550px; */
         margin: 0 auto;
         margin-bottom: 2%;
         border-radius: 0 0 7px 7px;

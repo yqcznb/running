@@ -41,20 +41,20 @@ export default {
     methods:
     {   
        
-
         login(){
-             if (this.username == '' || this.password =='') {
+            if (this.username == '' || this.password =='') {
                     alert('请输入用户名或密码')
                     }
-             else{
-                   this.axios.get('http://no37.store:8080/AK/denglu1',{
-                params: {
-                    yhzh:this.username,  
-                    yhmm:this.password   
-                }
-            }).then(response=>{
+            else{
+                this.axios.get('http://no37.store:8080/AK/denglu1',{
+                    params: {
+                        yhzh:this.username,
+                        yhmm:this.password,
+                    }
+                }).then(response=>{
                     this.num=response.data.jg;
-                    console.log(response.data.yhid)
+                    // console.log(response.data.yhid);
+                    console.log(response);
                     if(this.num==1){
                         alert("登陆成功")
                         this.$router.replace('/footer/index');
@@ -63,14 +63,14 @@ export default {
                         localStorage.setItem("Flag", "isLogin");
                         localStorage.setItem("yhid",response.data.yhid);
                         localStorage.setItem("password",this.password);
+                        localStorage.setItem("yhsf",response.data.yhsf);
                         localStorage.setItem("egg_success",1)
                     }else if(this.num==0){
                         alert("账号或密码错误")
                     }
-                    
                 })      //获取失败
                 .catch(error=>{
-                    console.log(error);
+                    // console.log(error);
                     alert('网络错误，不能访问');
                 })
             }
