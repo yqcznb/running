@@ -257,7 +257,7 @@
                 e_title: '武力',
                 blood_one: 10,
                 user_name: 'hjw',
-                num: 110,
+                num: 120,
                 ber_num: 0,
                 Width:{
                     'width': '0px',
