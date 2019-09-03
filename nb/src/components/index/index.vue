@@ -28,7 +28,6 @@
     </div>
   </div>
 </template>
-
 <script>
 import axios from 'axios'
 export default {
@@ -47,6 +46,7 @@ export default {
         }
     },
     created(){
+        // 主页
         axios.get('http://no37.store:8080/AK/zhuye1',{
             params: {
                 yhid: localStorage.getItem("yhid"),     
@@ -63,6 +63,7 @@ export default {
             console.log(error);
             alert('网络错误，不能访问');
         })
+        // 公告
         axios.get('http://no37.store:8080/AK/gonggao1',{
             params: {
                 ggid:1,     
@@ -75,25 +76,29 @@ export default {
             console.log(error);
             alert('网络错误，不能访问');
         })
+        
         // 学生认证信息
-        axios.get('http://no37.store:8080/AK/SelectXsID',{
-            params: {
-                yhid:localStorage.getItem("yhid"),     
-            }
-        })
-        .then(response=>{
-            if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
-                this.xiaoqu = response.data.yhxx;
-                this.show = false;
-                this.ow = true;
-            }
-        })      //获取失败
-        .catch(error=>{
-            console.log(error);
-            alert('网络错误，不能访问');
-        })
-      //  老师认证信息
-        axios.get('http://no37.store:8080/AK/SelectJsID',{
+        if(localStorage.getItem("yhsf") == 0) {
+            axios.get('http://no37.store:8080/AK/SelectXsID',{
+                params: {
+                    yhid:localStorage.getItem("yhid"),     
+                }
+            })
+            .then(response=>{
+                if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
+                    this.xiaoqu = response.data.yhxx;
+                    this.show = false;
+                    this.ow = true;
+                }
+            })      //获取失败
+            .catch(error=>{
+                console.log(error);
+                alert('网络错误，不能访问');
+            })
+        }
+        //老师认证信息
+        else if(localStorage.getItem('yhsf') == 1) {
+            axios.get('http://no37.store:8080/AK/SelectJsID',{
                 params: {
                     yhid:localStorage.getItem("yhid"),
                 }
@@ -109,8 +114,14 @@ export default {
                 alert('网络错误，不能访问');
             })
         }
-
+        else {
+            this.xiaoqu = "未认证(点击认证)";
+            this.show = true;
+            this.ow = false;
+        }
     }
+
+}
 </script>
 
 <style scoped>

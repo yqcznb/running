@@ -147,11 +147,11 @@ export default {
             }).then(response=>{
                 if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
                     this.tea_disabled = true,
-                    this.lsxx = response.data.jsmz,
+                    this.lsxm = response.data.jsmz,
                     this.lsxx = response.data.jsxx,
                     this.lsgh = response.data.jsgh,
                     this.lsxb = response.data.jsxb,
-                    this.if_stu_modify = "已认证";
+                    this.if_tea_modify = "已认证";
                 }
             })      //获取失败
             .catch(error=>{
@@ -159,75 +159,72 @@ export default {
                 alert('网络错误，不能访问');
             })
         }
-        axios.get('http://no37.store:8080/AK/SelectJsID',{
-                params: {
-                    yhid:this.yhid,
-                }
-            }).then(response=>{
-                if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
-                    this.tea_disabled = true,
-                    this.lsxm = response.data.jsmz,
-                    this.lsxx = response.data.jsxx,
-                    this.lsgh = response.data.jsgh,
-                    this.lsxb = response.data.jsxb,
-                    this.if_stu_modify = "已认证";
-                }
-            })      //获取失败
-            .catch(error=>{
-                console.log(error);
-                alert('网络错误，不能访问');
-            })
-        
     },
     methods:
     {
         // 学生认证
         stu_modify(){
-            axios.get('http://no37.store:8080/AK/xsID',{
-                params: {
-                    yhid:this.yhid,  
-                    yhxh:this.xsxh,
-                    yhxx:this.xsxx,
-                    yhxy:this.xsxy,
-                    yhxm:this.xsxm,
-                    yhxb:this.xsxb,
-                    rxnf:this.year,
-                    yhzy:this.xszy      
-                }
-            }).then(response=>{
-                if(response.data==1){
-                    MessageBox.alert('认证成功', '提示');
-                    this.stu_disabled = true;
-                    this.if_stu_modify = "已认证";
-                }
-            })      //获取失败
-            .catch(error=>{
-                console.log(error);
+            if(localStorage.getItem("yhsf") == 0 || localStorage.getItem("yhsf") == '' || localStorage.getItem("yhsf") == null || localStorage.getItem("yhsf") == undefined) {
+                axios.get('http://no37.store:8080/AK/xsID',{
+                    params: {
+                        yhid:this.yhid,  
+                        yhxh:this.xsxh,
+                        yhxx:this.xsxx,
+                        yhxy:this.xsxy,
+                        yhxm:this.xsxm,
+                        yhxb:this.xsxb,
+                        rxnf:this.year,
+                        yhzy:this.xszy      
+                    }
+                }).then(response=>{
+                    if(response.data==1){
+                        MessageBox.alert('认证成功', '提示');
+                        this.stu_disabled = true;
+                        this.if_stu_modify = "已认证";
+                    }
+                })      //获取失败
+                .catch(error=>{
+                    console.log(error);
+                    MessageBox.alert('认证失败，请重新认证', '提示');
+                })
+            }
+            else if(localStorage.getItem("yhsf") == 1) {
+                MessageBox.alert('您已认证教师身份，无法参与学生认证。', '提示');
+            }
+            else {
                 MessageBox.alert('认证失败，请重新认证', '提示');
-            })
+            }
         },
         // 老师认证
         tea_modify(){
-            axios.get('http://no37.store:8080/AK/teacherID',{
-                params: {
-                    jsid:this.yhid,
-                    jsmz:this.lsxm,
-                    jsxx:this.lsxx,
-                    jsgh:this.lsgh,
-                    jsxb:this.lsxb,
-                }
-            }).then(response=>{
-                console.log(response);
-                if(response.data.jg==1){
-                    MessageBox.alert('认证成功', '提示');
-                    this.tea_disabled = true;
-                    this.if_tea_modify = "已认证";
-                }
-            })      //获取失败
-            .catch(error=>{
-                console.log(error);
+            if(localStorage.getItem("yhsf") == 1 || localStorage.getItem("yhsf") == '' || localStorage.getItem("yhsf") == null || localStorage.getItem("yhsf") == undefined) {
+                axios.get('http://no37.store:8080/AK/teacherID',{
+                    params: {
+                        jsid:this.yhid,
+                        jsmz:this.lsxm,
+                        jsxx:this.lsxx,
+                        jsgh:this.lsgh,
+                        jsxb:this.lsxb,
+                    }
+                }).then(response=>{
+                    console.log(response);
+                    if(response.data.jg==1){
+                        MessageBox.alert('认证成功', '提示');
+                        this.tea_disabled = true;
+                        this.if_tea_modify = "已认证";
+                    }
+                })      //获取失败
+                .catch(error=>{
+                    console.log(error);
+                    MessageBox.alert('认证失败，请重新认证', '提示');
+                })
+            }
+            else if(localStorage.getItem("yhsf") == 0) {
+                MessageBox.alert('您已认证学生身份，无法参与教师认证。', '提示');
+            }
+            else {
                 MessageBox.alert('认证失败，请重新认证', '提示');
-            })
+            }
         },
         routerRefresh() {
             window.location.reload();

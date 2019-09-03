@@ -107,49 +107,16 @@ export default {
             .catch(error=>{
                 alert('网络错误，不能访问');
             })
-        // 学生认证信息
-        axios.get('http://no37.store:8080/AK/SelectXsID',{
-            params: {
-                yhid:localStorage.getItem("yhid"),     
-            }})
-            .then(response=>{
-                // console.log(response);
-                if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
-                    this.if_rz = "have_rz";
-                }
-                else {
-                    this.if_rz = "have_not_rz";
-                }
-                // console.log(this.ifrz);
-                    
-            })      //获取失败
-            .catch(error=>{
-                alert('网络错误，不能访问');
-            })
-        // 老师认证信息
-        axios.get('http://no37.store:8080/AK/SelectJsID',{
-                params: {
-                    yhid:this.yhid,
-                }
-            }).then(response=>{
-                if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
-                    this.if_rz = "have_rz";
-                }
-                else {
-                    this.if_rz = "have_not_rz";
-                }
-            })      //获取失败
-            .catch(error=>{
-                console.log(error);
-                alert('网络错误，不能访问');
-            })
+        if(localStorage.getItem("yhsf") == 0 || localStorage.getItem("yhsf") == 1) {
+            this.if_rz = "have_rz";
+        }
         // 近期跑步数据请求
         axios.get('http://no37.store:8080/AK/SelectMove',{
             params: {
                 yhid:localStorage.getItem("yhid"),ydrqOne:this.ydrqOne,ydrqTwo:this.ydrqTwo,
             }})
             .then(response=>{
-                console.log(response);
+                // console.log(response);
             })      //获取失败
             .catch(error=>{
                 alert('网络错误，不能访问');
@@ -163,7 +130,6 @@ export default {
             window.location.reload();
         },
         drawLine(){
-           
             // 基于准备好的dom，初始化echarts实例
             let myChart = this.$echarts.init(document.getElementById('myChart'));
             // 图表自适应
