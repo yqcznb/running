@@ -1,7 +1,7 @@
 <template>
     <div id="switchid">
         <div id="back_bar">
-            <router-link :to='$route.params.backey'>
+            <router-link to='/settings'>
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
             <span class="title">切换账号</span>

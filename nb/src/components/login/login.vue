@@ -56,7 +56,7 @@ export default {
                     // console.log(response.data.yhid);
                     console.log(response);
                     if(this.num==1){
-                        alert("登陆成功")
+                        alert("登录成功")
                         this.$router.replace('/footer/index');
                         this.$store.dispatch("userLogin", true);
                         this.$store.dispatch("yh",response.data.yhid);
