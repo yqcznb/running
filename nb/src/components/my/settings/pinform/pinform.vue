@@ -59,7 +59,6 @@
 </template>
 <script>
 import { MessageBox } from 'mint-ui'
-import { VueCropper }  from 'vue-cropper' 
 import axios from 'axios'
 export default {
     name: 'pinform',

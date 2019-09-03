@@ -29,8 +29,12 @@
                     <i class="iconfont iconpaihangbang rankimg"></i><span class="">排行榜</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
-           
         </div>
+        <router-link to="/tea_special" @click.native="routerRefresh">
+            <div id="tea_special" v-show="tea_special">
+                <i class="iconfont iconxuesheng"></i><span>学生跑步数据</span><i class="iconfont iconfanhui iconfont-right"></i>
+            </div>
+        </router-link>
         <router-link :to="mode"  @click.native="routerRefresh">
             <div id="settings">
                 <i class="iconfont iconsettings"></i><span>设置</span><i class="iconfont iconfanhui iconfont-right"></i>
@@ -59,6 +63,7 @@ export default {
             ydrqTwo: '',
             miledate: [ 10000, 20000, 12065, 3620,16530, 9510, 20100, 13002, 13580,15063, 15200, 9000 ],
             speeddate: [ 3.1, 5.55, 5.59, 6.20, 4.39, 5.00, 6.1, 7.4,7.34, 8.26, 3.58, 8.12 ],
+            tea_special: false,
         }
     },
     beforeCreate() {
@@ -109,6 +114,7 @@ export default {
             })
         if(localStorage.getItem("yhsf") == 0 || localStorage.getItem("yhsf") == 1) {
             this.if_rz = "have_rz";
+            this.tea_special = true;
         }
         // 近期跑步数据请求
         axios.get('http://no37.store:8080/AK/SelectMove',{
@@ -268,7 +274,7 @@ export default {
         margin: 0 auto;
         background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
     }
-    #my_head,#run_data,#settings {
+    #my_head,#run_data,#settings,#tea_special {
         width: 90%;
         /* border: 1px solid red; */
         display: flex;
@@ -358,13 +364,12 @@ export default {
         color: #d5a269;
         font-size: 130%;
     }
-    #run_data,#settings {
+    #run_data,#settings,#tea_special {
         border-radius: 7px;
     }
-    #settings span {
+    #settings span,#tea_special span {
         text-indent: 0.5em;
     }
-    
     #run_data {
         height: 16%;
         margin-top: 2%;
@@ -388,7 +393,7 @@ export default {
     #details span,#rank_list span {
         text-indent: 0.5em;
     }
-    #settings {
+    #settings,#tea_special {
         height: 8%;
         margin-top: 2%;
         /* margin-bottom: 8%; */
