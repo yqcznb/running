@@ -47,3 +47,4 @@ vue 2.9.6
 所有部分基本结束 仅剩宠物修改以及联系的一小部分 明天希望可以完成
 
 
+#图片素材来源于千图网https://www.58pic.com，千库网 https://588ku.com，阿里巴巴矢量图标库 https://www.iconfont.cn
