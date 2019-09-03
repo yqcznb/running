@@ -1,21 +1,31 @@
 <template>
-    <div id="ppolicy">
+    <div id="tea_special">
         <div id="back_bar">
-            <router-link to="/privacy">
+            <router-link to='/footer/my' @click.native="routerRefresh">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
-            <span class="title">隐私政策</span>
+            <span class="title">学生跑步数据</span>
         </div>
-        隐私政策，此处省略八万字
+        这里是学生跑步数据页面
     </div>
 </template>
 <script>
 export default {
-    
+    name: 'on',
+    data() {
+        return {
+            backlink: 'settings',
+        }
+    },
+    methods: {
+        routerRefresh() {
+            window.location.reload();
+        },
+    }
 }
 </script>
 <style scoped>
-    #ppolicy {
+    #tea_special {
         width: 100%;
         height: 100%;
         position: absolute;

@@ -13,20 +13,20 @@
                 </div>
             </router-link>
             <hr>
-            <router-link :to="{name:'idsafe',params:{backey:'/settings'}}">
+            <router-link :to="{name:'idsafe'}">
                 <div id="id_safe">
                     <span>账号与安全</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
         </div>
         <div id="mode-privacy-on">
-            <router-link :to="{name:'privacy',params:{backey:'/settings'}}">
+            <router-link :to="{name:'privacy'}">
                 <div id="privacy">
                     <span>隐私</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
             <hr>
-            <router-link :to="{name:'on',params:{backey:'/settings'}}">
+            <router-link :to="{name:'on'}">
                 <div id="on">
                     <span>关于</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
@@ -34,7 +34,7 @@
             </router-link>
         </div>
         <div id="change-logout">
-            <router-link :to="{name:'switchid',params:{backey:'/settings'}}">
+            <router-link :to="{name:'switchid'}">
                 <div id="change">
                     <span>切换账号</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
@@ -66,27 +66,26 @@ export default {
         },
         log_out(){
             MessageBox.confirm('', { 
-            message: '你确定要退出登录吗?', 
-            title: '提示', 
-            confirmButtonText: '确定', 
-            cancelButtonText: '取消' 
-            })
+                message: '你确定要退出登录吗?', 
+                title: '提示', 
+                confirmButtonText: '确定', 
+                cancelButtonText: '取消' 
+            })
             .then(action => { 
-                if (action=='confirm'){     //确认的回调
-                    this.$router.push({
+                if (action=='confirm'){     //确认的回调
+                    this.$router.push({
                         path: '/'
                     });
                     localStorage.removeItem("Flag");
                     localStorage.removeItem("yhid");
                     localStorage.removeItem("password");
+                    localStorage.removeItem("yhsf");
                 }
             })
             .catch(err => { 
                 if (err == 'cancel') {
                 }
             });
-
-            
         }
     },
 }

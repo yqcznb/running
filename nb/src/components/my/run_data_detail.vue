@@ -50,7 +50,10 @@ export default {
                     flex: 1,
                     values: ['01', '02', '03', '04', '05', '06','07','08','09','10','11','12'],
                     className: 'slot3',
-                    textAlign: 'left'
+                    textAlign: 'left',
+                    get_run_data: '',
+                    sj_data: '',
+                    jl_data: '',
                 }
             ]
         }
@@ -61,7 +64,10 @@ export default {
                 yhid:1,ydrqOne:2019,ydrqTwo:6,
             }})
             .then(response=>{
-                console.log(response);
+                // console.log(response);
+                this.get_run_data = response.data;
+                console.log(this.get_run_data);
+                console.log(this.get_run_data[0]);
             })      //获取失败
             .catch(error=>{
                 alert('网络错误，不能访问');
@@ -149,8 +155,8 @@ export default {
                         },
                         radius: pieRadius,
                         data: [
-                            {name: '非运动', value: Math.round(Math.random() * 24), itemStyle: {color: '#eea2a4'} },
-                            {name: '运动', value: Math.round(Math.random() * 24), itemStyle: {color: '#7bc5ae'} },
+                            {name: '非运动', value:17, itemStyle: {color: '#eea2a4'} },
+                            {name: '运动', value: 7, itemStyle: {color: '#7bc5ae'} },
                         ]
                     };
                 });

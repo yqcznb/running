@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import login from '@/components/login/login'
 import footer from '@/components/footer/footer'
 import my from '@/components/my/my'
+import tea_special from '@/components/my/tea_special'
 import backbar from '@/components/my/template/backbar'
 import pinform from '@/components/my/settings/pinform/pinform'
 import drole from '@/components/my/my_head/drole'
@@ -211,6 +212,11 @@ export default new Router({
       path: '/switchid',
       name: 'switchid',
       component: switchid,
+    },
+    {
+      path: '/tea_special',
+      name: 'tea_special',
+      component: tea_special,
     },
     {
       path: '/run_data_detail',
