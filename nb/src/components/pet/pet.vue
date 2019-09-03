@@ -4,7 +4,10 @@
 
         <div class="pet_head">
             <ul class="head">
-                <li class="xiaoqu">{{xiaoqu}}</li>
+                <router-link to="/confirm"  @click.native="routerRefresh">
+                    <li class="xiaoqu" v-if="show1">{{xiaoqu1}}</li>
+                </router-link>
+                <li class="xiaoqu" v-if="show">{{xiaoqu}}</li>
                 <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{tongzhi}}</li>
             </ul>
         </div>
@@ -18,20 +21,26 @@
                     <!-- 三个圈 -->
                     <ul>
                         <li>
-                            <p class="title">血量</p>
+                            <div>
+                                <p class="title">宠物信息</p>
                             <!-- <img src="../../assets/img/pet/blood.png"  @click="blood"> -->
-                            <div id="mycharts"></div>
+                                <div id="mycharts" ></div>
+                                <div class="mask" @click="blood"></div>
+                            </div>
+                            
                             
                         </li>
                         <li>
-                            <p>技能</p>
-                            <img src="../../assets/img/pet/skill.png"  @click="skill">
-                            
+                            <p class="title1">饥饿度</p>
+                            <!-- <img src="../../assets/img/pet/skill.png"  @click="skill"> -->
+                            <div id="mycharts1"></div>
+                            <div class="mask1" @click="skill"></div>
                          </li>
                         <li>
-                            <p>武力</p>
-                            <img src="../../assets/img/pet/force.png"  @click="force">
-                            
+                            <p class="title2">加成值</p>
+                            <!-- <img src="../../assets/img/pet/force.png"  @click="force"> -->
+                            <div id="mycharts2"></div>
+                            <div class="mask2" @click="force"></div>
                         </li>
                     </ul>
 
@@ -56,22 +65,25 @@
                 <span class="bar_number" v-if="ber">{{ber_num}}<i>%</i></span>
 
                 <!-- 宠物蛋 -->
+                
                 <div :class="[isTrue, isFalse]" :v-if="g_egg" @click="egg_pet"></div>
+                
+                
                 <!-- 宠物 -->
                 <!-- <div class="bimg"></div> -->
                 
                 
             </div>
 
-               <!-- 血量界面 -->
+               <!-- 宠物信息界面 -->
                 <div class="frame">
                     <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="visible" style="width:100%;height:60%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">   
                         <ul>
                             <li class="f_title">
-                                <i class="iconfont iconcsgo-blood"></i>
+                                <i class="iconfont iconxinxi"></i>
                                 {{f_title}}
                             </li>
-                            <li class="haoyou">
+                            <!-- <li class="haoyou">
                                 <i class="iconfont iconhaoyou1"></i>
                                 <span>邀请好友一起玩吧</span>
                                 
@@ -80,24 +92,27 @@
                                     <router-link to="/addfd"><i class="iconfont icontianjiahaoyou"></i></router-link>    
                                         好友
                                     </span>
-                            </li>
+                            </li> -->
 
+                             <li class="list_my">
+                                孵化日期
+                            </li> 
+                             <li class="list_one">
+                                22222
+                            </li>
                             <li class="list_my">
-                                <i class="iconfont icon5"></i>
-                                <div class="head_frame">
-                                    <img src="../../assets/img/tx.jpeg" alt="">
-                                </div>
-                                {{user_name}}(我自己)
-                                <span>{{f_title}}值为{{blood_one}}</span>
+                                宠物等级
+                            </li> 
+                             <li class="list_one">
+                               小小白银
                             </li>
-                            <li class="list_one">
-                                <i class="iconfont icondiyiming"></i>
-                                <div class="head_frame">
-                                    <img src="../../assets/img/tx.jpeg" alt="">
-                                </div>
-                                {{user_name}}
-                                <span>{{f_title}}值为{{blood_one}}</span>
+                            <li class="list_my">
+                                xxxxxx
+                            </li> 
+                             <li class="list_one">
+                               xxxxxxxxx
                             </li>
+                            <!--
                             <li class="list_two">
                                 <i class="iconfont icondierming1"></i>
                                 <div class="head_frame">
@@ -113,28 +128,28 @@
                                 </div>
                                 {{user_name}}
                                 <span>{{f_title}}值为{{blood_one}}</span>
-                            </li>
+                            </li> --> 
                         </ul>
                     </mt-popup>
                 </div>
 
-                <!-- 技能界面 -->
+                <!-- 饥饿度界面 -->
                 <div class="frame_skill">
                     <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="visible_skill" style="width:100%;height:60%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">   
                         <ul>
                             <li class="f_title">
-                                <i class="iconfont icondaoshijineng"></i>
+                                <i class="iconfont iconjie"></i>
                                 {{s_title}}
                             </li>
-                            <li class="haoyou">
+                            <!-- <li class="haoyou">
                                 <i class="iconfont iconhaoyou1"></i>
                                 <span>邀请好友一起玩吧</span>
                                 <span class="add_haoyou">添加
                                     <router-link to="/addfd"><i class="iconfont icontianjiahaoyou"></i>  </router-link>    
                                  好友</span>
-                            </li>
+                            </li> -->
 
-                            <li class="list_my">
+                            <!-- <li class="list_my">
                                 <i class="iconfont icon5"></i>
                                 <div class="head_frame">
                                     <img src="../../assets/img/tx.jpeg" alt="">
@@ -165,28 +180,34 @@
                                 </div>
                                 {{user_name}}
                                 <span>{{s_title}}值为{{blood_one}}</span>
+                            </li> -->
+                            <li class="list_my">
+                                当前饥饿度为
+                            </li> 
+                             <li class="list_one">
+                                +10
                             </li>
                         </ul>
                     </mt-popup>
                 </div>
 
-                <!-- 武力界面 -->
+                <!-- 加成值界面 -->
                 <div class="frame_force">
                     <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="visible_force" style="width:100%;height:60%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">   
                         <ul>
                             <li class="f_title">
-                                <i class="iconfont iconbaozhangliliangweihukaobei"></i>
+                                <i class="iconfont icontianjiachengyuan"></i>
                                 {{e_title}}
                             </li>
-                            <li class="haoyou">
+                            <!-- <li class="haoyou">
                                 <i class="iconfont iconhaoyou1"></i>
                                 <span>邀请好友一起玩吧</span>
                                 <span class="add_haoyou">添加
                                     <router-link to="/addfd"><i class="iconfont icontianjiahaoyou"></i>  </router-link>    
                                  好友</span>
-                            </li>
+                            </li> -->
 
-                            <li class="list_my">
+                            <!-- <li class="list_my">
                                 <i class="iconfont icon5"></i>
                                 <div class="head_frame">
                                     <img src="../../assets/img/tx.jpeg" alt="">
@@ -217,6 +238,18 @@
                                 </div>
                                 {{user_name}}
                                 <span>{{e_title}}值为{{blood_one}}</span>
+                            </li> -->
+                            <li class="list_my">
+                                当前加成值为
+                            </li> 
+                             <li class="list_one">
+                                +10
+                            </li>
+                            <li class="list_my">
+                                说明
+                            </li> 
+                             <li class="list_one">
+                                当前次跑步总量不小于1公里，
                             </li>
                         </ul>
                     </mt-popup>
@@ -240,8 +273,9 @@
         name: 'frame',
         data(){
             return{
-                xiaoqu: '青岛工学院校区',
-                tongzhi: '官方通知：-------',
+                xiaoqu: '',
+                xiaoqu1: '未认证（点击认证）',
+                tongzhi: '',
                 visible: false,
                 visible_skill: false,
                 visible_force: false,
@@ -252,11 +286,13 @@
                 b_bar: true,
                 // isFirst: 1,
                 popupVisible: false,
+                show1: true,
+                show: false,
                 isTrue: 'bim',
                 isFalse: 'egg_img',
-                f_title: '血量',
-                s_title: '技能',
-                e_title: '武力',
+                f_title: '宠物信息',
+                s_title: '饥饿度',
+                e_title: '加成值',
                 blood_one: 10,
                 user_name: 'hjw',
                 num: 120,
@@ -269,14 +305,51 @@
         },
         // 后台接口获取官方通知的内容
         created:function(){
-            this.axios.get('',{
+            this.axios.get('http://no37.store:8080/AK/gonggao1',{
                 params: {
-                    yhid: localStorage.getItem("yhid"),     
+                    ggid:1,     
                 }
             }).then(response=>{
-            
-                });
+                    this.tongzhi=response.data.ggnr; 
+                }).catch(error=>{
+            console.log(error);
+            alert('网络错误，不能访问');
+        });
+        // 校区认证
+        this.axios.get('http://no37.store:8080/AK/SelectXsID',{
+            params: {
+                yhid:localStorage.getItem("yhid"),     
+            }
+        })
+        .then(response=>{
+            if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
+                this.xiaoqu = response.data.yhxx;
+                this.show1 = false;
+                this.show = true;
+            }
+        })      //获取失败
+        .catch(error=>{
+            console.log(error);
+            alert('网络错误，不能访问');
+        })
+      //  老师认证信息
+        this.axios.get('http://no37.store:8080/AK/SelectJsID',{
+                params: {
+                    yhid:localStorage.getItem("yhid"),
+                }
+            }).then(response=>{
+                if(response.data.jsxx!=""||response.data.jsxx!=null||response.data.jsxx!=undefined){
+                    this.xiaoqu = response.data.jsxx;
+                    this.show1 = false;
+                    this.show = true;
+                }
+            })      //获取失败
+            .catch(error=>{
+                console.log(error);
+                alert('网络错误，不能访问');
+            })
         },
+
         methods:{
             blood:function(){
                 this.visible = true;
@@ -322,8 +395,13 @@
                 }
                 
             },
+            routerRefresh() {
+                window.location.reload();
+            },
             drawdata(){
                 let mycharts = this.$echarts.init(document.getElementById('mycharts'));
+                let mycharts1 = this.$echarts.init(document.getElementById('mycharts1'));
+                let mycharts2 = this.$echarts.init(document.getElementById('mycharts2'));
                 mycharts.setOption({
                     // title : {
                     //     text: '某站点用户访问来源',
@@ -363,7 +441,121 @@
                     ]
                 });
 
+                mycharts1.setOption({
+                    // title : {
+                    //     text: '某站点用户访问来源',
+                    //     subtext: '纯属虚构',
+                    //     x:'center'
+                    // },
+                    // tooltip : {
+                    //     trigger: 'item',
+                    //     formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    // },
+                    // legend: {
+                    //     orient: 'vertical',
+                    //     left: 'left',
+                    //     data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+                    // },
+                    series : [
+                        {
+                            // name: '访问来源',
+                            type: 'pie',
+                            radius : '80%',
+                            center: ['50%', '50%'],
+                            data:[
+                                {value:335, name:'',itemStyle: {color: 'rgb(85, 175, 236)'}},
+                                {value:310, name:'',itemStyle: {color: '#eeede2'}},
+                                // {value:234, name:'联盟广告'},
+                                // {value:135, name:'视频广告'},
+                                // {value:1548, name:'搜索引擎'}
+                            ],
+                            // itemStyle: {
+                            //     emphasis: {
+                            //         shadowBlur: 10,
+                            //         shadowOffsetX: 0,
+                            //         shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            //     }
+                            // }
+                        }
+                    ]
+                });
+
+                mycharts2.setOption({
+                    // title : {
+                    //     text: '某站点用户访问来源',
+                    //     subtext: '纯属虚构',
+                    //     x:'center'
+                    // },
+                    // tooltip : {
+                    //     trigger: 'item',
+                    //     formatter: "{a} <br/>{b} : {c} ({d}%)"
+                    // },
+                    // legend: {
+                    //     orient: 'vertical',
+                    //     left: 'left',
+                    //     data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
+                    // },
+                    series : [
+                        {
+                            // name: '访问来源',
+                            type: 'pie',
+                            radius : '80%',
+                            center: ['50%', '50%'],
+                            data:[
+                                {value:335, name:'',itemStyle: {color: 'rgb(231, 46, 170)'}},
+                                {value:310, name:'',itemStyle: {color: '#eeede2'}},
+                                // {value:234, name:'联盟广告'},
+                                // {value:135, name:'视频广告'},
+                                // {value:1548, name:'搜索引擎'}
+                            ],
+                            // itemStyle: {
+                            //     emphasis: {
+                            //         shadowBlur: 10,
+                            //         shadowOffsetX: 0,
+                            //         shadowColor: 'rgba(0, 0, 0, 0.5)'
+                            //     }
+                            // }
+                        }
+                    ]
+                });
+
+            //      function getPieSeries(scatterData, chart) {
+            //         return echarts.util.map(scatterData, function (item, index) {
+            //             var center = chart.convertToPixel('calendar', item);
+            //             return {
+            //                 id: index + 'pie',
+            //                 type: 'pie',
+            //                 center: center,
+            //                 label: {
+            //                     normal: {
+            //                         formatter: '{c}',
+            //                         position: 'inside'
+            //                     }
+            //                 },
+            //                 radius: pieRadius,
+            //                 data: [
+            //                     {name: '非运动', value: Math.round(Math.random() * 24), itemStyle: {color: '#eea2a4'} },
+            //                     {name: '运动', value: Math.round(Math.random() * 24), itemStyle: {color: '#7bc5ae'} },
+            //                 ]
+            //             };
+            //         });
+            // }
+
+            //     function getPieSeriesUpdate(scatterData, chart) {
+            //         return echarts.util.map(scatterData, function (item, index) {
+            //             var center = chart.convertToPixel('calendar', item);
+            //             return {
+            //                 id: index + 'pie',
+            //                 center: center
+            //             };
+            //         });
+            // }
+
+            // var scatterData = getVirtulData(this.daydate,this.dayend);
+
             },
+
+           
 
             
             
@@ -466,42 +658,56 @@
 
     /* 宠物 */
     .bimg{
-        /* margin: 50% 0 0 40%; */
-        margin:0 auto 20%;
-        width: 83px;
-        height: 100px;
+        margin: 20% 0 0 25%;
+        width: 40%;
+        height: 50%;
+        min-width: 200px;
+        min-height: 200px;
         animation: run 0.6s steps(1, start) infinite;
         -webkit-animation:run 0.6s steps(1, start) infinite;
         background: url('../../assets/img/pet/111.png');
+        background-position: center center;
     }
     @keyframes run{   
            0%{
-               background-image: url('../../assets/img/pet/111.png');
+               background-image: url('../../assets/img/pet/m01.png');
+               background-repeat: no-repeat;
            }
            30%{
-               background-image: url('../../assets/img/pet/222.png');
+               background-image: url('../../assets/img/pet/m02.png');
+               background-repeat: no-repeat;
            }
            60%{
-               background-image: url('../../assets/img/pet/33.png');
+               background-image: url('../../assets/img/pet/m03.png');
+               background-repeat: no-repeat;
            }
            100%{
-               background-image: url('../../assets/img/pet/55.png');
+               background-image: url('../../assets/img/pet/m04.png');
+               background-repeat: no-repeat;
            }
         }   
         @-webkit-keyframes run{   
             0%{
                background-image: url('../../assets/img/pet/111.png');
+               background-repeat: no-repeat;
            }
            30%{
                background-image: url('../../assets/img/pet/222.png');
+               background-repeat: no-repeat;
            }
            60%{
                background-image: url('../../assets/img/pet/33.png');
+               background-repeat: no-repeat;
            }
            100%{
                background-image: url('../../assets/img/pet/55.png');
+               background-repeat: no-repeat;
            }
-        }   
+        }
+        /* #flex{
+            display: flex;
+            justify-content: center;
+        }  */
 </style>
 
 
