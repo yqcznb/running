@@ -77,14 +77,75 @@
 .pet_interface_pet_top ul li .title{
     /* padding-top: 10px; */
     position: absolute;
-    top: 70px;
-    left: 40px;
+    top: 67px;
+    left: 14px;
 }
-#mycharts {
-    margin: 10% 0 0 20%;
+.pet_interface_pet_top ul li .title1{
+    /* padding-top: 10px; */
+    position: absolute;
+    top: 150px;
+    left: 24px;
+}
+.pet_interface_pet_top ul li .title2{
+    /* padding-top: 10px; */
+    position: absolute;
+    top: 230px;
+    left: 24px;
+}
+.pet_interface_pet_top ul li .mask{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    z-index: 999;
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    color: rgb(180, 185, 185, 1);
+}
+#mycharts{ 
+    position: absolute;
+    top: 80px;
+    left: 20px;
+    width: 70px;
+    height: 70px;
+    /* z-index: -999; */
+    /* border: 1px solid rgb(175, 167, 52); */
+}
+#mycharts1{
+    position: absolute;
+    top: 160px;
+    left: 20px;
     width: 70px;
     height: 70px;
     /* border: 1px solid rgb(175, 167, 52); */
+}
+.pet_interface_pet_top ul li .mask1{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    z-index: 999;
+    position: absolute;
+    top: 160px;
+    left: 20px;
+    color: rgb(180, 185, 185, 1);
+}
+#mycharts2{
+    position: absolute;
+    top: 240px;
+    left: 20px;
+    width: 70px;
+    height: 70px;
+    /* border: 1px solid rgb(175, 167, 52); */
+}
+.pet_interface_pet_top ul li .mask2{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    z-index: 999;
+    position: absolute;
+    top: 240px;
+    left: 20px;
+    color: rgb(180, 185, 185, 1);
 }
 .pet_interface_pet_top ul li img{
     width: 40%;
@@ -143,7 +204,7 @@
 
 
 /* 弹框 */
-/* 血量 */
+/* 宠物信息 */
 .frame .f_title{
     width: 100%;
     height: 50px;
@@ -158,7 +219,7 @@
  }
 
 
-.frame .haoyou{
+/* .frame .haoyou{
     width: 100%;
     height: 40px;
     line-height: 20px;
@@ -173,23 +234,22 @@
 }
 
 /* 添加好友部分 */
-.frame .haoyou .add_haoyou{
+/* .frame .haoyou .add_haoyou{
     display: inline-block;
     padding-left: 35px;
-}
+}*/
 
 .frame .list_one{
     width: 100%;
     height: 50px;
-    line-height: 40px;
+    line-height: 10px;
     padding: 10px 10px;
-    background-color: rgb(255, 255, 255, 0.8);
+    /* background-color: rgb(255, 255, 255, 0.8); */
     border-bottom: 1px solid rgb(184, 181, 181);
-    text-align: left;
-    font-size: 5px;
+    text-align: center;
 }
 
-.frame .list_one i{
+/*.frame .list_one i{
     color: rgb(226, 223, 42);
     padding: 10px 10px;
 }
@@ -286,7 +346,7 @@
 .frame .list_three span{
     display: inline-block;
     margin-left: 10px;
-}
+}*/
 
 
 .frame .list_my{
@@ -294,13 +354,13 @@
     height: 50px;
     line-height: 40px;
     padding: 10px 10px;
-    background-color: rgb(121, 211, 238, 0.8);
-    border-bottom: 1px solid rgb(184, 181, 181);
+    /* background-color: rgb(121, 211, 238, 0.8); */
+    /* border-bottom: 1px solid rgb(184, 181, 181); */
     text-align: left;
     font-size: 5px;
 }
 
-.frame .list_my i{
+/*.frame .list_my i{
     color: rgb(240, 169, 76);
     padding: 10px 10px;
 }
@@ -323,10 +383,10 @@
 .frame .list_my span{
     display: inline-block;
     margin-left: 10px;
-}
+} */ 
 
 
-/* 技能 */
+/* 饥饿度 */
 .frame_skill .f_title{
     width: 100%;
     height: 50px;
@@ -339,7 +399,7 @@
      color: rgb(28, 173, 230);
  }
 
-.frame_skill .haoyou{
+/* .frame_skill .haoyou{
     width: 100%;
     height: 40px;
     line-height: 20px;
@@ -356,20 +416,19 @@
 .frame_skill .haoyou .add_haoyou{
     display: inline-block;
     padding-left: 35px;
-}
+}*/
 
 .frame_skill .list_one{
     width: 100%;
     height: 50px;
-    line-height: 40px;
+    line-height: 10px;
     padding: 10px 10px;
-    background-color: rgb(255, 255, 255, 0.8);
+    /* background-color: rgb(255, 255, 255, 0.8); */
     border-bottom: 1px solid rgb(184, 181, 181);
-    text-align: left;
-    font-size: 5px;
+    text-align: center;
 }
 
-.frame_skill .list_one i{
+/*.frame_skill .list_one i{
     color: rgb(226, 223, 42);
     padding: 10px 10px;
 }
@@ -466,7 +525,7 @@
 .frame_skill .list_three span{
     display: inline-block;
     margin-left: 10px;
-}
+}*/
 
 
 .frame_skill .list_my{
@@ -474,13 +533,13 @@
     height: 50px;
     line-height: 40px;
     padding: 10px 10px;
-    background-color: rgb(121, 215, 238, 0.8);
-    border-bottom: 1px solid rgb(184, 181, 181);
+    /* background-color: rgb(121, 215, 238, 0.8); */
+    /* border-bottom: 1px solid rgb(184, 181, 181); */
     text-align: left;
-    font-size: 5px;
+
 }
 
-.frame_skill .list_my i{
+/*.frame_skill .list_my i{
     color: rgb(240, 169, 76);
     padding: 10px 10px;
 }
@@ -503,11 +562,11 @@
 .frame_skill .list_my span{
     display: inline-block;
     margin-left: 10px;
-}
+} */
 
 
 
-/* 武力 */
+/* 加成值 */
 .frame_force .f_title{
     width: 100%;
     height: 50px;
@@ -520,7 +579,7 @@
      color: rgb(230, 28, 163);
  }
 
-.frame_force .haoyou{
+/* .frame_force .haoyou{
     width: 100%;
     height: 40px;
     line-height: 20px;
@@ -537,20 +596,19 @@
 .frame_force .haoyou .add_haoyou{
     display: inline-block;
     padding-left: 35px;
-}
+}*/
 
 .frame_force .list_one{
     width: 100%;
     height: 50px;
-    line-height: 40px;
+    line-height: 10px;
     padding: 10px 10px;
-    background-color: rgb(255, 255, 255, 0.8);
+    /* background-color: rgb(255, 255, 255, 0.8); */
     border-bottom: 1px solid rgb(184, 181, 181);
-    text-align: left;
-    font-size: 5px;
+    text-align: center;
 }
 
-.frame_force .list_one i{
+/*.frame_force .list_one i{
     color: rgb(226, 223, 42);
     padding: 10px 10px;
 }
@@ -647,7 +705,7 @@
 .frame_force .list_three span{
     display: inline-block;
     margin-left: 10px;
-}
+}*/
 
 
 .frame_force .list_my{
@@ -655,13 +713,12 @@
     height: 50px;
     line-height: 40px;
     padding: 10px 10px;
-    background-color: rgb(121, 215, 238, 0.8);
-    border-bottom: 1px solid rgb(184, 181, 181);
+    /* background-color: rgb(121, 215, 238, 0.8); */
+    /* border-bottom: 1px solid rgb(184, 181, 181); */
     text-align: left;
-    font-size: 5px;
 }
 
-.frame_force .list_my i{
+/*.frame_force .list_my i{
     color: rgb(240, 169, 76);
     padding: 10px 10px;
 }
@@ -684,4 +741,4 @@
 .frame_force .list_my span{
     display: inline-block;
     margin-left: 10px;
-}
+} */
