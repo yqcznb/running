@@ -60,9 +60,6 @@
                 </mt-tab-container-item>
             </mt-tab-container>
         </div>
-        
-        
-        
         <mt-datetime-picker 
             v-model="dateValue" 
             type="date" 
@@ -76,9 +73,8 @@
     </div>
 </template>
 <script>
-import { DatetimePicker } from 'mint-ui';
 import axios from 'axios'
-import { MessageBox, Button} from 'mint-ui'
+import { MessageBox, Button, DatetimePicker} from 'mint-ui'
 export default {
     name: 'confirm',
     data() {
