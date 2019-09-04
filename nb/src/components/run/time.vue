@@ -11,6 +11,9 @@
       </div>
      <!-- <div class="ceshi" v-for="line in lines"  :key="line.id" :v-model="lines" :path="line.path">miles:{{miles}}$$distance:{{distance}}^^aa:{{aa}}**当前经纬度：{{lng}},{{lat}}***数组：{{line.path}}</div> -->
     </div>
+     <div class="chongwu">
+          11
+      </div>
     <el-amap 
         vid="amap"  
         :zoom="zoom"  
@@ -31,7 +34,7 @@
          </el-amap-text>
       <el-amap-bezier-curve v-for="line in lines"  :key="line.id" :v-model="lines" :path="line.path" :stroke-color="line.strokeColor" :stroke-style="line.strokeStyle" :events="line.events" :stroke-opacity="line.strokeOpacity"></el-amap-bezier-curve>  
     </el-amap>
-      <button class="jsun"  @mouseenter="mouseEnter" v-if="showw">长按结束</button>
+      <button class="jsun"  @click="mouseEnter" v-if="showw">点击暂停</button>
       <button class="buleft"   v-if="left" @click="con">继续</button>
       <button class="buright"  v-if="right" @click="end">结束</button>
     <div @click="jieshu">
@@ -88,6 +91,8 @@ export default {
         jifen:0,
         cw:0,
         yhid:localStorage.getItem("yhid"),
+        sfcw:localStorage.getItem("cw"),
+        cwgs:localStorage.getItem("cwgs"),
         label:{
       
         offset:[10,12]
@@ -136,19 +141,23 @@ export default {
                           self.visible = true;
                           self.texts[i].text=`<img style="width:25px;" src="http://no37.store/bzh.png">`,
                           self.texts[i].position = ["",""]
-                           let n = Math.floor((Math.random()*3));
-                           if(n==0){
+                           let n = Math.floor((Math.random()*2));
+                           if(this.sfcw == 1){
+                             n = 1;
+                             if(n==0){
                              self.count = "得宠物蛋一枚！";
                              self.imgg = require("../../assets/img/dan2.png");
                              self.cw = 1;
                            }
                            else if(n==1){
-                             self.count = "得积分！";
-                             self.imgg = require("../../assets/img/jifen.png")
-                               let nn =Math.floor((Math.random()*300));
-                               self.jifen = nn;
-                                self.count = "获得积分"+nn+"!";
+                              self.count = "得积分！";
+                              self.imgg = require("../../assets/img/jifen.png")
+                              let nn =Math.floor((Math.random()*300));
+                              self.jifen = nn;
+                              self.count = "获得积分"+nn+"!";
                            }
+                         }
+                        
                      }
                    
                    }
@@ -168,7 +177,7 @@ export default {
                      self.lines[0].path.push([self.lng, self.lat],);
                      self.center1 = [self.lng, self.lat];  
                      self.nb=2;
-                     for(let i=1;i<3;i++){
+                     for(let i=0;i<3;i++){
                         let a = Math.random()%0.003-0.0015;
                         a = a+self.lng
                         a = Math.round(a*100000)/100000; 
@@ -260,20 +269,20 @@ export default {
       console.log("jieshu")
     },
    mouseEnter(){
-    this.sx =  setTimeout(()=>{
+   
       this.showw = false;
       this.left = true;
       this.right = true;
       clearInterval(this.ttime);
     
-   }, 3000);
+   
     },
     con(){
       this.showw = true;
       this.left = false;
       this.right = false;
       this.ttime=setInterval(this.timer,50);
-      clearTimeout(this.ll);
+    
     },
     end(){
         if(this.miles<0.1){
@@ -433,6 +442,16 @@ export default {
 .ttime{
   overflow: hidden;
 }
+.chongwu{
+  position:absolute;
+  top: 25%;
+  right: 5%;
+  z-index: 100;
+  color: #fff;
+  width: 70px;
+  height: 70px;
+  background-color: rgba(253, 185, 51, 0.89)
+}
 .buleft{
   position:absolute;
   top: 80%;
@@ -524,38 +543,12 @@ export default {
   font-size:1.6em;
   padding:0 2em;
   cursor:pointer;
-  transition:300ms ease all;
-  outline:none;
   position: absolute;
   z-index: 100;
   top: 80%;
   left: 50%;
   width: 260px;
   margin-left: -130px;
-}
-.jsun:hover{
-  background:#fff;
-  color: rgba(253, 185, 51, 0.89);
-}
-.jsun:before,.jsun:after{
-  content:'';
-  position:absolute;
-  top:0;
-  right:0;
-  height:2px;
-  width:0;
-  background:  rgba(253, 185, 51, 0.89);
-  transition:400ms ease all;
-}
-.jsun:after{
-  right:inherit;
-  top:inherit;
-  left:0;
-  bottom:0;
-}
-.jsun:hover:before,.jsun:hover:after{
-  width:100%;
-  transition:3000ms ease all;
 }
 .amap-overlay-text-container {
   background-color: red;
