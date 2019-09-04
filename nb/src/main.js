@@ -15,7 +15,9 @@ import VueCropper from 'vue-cropper'
 import store from './store'
 import Mui from 'vue-awesome-mui'
 import './assets/css/my-mint.scss';//全局修改mint-UI样式
+import { Switch } from 'mint-ui';
 
+Vue.component(Switch.name, Switch);
 
 Vue.use(Mui);
 Vue.component(Field.name, Field);

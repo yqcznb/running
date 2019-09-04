@@ -22,25 +22,26 @@
                     <ul>
                         <li>
                             <div>
-                                <p class="title">宠物信息</p>
+                                <!-- <p class="title">宠物信息</p> -->
                             <!-- <img src="../../assets/img/pet/blood.png"  @click="blood"> -->
                                 <div id="mycharts" ></div>
-                                <div class="mask" @click="blood"></div>
+                                <div class="mask" @click="blood" :style="{color: yanse}"></div>
                             </div>
                             
                             
                         </li>
                         <li>
-                            <p class="title1">饥饿度</p>
+                            <!-- <p class="title1">饥饿度</p> -->
                             <!-- <img src="../../assets/img/pet/skill.png"  @click="skill"> -->
                             <div id="mycharts1"></div>
-                            <div class="mask1" @click="skill"></div>
+                            <div class="mask1" @click="skill" :style="{color: yanse}"></div>
                          </li>
                         <li>
-                            <p class="title2">加成值</p>
+                            <!-- <p class="title2">加成值</p> -->
                             <!-- <img src="../../assets/img/pet/force.png"  @click="force"> -->
                             <div id="mycharts2"></div>
-                            <div class="mask2" @click="force"></div>
+                            <div class="mask2" @click="force" ></div>
+                            <!-- :style="{color: yanse}" -->
                         </li>
                     </ul>
 
@@ -107,10 +108,10 @@
                                小小白银
                             </li>
                             <li class="list_my">
-                                xxxxxx
+                                宠物跟随
                             </li> 
                              <li class="list_one">
-                               xxxxxxxxx
+                               <mt-switch v-model="value"></mt-switch>
                             </li>
                             <!--
                             <li class="list_two">
@@ -243,21 +244,21 @@
                                 当前加成值为
                             </li> 
                              <li class="list_one">
-                                +10
+                                10
                             </li>
                             <li class="list_my">
                                 说明
                             </li> 
                              <li class="list_one">
-                                当前次跑步总量不小于1公里，
+                                
                             </li>
                         </ul>
                     </mt-popup>
 
                     <!-- 进度条提示框 -->
-                    <mt-popup v-model="popupVisible" popup-transition="popup-fade" position="center" style="width: 150px;height:50px;border-radius:15px;margin:50px 0 0 50px;color:rgb(255, 218, 203);border:2px solid rgb(255, 218, 203);">
+                    <!-- <mt-popup v-model="popupVisible" popup-transition="popup-fade" position="center" style="width: 150px;height:50px;border-radius:15px;margin:50px 0 0 50px;color:rgb(255, 218, 203);border:2px solid rgb(255, 218, 203);">
                         <p>当前的运动量为xxx,继续加油哦</p>
-                    </mt-popup>
+                    </mt-popup> -->
                 </div>
     </div>
 </template>
@@ -288,18 +289,29 @@
                 popupVisible: false,
                 show1: true,
                 show: false,
+                value: true,
                 isTrue: 'bim',
                 isFalse: 'egg_img',
                 f_title: '宠物信息',
                 s_title: '饥饿度',
                 e_title: '加成值',
+                // yanse: '#000',
                 blood_one: 10,
                 user_name: 'hjw',
-                num: 120,
+                num: '120',
                 ber_num: 0,
+                chart1_1:'10',
+                chart1_2:'90',
+                chart2_1:'10',
+                chart2_2:'90',
+                chart3_1:'10',
+                chart3_2:'90',
                 Width:{
                     'width': '0px',
                 },
+                // Color:{
+                //     'color': 'yanse',
+                // },
                 
             }
         },
@@ -364,12 +376,13 @@
                 // 后台获取用户公里数，更新进度
                 let yhid = localStorage.getItem("yhid");
 
-                this.axios.get('',{
+                this.axios.get('http://no37.store:8080/AK/ShowPet',{
                     params: {
                         yhid:yhid,
                     }
                 }).then(response=>{
-                    
+                    this.num = 12*response.data.ydjl;
+                    response.data.cw;
                     });
 
                 this.Width = {
@@ -380,6 +393,9 @@
                 if(this.num == 0){
                     this.see = true;
                     this.ber = false;
+                    // this.Color = {
+                    //     'color': this.yanse,
+                    // }
                 }
                 if(this.num >= 120){
                     this.num = 120;
@@ -392,22 +408,35 @@
                     this.bag = false;
                     this.g_egg = true;
                     this.popupVisible = true;
+                    // this.Color = {
+                    //     'color': this.yanse,
+                    // }
                 }
                 
             },
             routerRefresh() {
                 window.location.reload();
             },
+            // 绘制图表
             drawdata(){
                 let mycharts = this.$echarts.init(document.getElementById('mycharts'));
                 let mycharts1 = this.$echarts.init(document.getElementById('mycharts1'));
                 let mycharts2 = this.$echarts.init(document.getElementById('mycharts2'));
+
+                // 宠物信息
                 mycharts.setOption({
-                    // title : {
-                    //     text: '某站点用户访问来源',
-                    //     subtext: '纯属虚构',
-                    //     x:'center'
-                    // },
+                    title : {
+                        text: '宠物信息',
+                        // subtext: '纯属虚构',
+                        x:'center',
+                        textStyle: {
+                            fontFamily: '方正汉真广标简体',
+                            color: '#777c7c96',
+                            fontSize: 18,
+                            fontWeight: 'normal',
+                            fontStyle: 100,
+                        },
+                    },
                     // tooltip : {
                     //     trigger: 'item',
                     //     formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -422,10 +451,16 @@
                             // name: '访问来源',
                             type: 'pie',
                             radius : '80%',
+                            label: {
+                                normal: {
+                                    position: 'inner',
+                                    show : false
+                                }
+                            },
                             center: ['50%', '50%'],
                             data:[
-                                {value:335, name:'',itemStyle: {color: 'rgb(230, 28, 28)'}},
-                                {value:310, name:'',itemStyle: {color: '#eeede2'}},
+                                {value:this.chart1_1, name:'',itemStyle: {color: 'rgb(230, 28, 28)'}},
+                                {value:this.chart1_2, name:'',itemStyle: {color: '#eeede2'}},
                                 // {value:234, name:'联盟广告'},
                                 // {value:135, name:'视频广告'},
                                 // {value:1548, name:'搜索引擎'}
@@ -441,12 +476,20 @@
                     ]
                 });
 
+                // 饥饿度
                 mycharts1.setOption({
-                    // title : {
-                    //     text: '某站点用户访问来源',
-                    //     subtext: '纯属虚构',
-                    //     x:'center'
-                    // },
+                    title : {
+                        text: '饥饿度',
+                        // subtext: '纯属虚构',
+                        x:'center',
+                        textStyle: {
+                            fontFamily: '方正汉真广标简体',
+                            color: '#777c7c96',
+                            fontSize: 18,
+                            fontWeight: 'normal',
+                            fontStyle: 100,
+                        },
+                    },
                     // tooltip : {
                     //     trigger: 'item',
                     //     formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -461,10 +504,16 @@
                             // name: '访问来源',
                             type: 'pie',
                             radius : '80%',
+                            label: {
+                                normal: {
+                                    position: 'inner',
+                                    show : false
+                                }
+                            },
                             center: ['50%', '50%'],
                             data:[
-                                {value:335, name:'',itemStyle: {color: 'rgb(85, 175, 236)'}},
-                                {value:310, name:'',itemStyle: {color: '#eeede2'}},
+                                {value:this.chart2_1, name:'',itemStyle: {color: 'rgb(85, 175, 236)'}},
+                                {value:this.chart2_2, name:'',itemStyle: {color: '#eeede2'}},
                                 // {value:234, name:'联盟广告'},
                                 // {value:135, name:'视频广告'},
                                 // {value:1548, name:'搜索引擎'}
@@ -480,12 +529,20 @@
                     ]
                 });
 
+                // 加成值
                 mycharts2.setOption({
-                    // title : {
-                    //     text: '某站点用户访问来源',
-                    //     subtext: '纯属虚构',
-                    //     x:'center'
-                    // },
+                    title : {
+                        text: '加成值',
+                        // subtext: '纯属虚构',
+                        x:'center',
+                        textStyle: {
+                            fontFamily: '方正汉真广标简体',
+                            color: '#777c7c96',
+                            fontSize: 18,
+                            fontWeight: 'normal',
+                            fontStyle: 100,
+                        },
+                    },
                     // tooltip : {
                     //     trigger: 'item',
                     //     formatter: "{a} <br/>{b} : {c} ({d}%)"
@@ -500,10 +557,16 @@
                             // name: '访问来源',
                             type: 'pie',
                             radius : '80%',
+                            label: {
+                                normal: {
+                                    position: 'inner',
+                                    show : false
+                                }
+                            },
                             center: ['50%', '50%'],
                             data:[
-                                {value:335, name:'',itemStyle: {color: 'rgb(231, 46, 170)'}},
-                                {value:310, name:'',itemStyle: {color: '#eeede2'}},
+                                {value:this.chart3_1, name:'',itemStyle: {color: 'rgb(231, 46, 170)'}},
+                                {value:this.chart3_2, name:'',itemStyle: {color: '#eeede2'}},
                                 // {value:234, name:'联盟广告'},
                                 // {value:135, name:'视频广告'},
                                 // {value:1548, name:'搜索引擎'}
@@ -554,10 +617,6 @@
             // var scatterData = getVirtulData(this.daydate,this.dayend);
 
             },
-
-           
-
-            
             
             egg_pet(){
                 if(this.num<120){
@@ -658,11 +717,11 @@
 
     /* 宠物 */
     .bimg{
-        margin: 20% 0 0 25%;
-        width: 40%;
+        margin: 20% auto 0;
+        width: 50%;
         height: 50%;
-        min-width: 200px;
-        min-height: 200px;
+        min-width: 250px;
+        min-height: 250px;
         animation: run 0.6s steps(1, start) infinite;
         -webkit-animation:run 0.6s steps(1, start) infinite;
         background: url('../../assets/img/pet/111.png');
