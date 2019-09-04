@@ -114,6 +114,9 @@ export default {
             })
         if(localStorage.getItem("yhsf") == 0 || localStorage.getItem("yhsf") == 1) {
             this.if_rz = "have_rz";
+            // this.tea_special = true;
+        }
+        if(localStorage.getItem("yhsf") == 1) {
             this.tea_special = true;
         }
         // 近期跑步数据请求

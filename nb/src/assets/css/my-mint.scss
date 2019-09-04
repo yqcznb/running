@@ -1,4 +1,5 @@
 $color-primary: #dec674;
+* { touch-action: none; } 
 .mint-header {
  background-color: $color-primary;
 }

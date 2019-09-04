@@ -89,10 +89,10 @@ export default {
         // 用户积分
         axios.get('http://no37.store:8080/AK/MoveTop',{
             params: {
-                yhid:localStorage.getItem("yhid"),TimeOne:1,
-
+                yhid:localStorage.getItem("yhid"),TimeOne:2,
             }})
             .then(response=>{
+                // console.log(response);
                 this.run_list = response.data;
             })      //获取失败
             .catch(error=>{
@@ -109,6 +109,7 @@ export default {
                     yhid:localStorage.getItem("yhid"),TimeOne:this.selected,
                 }})
                 .then(response=>{
+                    // console.log(response);
                     this.run_list = response.data;
                 })      //获取失败
                 .catch(error=>{
