@@ -66,6 +66,7 @@ export default {
     },
     created() {
         // 近12日日期
+        console.log(localStorage.getItem('yhsf'));
             let myDate = new Date(); //获取今天日期
             myDate.setDate(myDate.getDate() - 12);
             let dateArray = []; 
