@@ -40,56 +40,56 @@
                                         <i class="iconfont iconwuqihui"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w1">
+                                <div class="eq_list1" @click="w1_2">
                                     <div>
                                         <i class="iconfont iconSubtraction"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w1">
+                                <div class="eq_list1" @click="w1_3">
                                     <div>
                                         <i class="iconfont icondao1"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w1">
+                                <div class="eq_list1" @click="w1_4">
                                     <div>
                                         <i class="iconfont iconfl-futou"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w1">
+                                <!-- <div class="eq_list1" @click="w1_5">
                                     <div>
                                         <i class="iconfont iconji"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w1">
+                                <div class="eq_list1" @click="w1_6">
                                     <div>
                                         <i class="iconfont iconrenzhewuqi"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w1">
+                                <div class="eq_list1" @click="w1_7">
                                     <div>
                                         <i class="iconfont icondao"></i>
                                     </div>
-                                </div>
-                                <div class="eq_list1" @click="w1">
+                                </div> -->
+                                <!-- <div class="eq_list1" @click="w1">
                                     <div>
                                         <i class="iconfont iconbaoleiji"></i>
                                     </div>
-                                </div>
-                                <div class="eq_list1" @click="w1">
+                                </div> -->
+                                <!-- <div class="eq_list1" @click="w1_8">
                                     <div>
                                         <i class="iconfont iconwuqi"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w1">
+                                <div class="eq_list1" @click="w1_9">
                                     <div>
                                         <i class="iconfont iconwuqix"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w1">
+                                <div class="eq_list1" @click="w1_10">
                                     <div>
                                         <i class="iconfont iconwuqianniu"></i>
                                     </div>
-                                </div>
+                                </div> -->
                             </mt-tab-container-item>
                             <mt-tab-container-item id="2">
                                 <div class="eq_list1" @click="w2">
@@ -97,23 +97,25 @@
                                         <i class="iconfont iconzhuangbei1"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w2">
+                                <div class="eq_list1" @click="w2_2">
                                     <div>
                                         <i class="iconfont iconkuzi"></i>
                                     </div>
-                                </div><div class="eq_list1" @click="w2">
+                                </div><div class="eq_list1" @click="w2_3">
                                     <div>
                                         <i class="iconfont icon-xiezi"></i>
                                     </div>
-                                </div><div class="eq_list1" @click="w2">
+                                </div>
+                                <!-- <div class="eq_list1" @click="w2">
                                     <div>
                                         <i class="iconfont iconzhuangbei"></i>
                                     </div>
-                                </div><div class="eq_list1" @click="w2">
+                                </div> -->
+                                <div class="eq_list1" @click="w2_4">
                                     <div>
                                         <i class="iconfont icon-kuzi"></i>
                                     </div>
-                                </div><div class="eq_list1" @click="w2">
+                                </div><!-- <div class="eq_list1" @click="w2">
                                     <div>
                                         <i class="iconfont iconxiezi3"></i>
                                     </div>
@@ -129,52 +131,52 @@
                                     <div>
                                         <i class="iconfont icontuoxie"></i>
                                     </div>
-                                </div>
+                                </div> -->
                             </mt-tab-container-item>
                             <mt-tab-container-item id="3">
-                                <div class="eq_list1" @click="w3">
+                                <!-- <div class="eq_list1" @click="w3">
                                     <div>
                                         <i class="iconfont iconyaopin1"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w3">
+                                <div class="eq_list1" @click="w3_2">
                                     <div>
                                         <i class="iconfont iconyaopin2"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w3">
+                                <div class="eq_list1" @click="w3_3">
                                     <div>
                                         <i class="iconfont iconyaopin"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w3">
+                                <div class="eq_list1" @click="w3_4">
                                     <div>
                                         <i class="iconfont iconpip"></i>
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="eq_list1" @click="w3">
                                     <div>
                                         <i class="iconfont iconsiliao"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w3">
+                                <div class="eq_list1" @click="w3_2">
                                     <div>
                                         <i class="iconfont iconshuichansiliao"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w3">
+                                <div class="eq_list1" @click="w3_3">
                                     <div>
                                         <i class="iconfont iconbingjiling"></i>
                                     </div>
                                 </div>
-                                <div class="eq_list1" @click="w3">
+                                <div class="eq_list1" @click="w3_4">
                                     <div>
                                         <i class="iconfont iconmianbao-"></i>
                                     </div>
                                 </div>
                             </mt-tab-container-item>
                         </mt-tab-container>
-                        <mt-button type="primary" size="large" @click="open" class="yulan">预览</mt-button>
+                        <!-- <mt-button type="primary" size="large" @click="open" class="yulan">预览</mt-button> -->
                     </div>
                 </div>
             </div> 
@@ -187,11 +189,54 @@
                 <li class="zb_xiaoguo">
                     <p class="xiaoguo1_title">效果</p>
                     <p>{{xiaoguo1_my}}</p>
-                    <p>{{xiaoguo1_you}}</p>
-                    <p>{{xiaoguo1_bd}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">添加</mt-button>
+                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                </li>
+                
+            </ul>
+        </mt-popup>
+        <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="bq_visible_2" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
+            <ul>
+                <li class="zb_name1">
+                    <i class="iconfont iconbing"></i>{{zb1_name_2}}
+                </li>
+                <li class="zb_xiaoguo">
+                    <p class="xiaoguo1_title">效果</p>
+                    <p>{{xiaoguo1_my_2}}</p>
+                </li>
+                <li class="button">
+                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                </li>
+                
+            </ul>
+        </mt-popup>
+        <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="bq_visible_3" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
+            <ul>
+                <li class="zb_name1">
+                    <i class="iconfont iconbing"></i>{{zb1_name_3}}
+                </li>
+                <li class="zb_xiaoguo">
+                    <p class="xiaoguo1_title">效果</p>
+                    <p>{{xiaoguo1_my_3}}</p>
+                </li>
+                <li class="button">
+                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                </li>
+                
+            </ul>
+        </mt-popup>
+        <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="bq_visible_4" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
+            <ul>
+                <li class="zb_name1">
+                    <i class="iconfont iconbing"></i>{{zb1_name_4}}
+                </li>
+                <li class="zb_xiaoguo">
+                    <p class="xiaoguo1_title">效果</p>
+                    <p>{{xiaoguo1_my_4}}</p>
+                </li>
+                <li class="button">
+                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
                 </li>
                 
             </ul>
@@ -204,11 +249,54 @@
                 <li class="zb_xiaoguo">
                     <p class="xiaoguo2_title">效果</p>
                     <p>{{xiaoguo2_my}}</p>
-                    <p>{{xiaoguo2_you}}</p>
-                    <p>{{xiaoguo2_bd}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">添加</mt-button>
+                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                </li>
+                
+            </ul>
+        </mt-popup>
+        <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="ys_visible_2" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
+            <ul>
+                <li class="zb_name2">
+                    <i class="iconfont iconzhuang"></i>{{zb2_name_2}}
+                </li>
+                <li class="zb_xiaoguo">
+                    <p class="xiaoguo2_title">效果</p>
+                    <p>{{xiaoguo2_my_2}}</p>
+                </li>
+                <li class="button">
+                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                </li>
+                
+            </ul>
+        </mt-popup>
+        <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="ys_visible_3" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
+            <ul>
+                <li class="zb_name2">
+                    <i class="iconfont iconzhuang"></i>{{zb2_name_3}}
+                </li>
+                <li class="zb_xiaoguo">
+                    <p class="xiaoguo2_title">效果</p>
+                    <p>{{xiaoguo2_my_3}}</p>
+                </li>
+                <li class="button">
+                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                </li>
+                
+            </ul>
+        </mt-popup>
+        <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="ys_visible_4" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
+            <ul>
+                <li class="zb_name2">
+                    <i class="iconfont iconzhuang"></i>{{zb2_name_4}}
+                </li>
+                <li class="zb_xiaoguo">
+                    <p class="xiaoguo2_title">效果</p>
+                    <p>{{xiaoguo2_my_4}}</p>
+                </li>
+                <li class="button">
+                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
                 </li>
                 
             </ul>
@@ -221,11 +309,54 @@
                 <li class="zb_xiaoguo">
                     <p class="xiaoguo3_title">效果</p>
                     <p>{{xiaoguo3_my}}</p>
-                    <p>{{xiaoguo3_you}}</p>
-                    <p>{{xiaoguo3_bd}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">添加</mt-button>
+                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                </li>
+                
+            </ul>
+        </mt-popup>
+        <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="jy_visible_2" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
+            <ul>
+                <li class="zb_name3">
+                    <i class="iconfont iconitemno_15"></i>{{zb3_name_2}}
+                </li>
+                <li class="zb_xiaoguo">
+                    <p class="xiaoguo3_title">效果</p>
+                    <p>{{xiaoguo3_my_2}}</p>
+                </li>
+                <li class="button">
+                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                </li>
+                
+            </ul>
+        </mt-popup>
+        <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="jy_visible_3" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
+            <ul>
+                <li class="zb_name3">
+                    <i class="iconfont iconitemno_15"></i>{{zb3_name_3}}
+                </li>
+                <li class="zb_xiaoguo">
+                    <p class="xiaoguo3_title">效果</p>
+                    <p>{{xiaoguo3_my_3}}</p>
+                </li>
+                <li class="button">
+                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                </li>
+                
+            </ul>
+        </mt-popup>
+        <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="jy_visible_4" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
+            <ul>
+                <li class="zb_name3">
+                    <i class="iconfont iconitemno_15"></i>{{zb3_name_4}}
+                </li>
+                <li class="zb_xiaoguo">
+                    <p class="xiaoguo3_title">效果</p>
+                    <p>{{xiaoguo3_my_4}}</p>
+                </li>
+                <li class="button">
+                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
                 </li>
                 
             </ul>
@@ -250,21 +381,45 @@ export default {
             yangs1: 'rgb(222, 198, 116)',
             yangs2: '0',
             yangs3: '0',
+            index: '1',
             bq_visible: false,
+            bq_visible_2: false,
+            bq_visible_3: false,
+            bq_visible_4: false,
             ys_visible: false,
+            ys_visible_2: false,
+            ys_visible_3: false,
+            ys_visible_4: false,
             jy_visible: false,
-            zb1_name: '大辟之剑',
-            xiaoguo1_my: '自身武力值+1',
-            xiaoguo1_you: '每次挥剑对敌造成3点血量伤害',
-            xiaoguo1_bd: '挥剑次数为自身血量的50%',
-            zb2_name: '甲衣',
-            xiaoguo2_my: '自身血量值+1',
-            xiaoguo2_you: '可承受敌一次小于5点的伤害',
-            xiaoguo2_bd: '若敌人攻击造成的伤害小于3点血量，则对敌造成2点血量的伤害',
-            zb3_name: '小药丸',
-            xiaoguo3_my: '自身血量+1 武力值+1',
-            xiaoguo3_you: '',
-            xiaoguo3_bd: '使用期间受到攻击，可抵消这次的伤害',
+            jy_visible_2: false,
+            jy_visible_3: false,
+            jy_visible_4: false,
+            zb1_name: '剑',
+            xiaoguo1_my: '加成值+1',
+            zb1_name_2: '盾',
+            xiaoguo1_my_2: '加成值+1',
+            zb1_name_3: '刀',
+            xiaoguo1_my_3: '加成值+1',
+            zb1_name_4: '斧',
+            xiaoguo1_my_4: '加成值+1',
+            // xiaoguo1_you: '每次挥剑对敌造成3点血量伤害',
+            // xiaoguo1_bd: '挥剑次数为自身血量的50%',
+            zb2_name: '短袖',
+            xiaoguo2_my: '加成值+1',
+            zb2_name_2: '长裤',
+            xiaoguo2_my_2: '加成值+2',
+            zb2_name_3: '轮滑鞋',
+            xiaoguo2_my_3: '加成值+3',
+            zb2_name_4: '短裤',
+            xiaoguo2_my_4: '加成值+1',
+            zb3_name: '小鸡牌饲料',
+            xiaoguo3_my: '饥饿度-3',
+            zb3_name_2: '鱼牌饲料',
+            xiaoguo3_my_2: '饥饿度-3',
+            zb3_name_3: '冰激凌',
+            xiaoguo3_my_3: '饥饿度-5',
+            zb3_name_4: '面包',
+            xiaoguo3_my_4: '饥饿度-5',
             Left:{
                 'left':'0%',
             },
@@ -325,14 +480,42 @@ export default {
         w1(){
             this.bq_visible = true;
         },
+        w1_2(){
+            this.bq_visible_2 = true;
+        },
+        w1_3(){
+            this.bq_visible_3 = true;
+        },
+        w1_4(){
+            this.bq_visible_4 = true;
+        },
         w2(){
             this.ys_visible = true;
+        },
+        w2_2(){
+            this.ys_visible_2 = true;
+        },
+        w2_3(){
+            this.ys_visible_3 = true;
+        },
+        w2_4(){
+            this.ys_visible_4 = true;
         },
         w3(){
             this.jy_visible = true;
         },
+        w3_2(){
+            this.jy_visible_2 = true;
+        },
+        w3_3(){
+            this.jy_visible_3 = true;
+        },
+        w3_4(){
+            this.jy_visible_4 = true;
+        },
         add_wuqi(){
-            MessageBox.alert("添加成功，点击预览查看").then(action => {
+            this.index =
+            MessageBox.alert("使用成功").then(action => {
   
                 });
         },

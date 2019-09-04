@@ -74,37 +74,20 @@
 .pet_interface_pet_top ul li{
     /* margin-bottom: 3%; */
 }
-.pet_interface_pet_top ul li .title{
-    /* padding-top: 10px; */
-    position: absolute;
-    top: 67px;
-    left: 14px;
-}
-.pet_interface_pet_top ul li .title1{
-    /* padding-top: 10px; */
-    position: absolute;
-    top: 150px;
-    left: 24px;
-}
-.pet_interface_pet_top ul li .title2{
-    /* padding-top: 10px; */
-    position: absolute;
-    top: 230px;
-    left: 24px;
-}
+
 .pet_interface_pet_top ul li .mask{
     width: 70px;
     height: 70px;
     border-radius: 50%;
     z-index: 999;
     position: absolute;
-    top: 80px;
+    top: 70px;
     left: 20px;
     color: rgb(180, 185, 185, 1);
 }
 #mycharts{ 
     position: absolute;
-    top: 80px;
+    top: 70px;
     left: 20px;
     width: 70px;
     height: 70px;
@@ -113,7 +96,7 @@
 }
 #mycharts1{
     position: absolute;
-    top: 160px;
+    top: 140px;
     left: 20px;
     width: 70px;
     height: 70px;
@@ -125,13 +108,13 @@
     border-radius: 50%;
     z-index: 999;
     position: absolute;
-    top: 160px;
+    top: 140px;
     left: 20px;
-    color: rgb(180, 185, 185, 1);
+    /* color: rgb(180, 185, 185, 1); */
 }
 #mycharts2{
     position: absolute;
-    top: 240px;
+    top: 210px;
     left: 20px;
     width: 70px;
     height: 70px;
@@ -143,9 +126,9 @@
     border-radius: 50%;
     z-index: 999;
     position: absolute;
-    top: 240px;
+    top: 210px;
     left: 20px;
-    color: rgb(180, 185, 185, 1);
+    /* color: rgb(180, 185, 185, 1); */
 }
 .pet_interface_pet_top ul li img{
     width: 40%;
@@ -164,9 +147,9 @@
 
 /* 进度条 */
 .progress_bar{
-    display: flex;
+    /* display: flex; */
     width: 120px;
-    height: 60px;
+    height: 40px;
     border: 1px solid rgb(204, 204, 204);
     border-radius: 20px;
     margin: 25% auto 0;
@@ -183,7 +166,7 @@
     height: 30px;
     border-radius: 20px;
     background-color: rgb(255, 218, 203);
-}
+} 
 
 /* 占百分比 */
 .bar_number{
@@ -193,13 +176,12 @@
 
 /* 宠物蛋 */
  .egg_img{
-    display: flex;
+    /* display: flex; */
     background-image: url(../../assets/img/pet/gegg.png);
     background-repeat: no-repeat;
-    width: 100%;
+    height: 60%;
     background-position: center;
     background-size: auto 100%;
-    height: 100%;
 }
 
 
@@ -247,6 +229,10 @@
     /* background-color: rgb(255, 255, 255, 0.8); */
     border-bottom: 1px solid rgb(184, 181, 181);
     text-align: center;
+    
+}
+.mint-switch{
+    margin-left: 45%;
 }
 
 /*.frame .list_one i{
@@ -357,7 +343,6 @@
     /* background-color: rgb(121, 211, 238, 0.8); */
     /* border-bottom: 1px solid rgb(184, 181, 181); */
     text-align: left;
-    font-size: 5px;
 }
 
 /*.frame .list_my i{
