@@ -65,8 +65,8 @@ export default {
       left:false,
       right:false,   
       jg:"",
-      count:"恭喜你获得宝藏",
-      imgg:require("../../assets/img/bz.png"),
+      count:"",
+      imgg:"",
        distance: 0.0,  // 表示运动的累计距离
         miles: 0.0,    // 表示运动的累计距离，单位是公里用于界面显示
         // path: [],    // 运动坐标数据
@@ -85,6 +85,8 @@ export default {
         aa:0,
         sx:0,
         nb:"",
+        jifen:0,
+        cw:0,
         yhid:localStorage.getItem("yhid"),
         label:{
       
@@ -132,9 +134,21 @@ export default {
                    for(var i=0;i<3;i++){
                      if(self.lng>(self.texts[i].position[0]-0.00015)&&self.lng<(self.texts[i].position[0]+0.00015)&&self.lat> (self.texts[i].position[1]-0.00015)&&self.lat<(self.texts[i].position[1]+0.00015)){
                           self.visible = true;
-                          self.texts[i].text=`<img style="width:25px;" src="http://no37.store/bzh.png"><p>打卡完成</p>`,
+                          self.texts[i].text=`<img style="width:25px;" src="http://no37.store/bzh.png">`,
                           self.texts[i].position = ["",""]
-                        
+                           let n = Math.floor((Math.random()*3));
+                           if(n==0){
+                             self.count = "得宠物蛋一枚！";
+                             self.imgg = require("../../assets/img/dan2.png");
+                             self.cw = 1;
+                           }
+                           else if(n==1){
+                             self.count = "得积分！";
+                             self.imgg = require("../../assets/img/jifen.png")
+                               let nn =Math.floor((Math.random()*300));
+                               self.jifen = nn;
+                                self.count = "获得积分"+nn+"!";
+                           }
                      }
                    
                    }
@@ -174,7 +188,7 @@ export default {
       ],
        texts: [
         {
-          position: [120.02111,36.2409],
+          position: [120.03362,36.26713],
           text: `<img style="width:25px;" src="http://no37.store/12.png" class="bz_box"><p>打卡寻宝</p>`,
           offset: [0,0],
           events: {
@@ -290,17 +304,17 @@ export default {
          }).then(action => { 
          if (action == 'confirm') {     //确认的回调
 
-        this.axios.get('http://no37.store:8080/AK/AddMove',{
+      this.axios.get('http://no37.store:8080/AK/AddMove',{
           params: {
               yhid: this.yhid,
               ydjl: this.miles,
               ydsj:this.times,
               ydsd:this.speed,
               p:1,
-              cw:0,
+              cw:this.cw,
           }
       }).then(response=>{
-              console.log(response)
+         console.log(response.data);
               this.jg=response.data.jg; 
               if(this.jg==1){
                    this.$router.push({
@@ -311,20 +325,43 @@ export default {
                 alert("数据存储失败")
                  this.$router.push({
                     path: '/footer/index'
+                });          
+              }})
+        .catch(error=>{
+                console.log(error);
+                alert('网络错误，不能访问');
+            });         
+                
+    this.axios.get('http://no37.store:8080/AK/AddNumber',{
+          params: {
+              yhid:this.yhid,
+              yhjf:this.jifen,
+          }
+      }).then(response=>{
+              console.log(response.data);
+              this.jg=response.data; 
+              if(this.jg==1){
+                  console.log("jifen:"+this.jifen)
+              }else{
+                alert("数据存储失败")
+                 this.$router.push({
+                    path: '/footer/index'
                 });
-           
               }
             })      //获取失败
             .catch(error=>{
                 console.log(error);
                 alert('网络错误，不能访问');
-            })
-           
-          
+            })  
+            
+
+
+
+
          }
          }).catch(err => { 
          if (err == 'cancel') {     //取消的回调
-        
+
          } 
          });
         }
@@ -491,7 +528,7 @@ export default {
   outline:none;
   position: absolute;
   z-index: 100;
-   top: 80%;
+  top: 80%;
   left: 50%;
   width: 260px;
   margin-left: -130px;
