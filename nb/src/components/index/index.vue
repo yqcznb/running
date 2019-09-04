@@ -11,7 +11,7 @@
     <div class="caochang">
         <div>
             <img src="../../assets/img/flag.png" alt="" v-show="tea_flag" class="tea_flag" @click="aim_show">
-            <mt-popup v-model="popupAim" position="bottom">
+            <mt-popup v-model="popupAim" position="bottom" @touchmove.native.stop.prevent>
                 <div class="aim_box" :style="aim_style">
                     <span id="aim_area">
                         <div class="control_bar">
@@ -19,28 +19,28 @@
                             </span>
                         </div>
                         <span class="input_area ">
-                            <label for="run_times">跑步总次数</label>
-                            <input type="text" :value="run_all_times" placeholder="请设定跑步总次数" class="run_times" >
-                        </span>
-                        <span class="input_area ">
-                            <label for="run_times">晨跑总次数</label>
-                            <input type="text"  :value="run_morn_times" placeholder="请设定晨跑次数" class="run_times" >
-                        </span>
-                        <span class="input_area ">
                             <label for="run_times">晨跑开放时间</label>
-                            <input type="text"  :value="run_morn_time1" placeholder="晨跑开始时间" class="run_time" @click="selecTime1">
-                            <input type="text"  :value="run_morn_time2" placeholder="晨跑结束时间" class="run_time" @click="selecTime2" >
-                        </span>
-                        <span class="input_area ">
-                            <label for="run_times">夜跑总次数</label>
-                            <input type="text"  :value="run_even_times" placeholder="请设定夜跑次数" class="run_times" >
+                            <input type="text"  v-model="run_morn_time1" placeholder="晨跑开始时间" class="run_time" @click="selecTime1"  :disabled="caim_disabled">
+                            <input type="text"  v-model="run_morn_time2" placeholder="晨跑结束时间" class="run_time" @click="selecTime2"  :disabled="caim_disabled" >
                         </span>
                         <span class="input_area ">
                             <label for="run_times">夜跑开放时间</label>
-                            <input type="text" :value="run_even_time1" placeholder="夜跑开始时间" class="run_time" @click="selecTime3" >
-                            <input type="text" :value="run_even_time2" placeholder="夜跑结束时间" class="run_time" @click="selecTime4" >
+                            <input type="text" v-model="run_even_time1" placeholder="夜跑开始时间" class="run_time" @click="selecTime3"  :disabled="caim_disabled" >
+                            <input type="text" v-model="run_even_time2" placeholder="夜跑结束时间" class="run_time" @click="selecTime4"  :disabled="caim_disabled" >
                         </span>
-                        <mt-button type="primary" >修改</mt-button>
+                        <span class="input_area ">
+                            <label for="run_times">晨跑总次数</label>
+                            <input type="text"  v-model="run_morn_times" placeholder="请设定晨跑次数" class="run_times"  :disabled="caim_disabled" >
+                        </span>
+                        <span class="input_area ">
+                            <label for="run_times">夜跑总次数</label>
+                            <input type="text"  v-model="run_even_times" placeholder="请设定夜跑次数" class="run_times"  :disabled="caim_disabled" >
+                        </span>
+                        <span class="input_area ">
+                            <label for="run_times">跑步总次数</label>
+                            <input type="text" v-model="run_all_times" placeholder="请设定跑步总次数" class="run_times"  :disabled="caim_disabled" >
+                        </span>
+                        <mt-button type="primary" @click="caim_disabled = !caim_disabled"  :disabled="!caim_disabled" >修改</mt-button>
                     </span>
                 </div>
             </mt-popup>
@@ -101,7 +101,7 @@
   </div>
 </template>
 <script>
-import { DatetimePicker } from 'mint-ui';
+import { DatetimePicker, MessageBox } from 'mint-ui';
 import axios from 'axios'
 export default {
     name: 'index',
@@ -144,6 +144,19 @@ export default {
     created(){
         if(localStorage.getItem("yhsf") == 1) {
             this.tea_flag = true;
+            // 教师学期目标
+            // axios.get('http://no37.store:8080/AK/gonggao1',{
+            //     params: {
+            //         ggid:1,     
+            //     }
+            // })
+            // .then(response=>{
+            //     this.ggnr=response.data.ggnr; 
+            // })      //获取失败
+            // .catch(error=>{
+            //     console.log(error);
+            //     alert('网络错误，不能访问');
+            // })
         }
         // 主页
         axios.get('http://no37.store:8080/AK/zhuye1',{
@@ -152,7 +165,7 @@ export default {
             }
         })
         .then(response=>{
-            // console.log(response);
+            console.log(response);
             this.dqyp=response.data.dqyp;
             this.cp=response.data.cp;
             this.yp=response.data.yp;
@@ -175,7 +188,6 @@ export default {
             console.log(error);
             alert('网络错误，不能访问');
         })
-        
         // 学生认证信息
         if(localStorage.getItem("yhsf") == 0) {
             axios.get('http://no37.store:8080/AK/SelectXsID',{
@@ -238,42 +250,60 @@ export default {
             this.popupAim = !this.popupAim;
         },
         confirmUAim() {
+            let pbzcs = this.run_all_times;
+            let cpzcs = this.run_morn_times;
+            let ypzcs = this.run_even_times;
+            let cpsj1 = this.run_morn_time1;
+            let cpsj2 = this.run_morn_time2;
+            let ypsj1 = this.run_even_time1;
+            let ypsj2 = this.run_even_time2;
+            let cpsj = cpsj1 + "-" + cpsj2;
+            let ypsj = ypsj1 + "-" + ypsj2;
+            if(pbzcs != '' && cpzcs != '' && ypzcs != '' && cpsj1 != '' && cpsj2 != '' && ypsj1 != '' && ypsj2 != '') {
+                axios.get('http://no37.store:8080/AK/settingTimes',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                        xqmb: pbzcs,
+                        cpcs: cpzcs,
+                        ypcs: ypzcs,
+                        cpsj: cpsj,
+                        ypsj: ypsj,
+                    }
+                }).then(response=>{
+                    if(response.data.jg == 1) {
+                        MessageBox.alert('学期目标设置成功', '提示');
+                    }
+                })      //获取失败
+                .catch(error=>{
+                    console.log(error);
+                    alert('网络错误，不能访问');
+                })
+            }
+            
             this.popupAim = !this.popupAim;
         },
         selecTime1 () {
-            // if(!this.disabled) {
                 this.$refs.timePicker1.open();
-            // }
         },
         selecTime2 () {
-            // if(!this.disabled) {
                 this.$refs.timePicker2.open();
-            // }
         },
         selecTime3 () {
-            // if(!this.disabled) {
                 this.$refs.timePicker3.open();
-            // }
         },
         selecTime4 () {
-            // if(!this.disabled) {
-                this.$refs.timePicker4.open();
-            // }
+            this.$refs.timePicker4.open();
         },
         handleConfirm1 (value) {
-            this.timeValue1 = value;
             this.run_morn_time1 = value;
         },
         handleConfirm2 (value) {
-            this.timeValue2 = value;
             this.run_morn_time2 = value;
         },
         handleConfirm3 (value) {
-            this.timeValue3 = value;
             this.run_even_time1 = value;
         },
         handleConfirm4 (value) {
-            this.timeValue4 = value;
             this.run_even_time2 = value;
         },
     },
