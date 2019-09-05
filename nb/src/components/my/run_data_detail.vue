@@ -83,19 +83,24 @@ export default {
         // 默认日期
         dateDefault() {
             let today = new Date();
-            let dateMonth = today.getMonth()+1;
-            let nextMonth = today.getMonth()+2;
+            let month_str = ['12','01','02','03','04','05','06','07','08','09','10','11'];
+            let datekey = (today.getMonth()+1)%12;
+            let nextkey = (today.getMonth()+2)%12;
+            console.log(datekey);
+            console.log(nextkey);
+            let dateMonth = month_str[datekey];
+            let nextMonth = month_str[nextkey];
             let dateYear = today.getFullYear();
-            this.datebrige = dateYear + "-" + 0 + String(dateMonth);
+            this.datebrige = dateYear + "-" + dateMonth;
             this.datedata = this.datebrige;
             this.daydate = this.datebrige + "-01";
-            this.dayend = dateYear + "-" + 0 + String(nextMonth) + "-01";
+            this.dayend = dateYear + "-" + String(nextMonth) + "-01";
             this.drawDate();
         },
         onValuesChange(picker, values) {
             this.datebrige = values[0]+values[1]+values[2];
             this.daydate = this.datebrige+values[1]+"01";
-            let nextValues = 0 + String(Number(values[2])+1) ;
+            let nextValues = String(Number(values[2])+1) ;
             this.dayend = values[0]+values[1]+nextValues+"-01";
         },
         csdate() {
