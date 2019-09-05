@@ -11,7 +11,7 @@
       </div>
      <!-- <div class="ceshi" v-for="line in lines"  :key="line.id" :v-model="lines" :path="line.path">miles:{{miles}}$$distance:{{distance}}^^aa:{{aa}}**当前经纬度：{{lng}},{{lat}}***数组：{{line.path}}</div> -->
     </div>
-     <div class="chongwu">
+     <div class="chongwu" v-show="cwgss">
           11
       </div>
     <el-amap 
@@ -66,7 +66,8 @@ export default {
       visible: false,
       showw:true,
       left:false,
-      right:false,   
+      right:false,  
+      cwgss:false, 
       jg:"",
       count:"",
       imgg:"",
@@ -237,6 +238,9 @@ export default {
   },
  
    created: function () {
+     if(this.cwgs == 1){
+        this.cwgss = true
+     }
      this.ttime=setInterval(this.timer,50);
     // this.lux=setInterval(this.luxian,3000);
      this.jl=setInterval(()=>{
