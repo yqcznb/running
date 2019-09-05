@@ -17,11 +17,10 @@
             <ul>
                 <li v-for="(value, key) in goodslist" class="goodslist" >
                     <div class="imgbox">
-                        <img :src="value.sptp" class="maleimg" >
+                        <span :class="value.sptp"></span>
                     </div>
-                    <span class="text_box">
+                    
                         <span class="maletitle">{{ value.spms }}</span><span class="malejg">{{ value.spjg }}积分</span>
-                    </span>
                     <button class="ex_btn">马上兑</button>
                 </li>
             </ul>
@@ -55,7 +54,7 @@ export default {
         axios.get('http://no37.store:8080/AK/lookShop',{
             })
             .then(response=>{
-                console.log(response);
+                // console.log(response);
                 this.goodslist = response.data;
             })      //获取失败
             .catch(error=>{
@@ -192,16 +191,16 @@ export default {
         padding: 3px;
         width: 100%;
         max-width: 800px;
-        height: 100px;
+        /* height: 100px; */
         display: inline-flex;
         justify-content: space-between;
         align-items: center;
         border-bottom: 1px solid gray;
     }
     .imgbox {
-        width: 30%;
+        /* width: 30%; */
         max-width: 120px;
-        background-color: white;
+        background-color: transparent;
         height: 100%;
         padding: 10px;
         display: inline-flex;
