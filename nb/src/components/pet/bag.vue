@@ -37,22 +37,22 @@
                             <mt-tab-container-item id="1">
                                 <div class="eq_list1" @click="w1">
                                     <div>
-                                        <i class="iconfont iconwuqihui"></i>
+                                        <i class="iconfont iconwuqihui" :style="{color: yanse1_1}"></i>
                                     </div>
                                 </div>
                                 <div class="eq_list1" @click="w1_2">
                                     <div>
-                                        <i class="iconfont iconSubtraction"></i>
+                                        <i class="iconfont iconSubtraction" :style="{color: yanse1_2}"></i>
                                     </div>
                                 </div>
                                 <div class="eq_list1" @click="w1_3">
                                     <div>
-                                        <i class="iconfont icondao1"></i>
+                                        <i class="iconfont icondao1" :style="{color: yanse1_3}"></i>
                                     </div>
                                 </div>
                                 <div class="eq_list1" @click="w1_4">
                                     <div>
-                                        <i class="iconfont iconfl-futou"></i>
+                                        <i class="iconfont iconfl-futou" :style="{color: yanse1_4}"></i>
                                     </div>
                                 </div>
                                 <!-- <div class="eq_list1" @click="w1_5">
@@ -94,16 +94,16 @@
                             <mt-tab-container-item id="2">
                                 <div class="eq_list1" @click="w2">
                                     <div>
-                                        <i class="iconfont iconzhuangbei1"></i>
+                                        <i class="iconfont iconzhuangbei1" :style="{color: yanse2_1}"></i>
                                     </div>
                                 </div>
                                 <div class="eq_list1" @click="w2_2">
                                     <div>
-                                        <i class="iconfont iconkuzi"></i>
+                                        <i class="iconfont iconkuzi" :style="{color: yanse2_2}"></i>
                                     </div>
                                 </div><div class="eq_list1" @click="w2_3">
                                     <div>
-                                        <i class="iconfont icon-xiezi"></i>
+                                        <i class="iconfont icon-xiezi" :style="{color: yanse2_3}"></i>
                                     </div>
                                 </div>
                                 <!-- <div class="eq_list1" @click="w2">
@@ -113,7 +113,7 @@
                                 </div> -->
                                 <div class="eq_list1" @click="w2_4">
                                     <div>
-                                        <i class="iconfont icon-kuzi"></i>
+                                        <i class="iconfont icon-kuzi" :style="{color: yanse2_4}"></i>
                                     </div>
                                 </div><!-- <div class="eq_list1" @click="w2">
                                     <div>
@@ -156,22 +156,22 @@
                                 </div> -->
                                 <div class="eq_list1" @click="w3">
                                     <div>
-                                        <i class="iconfont iconsiliao"></i>
+                                        <i class="iconfont iconsiliao" :style="{color: yanse3_1}"></i>
                                     </div>
                                 </div>
                                 <div class="eq_list1" @click="w3_2">
                                     <div>
-                                        <i class="iconfont iconshuichansiliao"></i>
+                                        <i class="iconfont iconshuichansiliao" :style="{color: yanse3_2}"></i>
                                     </div>
                                 </div>
                                 <div class="eq_list1" @click="w3_3">
                                     <div>
-                                        <i class="iconfont iconbingjiling"></i>
+                                        <i class="iconfont iconbingjiling" :style="{color: yanse3_3}"></i>
                                     </div>
                                 </div>
                                 <div class="eq_list1" @click="w3_4">
                                     <div>
-                                        <i class="iconfont iconmianbao-"></i>
+                                        <i class="iconfont iconmianbao-" :style="{color: yanse3_4}"></i>
                                     </div>
                                 </div>
                             </mt-tab-container-item>
@@ -304,7 +304,7 @@
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="jy_visible" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name3">
-                    <i class="iconfont iconitemno_15"></i>{{zb3_name}}
+                    <i class="iconfont iconliang"></i>{{zb3_name}}
                 </li>
                 <li class="zb_xiaoguo">
                     <p class="xiaoguo3_title">效果</p>
@@ -319,7 +319,7 @@
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="jy_visible_2" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name3">
-                    <i class="iconfont iconitemno_15"></i>{{zb3_name_2}}
+                    <i class="iconfont iconliang"></i>{{zb3_name_2}}
                 </li>
                 <li class="zb_xiaoguo">
                     <p class="xiaoguo3_title">效果</p>
@@ -334,7 +334,7 @@
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="jy_visible_3" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name3">
-                    <i class="iconfont iconitemno_15"></i>{{zb3_name_3}}
+                    <i class="iconfont iconliang"></i>{{zb3_name_3}}
                 </li>
                 <li class="zb_xiaoguo">
                     <p class="xiaoguo3_title">效果</p>
@@ -349,7 +349,7 @@
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="jy_visible_4" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name3">
-                    <i class="iconfont iconitemno_15"></i>{{zb3_name_4}}
+                    <i class="iconfont iconliang"></i>{{zb3_name_4}}
                 </li>
                 <li class="zb_xiaoguo">
                     <p class="xiaoguo3_title">效果</p>
@@ -381,7 +381,31 @@ export default {
             yangs1: 'rgb(222, 198, 116)',
             yangs2: '0',
             yangs3: '0',
+            yanse1_1: '0',
+            yanse1_2: '0',
+            yanse1_3: '0',
+            yanse1_4: '0',
+            yanse2_1: '0',
+            yanse2_2: '0',
+            yanse2_3: '0',
+            yanse2_4: '0',
+            yanse3_1: '0',
+            yanse3_2: '0',
+            yanse3_3: '0',
+            yanse3_4: '0',
             index: '1',
+            value1_1: '1',
+            value1_2: '0',
+            value1_3: '0',
+            value1_4: '0',
+            value2_1: '0',
+            value2_2: '0',
+            value2_3: '1',
+            value2_4: '0',
+            value3_1: '1',
+            value3_2: '0',
+            value3_3: '0',
+            value3_4: '0',
             bq_visible: false,
             bq_visible_2: false,
             bq_visible_3: false,
@@ -420,6 +444,9 @@ export default {
             xiaoguo3_my_3: '饥饿度-5',
             zb3_name_4: '面包',
             xiaoguo3_my_4: '饥饿度-5',
+            Yanse:{
+                'color': '0',
+            },
             Left:{
                 'left':'0%',
             },
@@ -478,43 +505,116 @@ export default {
             };
         },
         w1(){
-            this.bq_visible = true;
+            if(this.value1_1 == 1){
+                this.bq_visible = true;
+            }else{
+                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+  
+                });
+            }
+            
         },
         w1_2(){
-            this.bq_visible_2 = true;
+            if(this.value1_2 == 1){
+                this.bq_visible_2 = true;
+            }else{
+                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+  
+                });
+            }
         },
         w1_3(){
-            this.bq_visible_3 = true;
+            if(this.value1_3 == 1){
+                this.bq_visible_3 = true;
+            }else{
+                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+  
+                });
+            }
         },
         w1_4(){
-            this.bq_visible_4 = true;
+            if(this.value1_4 == 1){
+                this.bq_visible_4 = true;
+            }else{
+                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+  
+                });
+            }
         },
         w2(){
-            this.ys_visible = true;
+            if(this.value2_1 == 1){
+                this.ys_visible = true;
+            }else{
+                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+  
+                });
+            }
         },
         w2_2(){
-            this.ys_visible_2 = true;
+            if(this.value2_2 == 1){
+                this.ys_visible_2 = true;
+            }else{
+                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+  
+                });
+            }
         },
         w2_3(){
-            this.ys_visible_3 = true;
+            if(this.value2_3 == 1){
+                this.ys_visible_3 = true;
+            }else{
+                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+  
+                });
+            }
         },
         w2_4(){
-            this.ys_visible_4 = true;
+            if(this.value2_4 == 1){
+                this.ys_visible_4 = true;
+            }else{
+                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+  
+                });
+            }
         },
         w3(){
-            this.jy_visible = true;
+            if(this.value3_1 == 1){
+                this.jy_visible = true;
+            }else{
+                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+  
+                });
+            }
         },
         w3_2(){
-            this.jy_visible_2 = true;
+            if(this.value3_2 == 1){
+                this.jy_visible_2 = true;
+            }else{
+                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+  
+                });
+            }
         },
         w3_3(){
-            this.jy_visible_3 = true;
+            if(this.value3_3 == 1){
+                this.jy_visible_3 = true;
+            }else{
+                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+  
+                });
+            }
         },
         w3_4(){
-            this.jy_visible_4 = true;
+            if(this.value3_4 == 1){
+                this.jy_visible_4 = true;
+            }else{
+                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+  
+                });
+            }
         },
         add_wuqi(){
-            this.index =
+            this.index = 1;
             MessageBox.alert("使用成功").then(action => {
   
                 });
@@ -560,6 +660,42 @@ export default {
         // window.onresize = () => {
         //     this.initCanvas;
         // }
+        if(this.value1_1 == 1){
+                this.yanse1_1 = 'rgb(230, 28, 163)';
+        }
+        if(this.value1_2 == 1){
+                this.yanse1_2 = 'rgb(230, 28, 163)';
+        }
+        if(this.value1_3 == 1){
+                this.yanse1_3 = 'rgb(230, 28, 163)';
+        }
+        if(this.value1_4 == 1){
+                this.yanse1_4 = 'rgb(230, 28, 163)';
+        }
+        if(this.value2_1 == 1){
+                this.yanse2_1 = 'rgb(230, 28, 28)';
+        }
+        if(this.value2_2 == 1){
+                this.yanse2_2 = 'rgb(230, 28, 28)';
+        }
+        if(this.value2_3 == 1){
+                this.yanse2_3 = 'rgb(230, 28, 28)';
+        }
+        if(this.value2_4 == 1){
+                this.yanse2_4 = 'rgb(230, 28, 28)';
+        }
+        if(this.value3_1 == 1){
+                this.yanse3_1 = 'rgb(88, 177, 236)';
+        }
+        if(this.value3_2 == 1){
+                this.yanse3_2 = 'rgb(88, 177, 236)';
+        }
+        if(this.value3_3 == 1){
+                this.yanse3_3 = 'rgb(88, 177, 236)';
+        }
+        if(this.value3_4 == 1){
+                this.yanse3_4 = 'rgb(88, 177, 236)';
+        }
     },
 
     components:{

@@ -232,7 +232,15 @@
     
 }
 .mint-switch{
-    margin-left: 45%;
+    left: 48%;
+}
+
+.dan{
+    background-image: url(../../assets/img/pet/egg.png);
+    background-repeat: no-repeat;
+    height: 60%;
+    background-position: center;
+    background-size: auto 80%;
 }
 
 /*.frame .list_one i{
