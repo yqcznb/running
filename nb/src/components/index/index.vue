@@ -20,13 +20,13 @@
                         </div>
                         <span class="input_area ">
                             <label for="run_times">晨跑开放时间</label>
-                            <input type="text"  v-model="run_morn_time1" placeholder="晨跑开始时间" class="run_time" @click="selecTime1"  :disabled="caim_disabled">
-                            <input type="text"  v-model="run_morn_time2" placeholder="晨跑结束时间" class="run_time" @click="selecTime2"  :disabled="caim_disabled" >
+                            <input type="text"  v-model="run_morn_time1" placeholder="晨跑开始时间" class="run_time" @click="selecTime1"  :disabled="caim_disabled" editable="false">
+                            <input type="text"  v-model="run_morn_time2" placeholder="晨跑结束时间" class="run_time" @click="selecTime2"  :disabled="caim_disabled" editable="false">
                         </span>
                         <span class="input_area ">
                             <label for="run_times">夜跑开放时间</label>
-                            <input type="text" v-model="run_even_time1" placeholder="夜跑开始时间" class="run_time" @click="selecTime3"  :disabled="caim_disabled" >
-                            <input type="text" v-model="run_even_time2" placeholder="夜跑结束时间" class="run_time" @click="selecTime4"  :disabled="caim_disabled" >
+                            <input type="text" v-model="run_even_time1" placeholder="夜跑开始时间" class="run_time" @click="selecTime3"  :disabled="caim_disabled" editable="false">
+                            <input type="text" v-model="run_even_time2" placeholder="夜跑结束时间" class="run_time" @click="selecTime4"  :disabled="caim_disabled" editable="false">
                         </span>
                         <span class="input_area ">
                             <label for="run_times">晨跑总次数</label>
