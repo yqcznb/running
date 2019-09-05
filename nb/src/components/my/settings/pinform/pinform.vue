@@ -120,9 +120,9 @@ export default {
         };
     },
     methods: {
-        routerRefresh() {
-            window.location.reload();
-        },
+        // routerRefresh() {
+        //     window.location.reload();
+        // },
         // 头像修改
         uhShow() {
             this.popupHeadC =! this.popupHeadC;

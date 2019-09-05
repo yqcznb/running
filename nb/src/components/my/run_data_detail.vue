@@ -77,9 +77,9 @@ export default {
         this.dateDefault();
     },
     methods: {
-        routerRefresh() {
-            window.location.reload();
-        },
+        // routerRefresh() {
+        //     window.location.reload();
+        // },
         // 默认日期
         dateDefault() {
             let today = new Date();

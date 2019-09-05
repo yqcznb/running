@@ -133,9 +133,9 @@ export default {
         this.drawLine();
     },
     methods: {
-        routerRefresh() {
-            window.location.reload();
-        },
+        // routerRefresh() {
+        //     window.location.reload();
+        // },
         drawLine(){
             // 基于准备好的dom，初始化echarts实例
             let myChart = this.$echarts.init(document.getElementById('myChart'));

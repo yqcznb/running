@@ -18,9 +18,9 @@ export default {
         }
     },
     methods: {
-        routerRefresh() {
-            window.location.reload();
-        },
+        // routerRefresh() {
+        //     window.location.reload();
+        // },
     }
 }
 </script>

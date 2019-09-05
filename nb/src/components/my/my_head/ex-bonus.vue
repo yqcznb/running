@@ -65,9 +65,9 @@ export default {
         this.changeWH();
     },
     methods: {
-        routerRefresh() {
-            window.location.reload();
-        },
+        // routerRefresh() {
+        //     window.location.reload();
+        // },
         changeWH() {
             let realWidth = document.getElementsByClassName("maleimg").naturalWidth;
             let reaHeight = document.getElementsByClassName("maleimg").naturalHeight;
