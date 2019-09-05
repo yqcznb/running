@@ -23,16 +23,16 @@
                         <li>
                             <div>
                                 <div id="mycharts" ></div>
-                                <div class="mask" @click="blood" :style="{color: yanse}"></div>
+                                <div class="mask" @click="blood"></div>
                             </div> 
                         </li>
                         <li>
                             <div id="mycharts1"></div>
-                            <div class="mask1" @click="skill" :style="{color: yanse}"></div>
+                            <div class="mask1" @click="skill"></div>
                          </li>
                         <li>
                             <div id="mycharts2"></div>
-                            <div class="mask2" @click="force" ></div>
+                            <div class="mask2" @click="force"></div>
                             <!-- :style="{color: yanse}" -->
                         </li>
                     </ul>
@@ -252,15 +252,6 @@
         },
 
         methods:{
-            blood:function(){
-                this.visible = true;
-            },
-            skill(){
-                this.visible_skill = true;
-            },
-            force(){
-                this.visible_force = true;
-            },
             bar(){
                 // 后台获取用户公里数，更新进度
                 let yhid = localStorage.getItem("yhid");
@@ -271,7 +262,6 @@
                     }
                 }).then(response=>{
                         this.num = 12*response.data.ydjl;
-                        response.data.cw;
                     });
 
                 this.Width = {
@@ -291,10 +281,10 @@
                     // this.blood = true;
                     this.popupVisible = false;
                 }else{
-                    this.blood = false;
-                    this.skill = false;
-                    this.force = false;
-                    this.bag = false;
+                    // this.blood = false;
+                    // this.skill = false;
+                    // this.force = false;
+                    // this.bag = false;
                     // this.g_egg = true;
                     this.popupVisible = true;
                     // this.Color = {
@@ -302,6 +292,56 @@
                     // }
                 }
                 
+            },
+            blood:function(){
+                if(this.num >= 120){
+                    this.visible = true;
+                }else{
+                    // 没有宠物时的提示
+                    MessageBox.alert('您还未孵出宠物，要多跑步哦', '提示', {
+                    confirmButtonText: '确定',
+                    }).then(()=>{
+                        
+                    })
+                }
+                
+            },
+            skill(){
+                 if(this.num >= 120){
+                    this.visible_skill = true;
+                }else{
+                    // 没有宠物时的提示
+                    MessageBox.alert('您还未孵出宠物，要多跑步哦', '提示', {
+                    confirmButtonText: '确定',
+                    }).then(()=>{
+                        
+                    })
+                }  
+            },
+            force(){
+                if(this.num >= 120){
+                    this.visible_force = true;
+                }else{
+                    // 没有宠物时的提示
+                    MessageBox.alert('您还未孵出宠物，要多跑步哦', '提示', {
+                    confirmButtonText: '确定',
+                    }).then(()=>{
+                        
+                    })
+                } 
+            },
+            bag(){
+                if(this.num >= 120){
+                    // 路由跳转-》背包界面
+                    this.$router.replace('/bag');
+                }else{
+                    // 没有宠物时的提示
+                    MessageBox.alert('您还未孵出宠物，要多跑步哦', '提示', {
+                    confirmButtonText: '确定',
+                    }).then(()=>{
+                        
+                    })
+                }  
             },
             routerRefresh() {
                 window.location.reload();
@@ -507,10 +547,6 @@
                     this.ber = false;
                 } 
             },
-            bag(){
-                // 路由跳转-》背包界面
-                this.$router.replace('/bag'); 
-            }
         },
         mounted(){
             this.bar();
@@ -522,6 +558,27 @@
                 this.ber_dan = false;
                 // 进度条
                 this.b_bar = true;
+
+                this.ber = true;
+                // 后台获取更新进度条
+                let yhid = localStorage.getItem("yhid");
+                this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                    params: {
+                        yhid:yhid,
+                    }
+                }).then(response=>{
+                        this.num = 12*response.data.ydjl;
+                        // 
+                        this.ber_num = (this.num / 120)*100;
+                        this.ber_num = this.ber_num.toFixed(2);
+                    });
+                this.num = 12*response.data.ydjl;
+                this.Width = {
+                    'width': this.num + 'px',
+                };
+                
+                this.see = false;
+                
                 // this.mycharts.setOption() = false;
                 // this.mycharts1.setOption() = false;
                 // this.mycharts2.setOption() = false;
