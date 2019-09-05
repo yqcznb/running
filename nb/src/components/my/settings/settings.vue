@@ -61,9 +61,9 @@ export default {
         }
     },
     methods: {
-        routerRefresh() {
-            window.location.reload();
-        },
+        // routerRefresh() {
+        //     window.location.reload();
+        // },
         log_out(){
             MessageBox.confirm('', { 
                 message: '你确定要退出登录吗?', 

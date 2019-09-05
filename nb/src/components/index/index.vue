@@ -114,6 +114,7 @@ export default {
             xqmb:"",
             ggnr:"",
             dqyp:"",
+            cw:"",
             show:true,
             ow:false,
             tea_flag: false,
@@ -146,6 +147,24 @@ export default {
         if(localStorage.getItem("yhsf") == 1) {
             this.tea_flag = true;
         }
+        //宠物
+         axios.get('http://no37.store:8080/AK/ShowPet',{
+            params: {
+                yhid: localStorage.getItem("yhid"),     
+            }
+        })
+        .then(response=>{
+            // console.log(response);
+            this.cw=response.data.cw;
+            if(this.cw==1){
+                 localStorage.setItem("cw",1);    
+            }
+           
+        })      //获取失败
+        .catch(error=>{
+            console.log(error);
+            alert('网络错误，不能访问');
+        })
         // 主页
         axios.get('http://no37.store:8080/AK/zhuye1',{
             params: {

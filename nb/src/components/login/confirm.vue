@@ -222,9 +222,9 @@ export default {
                 MessageBox.alert('认证失败，请重新认证', '提示');
             }
         },
-        routerRefresh() {
-            window.location.reload();
-        },
+        // routerRefresh() {
+        //     window.location.reload();
+        // },
         c_disabled() {
             if(this.modify_id == 0 && this.num == 1) {
                 if(this.xsxx!=""||this.xsxx!=null||this.xsxx!=undefined) {
