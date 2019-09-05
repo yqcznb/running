@@ -139,24 +139,12 @@ export default {
             let unWidth = document.documentElement.clientWidth;
             this.uhStyle = "width:" + unWidth + "px;height:" + val + "px;";
             this.unStyle = "width:" + unWidth + "px;height:" + val + "px;";
+            this.aim_style = "width:" + unWidth + "px;height:" + val + "px;";
         }
     },
     created(){
         if(localStorage.getItem("yhsf") == 1) {
             this.tea_flag = true;
-            // 教师学期目标
-            // axios.get('http://no37.store:8080/AK/gonggao1',{
-            //     params: {
-            //         ggid:1,     
-            //     }
-            // })
-            // .then(response=>{
-            //     this.ggnr=response.data.ggnr; 
-            // })      //获取失败
-            // .catch(error=>{
-            //     console.log(error);
-            //     alert('网络错误，不能访问');
-            // })
         }
         // 主页
         axios.get('http://no37.store:8080/AK/zhuye1',{
@@ -165,7 +153,7 @@ export default {
             }
         })
         .then(response=>{
-            console.log(response);
+            // console.log(response);
             this.dqyp=response.data.dqyp;
             this.cp=response.data.cp;
             this.yp=response.data.yp;
@@ -259,7 +247,21 @@ export default {
             let ypsj2 = this.run_even_time2;
             let cpsj = cpsj1 + "-" + cpsj2;
             let ypsj = ypsj1 + "-" + ypsj2;
-            if(pbzcs != '' && cpzcs != '' && ypzcs != '' && cpsj1 != '' && cpsj2 != '' && ypsj1 != '' && ypsj2 != '') {
+            if(cpsj1 > cpsj2 || ypsj1 > ypsj2) {
+                this.popupAim = !this.popupAim;
+                MessageBox.alert('请输入有效时间段', '提示')
+                .then(action => {
+                    this.popupAim = !this.popupAim;
+                });
+            }
+            else if(pbzcs == '' || cpzcs == '' || ypzcs == '' || cpsj1 == '' || cpsj2 == '' || ypsj1 == '' || ypsj2 == '') {
+                this.popupAim = !this.popupAim;
+                MessageBox.alert('请确保学期目标信息完整', '提示')
+                .then(action => {
+                    this.popupAim = !this.popupAim;
+                });
+            }
+            else if(pbzcs != '' && cpzcs != '' && ypzcs != '' && cpsj1 != '' && cpsj2 != '' && ypsj1 != '' && ypsj2 != '') {
                 axios.get('http://no37.store:8080/AK/settingTimes',{
                     params: {
                         yhid: localStorage.getItem("yhid"),
@@ -280,7 +282,7 @@ export default {
                 })
             }
             
-            this.popupAim = !this.popupAim;
+            
         },
         selecTime1 () {
                 this.$refs.timePicker1.open();
@@ -307,7 +309,6 @@ export default {
             this.run_even_time2 = value;
         },
     },
-
 }
 </script>
 
