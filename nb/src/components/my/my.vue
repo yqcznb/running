@@ -271,6 +271,8 @@ export default {
         /* max-width: 600px; */
         height: 100%;
         position: absolute;
+        overflow-x: hidden;
+        overflow-y: scroll;
         top: 0;
         left: 0;
         right: 0;
@@ -369,6 +371,9 @@ export default {
     }
     #run_data,#settings,#tea_special {
         border-radius: 7px;
+    }
+    #settings {
+        margin-bottom: 10%;
     }
     #settings span,#tea_special span {
         text-indent: 0.5em;
