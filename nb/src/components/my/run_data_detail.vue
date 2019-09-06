@@ -8,7 +8,7 @@
         </div>
         <span class="datetitle">请选择日期</span> <input type="text" @click="csdate" v-model="datedata" class="datedata" readonly>
         <div id="myChart" :auto-resize='autoresize'></div>
-        <span class="chartitle">本月运动量占比</span>
+        <span class="chartitle">本月运动时间占比</span>
 
         <transition name="Dpicker">
             <div class="Dpicker" v-show="showdate">
@@ -64,10 +64,7 @@ export default {
                 yhid:1,ydrqOne:2019,ydrqTwo:6,
             }})
             .then(response=>{
-                // console.log(response);
                 this.get_run_data = response.data;
-                console.log(this.get_run_data);
-                console.log(this.get_run_data[0]);
             })      //获取失败
             .catch(error=>{
                 alert('网络错误，不能访问');
@@ -77,17 +74,12 @@ export default {
         this.dateDefault();
     },
     methods: {
-        // routerRefresh() {
-        //     window.location.reload();
-        // },
         // 默认日期
         dateDefault() {
             let today = new Date();
             let month_str = ['12','01','02','03','04','05','06','07','08','09','10','11'];
             let datekey = (today.getMonth()+1)%12;
             let nextkey = (today.getMonth()+2)%12;
-            console.log(datekey);
-            console.log(nextkey);
             let dateMonth = month_str[datekey];
             let nextMonth = month_str[nextkey];
             let dateYear = today.getFullYear();
@@ -147,6 +139,8 @@ export default {
 
             function getPieSeries(scatterData, chart) {
                 return echarts.util.map(scatterData, function (item, index) {
+                    let value2 = Math.round(Math.random() * 6);
+                    let value1 = 24-value2;
                     var center = chart.convertToPixel('calendar', item);
                     return {
                         id: index + 'pie',
@@ -160,8 +154,8 @@ export default {
                         },
                         radius: pieRadius,
                         data: [
-                            {name: '非运动', value:17, itemStyle: {color: '#eea2a4'} },
-                            {name: '运动', value: 7, itemStyle: {color: '#7bc5ae'} },
+                            {name: '非运动', value: value1, itemStyle: {color: '#eea2a4'} },
+                            {name: '运动', value: value2, itemStyle: {color: '#7bc5ae'} },
                         ]
                     };
                 });

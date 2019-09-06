@@ -1,7 +1,7 @@
 <template>
     <div id="pinform">
         <div id="back_bar">
-            <router-link :to='$route.params.backey' @click.native="routerRefresh">
+            <router-link :to='$route.params.backey' >
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
             <span class="title">个人信息</span>
@@ -120,9 +120,6 @@ export default {
         };
     },
     methods: {
-        // routerRefresh() {
-        //     window.location.reload();
-        // },
         // 头像修改
         uhShow() {
             this.popupHeadC =! this.popupHeadC;
@@ -171,7 +168,7 @@ export default {
                 var img = new Image();
                 img.src = dataURL;
                 img.onload = function() {
-                    if(Math.abs(img.width - img.height) >= 10) {
+                    if(Math.abs(img.width - img.height) >= 20) {
                         _this.popupHeadC = false;
                         MessageBox.alert('请重新选择长宽比为一的图片', '提示').then(action => {
                             _this.popupHeadC = true;

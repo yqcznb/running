@@ -1,7 +1,7 @@
 <template>
     <div id="rank_list">
         <div id="back_bar">
-            <router-link to="/footer/my" @click.native="routerRefresh">
+            <router-link to="/footer/my" >
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
             <span class="title">排行榜</span>
@@ -100,9 +100,6 @@ export default {
             })
     },
     methods: {
-        routerRefresh() {
-            window.location.reload();
-        },
         showList() {
             axios.get('http://no37.store:8080/AK/MoveTop',{
                 params: {

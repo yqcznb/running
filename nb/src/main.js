@@ -17,9 +17,10 @@ import Mui from 'vue-awesome-mui'
 import './assets/css/my-mint.scss';//全局修改mint-UI样式
 import { Switch } from 'mint-ui';
 
-Vue.component(Switch.name, Switch);
+Vue.prototype.axios = axios
+Vue.prototype.$echarts = echarts
 
-Vue.use(Mui);
+Vue.component(Switch.name, Switch);
 Vue.component(Field.name, Field);
 Vue.component(Header.name, Header);
 Vue.component(Button.name, Button);
@@ -31,11 +32,8 @@ Vue.component(Navbar.name, Navbar);
 Vue.component(TabItem.name, TabItem);
 Vue.component(TabContainer.name, TabContainer);
 Vue.component(TabContainerItem.name, TabContainerItem);
-Vue.use(VueCropper);
 
-Vue.prototype.axios = axios
-Vue.prototype.$echarts = echarts
-
+Vue.use(Mui);
 Vue.use(VueAMap)
 Vue.use(VueAxios, axios)
 Vue.use(Lazyload)

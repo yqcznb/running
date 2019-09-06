@@ -2,7 +2,7 @@
     <div id="login">
         <div class="login_continue">
             <span>趣跑登录</span> 
-             </div>
+        </div>
         <form>
             <input type="text" placeholder="手机号" v-model="username">
             <input type="password" placeholder="登录密码"  v-model="password">
