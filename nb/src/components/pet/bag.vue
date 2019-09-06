@@ -21,20 +21,19 @@
             </div>
 
             <div class="bag_equip">
-                <!-- <div class="equip_title">
-                    装备区
-                    
-                </div> -->
                 <div class="equip_wrap">
                     <div class="equip_list">
+                        <!-- 装备导航栏 -->
                         <mt-navbar v-model="equip">
                             <div class="wuqi" @click='wuqi' :style="{color: yangs1}">武器区</div>
-                            <div @click='clothes' class="yishi" :style="{color: yangs2}">衣饰区</div>
+                            <div class="yishi" @click='clothes' :style="{color: yangs2}">衣饰区</div>
                             <div class='y_jineng' @click='y_jineng' :style="{color: yangs3}">药品/饲料区</div>
                         </mt-navbar>
                         <!-- tab-container -->
+                        <!-- 武器区 -->
                         <mt-tab-container v-model="equip">
                             <mt-tab-container-item id="1">
+                                <!-- 武器列表 -->
                                 <div class="eq_list1" @click="w1">
                                     <div>
                                         <i class="iconfont iconwuqihui" :style="{color: yanse1_1}"></i>
@@ -91,7 +90,9 @@
                                     </div>
                                 </div> -->
                             </mt-tab-container-item>
+                            <!-- 衣饰区 -->
                             <mt-tab-container-item id="2">
+                                <!-- 衣饰列表 -->
                                 <div class="eq_list1" @click="w2">
                                     <div>
                                         <i class="iconfont iconzhuangbei1" :style="{color: yanse2_1}"></i>
@@ -133,6 +134,7 @@
                                     </div>
                                 </div> -->
                             </mt-tab-container-item>
+                            <!-- 粮食区 -->
                             <mt-tab-container-item id="3">
                                 <!-- <div class="eq_list1" @click="w3">
                                     <div>
@@ -154,6 +156,8 @@
                                         <i class="iconfont iconpip"></i>
                                     </div>
                                 </div> -->
+
+                                <!-- 粮食列表 -->
                                 <div class="eq_list1" @click="w3">
                                     <div>
                                         <i class="iconfont iconsiliao" :style="{color: yanse3_1}"></i>
@@ -181,6 +185,7 @@
                 </div>
             </div> 
         </div>
+        <!-- 武器弹窗1 -->
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="bq_visible" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name1">
@@ -191,11 +196,11 @@
                     <p>{{xiaoguo1_my}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                    <mt-button type="primary" size="large" @click="add_wuqi1">使用</mt-button>
                 </li>
-                
             </ul>
         </mt-popup>
+        <!-- 武器弹窗2 -->
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="bq_visible_2" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name1">
@@ -206,11 +211,11 @@
                     <p>{{xiaoguo1_my_2}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                    <mt-button type="primary" size="large" @click="add_wuqi2">使用</mt-button>
                 </li>
-                
             </ul>
         </mt-popup>
+        <!-- 武器弹窗3 -->
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="bq_visible_3" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name1">
@@ -221,11 +226,11 @@
                     <p>{{xiaoguo1_my_3}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
-                </li>
-                
+                    <mt-button type="primary" size="large" @click="add_wuqi3">使用</mt-button>
+                </li> 
             </ul>
         </mt-popup>
+        <!-- 武器弹窗4 -->
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="bq_visible_4" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name1">
@@ -236,11 +241,11 @@
                     <p>{{xiaoguo1_my_4}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                    <mt-button type="primary" size="large" @click="add_wuqi4">使用</mt-button>
                 </li>
-                
             </ul>
         </mt-popup>
+        <!-- 衣饰弹窗1 -->
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="ys_visible" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name2">
@@ -251,11 +256,11 @@
                     <p>{{xiaoguo2_my}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                    <mt-button type="primary" size="large" @click="add_wuqi5">使用</mt-button>
                 </li>
-                
             </ul>
         </mt-popup>
+        <!-- 衣饰弹窗2 -->
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="ys_visible_2" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name2">
@@ -266,11 +271,11 @@
                     <p>{{xiaoguo2_my_2}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                    <mt-button type="primary" size="large" @click="add_wuqi6">使用</mt-button>
                 </li>
-                
             </ul>
         </mt-popup>
+        <!-- 衣饰弹窗3 -->
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="ys_visible_3" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name2">
@@ -281,11 +286,11 @@
                     <p>{{xiaoguo2_my_3}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                    <mt-button type="primary" size="large" @click="add_wuqi7">使用</mt-button>
                 </li>
-                
             </ul>
         </mt-popup>
+        <!-- 衣饰弹窗4 -->
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="ys_visible_4" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name2">
@@ -296,11 +301,11 @@
                     <p>{{xiaoguo2_my_4}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
-                </li>
-                
+                    <mt-button type="primary" size="large" @click="add_wuqi8">使用</mt-button>
+                </li> 
             </ul>
         </mt-popup>
+        <!-- 粮食弹窗1 -->
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="jy_visible" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name3">
@@ -311,11 +316,11 @@
                     <p>{{xiaoguo3_my}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                    <mt-button type="primary" size="large" @click="add_wuqi9">使用</mt-button>
                 </li>
-                
             </ul>
         </mt-popup>
+        <!-- 粮食弹窗2 -->
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="jy_visible_2" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name3">
@@ -326,11 +331,11 @@
                     <p>{{xiaoguo3_my_2}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
-                </li>
-                
+                    <mt-button type="primary" size="large" @click="add_wuqi10">使用</mt-button>
+                </li> 
             </ul>
         </mt-popup>
+        <!-- 粮食弹窗3 -->
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="jy_visible_3" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name3">
@@ -341,11 +346,11 @@
                     <p>{{xiaoguo3_my_3}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
+                    <mt-button type="primary" size="large" @click="add_wuqi11">使用</mt-button>
                 </li>
-                
             </ul>
         </mt-popup>
+        <!-- 粮食弹窗4 -->
         <mt-popup  position="bottom"  popup-transition="popup-fade" v-model="jy_visible_4" style="width:100%;height:40%;background-color:rgb(255, 255, 255, 0.8);;border-radius:15px 15px 0 0;">
             <ul>
                 <li class="zb_name3">
@@ -356,13 +361,11 @@
                     <p>{{xiaoguo3_my_4}}</p>
                 </li>
                 <li class="button">
-                    <mt-button type="primary" size="large" @click="add_wuqi">使用</mt-button>
-                </li>
-                
+                    <mt-button type="primary" size="large" @click="add_wuqi12">使用</mt-button>
+                </li> 
             </ul>
         </mt-popup>
-    </div> 
-         
+    </div>       
 </template>
 
 
@@ -505,6 +508,15 @@ export default {
             };
         },
         w1(){
+            // 获取接口，判断是否已经兑换
+            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        console.log(response.data);
+                    });
+
             if(this.value1_1 == 1){
                 this.bq_visible = true;
             }else{
@@ -515,6 +527,15 @@ export default {
             
         },
         w1_2(){
+            // 获取接口，判断是否已经兑换
+            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        
+                    });
+
             if(this.value1_2 == 1){
                 this.bq_visible_2 = true;
             }else{
@@ -524,6 +545,15 @@ export default {
             }
         },
         w1_3(){
+            // 获取接口，判断是否已经兑换
+            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        
+                    });
+
             if(this.value1_3 == 1){
                 this.bq_visible_3 = true;
             }else{
@@ -533,6 +563,15 @@ export default {
             }
         },
         w1_4(){
+            // 获取接口，判断是否已经兑换
+            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        
+                    });
+
             if(this.value1_4 == 1){
                 this.bq_visible_4 = true;
             }else{
@@ -542,6 +581,15 @@ export default {
             }
         },
         w2(){
+            // 获取接口，判断是否已经兑换
+            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        
+                    });
+
             if(this.value2_1 == 1){
                 this.ys_visible = true;
             }else{
@@ -551,6 +599,15 @@ export default {
             }
         },
         w2_2(){
+            // 获取接口，判断是否已经兑换
+            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        
+                    });
+
             if(this.value2_2 == 1){
                 this.ys_visible_2 = true;
             }else{
@@ -560,6 +617,15 @@ export default {
             }
         },
         w2_3(){
+            // 获取接口，判断是否已经兑换
+            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        
+                    });
+
             if(this.value2_3 == 1){
                 this.ys_visible_3 = true;
             }else{
@@ -569,6 +635,15 @@ export default {
             }
         },
         w2_4(){
+            // 获取接口，判断是否已经兑换
+            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        
+                    });
+
             if(this.value2_4 == 1){
                 this.ys_visible_4 = true;
             }else{
@@ -578,6 +653,15 @@ export default {
             }
         },
         w3(){
+            // 获取接口，判断是否已经兑换
+            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        
+                    });
+
             if(this.value3_1 == 1){
                 this.jy_visible = true;
             }else{
@@ -587,6 +671,15 @@ export default {
             }
         },
         w3_2(){
+            // 获取接口，判断是否已经兑换
+            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        
+                    });
+
             if(this.value3_2 == 1){
                 this.jy_visible_2 = true;
             }else{
@@ -596,6 +689,15 @@ export default {
             }
         },
         w3_3(){
+            // 获取接口，判断是否已经兑换
+            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        
+                    });
+
             if(this.value3_3 == 1){
                 this.jy_visible_3 = true;
             }else{
@@ -605,6 +707,15 @@ export default {
             }
         },
         w3_4(){
+            // 获取接口，判断是否已经兑换
+            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        
+                    });
+
             if(this.value3_4 == 1){
                 this.jy_visible_4 = true;
             }else{
@@ -613,10 +724,185 @@ export default {
                 });
             }
         },
-        add_wuqi(){
+        add_wuqi1(){
+            // 获取接口，判断是否已经兑换
+            this.axios.get('http://no37.store:8080/AK/applyZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                        zbid: 'wuqi1',
+                        SelectNumber: 1,
+                    }
+                }).then(response=>{
+                        
+                    });
             this.index = 1;
             MessageBox.alert("使用成功").then(action => {
-  
+
+                });
+        },
+        add_wuqi2(){
+            this.axios.get('http://no37.store:8080/AK/applyZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                        zbid: 'wuqi2',
+                        SelectNumber: 1,
+                    }
+                }).then(response=>{
+                        
+                    });
+            this.index = 1;
+            MessageBox.alert("使用成功").then(action => {
+
+                });
+        },
+        add_wuqi3(){
+            this.axios.get('http://no37.store:8080/AK/applyZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                        zbid: 'wuqi3',
+                        SelectNumber: 1,
+                    }
+                }).then(response=>{
+                        
+                    });
+            this.index = 1;
+            MessageBox.alert("使用成功").then(action => {
+
+                });
+        },
+        add_wuqi4(){
+            this.axios.get('http://no37.store:8080/AK/applyZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                        zbid: 'wuqi4',
+                        SelectNumber: 1,
+                    }
+                }).then(response=>{
+                        
+                    });
+            this.index = 1;
+            MessageBox.alert("使用成功").then(action => {
+
+                });
+        },
+        add_wuqi5(){
+            this.axios.get('http://no37.store:8080/AK/applyZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                        zbid: 'yifu1',
+                        SelectNumber: 1,
+                    }
+                }).then(response=>{
+                        
+                    });
+            this.index = 1;
+            MessageBox.alert("使用成功").then(action => {
+
+                });
+        },
+        add_wuqi6(){
+            this.axios.get('http://no37.store:8080/AK/applyZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                        zbid: 'yifu2',
+                        SelectNumber: 1,
+                    }
+                }).then(response=>{
+                        
+                    });
+            this.index = 1;
+            MessageBox.alert("使用成功").then(action => {
+
+                });
+        },
+        add_wuqi7(){
+            this.axios.get('http://no37.store:8080/AK/applyZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                        zbid: 'yifu3',
+                        SelectNumber: 1,
+                    }
+                }).then(response=>{
+                        
+                    });
+            this.index = 1;
+            MessageBox.alert("使用成功").then(action => {
+
+                });
+        },
+        add_wuqi8(){
+            this.axios.get('http://no37.store:8080/AK/applyZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                        zbid: 'yifu4',
+                        SelectNumber: 1,
+                    }
+                }).then(response=>{
+                        
+                    });
+            this.index = 1;
+            MessageBox.alert("使用成功").then(action => {
+
+                });
+        },
+        add_wuqi9(){
+            this.axios.get('http://no37.store:8080/AK/applyZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                        zbid: 'yaopin5',
+                        SelectNumber: 2,
+                    }
+                }).then(response=>{
+                        
+                    });
+            this.index = 1;
+            MessageBox.alert("使用成功").then(action => {
+
+                });
+        },
+        add_wuqi10(){
+            this.axios.get('http://no37.store:8080/AK/applyZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                        zbid: 'yaopin6',
+                        SelectNumber: 2,
+                    }
+                }).then(response=>{
+                        
+                    });
+            this.index = 1;
+            MessageBox.alert("使用成功").then(action => {
+
+                });
+        },
+        add_wuqi11(){
+            this.axios.get('http://no37.store:8080/AK/applyZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                        zbid: 'yaopin7',
+                        SelectNumber: 2,
+                    }
+                }).then(response=>{
+                        
+                    });
+            this.index = 1;
+            MessageBox.alert("使用成功").then(action => {
+
+                });
+        },
+        add_wuqi12(){
+            this.axios.get('http://no37.store:8080/AK/applyZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                        zbid: 'yaopin8',
+                        SelectNumber: 2,
+                    }
+                }).then(response=>{
+                        
+                    });
+            this.index = 1;
+            MessageBox.alert("使用成功").then(action => {
+
                 });
         },
 
