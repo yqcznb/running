@@ -1,7 +1,7 @@
 <template>
     <div id="confirm" :backgroud="backimg">
         <div id="back_bar"> 
-            <router-link to="/footer/my" @click.native="routerRefresh">
+            <router-link to="/footer/my" >
                 <i class="iconfont iconfanhui-copy">返回</i> 
             </router-link>
             <span class="title">身份认证</span>
