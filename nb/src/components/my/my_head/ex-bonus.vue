@@ -28,7 +28,9 @@
                 <li>
                     <span class="nomore">————————没有更多了————————</span>
                 </li>
+                
             </ul>
+            
         </div>
     </div>
 </template>
@@ -280,15 +282,14 @@ export default {
         height: 66%;
         margin: 0 auto 2%;
         padding: 7px;
-        padding-bottom: 0; 
         overflow-y: scroll;
     }
     ul {
         width: 100%;
-        height: 100%;
+        /* height: 100%; */
         left: 0;
         right: 0;
-        margin: 0 auto;
+        /* margin: 0 auto; */
         padding: 0;
         /* margin: 0 2%; */
     }
@@ -337,7 +338,7 @@ export default {
         margin-right: 0;
     }
     .nomore {
-        line-height: 6ex;
+        line-height: 3em;
         font-size: 14px;
         color: lightgray;
     }
