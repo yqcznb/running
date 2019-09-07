@@ -92,7 +92,7 @@
                                 宠物跟随
                             </li> 
                              <li class="list_one">
-                               <mt-switch v-model="value" ></mt-switch>
+                               <mt-switch v-model="value" @click="switch1"></mt-switch>
                             </li> 
                         </ul>
                     </mt-popup>
@@ -110,7 +110,7 @@
                                 当前饥饿度为
                             </li> 
                              <li class="list_one">
-                                +10
+                                {{jez}}
                             </li>
                         </ul>
                     </mt-popup>
@@ -128,7 +128,7 @@
                                 当前加成值为
                             </li> 
                             <li class="list_one">
-                                10
+                                {{jcz}}
                             </li>
                             <li class="list_my">
                                 说明
@@ -181,6 +181,9 @@
                 s_title: '饥饿度',
                 e_title: '加成值',
                 // yanse: '#000',
+                jcz: '0',
+                jez: '0',
+                switch_index: '0',
                 blood_one: 10,
                 num: '0',
                 ber_num: 0,
@@ -499,11 +502,21 @@
                             //         alert('网络出错');
                             //     });
             },
+            // 判断是否跟随 switch_success在mounted()中创建 switch_index初值为0
+            switch1(){
+                switch_index++;
+                if(switch_index%2!=0){
+                    localStorage.removeItem("switch_success");
+                }else{
+                    localStorage.getItem("switch_success");
+                }
+            },
         },
         mounted(){
             this.bar();
             this.drawdata();
             if(localStorage.getItem("cw") == 1){
+                // localStorage.getItem("cw")
                 // 宠物蛋显示
                 this.g_egg = true;
                 // 问号蛋
@@ -535,6 +548,21 @@
                 this.b_bar = false;
                 this.egg_pet();
             };
+            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                    for(let i=0; i<=7; i++){
+                        if(response.data[i].zbid == 1){
+                            response.data[i].spjc;
+                            this.jcz += response.data[i].spjc;
+                        }
+                        
+                    }
+                });
+                localStorage.getItem("switch_success");
+                      
         },
         components:{
             picker  

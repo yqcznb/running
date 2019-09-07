@@ -397,18 +397,6 @@ export default {
             yanse3_3: '0',
             yanse3_4: '0',
             index: '1',
-            value1_1: '1',
-            value1_2: '0',
-            value1_3: '0',
-            value1_4: '0',
-            value2_1: '0',
-            value2_2: '0',
-            value2_3: '1',
-            value2_4: '0',
-            value3_1: '1',
-            value3_2: '0',
-            value3_3: '0',
-            value3_4: '0',
             bq_visible: false,
             bq_visible_2: false,
             bq_visible_3: false,
@@ -514,16 +502,16 @@ export default {
                         yhid: localStorage.getItem("yhid"),
                     }
                 }).then(response=>{
-                        console.log(response.data);
-                    });
-
-            if(this.value1_1 == 1){
-                this.bq_visible = true;
-            }else{
-                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+                        response.data[0].zbid;
+                         if(response.data[0].zbid == 1){
+                            this.bq_visible = true;
+                        }else{
+                            MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
   
-                });
-            }
+                            });
+                        }
+                    });
+           
             
         },
         w1_2(){
@@ -533,16 +521,17 @@ export default {
                         yhid: localStorage.getItem("yhid"),
                     }
                 }).then(response=>{
-                        
+                        response.data[1].zbid;
+                        if( response.data[1].zbid == 1){
+                            this.bq_visible_2 = true;
+                        }else{
+                            MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+            
+                            });
+                        }
                     });
 
-            if(this.value1_2 == 1){
-                this.bq_visible_2 = true;
-            }else{
-                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
-  
-                });
-            }
+            
         },
         w1_3(){
             // 获取接口，判断是否已经兑换
@@ -551,16 +540,15 @@ export default {
                         yhid: localStorage.getItem("yhid"),
                     }
                 }).then(response=>{
-                        
+                        response.data[2].zbid;
+                        if( response.data[2].zbid == 1){
+                            this.bq_visible_3 = true;
+                        }else{
+                            MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+            
+                            });
+                        }
                     });
-
-            if(this.value1_3 == 1){
-                this.bq_visible_3 = true;
-            }else{
-                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
-  
-                });
-            }
         },
         w1_4(){
             // 获取接口，判断是否已经兑换
@@ -569,16 +557,15 @@ export default {
                         yhid: localStorage.getItem("yhid"),
                     }
                 }).then(response=>{
-                        
+                         response.data[3].zbid;
+                         if( response.data[3].zbid == 1){
+                            this.bq_visible_4 = true;
+                        }else{
+                            MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+            
+                            });
+                        }
                     });
-
-            if(this.value1_4 == 1){
-                this.bq_visible_4 = true;
-            }else{
-                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
-  
-                });
-            }
         },
         w2(){
             // 获取接口，判断是否已经兑换
@@ -587,16 +574,15 @@ export default {
                         yhid: localStorage.getItem("yhid"),
                     }
                 }).then(response=>{
-                        
+                        response.data[4].zbid;
+                        if(response.data[4].zbid == 1){
+                            this.ys_visible = true;
+                        }else{
+                            MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+            
+                            });
+                        }
                     });
-
-            if(this.value2_1 == 1){
-                this.ys_visible = true;
-            }else{
-                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
-  
-                });
-            }
         },
         w2_2(){
             // 获取接口，判断是否已经兑换
@@ -605,16 +591,15 @@ export default {
                         yhid: localStorage.getItem("yhid"),
                     }
                 }).then(response=>{
-                        
+                        response.data[5].zbid;
+                        if(response.data[5].zbid == 1){
+                            this.ys_visible_2 = true;
+                        }else{
+                            MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+            
+                            });
+                        }
                     });
-
-            if(this.value2_2 == 1){
-                this.ys_visible_2 = true;
-            }else{
-                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
-  
-                });
-            }
         },
         w2_3(){
             // 获取接口，判断是否已经兑换
@@ -623,16 +608,15 @@ export default {
                         yhid: localStorage.getItem("yhid"),
                     }
                 }).then(response=>{
-                        
+                        response.data[6].zbid;
+                        if(response.data[6].zbid == 1){
+                            this.ys_visible_3 = true;
+                        }else{
+                            MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+            
+                            });
+                        }
                     });
-
-            if(this.value2_3 == 1){
-                this.ys_visible_3 = true;
-            }else{
-                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
-  
-                });
-            }
         },
         w2_4(){
             // 获取接口，判断是否已经兑换
@@ -641,16 +625,15 @@ export default {
                         yhid: localStorage.getItem("yhid"),
                     }
                 }).then(response=>{
-                        
+                        response.data[7].zbid;
+                        if(response.data[7].zbid == 1){
+                            this.ys_visible_4 = true;
+                        }else{
+                            MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+            
+                            });
+                        }
                     });
-
-            if(this.value2_4 == 1){
-                this.ys_visible_4 = true;
-            }else{
-                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
-  
-                });
-            }
         },
         w3(){
             // 获取接口，判断是否已经兑换
@@ -659,16 +642,15 @@ export default {
                         yhid: localStorage.getItem("yhid"),
                     }
                 }).then(response=>{
-                        
+                        response.data[8].zbid;
+                        if(response.data[8].zbid == 1){
+                            this.jy_visible = true;
+                        }else{
+                            MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+            
+                            });
+                        }
                     });
-
-            if(this.value3_1 == 1){
-                this.jy_visible = true;
-            }else{
-                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
-  
-                });
-            }
         },
         w3_2(){
             // 获取接口，判断是否已经兑换
@@ -677,16 +659,15 @@ export default {
                         yhid: localStorage.getItem("yhid"),
                     }
                 }).then(response=>{
-                        
+                        response.data[9].zbid;
+                        if(response.data[9].zbid == 1){
+                            this.jy_visible_2 = true;
+                        }else{
+                            MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+            
+                            });
+                        }
                     });
-
-            if(this.value3_2 == 1){
-                this.jy_visible_2 = true;
-            }else{
-                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
-  
-                });
-            }
         },
         w3_3(){
             // 获取接口，判断是否已经兑换
@@ -695,16 +676,15 @@ export default {
                         yhid: localStorage.getItem("yhid"),
                     }
                 }).then(response=>{
-                        
+                        response.data[10].zbid;
+                        if(response.data[10].zbid == 1){
+                            this.jy_visible_3 = true;
+                        }else{
+                            MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+            
+                            });
+                        }
                     });
-
-            if(this.value3_3 == 1){
-                this.jy_visible_3 = true;
-            }else{
-                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
-  
-                });
-            }
         },
         w3_4(){
             // 获取接口，判断是否已经兑换
@@ -713,19 +693,17 @@ export default {
                         yhid: localStorage.getItem("yhid"),
                     }
                 }).then(response=>{
-                        
+                        response.data[11].zbid;
+                        if(response.data[11].zbid == 1){
+                            this.jy_visible_4 = true;
+                        }else{
+                            MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
+            
+                            });
+                        }
                     });
-
-            if(this.value3_4 == 1){
-                this.jy_visible_4 = true;
-            }else{
-                MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
-  
-                });
-            }
         },
         add_wuqi1(){
-            // 获取接口，判断是否已经兑换
             this.axios.get('http://no37.store:8080/AK/applyZB',{
                     params: {
                         yhid: localStorage.getItem("yhid"),
@@ -946,42 +924,126 @@ export default {
         // window.onresize = () => {
         //     this.initCanvas;
         // }
-        if(this.value1_1 == 1){
-                this.yanse1_1 = 'rgb(230, 28, 163)';
-        }
-        if(this.value1_2 == 1){
-                this.yanse1_2 = 'rgb(230, 28, 163)';
-        }
-        if(this.value1_3 == 1){
-                this.yanse1_3 = 'rgb(230, 28, 163)';
-        }
-        if(this.value1_4 == 1){
-                this.yanse1_4 = 'rgb(230, 28, 163)';
-        }
-        if(this.value2_1 == 1){
-                this.yanse2_1 = 'rgb(230, 28, 28)';
-        }
-        if(this.value2_2 == 1){
-                this.yanse2_2 = 'rgb(230, 28, 28)';
-        }
-        if(this.value2_3 == 1){
-                this.yanse2_3 = 'rgb(230, 28, 28)';
-        }
-        if(this.value2_4 == 1){
-                this.yanse2_4 = 'rgb(230, 28, 28)';
-        }
-        if(this.value3_1 == 1){
-                this.yanse3_1 = 'rgb(88, 177, 236)';
-        }
-        if(this.value3_2 == 1){
-                this.yanse3_2 = 'rgb(88, 177, 236)';
-        }
-        if(this.value3_3 == 1){
-                this.yanse3_3 = 'rgb(88, 177, 236)';
-        }
-        if(this.value3_4 == 1){
-                this.yanse3_4 = 'rgb(88, 177, 236)';
-        }
+        this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        response.data[0].zbid;
+                        if(response.data[0].zbid == 1){
+                            this.yanse1_1 = 'rgb(230, 28, 163)';
+                        }
+                    });
+        this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        response.data[1].zbid;
+                        if(response.data[1].zbid == 1){
+                            this.yanse1_2 = 'rgb(230, 28, 163)';
+                        }
+                    }); 
+        this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        response.data[2].zbid;
+                        if(response.data[2].zbid == 1){
+                            this.yanse1_3 = 'rgb(230, 28, 163)';
+                        }
+                    }); 
+        this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        response.data[3].zbid;
+                        if(response.data[3].zbid == 1){
+                            this.yanse1_4 = 'rgb(230, 28, 163)';
+                        }
+                    });  
+        this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        response.data[4].zbid;
+                        if(response.data[4].zbid == 1){
+                            this.yanse2_1 = 'rgb(230, 28, 28)';
+                        }
+                    }); 
+        this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        response.data[5].zbid;
+                        if(response.data[5].zbid == 1){
+                            this.yanse2_2 = 'rgb(230, 28, 28)';
+                        }
+                    }); 
+        this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        response.data[6].zbid;
+                        if(response.data[6].zbid == 1){
+                            this.yanse2_3 = 'rgb(230, 28, 28)';
+                        }
+                    }); 
+        this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        response.data[7].zbid;
+                        if(response.data[7].zbid == 1){
+                            this.yanse2_4 = 'rgb(230, 28, 28)';
+                        }
+                    }); 
+        this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        response.data[8].zbid;
+                        if(response.data[8].zbid == 1){
+                            this.yanse3_1 = 'rgb(88, 177, 236)';
+                        }
+                    }); 
+        this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        response.data[9].zbid;
+                        if(response.data[9].zbid == 1){
+                            this.yanse3_2 = 'rgb(88, 177, 236)';
+                        }
+                    });
+        this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        response.data[10].zbid;
+                        if(response.data[10].zbid == 1){
+                            this.yanse3_3 = 'rgb(88, 177, 236)';
+                        }
+                    });
+        this.axios.get('http://no37.store:8080/AK/backingOutZB',{
+                    params: {
+                        yhid: localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        response.data[11].zbid;
+                        if(response.data[11].zbid == 1){
+                            this.yanse3_4 = 'rgb(88, 177, 236)';
+                        }
+                    });
     },
 
     components:{
