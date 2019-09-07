@@ -3,10 +3,11 @@
         <router-link :to="{name:'pinform',params:{backey:'/footer/my'}}">
             <div id="my_head">
                 <div id="head_left">
-                    <h4>{{ uname }} <router-link to='/confirm' ><i :class="if_rz" class="iconfont iconwrz"></i></router-link></h4>
+
+                    <h4><span v-text="uname"></span> <router-link to='/confirm' @click.native="routerRefresh"><i :class="if_rz" class="iconfont iconwrz"></i></router-link></h4>
                     <h5><router-link to="/drole">{{ uduan }}段位 》</router-link></h5>
                     <img :src='levelImg' class="levelimg" >
-                    <router-link to="/ex_bonus"  >
+                    <router-link to="/ex_bonus" >
                         <span class="ex-bonus">我的积分 》</span>
                     </router-link>
                 </div>
@@ -18,7 +19,9 @@
         </router-link>
         <div id="myChart" :auto-resize='autoresize'></div>
         <div id="run_data">
-            <router-link to="/run_data_detail" >
+
+            <router-link to="/run_data_detail">
+
                 <div id="details">
                     <i class="iconfont icontiyu-paobu"></i><span class="">跑步数据详情</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
@@ -30,12 +33,15 @@
                 </div>
             </router-link>
         </div>
-        <router-link to="/tea_special" >
+
+        <router-link to="/tea_special">
+
             <div id="tea_special" v-show="tea_special">
                 <i class="iconfont iconxuesheng"></i><span>学生跑步数据</span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>
         </router-link>
-        <router-link :to="mode"  >
+        <router-link :to="mode">
+
             <div id="settings">
                 <i class="iconfont iconsettings"></i><span>设置</span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>
@@ -135,9 +141,9 @@ export default {
         this.drawLine();
     },
     methods: {
-        // routerRefresh() {
-        //     window.location.reload();
-        // },
+        routerRefresh() {
+            window.location.reload();
+        },
         drawLine(){
             // 基于准备好的dom，初始化echarts实例
             let myChart = this.$echarts.init(document.getElementById('myChart'));

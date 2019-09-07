@@ -19,7 +19,6 @@ import rank_list from '@/components/my/rank_list'
 
 import pet from '@/components/pet/pet'
 import bag from '@/components/pet/bag'
-import addfd from '@/components/pet/addfd'
 import register from '@/components/login/register'
 import forget from '@/components/login/forget'
 import confirm from '@/components/login/confirm'
@@ -109,12 +108,6 @@ export default new Router({
           name: 'bag',
           component: bag,
         },
-        {
-          path: '/addfd',
-          name: 'addfd',
-          component: addfd,
-        },
-       
         {
           path: 'index',
           name: 'index',

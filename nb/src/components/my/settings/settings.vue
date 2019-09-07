@@ -1,7 +1,7 @@
 <template>
     <div id="settings">
         <div id="back_bar">
-            <router-link to="/footer/my" @click.native="routerRefresh">
+            <router-link to="/footer/my">
                 <i class="iconfont iconfanhui-copy"></i>返回
             </router-link>
             <span class="title">设置</span>
@@ -61,9 +61,6 @@ export default {
         }
     },
     methods: {
-        // routerRefresh() {
-        //     window.location.reload();
-        // },
         log_out(){
             MessageBox.confirm('', { 
                 message: '你确定要退出登录吗?', 

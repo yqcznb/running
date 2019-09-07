@@ -64,7 +64,7 @@
 
 
                 <!-- 问号蛋 -->
-                <div class="dan" v-if="ber_dan"></div>
+                <div class="dan" v-if="ber_dan" @click='dan_router'></div>
                 
             </div>
 
@@ -92,7 +92,7 @@
                                 宠物跟随
                             </li> 
                              <li class="list_one">
-                               <mt-switch v-model="value"></mt-switch>
+                               <mt-switch v-model="value" ></mt-switch>
                             </li> 
                         </ul>
                     </mt-popup>
@@ -138,11 +138,6 @@
                             </li>
                         </ul>
                     </mt-popup>
-
-                    <!-- 进度条提示框 -->
-                    <!-- <mt-popup v-model="popupVisible" popup-transition="popup-fade" position="center" style="width: 150px;height:50px;border-radius:15px;margin:50px 0 0 50px;color:rgb(255, 218, 203);border:2px solid rgb(255, 218, 203);">
-                        <p>当前的运动量为xxx,继续加油哦</p>
-                    </mt-popup> -->
                 </div>
     </div>
 </template>
@@ -198,10 +193,6 @@
                 Width:{
                     'width': '0px',
                 },
-                // Color:{
-                //     'color': 'yanse',
-                // },
-                
             }
         },
         // 后台接口获取官方通知的内容
@@ -225,7 +216,9 @@
         .then(response=>{
             if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
                 this.xiaoqu = response.data.yhxx;
+                // 获取后隐藏认证提示
                 this.show1 = false;
+                // 显示认证的校区
                 this.show = true;
             }
         })      //获取失败
@@ -261,38 +254,30 @@
                         yhid:yhid,
                     }
                 }).then(response=>{
+                        // 1公里代表进度条12px的宽度
                         this.num = 12*response.data.ydjl;
                     });
-
+                    // 更新进度条
                 this.Width = {
                     'width': this.num + 'px',
                 };
                 this.ber_num = (this.num / 120)*100;
                 this.ber_num = this.ber_num.toFixed(2);
                 if(this.num == 0){
+                    // “孵化进度”字样显示
                     this.see = true;
+                    // 进度条占比显示
                     this.ber = false;
-                    // this.Color = {
-                    //     'color': this.yanse,
-                    // }
                 }
                 if(this.num >= 120){
                     this.num = 120;
-                    // this.blood = true;
                     this.popupVisible = false;
                 }else{
-                    // this.blood = false;
-                    // this.skill = false;
-                    // this.force = false;
-                    // this.bag = false;
-                    // this.g_egg = true;
                     this.popupVisible = true;
-                    // this.Color = {
-                    //     'color': this.yanse,
-                    // }
                 }
                 
             },
+            // 点击宠物信息触发
             blood:function(){
                 if(this.num >= 120){
                     this.visible = true;
@@ -303,9 +288,9 @@
                     }).then(()=>{
                         
                     })
-                }
-                
+                }  
             },
+            // 点击饥饿度触发
             skill(){
                  if(this.num >= 120){
                     this.visible_skill = true;
@@ -318,6 +303,7 @@
                     })
                 }  
             },
+            // 点击加成值触发
             force(){
                 if(this.num >= 120){
                     this.visible_force = true;
@@ -351,12 +337,10 @@
                 let mycharts = this.$echarts.init(document.getElementById('mycharts'));
                 let mycharts1 = this.$echarts.init(document.getElementById('mycharts1'));
                 let mycharts2 = this.$echarts.init(document.getElementById('mycharts2'));
-
                 // 宠物信息
                 mycharts.setOption({
                     title : {
                         text: '宠物信息',
-                        // subtext: '纯属虚构',
                         x:'center',
                         textStyle: {
                             fontFamily: '方正汉真广标简体',
@@ -366,41 +350,23 @@
                             fontStyle: 100,
                         },
                     },
-                    // tooltip : {
-                    //     trigger: 'item',
-                    //     formatter: "{a} <br/>{b} : {c} ({d}%)"
-                    // },
-                    // legend: {
-                    //     orient: 'vertical',
-                    //     left: 'left',
-                    //     data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
-                    // },
                     series : [
                         {
-                            // name: '访问来源',
                             type: 'pie',
                             radius : '80%',
                             label: {
                                 normal: {
                                     position: 'inner',
+                                    // 隐藏指示线
                                     show : false
                                 }
                             },
                             center: ['50%', '50%'],
+                            // 宠物信息图表的颜色及占比
                             data:[
                                 {value:this.chart1_1, name:'',itemStyle: {color: 'rgb(230, 28, 28)'}},
                                 {value:this.chart1_2, name:'',itemStyle: {color: '#eeede2'}},
-                                // {value:234, name:'联盟广告'},
-                                // {value:135, name:'视频广告'},
-                                // {value:1548, name:'搜索引擎'}
                             ],
-                            // itemStyle: {
-                            //     emphasis: {
-                            //         shadowBlur: 10,
-                            //         shadowOffsetX: 0,
-                            //         shadowColor: 'rgba(0, 0, 0, 0.5)'
-                            //     }
-                            // }
                         }
                     ]
                 });
@@ -408,9 +374,10 @@
                 // 饥饿度
                 mycharts1.setOption({
                     title : {
+                        // 图表标题
                         text: '饥饿度',
-                        // subtext: '纯属虚构',
                         x:'center',
+                        // 图表标题样式
                         textStyle: {
                             fontFamily: '方正汉真广标简体',
                             color: '#777c7c96',
@@ -419,41 +386,23 @@
                             fontStyle: 100,
                         },
                     },
-                    // tooltip : {
-                    //     trigger: 'item',
-                    //     formatter: "{a} <br/>{b} : {c} ({d}%)"
-                    // },
-                    // legend: {
-                    //     orient: 'vertical',
-                    //     left: 'left',
-                    //     data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
-                    // },
                     series : [
                         {
-                            // name: '访问来源',
                             type: 'pie',
                             radius : '80%',
                             label: {
                                 normal: {
                                     position: 'inner',
+                                    // 隐藏指示线
                                     show : false
                                 }
                             },
                             center: ['50%', '50%'],
+                            // 饥饿值图表的颜色及占比
                             data:[
                                 {value:this.chart2_1, name:'',itemStyle: {color: 'rgb(85, 175, 236)'}},
                                 {value:this.chart2_2, name:'',itemStyle: {color: '#eeede2'}},
-                                // {value:234, name:'联盟广告'},
-                                // {value:135, name:'视频广告'},
-                                // {value:1548, name:'搜索引擎'}
                             ],
-                            // itemStyle: {
-                            //     emphasis: {
-                            //         shadowBlur: 10,
-                            //         shadowOffsetX: 0,
-                            //         shadowColor: 'rgba(0, 0, 0, 0.5)'
-                            //     }
-                            // }
                         }
                     ]
                 });
@@ -461,9 +410,10 @@
                 // 加成值
                 mycharts2.setOption({
                     title : {
+                        // 图表标题文字
                         text: '加成值',
-                        // subtext: '纯属虚构',
                         x:'center',
+                        // 标题文字样式
                         textStyle: {
                             fontFamily: '方正汉真广标简体',
                             color: '#777c7c96',
@@ -472,41 +422,23 @@
                             fontStyle: 100,
                         },
                     },
-                    // tooltip : {
-                    //     trigger: 'item',
-                    //     formatter: "{a} <br/>{b} : {c} ({d}%)"
-                    // },
-                    // legend: {
-                    //     orient: 'vertical',
-                    //     left: 'left',
-                    //     data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
-                    // },
                     series : [
                         {
-                            // name: '访问来源',
                             type: 'pie',
                             radius : '80%',
                             label: {
                                 normal: {
                                     position: 'inner',
+                                    // 隐藏指示线
                                     show : false
                                 }
                             },
                             center: ['50%', '50%'],
+                            // 图表显示颜色及占比
                             data:[
                                 {value:this.chart3_1, name:'',itemStyle: {color: 'rgb(231, 46, 170)'}},
                                 {value:this.chart3_2, name:'',itemStyle: {color: '#eeede2'}},
-                                // {value:234, name:'联盟广告'},
-                                // {value:135, name:'视频广告'},
-                                // {value:1548, name:'搜索引擎'}
                             ],
-                            // itemStyle: {
-                            //     emphasis: {
-                            //         shadowBlur: 10,
-                            //         shadowOffsetX: 0,
-                            //         shadowColor: 'rgba(0, 0, 0, 0.5)'
-                            //     }
-                            // }
                         }
                     ]
                 });
@@ -536,9 +468,13 @@
                     }).then(()=>{
                         localStorage.removeItem("egg_success");
                     })
+                    // 换成宠物的class
                     this.isTrue = 'bimg';
+                    // 进度条
                     this.b_bar = false;
+                    // 进度条占比
                     this.ber = false;
+                    // 宠物蛋
                     this.g_egg = false;
                 }  
                 else{
@@ -547,18 +483,34 @@
                     this.ber = false;
                 } 
             },
+            // 点击问号蛋提示
+            dan_router(){
+                MessageBox.confirm('您还没有宠物蛋, 是否前往跑步抓取?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                    }).then(() => {
+                        // 跳转到跑步界面  
+                        this.$router.replace('/footer/index/run');  
+                        }).catch(() => {
+                                  
+                            })
+                            // .error(() => {
+                            //         alert('网络出错');
+                            //     });
+            },
         },
         mounted(){
             this.bar();
             this.drawdata();
-            if(this.dan_value==0){
+            if(localStorage.getItem("cw") == 1){
                 // 宠物蛋显示
                 this.g_egg = true;
                 // 问号蛋
                 this.ber_dan = false;
                 // 进度条
                 this.b_bar = true;
-
+                // 进度条占比显示
                 this.ber = true;
                 // 后台获取更新进度条
                 let yhid = localStorage.getItem("yhid");
@@ -568,7 +520,7 @@
                     }
                 }).then(response=>{
                         this.num = 12*response.data.ydjl;
-                        // 
+                        // 计算进度占比
                         this.ber_num = (this.num / 120)*100;
                         this.ber_num = this.ber_num.toFixed(2);
                     });
@@ -576,21 +528,13 @@
                 this.Width = {
                     'width': this.num + 'px',
                 };
-                
+                // “孵化进度”字样显示
                 this.see = false;
-                
-                // this.mycharts.setOption() = false;
-                // this.mycharts1.setOption() = false;
-                // this.mycharts2.setOption() = false;
             };
             if(this.num >= 120){
                 this.b_bar = false;
                 this.egg_pet();
-                // this.mycharts.setOption() = true;
-                // this.mycharts1.setOption() = true;
-                // this.mycharts2.setOption() = true;
             };
-
         },
         components:{
             picker  
