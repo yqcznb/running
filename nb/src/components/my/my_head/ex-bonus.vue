@@ -25,12 +25,11 @@
                         <span class="maletitle" v-text="value.spms"></span><span class="malejg" v-text="value.spjg">积分</span>
                     <button class="ex_btn" @click="ex_bonus(value.spid,value.spjg)">马上兑</button>
                 </li>
-                <li>
+                <li class="nomore_li">
                     <span class="nomore">————————没有更多了————————</span>
                 </li>
                 
             </ul>
-            
         </div>
     </div>
 </template>
@@ -283,6 +282,7 @@ export default {
         margin: 0 auto 2%;
         padding: 7px;
         overflow-y: scroll;
+        /* border: 1px solid red; */
     }
     ul {
         width: 100%;
@@ -296,7 +296,7 @@ export default {
     .goodslist {
         /* border: 1px solid red; */
         padding: 3px;
-        width: 100%;
+        width: 98%;
         max-width: 800px;
         display: inline-flex;
         justify-content: space-between;
@@ -337,8 +337,19 @@ export default {
     .ex_btn {
         margin-right: 0;
     }
+    .nomore_li {
+        /* border: 1px solid red; */
+        bottom: 0;
+        margin-bottom: 0;
+        position: absolute;
+        left: 0;
+        right: 0;
+        bottom: -5ex;
+    }
     .nomore {
+        display: inline-block;
         line-height: 3em;
+        margin-bottom: 0;
         font-size: 14px;
         color: lightgray;
     }
