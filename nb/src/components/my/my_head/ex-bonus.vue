@@ -218,11 +218,9 @@ export default {
         border-radius: 7px;
         background-color: rgba(255, 255, 255, 0.5);
         width: 93%;
-        height: 100%;
+        /* height: 100%; */
         margin: 0 auto 2%;
         padding: 7px;
-        /* overflow: hidden; */
-        /* overflow-y: scroll; */
     }
     ul {
         left: 0;
@@ -236,7 +234,6 @@ export default {
         padding: 3px;
         width: 100%;
         max-width: 800px;
-        /* height: 100px; */
         display: inline-flex;
         justify-content: space-between;
         align-items: center;
@@ -246,7 +243,7 @@ export default {
         /* width: 30%; */
         max-width: 120px;
         background-color: transparent;
-        height: 100%;
+        /* height: 100%; */
         padding: 10px;
         display: inline-flex;
         flex-direction: column;

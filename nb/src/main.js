@@ -9,13 +9,14 @@ import "./assets/mui/fonts/fzhzgb.ttf"
 import VueAMap from 'vue-amap'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
-import { Button,MessageBox,Header,Field,Popup,Picker,Lazyload,DatetimePicker,Navbar,TabItem,TabContainer, TabContainerItem} from 'mint-ui';
+import { Button,MessageBox,Header,Field,Popup,Picker,Lazyload,DatetimePicker,Navbar,TabItem,TabContainer, TabContainerItem, InfiniteScroll} from 'mint-ui';
 import echarts from 'echarts'
 import VueCropper from 'vue-cropper'
 import store from './store'
 import Mui from 'vue-awesome-mui'
 import './assets/css/my-mint.scss';//全局修改mint-UI样式
 import { Switch } from 'mint-ui';
+import BScroll from 'better-scroll'
 
 Vue.prototype.axios = axios
 Vue.prototype.$echarts = echarts
@@ -36,6 +37,7 @@ Vue.component(TabContainerItem.name, TabContainerItem);
 Vue.use(Mui);
 Vue.use(VueAMap)
 Vue.use(VueAxios, axios)
+Vue.use(InfiniteScroll)
 Vue.use(Lazyload)
 Vue.config.productionTip = false
 VueAMap.initAMapApiLoader({
