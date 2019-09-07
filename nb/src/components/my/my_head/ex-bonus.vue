@@ -16,7 +16,7 @@
         <mt-popup v-model="ex_alert" position="top" class="ex_alert">
             兑换成功
         </mt-popup>
-        <div class="goods_box">
+        <div class="goods_box" ref="wrapper">
             <ul>
                 <li v-for="(value, key) in goodslist" class="goodslist" >
                     <div class="imgbox">
@@ -25,13 +25,16 @@
                         <span class="maletitle" v-text="value.spms"></span><span class="malejg" v-text="value.spjg">积分</span>
                     <button class="ex_btn" @click="ex_bonus(value.spid,value.spjg)">马上兑</button>
                 </li>
+                <li>
+                    <span class="nomore">————————没有更多了————————</span>
+                </li>
             </ul>
-            <span class="nomore">————————没有更多了————————</span>
         </div>
     </div>
 </template>
 <script>
 import { MessageBox } from 'mint-ui'
+import BScroll from 'better-scroll'
 import axios from 'axios'
 export default {
     name: 'ex_bonus',
@@ -40,6 +43,21 @@ export default {
             bonus_data: '0',
             ex_alert: false,
             goodslist: [],
+            
+        }
+    },
+    props: {
+        probeType: {
+            type: Number,
+            default: 1
+        },
+        click: {
+            type: Boolean,
+            default: true
+        },
+        data: {
+            type: Array,
+            default: null
         }
     },
     created() {
@@ -67,6 +85,18 @@ export default {
     },
     mounted() {
         this.changeWH();
+        setTimeout(() => {
+            this._initScroll()
+        }, 20);
+    },
+    watch: {
+    //观察传入的数据，一旦数据发生变化，重新渲染滚动组件
+        data() {
+        setTimeout(() => {
+            // this.scroll.refresh()
+            this.refresh()
+        }, 20);
+        }
     },
     methods: {
         changeWH() {
@@ -94,6 +124,16 @@ export default {
                                 setTimeout(()=>{
                                     this.ex_alert = false;
                                 }, 1500);
+                                axios.get('http://no37.store:8080/AK/jf',{
+                                    params: {
+                                    yhid:localStorage.getItem("yhid"),
+                                }})
+                                .then(response=>{
+                                    this.bonus_data = response.data.yhjf;
+                                })      //获取失败
+                                .catch(error=>{
+                                    alert('网络错误，不能访问');
+                                })
                             }
                         })      //获取失败
                         .catch(error=>{
@@ -108,6 +148,26 @@ export default {
             }
             
         },
+        //初始化滚动组件
+        _initScroll() {
+            if (!this.$refs.wrapper) {
+                return
+            }
+            this.scroll = new BScroll(this.$refs.wrapper, {
+                probeType: this.robeType,
+                click: this.click,
+            })
+        },
+        //所使用到的函数作用自行查看文档 
+        enable() {
+            this.scroll && this.scroll.enable()
+        },
+        disable() {
+            this.scroll && this.scroll.disable()
+        },
+        refresh() {
+            this.scroll && this.scroll.refresh()
+        }
     },
 }
 </script>
@@ -121,7 +181,7 @@ export default {
         right: 0;
         margin: 0 auto;
         background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
-        overflow: scroll;
+        /* overflow: scroll; */
     }
     a {
         text-decoration: none;
@@ -161,7 +221,6 @@ export default {
         margin-top: 40px;
         margin-bottom: 2%;
         padding: 7px;
-        
     }
     .kyjf {
         /* border: 1px solid red; */
@@ -218,16 +277,20 @@ export default {
         border-radius: 7px;
         background-color: rgba(255, 255, 255, 0.5);
         width: 93%;
-        /* height: 100%; */
+        height: 66%;
         margin: 0 auto 2%;
         padding: 7px;
+        padding-bottom: 0; 
+        overflow-y: scroll;
     }
     ul {
+        width: 100%;
+        height: 100%;
         left: 0;
         right: 0;
-        /* margin: 0 auto; */
+        margin: 0 auto;
         padding: 0;
-        margin: 0 2%;
+        /* margin: 0 2%; */
     }
     .goodslist {
         /* border: 1px solid red; */
@@ -274,7 +337,7 @@ export default {
         margin-right: 0;
     }
     .nomore {
-        line-height: 28px;
+        line-height: 6ex;
         font-size: 14px;
         color: lightgray;
     }
