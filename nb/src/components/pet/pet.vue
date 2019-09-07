@@ -494,15 +494,16 @@
                         this.$router.replace('/footer/index/run');  
                         }).catch(() => {
                                   
-                            }).error(() => {
-                                    alert('网络出错');
-                                });
+                            })
+                            // .error(() => {
+                            //         alert('网络出错');
+                            //     });
             },
         },
         mounted(){
             this.bar();
             this.drawdata();
-            if(this.dan_value == 1){
+            if(localStorage.getItem("cw") == 1){
                 // 宠物蛋显示
                 this.g_egg = true;
                 // 问号蛋
@@ -518,14 +519,12 @@
                         yhid:yhid,
                     }
                 }).then(response=>{
-                        this.num = 120;
-                        // *response.data.ydjl;
+                        this.num = 12*response.data.ydjl;
                         // 计算进度占比
                         this.ber_num = (this.num / 120)*100;
                         this.ber_num = this.ber_num.toFixed(2);
                     });
-                this.num = 120;
-                // *response.data.ydjl;
+                this.num = 12*response.data.ydjl;
                 this.Width = {
                     'width': this.num + 'px',
                 };
