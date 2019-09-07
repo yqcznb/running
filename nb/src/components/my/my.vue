@@ -3,6 +3,7 @@
         <router-link :to="{name:'pinform',params:{backey:'/footer/my'}}">
             <div id="my_head">
                 <div id="head_left">
+
                     <h4><span v-text="uname"></span> <router-link to='/confirm' @click.native="routerRefresh"><i :class="if_rz" class="iconfont iconwrz"></i></router-link></h4>
                     <h5><router-link to="/drole">{{ uduan }}段位 》</router-link></h5>
                     <img :src='levelImg' class="levelimg" >
@@ -18,24 +19,29 @@
         </router-link>
         <div id="myChart" :auto-resize='autoresize'></div>
         <div id="run_data">
+
             <router-link to="/run_data_detail">
+
                 <div id="details">
                     <i class="iconfont icontiyu-paobu"></i><span class="">跑步数据详情</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
             <hr>
-            <router-link to="/rank_list" @click.native="routerRefresh">
+            <router-link to="/rank_list" >
                 <div id="rank_list">
                     <i class="iconfont iconpaihangbang rankimg"></i><span class="">排行榜</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
             </router-link>
         </div>
+
         <router-link to="/tea_special">
+
             <div id="tea_special" v-show="tea_special">
                 <i class="iconfont iconxuesheng"></i><span>学生跑步数据</span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>
         </router-link>
         <router-link :to="mode">
+
             <div id="settings">
                 <i class="iconfont iconsettings"></i><span>设置</span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>

@@ -133,6 +133,8 @@ export default {
             timeValue3: '',
             timeValue4: '',
             screenHeight: window.innerHeight,
+            cpsj:"",
+            ypsj:"",
         }
     },
     watch: {
@@ -147,6 +149,22 @@ export default {
         if(localStorage.getItem("yhsf") == 1) {
             this.tea_flag = true;
         }
+        //晨跑夜跑时间返回
+        axios.get('http://no37.store:8080/AK/backingOutCYP',{
+            params: {
+                yhid: localStorage.getItem("yhid"),     
+            }
+        })
+        .then(response=>{
+            // console.log(response);
+            this.cpsj=response.data.cpsj;
+            this.ypsj=response.data.ypsj;
+            
+        })      //获取失败
+        .catch(error=>{
+            console.log(error);
+            alert('网络错误，不能访问');
+        })
         //宠物
          axios.get('http://no37.store:8080/AK/ShowPet',{
             params: {
