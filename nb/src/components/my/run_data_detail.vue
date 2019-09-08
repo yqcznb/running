@@ -8,7 +8,7 @@
         </div>
         <span class="datetitle">请选择日期</span> <input type="text" @click="csdate" v-model="datedata" class="datedata" readonly>
         <div id="myChart" :auto-resize='autoresize'></div>
-        <span class="chartitle">本月运动时间占比</span>
+        <span class="chartitle">本月运动时间(h)</span>
 
         <transition name="Dpicker">
             <div class="Dpicker" v-show="showdate">
@@ -140,7 +140,7 @@ export default {
             function getPieSeries(scatterData, chart) {
                 return echarts.util.map(scatterData, function (item, index) {
                     let value2 = Math.round(Math.random() * 6);
-                    let value1 = 24-value2;
+                    let value1 = (24-value2);
                     var center = chart.convertToPixel('calendar', item);
                     return {
                         id: index + 'pie',
@@ -179,6 +179,9 @@ export default {
                 legend: {
                     data: ['非运动', '运动'],
                     bottom: 0,
+                },
+                grid: {
+                    y: 10,
                 },
                 calendar: {
                     top: 'middle',
@@ -288,8 +291,9 @@ export default {
         text-align: center;
     }
     #myChart {
+        /* border: 1px solid red; */
         width: 100%;
-        height: 50%;
+        height: 55%;
         display: flex;
         justify-content: center;
         left: 0;
