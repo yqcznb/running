@@ -27,7 +27,7 @@
                 </div>
             </router-link>
             <hr>
-            <router-link to="/rank_list" >
+            <router-link to="/rank_list" @click.native="routerRefresh">
                 <div id="rank_list">
                     <i class="iconfont iconpaihangbang rankimg"></i><span class="">排行榜</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
