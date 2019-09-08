@@ -170,6 +170,7 @@ export default {
                 this.show = true;
                 clearInterval(this.timer);
                 this.timer = null;
+                localStorage.setItem("p",1)
                 //跳转的页面写在此处
                 this.$router.push({
                     path: '/time'
@@ -207,6 +208,7 @@ export default {
                 this.show = true;
                 clearInterval(this.timer);
                 this.timer = null;
+                 localStorage.setItem('p',2)
                 //跳转的页面写在此处
                 this.$router.push({
                     path: '/time'

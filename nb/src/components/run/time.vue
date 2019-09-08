@@ -91,6 +91,7 @@ export default {
         nb:"",
         jifen:0,
         cw:0,
+        p:localStorage.getItem("p"),
         yhid:localStorage.getItem("yhid"),
         sfcw:localStorage.getItem("cw"),
         cwgs:localStorage.getItem("cwgs"),
@@ -138,19 +139,16 @@ export default {
                          self.lines[0].path.push([self.lng, self.lat]);
                    }
                    for(var i=0;i<3;i++){
-                     if(self.lng>(self.texts[i].position[0]-0.00015)&&self.lng<(self.texts[i].position[0]+0.00015)&&self.lat> (self.texts[i].position[1]-0.00015)&&self.lat<(self.texts[i].position[1]+0.00015)){
+                     if(self.lng>(self.texts[i].position[0]-0.00016)&&self.lng<(self.texts[i].position[0]+0.00016)&&self.lat> (self.texts[i].position[1]-0.00016)&&self.lat<(self.texts[i].position[1]+0.00016)){
                           self.visible = true;
                           self.texts[i].text=`<img style="width:25px;" src="http://no37.store/bzh.png">`,
                           self.texts[i].position = ["",""]
-                           let n = Math.floor((Math.random()*2));
                            if(this.sfcw == 1){
-                             n = 1;
-                             if(n==0){
                              self.count = "得宠物蛋一枚！";
                              self.imgg = require("../../assets/img/dan2.png");
                              self.cw = 1;
                            }
-                           else if(n==1){
+                           else {
                               self.count = "得积分！";
                               self.imgg = require("../../assets/img/jifen.png")
                               let nn =Math.floor((Math.random()*300));
@@ -161,7 +159,7 @@ export default {
                         
                      }
                    
-                   }
+                   
                 }
               })
                },2000);
@@ -178,7 +176,7 @@ export default {
                      self.lines[0].path.push([self.lng, self.lat],);
                      self.center1 = [self.lng, self.lat];  
                      self.nb=2;
-                     for(let i=0;i<3;i++){
+                     for(let i=1;i<3;i++){
                         let a = Math.random()%0.003-0.0015;
                         a = a+self.lng
                         a = Math.round(a*100000)/100000; 
@@ -198,7 +196,7 @@ export default {
       ],
        texts: [
         {
-          position: [120.03362,36.26713],
+          position: [120.02111,36.2409],
           text: `<img style="width:25px;" src="http://no37.store/12.png" class="bz_box"><p>打卡寻宝</p>`,
           offset: [0,0],
           events: {
@@ -323,7 +321,7 @@ export default {
               ydjl: this.miles,
               ydsj:this.times,
               ydsd:this.speed,
-              p:1,
+              p:this.p,
               cw:this.cw,
           }
       }).then(response=>{

@@ -167,8 +167,8 @@ export default {
             this.run_even_times=response.data.ypcs;
             this.run_morn_time1=response.data.cpsj.substring(0,5);
             this.run_morn_time2=response.data.cpsj.substring(6,11);
-            this.run_even_time1=response.data.cpsj.substring(0,5);
-            this.run_even_time2=response.data.cpsj.substring(6,11);
+            this.run_even_time1=response.data.ypsj.substring(0,5);
+            this.run_even_time2=response.data.ypsj.substring(6,11);
             
         })      //获取失败
         .catch(error=>{
