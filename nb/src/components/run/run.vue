@@ -51,6 +51,14 @@ export default {
       zoom: 18,
       lng: 0,
       lat: 0,
+      run_morn_time1:"",
+      run_morn_time2:"",
+      run_even_time1:"",
+      run_even_time2:"",
+      run_morn_time3:"",
+      run_morn_time4:"",
+      run_even_time3:"",
+      run_even_time4:"",
       loaded: false,
       visible: false,
       count:"",//倒计时
@@ -78,16 +86,72 @@ export default {
    activated: function() {
     this.getCase()
   },
+  created(){
+     this.axios.get('http://no37.store:8080/AK/backingOutCYP',{
+            params: {
+                yhid: localStorage.getItem("yhid"),     
+            }
+        })
+        .then(response=>{
+            // console.log(response);
+            this.cpsj=response.data.cpsj;
+            this.ypsj=response.data.ypsj;
+            this.run_all_times=response.data.xqmb;
+            this.run_morn_times=response.data.cpcs;
+            this.run_even_times=response.data.ypcs;
+            this.run_morn_time1=response.data.cpsj.substring(0,2);
+            this.run_morn_time3=response.data.cpsj.substring(6,8);
+            this.run_even_time1=response.data.ypsj.substring(0,2);
+            this.run_even_time3=response.data.ypsj.substring(6,8);
+            this.run_morn_time2=response.data.cpsj.substring(3,5);
+            this.run_morn_time4=response.data.cpsj.substring(9,11);
+            this.run_even_time2=response.data.ypsj.substring(3,5);
+            this.run_even_time4=response.data.ypsj.substring(9,11);
+            console.log("this.run_morn_time1:"+this.run_morn_time1)
+        })      //获取失败
+        .catch(error=>{
+            console.log(error);
+            alert('网络错误，不能访问');
+        })
+  },
+
   methods: {
     //把经纬度传到父组件
     sendlnglat (){ 
       this.$emit('register', this.lng, this.lat)
     },
     yy(){
-       MessageBox.confirm('', { 
-         message: '当前时间不是学校规定锻炼时段，你可以自由跑，自由跑不会关联成绩', 
+        var aa = 0;
+        var now = new Date();
+        var hour = now.getHours().toString().padStart(2,'0');//得到小时
+        var minu = now.getMinutes().toString().padStart(2,'0');//得到分钟
+        if(hour==this.run_morn_time1&&minu>=this.run_morn_time2){
+            aa =1;
+        }else if(hour>this.run_morn_time1&&minu<this.run_morn_time3){
+            aa=1;
+        }
+        else if(minu<this.run_morn_time4&&hour==this.run_morn_time3){
+            aa=1;
+        }
+        else if(hour==this.run_even_time1&&minu>=this.run_even_time2){
+            aa =2;
+        }else if(hour>this.run_even_time1&&hour<this.run_even_time3){
+            aa=2;
+        }
+        else if(minu<this.run_even_time4&&hour==this.run_even_time3){
+            aa=2;
+        }
+        console.log("aa:"+aa)
+         console.log("hour:"+hour)
+          console.log("minu:"+minu)
+            console.log("this.run_morn_time1:"+this.run_morn_time1)
+          console.log("this.run_morn_time2:"+this.run_morn_time2)
+           console.log("hour==this.run_even_time1:"+hour==this.run_morn_time1)
+        if(aa==1){
+             MessageBox.confirm('', { 
+         message: '当前时间为晨跑时间，是否开始跑步', 
          title: '提示', 
-         confirmButtonText: '自由跑', 
+         confirmButtonText: '晨跑', 
          cancelButtonText: '取消' 
          }).then(action => { 
          if (action == 'confirm') {     //确认的回调
@@ -120,6 +184,83 @@ export default {
          console.log(2);
          } 
          });
+        }else if(aa==2){
+             MessageBox.confirm('', { 
+         message: '当前时间为夜跑时间，是否开始跑步', 
+         title: '提示', 
+         confirmButtonText: '夜跑', 
+         cancelButtonText: '取消' 
+         }).then(action => { 
+         if (action == 'confirm') {     //确认的回调
+            this.visible = true;
+        const TIME_COUNT = 3;
+        if(!this.timer){
+            this.count = TIME_COUNT;
+            this.show = false;
+            this.timer = setInterval(()=>{
+            if(this.count > 0 && this.count <= TIME_COUNT){
+                this.count--;
+                if(this.count==0){
+                this.count="GO!"
+            }
+            } else{
+                this.show = true;
+                clearInterval(this.timer);
+                this.timer = null;
+                //跳转的页面写在此处
+                this.$router.push({
+                    path: '/time'
+                });
+              
+            }
+          },1000)
+        }
+         }
+         }).catch(err => { 
+         if (err == 'cancel') {     //取消的回调
+         console.log(2);
+         } 
+         });
+        }else{
+           MessageBox.confirm('', { 
+         message: '当前时间为不是学校规定跑步时间，你可以选择自由跑，自由跑不会关联成绩', 
+         title: '提示', 
+         confirmButtonText: '晨跑', 
+         cancelButtonText: '取消' 
+         }).then(action => { 
+         if (action == 'confirm') {     //确认的回调
+            this.visible = true;
+        const TIME_COUNT = 3;
+        if(!this.timer){
+            this.count = TIME_COUNT;
+            this.show = false;
+            this.timer = setInterval(()=>{
+            if(this.count > 0 && this.count <= TIME_COUNT){
+                this.count--;
+                if(this.count==0){
+                this.count="GO!"
+            }
+            } else{
+                this.show = true;
+                clearInterval(this.timer);
+                this.timer = null;
+                //跳转的页面写在此处
+                this.$router.push({
+                    path: '/time'
+                });
+              
+            }
+          },1000)
+        }
+         }
+         }).catch(err => { 
+         if (err == 'cancel') {     //取消的回调
+         console.log(2);
+         } 
+         });
+        }
+ 
+      
     }
   },
   
