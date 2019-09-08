@@ -448,6 +448,13 @@
             }, 
             // 点击宠物蛋触发
             egg_pet(){
+                // this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                //     params: {
+                //         yhid:localStorage.getItem("yhid"),
+                //     }
+                // }).then(response=>{
+                //         this.num = 12*response.data.ydjl;
+                //     });
                 // 当进度条不满时
                 if(this.num<120){
                     MessageBox.confirm('当前跑步值不足孵出宠物, 是否前往跑步?', '提示', {
@@ -514,6 +521,7 @@
         },
         mounted(){
             this.bar();
+            
             this.drawdata();
             if(localStorage.getItem("cw") == 1){
                 // localStorage.getItem("cw")
@@ -525,28 +533,35 @@
                 this.b_bar = true;
                 // 进度条占比显示
                 this.ber = true;
+                // “孵化进度”字样显示
+                this.see = false;
+                
                 // 后台获取更新进度条
-                let yhid = localStorage.getItem("yhid");
                 this.axios.get('http://no37.store:8080/AK/ShowPet',{
                     params: {
-                        yhid:yhid,
+                        yhid:localStorage.getItem("yhid"),
                     }
                 }).then(response=>{
                         this.num = 12*response.data.ydjl;
                         // 计算进度占比
+                        if(this.num>=120){
+                            this.num = 120;
+                        }
                         this.ber_num = (this.num / 120)*100;
                         this.ber_num = this.ber_num.toFixed(2);
                     });
                 this.num = 12*response.data.ydjl;
+                if(this.num>=120){
+                    this.num = 120;
+                }
                 this.Width = {
                     'width': this.num + 'px',
                 };
-                // “孵化进度”字样显示
-                this.see = false;
-            };
-            if(this.num >= 120){
+                if(this.num >= 120){
                 this.b_bar = false;
                 this.egg_pet();
+            };
+                
             };
             this.axios.get('http://no37.store:8080/AK/backingOutZB',{
                     params: {
