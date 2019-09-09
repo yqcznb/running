@@ -19,12 +19,18 @@
                         <img :src="run_list[0].yhtx" alt="" class="top_one">
                         {{run_list[0].yhnc}}
                     </div>
+                    <div class="tishi">
+                        <span>TOP</span>
+                        <span>头像</span>
+                        <span class="yhnc">昵称</span>
+                        <span class="ydjl">公里</span>
+                    </div>
                     <div class="list_box" id="container">
                         <ul>
                             <li v-for="(value, key) in run_list">
                                 <hr v-if="key" class="list_hr">
                                 <div class="list_details">
-                                    <span v-text="key+1"></span>
+                                    <span v-text="key+1" class="toplist"></span>
                                     <img :src="value.yhtx" alt="" class="list_img">
                                     <span v-text="value.yhnc" class="yhnc"></span>
                                     <span v-text="value.sum" class="ydjl"></span>
@@ -38,12 +44,18 @@
                         <img :src="run_list[0].yhtx" alt="" class="top_one">
                         {{run_list[0].yhnc}}
                     </div>
+                    <div class="tishi">
+                        <span>TOP</span>
+                        <span>头像</span>
+                        <span class="yhnc">昵称</span>
+                        <span class="ydjl">公里</span>
+                    </div>
                     <div class="list_box" id="container">
                         <ul>
                             <li v-for="(value, key) in run_list">
                                 <hr v-if="key" class="list_hr">
                                 <div class="list_details">
-                                    <span v-text="key+1"></span>
+                                    <span v-text="key+1" class="toplist"></span>
                                     <img :src="value.yhtx" alt="" class="list_img">
                                     <span v-text="value.yhnc" class="yhnc"></span>
                                     <span v-text="value.sum" class="ydjl"></span>
@@ -57,12 +69,18 @@
                         <img :src="run_list[0].yhtx" alt="" class="top_one">
                         {{run_list[0].yhnc}}
                     </div>
+                    <div class="tishi">
+                        <span>TOP</span>
+                        <span>头像</span>
+                        <span class="yhnc">昵称</span>
+                        <span class="ydjl">公里</span>
+                    </div>
                     <div class="list_box" id="container">
                         <ul>
                             <li v-for="(value, key) in run_list">
                                 <hr v-if="key" class="list_hr">
                                 <div class="list_details">
-                                    <span v-text="key+1"></span>
+                                    <span v-text="key+1" class="toplist"></span>
                                     <img :src="value.yhtx" alt="" class="list_img">
                                     <span v-text="value.yhnc" class="yhnc"></span>
                                     <span v-text="value.sum" class="ydjl"></span>
@@ -127,11 +145,7 @@ export default {
         right: 0;
         margin: 0 auto;
         overflow: scroll;
-        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
-        background-image: url(../../assets/img/my/rank_list/sports2.jpg);
-        background-size: auto 100%;
-        background-repeat: no-repeat;
-        background-position: center bottom;
+        background: linear-gradient(top,#bed3df,#fcefd5);
     }
     a {
         text-decoration: none;
@@ -154,6 +168,21 @@ export default {
         left: 0;
         right: 0;
         margin: 0 auto;
+    }
+    .tishi {
+        border-radius: 7px;
+        width: 95%;
+        height: 3em;
+        max-width: 550px;
+        background-color: white;
+        background: rgba(255, 255, 255, 0.7);
+        left: 0;
+        right: 0;
+        margin: 0 auto 1ex;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
     }
     .select_list {
         width: 100%;
@@ -214,6 +243,9 @@ export default {
         margin: 0 auto;
         /* margin-bottom: 10px; */
         flex-direction: column;
+    }
+    .toplist {
+        margin-left: 1em;
     }
     .list_hr {
         width: 93%;

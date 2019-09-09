@@ -129,7 +129,7 @@ export default {
                 yhid:localStorage.getItem("yhid"),ydrqOne:this.ydrqOne,ydrqTwo:this.ydrqTwo,
             }})
             .then(response=>{
-                console.log(response);
+                // console.log(response);
                 // 运动距离
                 this.miledate.splice(0,1,Number(response.data[0].ydjl*1000));
                 this.miledate.splice(1,1,Number(response.data[1].ydjl*1000));
@@ -307,7 +307,7 @@ export default {
         left: 0;
         right: 0;
         margin: 0 auto;
-        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+        background: linear-gradient(top,#bed3df,#fcefd5);
     }
     #my_head,#run_data,#settings,#tea_special {
         width: 90%;
