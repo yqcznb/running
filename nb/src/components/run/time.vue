@@ -12,7 +12,7 @@
      <!-- <div class="ceshi" v-for="line in lines"  :key="line.id" :v-model="lines" :path="line.path">miles:{{miles}}$$distance:{{distance}}^^aa:{{aa}}**当前经纬度：{{lng}},{{lat}}***数组：{{line.path}}</div> -->
     </div>
      <div class="chongwu" v-show="cwgss">
-          11
+          <div class='bimg'>加成5%</div>
       </div>
     <el-amap 
         vid="amap"  
@@ -67,7 +67,7 @@ export default {
       showw:true,
       left:false,
       right:false,  
-      cwgss:false, 
+      cwgss:"", 
       jg:"",
       count:"",
       imgg:"",
@@ -103,6 +103,7 @@ export default {
             {
               path: [        
                [120.03112, 36.24194],
+               [120.02112, 36.22194],
              
               
               ],
@@ -176,7 +177,7 @@ export default {
                      self.lines[0].path.push([self.lng, self.lat],);
                      self.center1 = [self.lng, self.lat];  
                      self.nb=2;
-                     for(let i=1;i<3;i++){
+                     for(let i=0;i<3;i++){
                         let a = Math.random()%0.003-0.0015;
                         a = a+self.lng
                         a = Math.round(a*100000)/100000; 
@@ -317,8 +318,8 @@ export default {
 
       this.axios.get('http://no37.store:8080/AK/AddMove',{
           params: {
-              yhid: this.yhid,
-              ydjl: this.miles,
+              yhid:this.yhid,
+              ydjl:this.miles,
               ydsj:this.times,
               ydsd:this.speed,
               p:this.p,
@@ -445,6 +446,8 @@ export default {
   overflow: hidden;
 }
 .chongwu{
+  margin: 0;
+  padding: 0;
   position:absolute;
   top: 25%;
   right: 5%;
@@ -452,7 +455,7 @@ export default {
   color: #fff;
   width: 70px;
   height: 70px;
-  background-color: rgba(253, 185, 51, 0.89)
+  
 }
 .buleft{
   position:absolute;
@@ -555,4 +558,52 @@ export default {
 .amap-overlay-text-container {
   background-color: red;
 }
+.bimg{
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        animation: run 0.6s steps(1, start) infinite;
+        -webkit-animation:run 0.6s steps(1, start) infinite;
+        background: url('../../assets/img/pet/111.png');
+        background-position: center center;
+        background-size: 100%;
+        color: rgb(40, 20, 221)
+    }
+    @keyframes run{
+        0%{
+            background-image: url('../../assets/img/pet/m01.png');
+            background-repeat: no-repeat;
+        }
+        30%{
+            background-image: url('../../assets/img/pet/m02.png');
+            background-repeat: no-repeat;
+        }
+        60%{
+            background-image: url('../../assets/img/pet/m03.png');
+            background-repeat: no-repeat;
+        }
+        100%{
+            background-image: url('../../assets/img/pet/m04.png');
+            background-repeat: no-repeat;
+        }
+    }
+    @-webkit-keyframes run{
+        0%{
+            background-image: url('../../assets/img/pet/111.png');
+            background-repeat: no-repeat;
+        }
+        30%{
+            background-image: url('../../assets/img/pet/222.png');
+            background-repeat: no-repeat;
+        }
+        60%{
+            background-image: url('../../assets/img/pet/33.png');
+            background-repeat: no-repeat;
+        }
+        100%{
+            background-image: url('../../assets/img/pet/55.png');
+            background-repeat: no-repeat;
+        }
+    }
 </style>

@@ -65,6 +65,7 @@ export default {
                         localStorage.setItem("password",this.password);
                         localStorage.setItem("yhsf",response.data.yhsf);
                         localStorage.setItem("egg_success",1)
+                        localStorage.setItem("v",false)
                     }else if(this.num==0){
                         alert("账号或密码错误")
                     }
