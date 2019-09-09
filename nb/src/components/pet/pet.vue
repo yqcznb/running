@@ -44,6 +44,12 @@
                             <img src="../../assets/img/pet/gbag.png" alt="" >
                         </div>
                     <!-- </router-link> -->  
+                      <button class="gensui" @click="switch1">
+                          {{value}}
+                      </button>
+                       <button class="bugs" @click="switch2">
+                          不跟随
+                      </button>
                 </div>
                
 
@@ -88,12 +94,7 @@
                              <li class="list_one">
                                小小白银
                             </li>
-                            <li class="list_my">
-                                宠物跟随
-                            </li> 
-                             <li class="list_one">
-                               <mt-switch v-model="value"></mt-switch>
-                            </li> 
+                           
                         </ul>
                     </mt-popup>
                 </div>
@@ -173,7 +174,7 @@
                 popupVisible: false,
                 show1: true,
                 show: false,
-                value:true,
+                value:"跟随",
                 dan_value: '1',
                 isTrue: 'bim',
                 isFalse: 'egg_img',
@@ -513,14 +514,13 @@
                             //         alert('网络出错');
                             //     });
             },
-            // 判断是否跟随 switch_success在mounted()中创建 switch_index初值为0
-            // switch1(){
-            //      if(true==true){
-            //          localStorage.setItem("v",false)
-            //      }else{
-            //           localStorage.setItem("v",true)
-            //      }    
-            // },
+        
+            switch1(){
+                 localStorage.setItem("cwgs",1)
+            },
+            switch2(){
+                 localStorage.removeItem("cwgs")
+            },
         },
         mounted(){
                  if(this.num>=120&&localStorage.getItem("egg_success"))
@@ -625,6 +625,36 @@
 <style scoped>
    @import "../../../src/assets/css/gpet.css";
     /* 宠物 */
+    .gensui{
+        position:absolute;
+        top: 20%;
+        right: 10%;
+        z-index: 100;
+        color: #fff;
+        background-color: rgba(253, 185, 51, 0.89);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-content:center;
+        flex-wrap: flex-end;
+        }
+         .bugs{
+        position:absolute;
+        top: 30%;
+        right: 10%;
+        z-index: 100;
+        color: #fff;
+        background-color: rgba(14, 58, 24, 0.89);
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        align-content:center;
+        flex-wrap: flex-end;
+        }
     .bimg{
         margin: 20% auto 0;
         width: 50%;

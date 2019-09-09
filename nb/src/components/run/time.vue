@@ -67,7 +67,7 @@ export default {
       showw:true,
       left:false,
       right:false,  
-      cwgss:true, 
+      cwgss:"", 
       jg:"",
       count:"",
       imgg:"",
