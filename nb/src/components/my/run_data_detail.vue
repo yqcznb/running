@@ -139,7 +139,7 @@ export default {
 
             function getPieSeries(scatterData, chart) {
                 return echarts.util.map(scatterData, function (item, index) {
-                    let value2 = Math.round(Math.random() * 6);
+                    let value2 = Math.round(Math.random() * 3);
                     let value1 = (24-value2);
                     var center = chart.convertToPixel('calendar', item);
                     return {
