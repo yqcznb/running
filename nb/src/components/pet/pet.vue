@@ -353,7 +353,7 @@
                         textStyle: {
                             fontFamily: '方正汉真广标简体',
                             color: '#777c7c96',
-                            fontSize: 18,
+                            fontSize: 20,
                             fontWeight: 'normal',
                             fontStyle: 100,
                         },
@@ -389,7 +389,7 @@
                         textStyle: {
                             fontFamily: '方正汉真广标简体',
                             color: '#777c7c96',
-                            fontSize: 18,
+                            fontSize: 20,
                             fontWeight: 'normal',
                             fontStyle: 100,
                         },
@@ -425,7 +425,7 @@
                         textStyle: {
                             fontFamily: '方正汉真广标简体',
                             color: '#777c7c96',
-                            fontSize: 18,
+                            fontSize: 20,
                             fontWeight: 'normal',
                             fontStyle: 100,
                         },
@@ -627,8 +627,8 @@
     /* 宠物 */
     .gensui{
         position:absolute;
-        top: 20%;
-        right: 10%;
+        top: 160px;
+        right: 41px;
         z-index: 100;
         color: #fff;
         background-color: rgba(253, 185, 51, 0.89);
@@ -642,8 +642,8 @@
         }
          .bugs{
         position:absolute;
-        top: 30%;
-        right: 10%;
+        top: 230px;
+        right: 41px;
         z-index: 100;
         color: #fff;
         background-color: rgba(14, 58, 24, 0.89);
