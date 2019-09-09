@@ -181,7 +181,7 @@ export default {
         left: 0;
         right: 0;
         margin: 0 auto;
-        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+        background: linear-gradient(top,#bed3df,#fcefd5);
         overflow: hidden;
     }
     a {

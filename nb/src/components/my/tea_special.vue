@@ -11,12 +11,18 @@
                 <img :src="stu_run_data[0].yhtx" alt="" class="top_one">
                 {{stu_run_data[0].yhnc}}
             </div>
+            <div class="tishi">
+                <span>TOP</span>
+                <span>头像</span>
+                <span class="yhnc">昵称</span>
+                <span class="ydjl">公里</span>
+            </div>
             <div class="list_bottle" id="container">
                 <ul>
                     <li v-for="(value, key) in stu_run_data">
                         <hr v-if="key" class="list_hr">
                         <div class="list_details">
-                            <span v-text="key+1"></span>
+                            <span v-text="key+1" class="toplist"></span>
                              <img :src="value.yhtx" alt="" class="list_img">
                             <span v-text="value.yhnc" class="yhnc"></span>
                             <span v-text="value.ydjl" class="ydjl"></span>
@@ -66,7 +72,7 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+        background: linear-gradient(top,#bed3df,#fcefd5);
     }
     a {
         text-decoration: none;
@@ -114,6 +120,21 @@ export default {
         max-width: 80px;
         border-radius: 25%;
     }
+    .tishi {
+        border-radius: 7px;
+        width: 95%;
+        height: 3em;
+        max-width: 550px;
+        background-color: white;
+        background: rgba(255, 255, 255, 0.7);
+        left: 0;
+        right: 0;
+        margin: 0 auto 1ex;
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+    }
     .list_bottle {
         border-radius: 7px;
         width: 95%;
@@ -131,12 +152,13 @@ export default {
         list-style: none;
     }
     li {
-        /* border: 1px solid red; */
         width: 93%;
         display: flex;
         margin: 0 auto;
-        /* margin-bottom: 10px; */
         flex-direction: column;
+    }
+    .toplist {
+        margin-left: 1ex;
     }
     .list_hr {
         width: 99%;
