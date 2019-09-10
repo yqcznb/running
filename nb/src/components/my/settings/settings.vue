@@ -19,6 +19,13 @@
                 </div>
             </router-link>
         </div>
+        <div class="on_us">
+            <router-link :to="{name:'on'}">
+                <div id="change">
+                    <span>关于</span><i class="iconfont iconfanhui iconfont-right"></i>
+                </div>
+            </router-link>
+        </div>
         <div id="change-logout">
             <router-link :to="{name:'switchid'}">
                 <div id="change">
@@ -108,7 +115,7 @@ export default {
         right: 0;
         margin: 0 auto;
     }
-    #id_msg-safe,#mode-privacy-on,#change-logout {
+    #id_msg-safe,.on_us,#change-logout {
         width: 93%;
         display: flex;
         flex-direction: column;
@@ -128,12 +135,12 @@ export default {
         position: absolute;
         right: 7%;
     }
-    #mode-privacy-on {
+    .on_us {
         height: 8%;
         /* margin-bottom: 3%; */
         line-height: 260%; 
     }
-    #mode-privacy-on span {
+    .on_us span {
         color: black;
     }
     .icon1 {
