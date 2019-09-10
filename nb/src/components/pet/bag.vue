@@ -707,11 +707,11 @@ export default {
             this.axios.get('http://no37.store:8080/AK/applyZB',{
                     params: {
                         yhid: localStorage.getItem("yhid"),
-                        zbid: 'wuqi1',
+                        spid: 'wuqi1',
                         SelectNumber: 1,
                     }
                 }).then(response=>{
-                        
+                        console.log(response.data);
                     });
             this.index = 1;
             MessageBox.alert("使用成功").then(action => {
@@ -722,7 +722,7 @@ export default {
             this.axios.get('http://no37.store:8080/AK/applyZB',{
                     params: {
                         yhid: localStorage.getItem("yhid"),
-                        zbid: 'wuqi2',
+                        spid: 'wuqi2',
                         SelectNumber: 1,
                     }
                 }).then(response=>{
@@ -737,7 +737,7 @@ export default {
             this.axios.get('http://no37.store:8080/AK/applyZB',{
                     params: {
                         yhid: localStorage.getItem("yhid"),
-                        zbid: 'wuqi3',
+                        spid: 'wuqi3',
                         SelectNumber: 1,
                     }
                 }).then(response=>{
@@ -752,7 +752,7 @@ export default {
             this.axios.get('http://no37.store:8080/AK/applyZB',{
                     params: {
                         yhid: localStorage.getItem("yhid"),
-                        zbid: 'wuqi4',
+                        spid: 'wuqi4',
                         SelectNumber: 1,
                     }
                 }).then(response=>{
@@ -767,7 +767,7 @@ export default {
             this.axios.get('http://no37.store:8080/AK/applyZB',{
                     params: {
                         yhid: localStorage.getItem("yhid"),
-                        zbid: 'yifu1',
+                        spid: 'yifu1',
                         SelectNumber: 1,
                     }
                 }).then(response=>{
@@ -782,7 +782,7 @@ export default {
             this.axios.get('http://no37.store:8080/AK/applyZB',{
                     params: {
                         yhid: localStorage.getItem("yhid"),
-                        zbid: 'yifu2',
+                        spid: 'yifu2',
                         SelectNumber: 1,
                     }
                 }).then(response=>{
@@ -797,7 +797,7 @@ export default {
             this.axios.get('http://no37.store:8080/AK/applyZB',{
                     params: {
                         yhid: localStorage.getItem("yhid"),
-                        zbid: 'yifu3',
+                        spid: 'yifu3',
                         SelectNumber: 1,
                     }
                 }).then(response=>{
@@ -812,7 +812,7 @@ export default {
             this.axios.get('http://no37.store:8080/AK/applyZB',{
                     params: {
                         yhid: localStorage.getItem("yhid"),
-                        zbid: 'yifu4',
+                        spid: 'yifu4',
                         SelectNumber: 1,
                     }
                 }).then(response=>{
@@ -827,7 +827,7 @@ export default {
             this.axios.get('http://no37.store:8080/AK/applyZB',{
                     params: {
                         yhid: localStorage.getItem("yhid"),
-                        zbid: 'yaopin5',
+                        spid: 'yaopin5',
                         SelectNumber: 2,
                     }
                 }).then(response=>{
@@ -842,7 +842,7 @@ export default {
             this.axios.get('http://no37.store:8080/AK/applyZB',{
                     params: {
                         yhid: localStorage.getItem("yhid"),
-                        zbid: 'yaopin6',
+                        spid: 'yaopin6',
                         SelectNumber: 2,
                     }
                 }).then(response=>{
@@ -857,7 +857,7 @@ export default {
             this.axios.get('http://no37.store:8080/AK/applyZB',{
                     params: {
                         yhid: localStorage.getItem("yhid"),
-                        zbid: 'yaopin7',
+                        spid: 'yaopin7',
                         SelectNumber: 2,
                     }
                 }).then(response=>{
@@ -872,7 +872,7 @@ export default {
             this.axios.get('http://no37.store:8080/AK/applyZB',{
                     params: {
                         yhid: localStorage.getItem("yhid"),
-                        zbid: 'yaopin8',
+                        spid: 'yaopin8',
                         SelectNumber: 2,
                     }
                 }).then(response=>{

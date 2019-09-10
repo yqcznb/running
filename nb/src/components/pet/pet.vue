@@ -44,10 +44,10 @@
                             <img src="../../assets/img/pet/gbag.png" alt="" >
                         </div>
                     <!-- </router-link> -->  
-                      <button class="gensui" @click="switch1">
+                      <button class="gensui" @click="switch1" v-if="gensui">
                           {{value}}
                       </button>
-                       <button class="bugs" @click="switch2">
+                       <button class="bugs" @click="switch2" v-if="bugs">
                           不跟随
                       </button>
                 </div>
@@ -172,6 +172,8 @@
                 b_bar: false,
                 // isFirst: 1,
                 popupVisible: false,
+                gensui: false,
+                bugs: false,
                 show1: true,
                 show: false,
                 value:"跟随",
@@ -315,6 +317,16 @@
             force(){
                 if(localStorage.getItem("cw")==1&&this.num >= 120){
                     this.visible_force = true;
+                    this.axios.get('http://no37.store:8080/AK/AddValue',{
+                    params: {
+                         yhid:this.yhid
+                    }
+                }).then(response=>{
+                    console.log(response.data);
+                    this.jcz = response.data.yhjc;
+                    response.data.yhjed;
+                    this.jed = response.data.yhjed;
+                });
                 }else{
                     // 没有宠物时的提示
                     MessageBox.alert('您还未孵出宠物，要多跑步哦', '提示', {
@@ -536,25 +548,23 @@
                     this.ber = false;
                     // 宠物蛋
                     this.g_egg = false;
+                    
                 }  
                 else{
+                    this.gensui = true;
+                    this.bugs = true;
                     this.isTrue = 'bimg';
                     this.b_bar = false;
                     this.ber = false;
                 } 
             this.drawdata();
-            if(localStorage.getItem("cw") == 1){
-                // localStorage.getItem("cw")
-                // 宠物蛋显示
-                this.g_egg = true;
-                // 问号蛋
-                this.ber_dan = false;
-               
-                this.axios.get('http://no37.store:8080/AK/ShowPet',{
+             this.axios.get('http://no37.store:8080/AK/ShowPet',{
                     params: {
                        yhid:this.yhid
                     }
                 }).then(response=>{
+                      console.log(response.data.ydjl);
+                       response.data.ydjl;
                         this.num = 12*response.data.ydjl;
                         // 计算进度占比
                         if(this.num>=120){
@@ -565,54 +575,92 @@
                             this.b_bar = true;
                             // 进度条占比显示
                             this.ber = true;
+                            this.g_egg = true;
+                            this.isTrue = '';
+                            this.gensui = false;
+                            this.bugs = false;
                         }
                         this.ber_num = (this.num / 120)*100;
                         this.ber_num = this.ber_num.toFixed(2);
+                      if(this.dan_value == 1){
+                           // 宠物蛋显示
+                            this.g_egg = true;
+                            // 问号蛋
+                            this.ber_dan = false;
+                            if(this.num == 0){
+                                // "孵化进度"字样
+                                this.see = true;
+                            }
+                      }else{
+                        //   问号蛋
+                          this.ber_dan = true;
+                          // 进度条
+                          this.b_bar = false;
+                            // 进度条占比显示
+                            this.ber = false;
+                        this.g_egg = false;
+                        this.gensui = false;
+                        this.bugs = false;
+                      }
                     });
+            // if( == 1){
+                // localStorage.getItem("cw")
+                // 宠物蛋显示
+                // this.g_egg = true;
+                // 问号蛋
+                // this.ber_dan = false;
+               
+                // this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                //     params: {
+                //        yhid:this.yhid
+                //     }
+                // }).then(response=>{
+                //         this.num = 12*response.data.ydjl;
+                        // 计算进度占比
+                        // if(this.num>=120){
+                        //     this.num = 120;
+                        // }
+                        // else{
+                            // 进度条
+                            // this.b_bar = true;
+                            // 进度条占比显示
+                    //         this.ber = true;
+                    //     }
+                    //     this.ber_num = (this.num / 120)*100;
+                    //     this.ber_num = this.ber_num.toFixed(2);
+                    // });
                
                 // “孵化进度”字样显示
-                this.see = false;
+                // this.see = false;
                 
                 // 后台获取更新进度条
-                this.axios.get('http://no37.store:8080/AK/ShowPet',{
-                    params: {
-                       yhid:this.yhid
-                    }
-                }).then(response=>{
-                        this.num = 12*response.data.ydjl;
+                // this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                //     params: {
+                //        yhid:this.yhid
+                //     }
+                // }).then(response=>{
+                //         this.num = 12*response.data.ydjl;
                         // 计算进度占比
-                        if(this.num>=120){
-                            this.num = 120;
-                        }
-                        this.ber_num = (this.num / 120)*100;
-                        this.ber_num = this.ber_num.toFixed(2);
-                    });
-                this.num = 12*response.data.ydjl;
-                if(this.num>=120){
-                    this.num = 120;
-                }
-                this.Width = {
-                    'width': this.num + 'px',
-                };
-                if(this.num >= 120){
-                this.egg_pet();
-            };
+    //                     if(this.num>=120){
+    //                         this.num = 120;
+    //                     }
+    //                     this.ber_num = (this.num / 120)*100;
+    //                     this.ber_num = this.ber_num.toFixed(2);
+    //                 });
+    //             this.num = 12*response.data.ydjl;
+    //             if(this.num>=120){
+    //                 this.num = 120;
+    //             }
+    //             this.Width = {
+    //                 'width': this.num + 'px',
+    //             };
+    //             if(this.num >= 120){
+    //             this.egg_pet();
+    //         };
                 
-            };
-            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
-                    params: {
-                         yhid:this.yhid
-                    }
-                }).then(response=>{
-                    for(let i=0; i<=7; i++){
-                        if(response.data[i].zbid == 1){
-                            response.data[i].spjc;
-                            this.jcz += response.data[i].spjc;
-                        }
-                        
-                    }
-                });
-             this.bar();
+    //         };
+            
+    //         this.bar();
                       
         },
         components:{
