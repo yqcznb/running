@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import login from '@/components/login/login'
 import footer from '@/components/footer/footer'
 import my from '@/components/my/my'
+import on from '@/components/my/on'
 import tea_special from '@/components/my/tea_special'
 import backbar from '@/components/my/template/backbar'
 import pinform from '@/components/my/settings/pinform/pinform'
@@ -159,6 +160,11 @@ export default new Router({
       path: '/rank_list',
       name: 'rank_list',
       component: rank_list, meta: {  requireAuth: true,  },
+    },
+    {
+      path: '/on',
+      name: 'on',
+      component: on, meta: {  requireAuth: true,  },
     },
   ]
 })
