@@ -93,10 +93,10 @@ export default {
     watch: {
     //观察传入的数据，一旦数据发生变化，重新渲染滚动组件
         data() {
-        setTimeout(() => {
-            // this.scroll.refresh()
-            this.refresh()
-        }, 20);
+            setTimeout(() => {
+                // this.scroll.refresh()
+                this.refresh()
+            }, 20);
         }
     },
     methods: {
@@ -181,7 +181,7 @@ export default {
         left: 0;
         right: 0;
         margin: 0 auto;
-        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+        background: linear-gradient(top,#bed3df,#fcefd5);
         overflow: hidden;
     }
     a {

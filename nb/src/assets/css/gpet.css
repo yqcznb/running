@@ -20,7 +20,7 @@
     max-width: 100%;
     max-height: 100%;
     position: absolute;
-    background: linear-gradient(top,rgb(199, 195, 197,0.6),#f9f6c9);
+    background: linear-gradient(top,#bed3df,#fcefd5);
 }
 
 .pet_head .head{

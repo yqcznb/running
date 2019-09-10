@@ -582,7 +582,7 @@
                         }
                         this.ber_num = (this.num / 120)*100;
                         this.ber_num = this.ber_num.toFixed(2);
-                      if(this.dan_value == 1){
+                      if(response.data.cw == 1){
                            // 宠物蛋显示
                             this.g_egg = true;
                             // 问号蛋

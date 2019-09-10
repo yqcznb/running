@@ -36,25 +36,6 @@
                 </div>
             </router-link>
         </div>
-        <div id="device-center">
-            <router-link to="">
-                <div id="device">
-                    <span>登陆设备管理</span>
-                    <span class="device_right">
-                        <i class="iconfont iconfanhui iconfont-right"></i>
-                    </span>
-                </div>
-            </router-link>
-            <hr>
-            <router-link to="">
-                <div id="safe_center">
-                    <span>趣跑安全中心</span>
-                    <span class="sc_right">
-                        <i class="iconfont iconfanhui iconfont-right"></i>
-                    </span>
-                </div>
-            </router-link>
-        </div>
         <!-- 手机号更改  -->
         <mt-popup v-model="popupPhoneC" position="bottom">
             <div class="update_phone" :style="upStyle">
@@ -106,7 +87,7 @@
                 </span>
             </div>
         </mt-popup>
-        <span id="prompt">如果遇到账号信息泄露、忘记密码、诈骗等账号安全问题，可前往趣跑安全中心</span>
+        <span id="prompt">如果遇到账号信息泄露、忘记密码、诈骗等账号安全问题，可前往趣跑工作人员</span>
     </div>
 </template>
 <script>
@@ -296,7 +277,7 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+        background: linear-gradient(top,#bed3df,#fcefd5);
     }
     #back_bar {
         text-align: left;
@@ -372,7 +353,7 @@ export default {
         height: 8%;
     }
     .update_phone,.update_mail,.update_code {
-        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+        background: linear-gradient(top,#bed3df,#fcefd5);
     }
     #phone_change,#mail_change,#code_change {
         display: inline-block;
