@@ -44,10 +44,10 @@
                             <img src="../../assets/img/pet/gbag.png" alt="" >
                         </div>
                     <!-- </router-link> -->  
-                      <button class="gensui" @click="switch1">
+                      <button class="gensui" @click="switch1" v-if="gensui">
                           {{value}}
                       </button>
-                       <button class="bugs" @click="switch2">
+                       <button class="bugs" @click="switch2" v-if="bugs">
                           不跟随
                       </button>
                 </div>
@@ -171,12 +171,13 @@
                 // 进度条显示
                 b_bar: false,
                 // isFirst: 1,
-                popupVisible: false,
                 show1: true,
                 show: false,
+                gensui: false,
+                bugs: false,
                 value:"跟随",
                 dan_value: '1',
-                isTrue: 'bim',
+                isTrue: '',
                 isFalse: 'egg_img',
                 f_title: '宠物信息',
                 s_title: '饥饿度',
@@ -262,33 +263,28 @@
                 }).then(response=>{
                         // 1公里代表进度条12px的宽度
                         this.num = 12*response.data.ydjl;
+                        if(this.num>120){
+                            this.num = 120;
+                        }
+                        this.Width = {
+                            'width': this.num + 'px',
+                        };
+                        
+                        this.ber_num = (this.num / 120)*100;
+                        this.ber_num = this.ber_num.toFixed(2);
                     });
-                    // 更新进度条
-                this.Width = {
-                    'width': this.num + 'px',
-                };
-                this.ber_num = (this.num / 120)*100;
-                this.ber_num = this.ber_num.toFixed(2);
-                if(this.num == 0){
-                    // “孵化进度”字样显示
-                    this.see = true;
-                    // 进度条占比显示
-                    this.ber = false;
-                }
-                if(this.num >= 120){
-                    this.num = 120;
-                    this.popupVisible = false;
-                    this.b_bar = false;
-                    this.ber = false;
-                }else{
-                    this.popupVisible = true;
-                }
-                
             },
             // 点击宠物信息触发
             blood:function(){
                 if(localStorage.getItem("cw")==1&&this.num >= 120){
                     this.visible = true;
+                     this.axios.get('http://no37.store:8080/AK/AddValue',{
+                        params: {
+                            yhid:this.yhid
+                        }
+                    }).then(response=>{
+                        console.log(response.data);
+                    });
                 }else{
                     // 没有宠物时的提示
                     MessageBox.alert('您还未孵出宠物，要多跑步哦', '提示', {
@@ -453,50 +449,52 @@
             }, 
             // 点击宠物蛋触发
             egg_pet(){
-                // this.axios.get('http://no37.store:8080/AK/ShowPet',{
-                //     params: {
-                //         yhid:localStorage.getItem("yhid"),
-                //     }
-                // }).then(response=>{
-                //         this.num = 12*response.data.ydjl;
-                //     });
-                // 当进度条不满时
-                if(this.num<120){
-                    MessageBox.confirm('当前跑步值不足孵出宠物, 是否前往跑步?', '提示', {
-                        confirmButtonText: '前往',
-                        cancelButtonText: '取消',
-                        type: 'warning'
-                        }).then(() => {
-                        // 跳转到跑步界面  
-                        this.$router.replace('/footer/index/run');  
-                        }).catch(() => {
-                                  
-                            }).error(() => {
-                                alert('网络出错');
-                                });
-                    // 进度条刚满时
-                }else if(this.num>=120&&localStorage.getItem("egg_success"))
-                {   localStorage.setItem("cwgs",1);
-                    MessageBox.alert('运动值已满，成功为您孵出宠物', '提示', {
-                    confirmButtonText: '确定',
-                        // 提示孵出宠物一次后不再提示
-                    }).then(()=>{
-                        localStorage.removeItem("egg_success");
-                    })
-                    // 换成宠物的class
-                    this.isTrue = 'bimg';
-                    // 进度条
-                    this.b_bar = false;
-                    // 进度条占比
-                    this.ber = false;
-                    // 宠物蛋
-                    this.g_egg = false;
-                }  
-                else{
-                    this.isTrue = 'bimg';
-                    this.b_bar = false;
-                    this.ber = false;
-                } 
+                this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                    params: {
+                        yhid:localStorage.getItem("yhid"),
+                    }
+                }).then(response=>{
+                        this.num = 12*response.data.ydjl;
+                        console.log(this.num)
+                        if(this.num<120){
+                            MessageBox.confirm('当前跑步值不足孵出宠物, 是否前往跑步?', '提示', {
+                            confirmButtonText: '前往',
+                            cancelButtonText: '取消',
+                            type: 'warning'
+                            }).then(() => {
+                            // 跳转到跑步界面  
+                            this.$router.replace('/footer/index/run');  
+                            }).catch(() => {
+                                    
+                                }).error(() => {
+                                    alert('网络出错');
+                                    });
+                        // 进度条刚满时
+                        }else if(this.num>=120){
+                            this.num =120; 
+                            localStorage.setItem("cwgs",1);
+                           
+                            // 换成宠物的class
+                            this.isTrue = 'bimg';
+                            // 进度条
+                            this.b_bar = false;
+                            // 进度条占比
+                            this.ber = false;
+                            // 宠物蛋
+                            this.g_egg = false;
+                            this.see = false;
+
+                             MessageBox.alert('运动值已满，成功为您孵出宠物', '提示', {
+                            confirmButtonText: '确定',
+                                // 提示孵出宠物一次后不再提示
+                            }).then(()=>{
+                                localStorage.removeItem("egg_success");
+                            })
+                        }  
+                        // if(this.num>120){
+                        //     this.num = 120;
+                        // }
+                    });
             },
             // 点击问号蛋提示
             dan_router(){
@@ -523,97 +521,69 @@
             },
         },
         mounted(){
-                 if(this.num>=120&&localStorage.getItem("egg_success"))
-                {
-                  
-                    localStorage.removeItem("egg_success");
-                    
-                    // 换成宠物的class
-                    this.isTrue = 'bimg';
-                    // 进度条
-                    this.b_bar = false;
-                    // 进度条占比
-                    this.ber = false;
-                    // 宠物蛋
-                    this.g_egg = false;
-                }  
-                else{
-                    this.isTrue = 'bimg';
-                    this.b_bar = false;
-                    this.ber = false;
-                } 
-            this.drawdata();
-            if(localStorage.getItem("cw") == 1){
-                // localStorage.getItem("cw")
-                // 宠物蛋显示
-                this.g_egg = true;
-                // 问号蛋
-                this.ber_dan = false;
-               
-                this.axios.get('http://no37.store:8080/AK/ShowPet',{
+             this.axios.get('http://no37.store:8080/AK/ShowPet',{
                     params: {
-                       yhid:this.yhid
+                        yhid:this.yhid
                     }
                 }).then(response=>{
-                        this.num = 12*response.data.ydjl;
+                    response.data.cw;
+                    response.data.ydjl;
+                    this.num = 12*response.data.ydjl;
                         // 计算进度占比
                         if(this.num>=120){
                             this.num = 120;
                         }
-                        else{
+                        this.ber_num = (this.num / 120)*100;
+                        this.ber_num = this.ber_num.toFixed(2);
+                    if(this.dan_value == 1){
+                        // 宠物蛋
+                        this.g_egg = true;
+                        // 问号蛋
+                        this.ber_dan = false;
+                        if(this.num == 0){
+                            // “孵化进度”字样
+                            this.see = true;
+                        
+                        }
+                        else if(0<this.num<120){
                             // 进度条
                             this.b_bar = true;
-                            // 进度条占比显示
+                            // 进度条占比
                             this.ber = true;
-                        }
-                        this.ber_num = (this.num / 120)*100;
-                        this.ber_num = this.ber_num.toFixed(2);
-                    });
-               
-                // “孵化进度”字样显示
-                this.see = false;
-                
-                // 后台获取更新进度条
-                this.axios.get('http://no37.store:8080/AK/ShowPet',{
-                    params: {
-                       yhid:this.yhid
-                    }
-                }).then(response=>{
-                        this.num = 12*response.data.ydjl;
-                        // 计算进度占比
-                        if(this.num>=120){
-                            this.num = 120;
-                        }
-                        this.ber_num = (this.num / 120)*100;
-                        this.ber_num = this.ber_num.toFixed(2);
-                    });
-                this.num = 12*response.data.ydjl;
-                if(this.num>=120){
-                    this.num = 120;
-                }
-                this.Width = {
-                    'width': this.num + 'px',
-                };
-                if(this.num >= 120){
-                this.egg_pet();
-            };
-                
-            };
-            this.axios.get('http://no37.store:8080/AK/backingOutZB',{
-                    params: {
-                         yhid:this.yhid
-                    }
-                }).then(response=>{
-                    for(let i=0; i<=7; i++){
-                        if(response.data[i].zbid == 1){
-                            response.data[i].spjc;
-                            this.jcz += response.data[i].spjc;
+                            // “孵化进度”字样
+                            this.see = false;
+                           
                         }
                         
+                        else if(this.num>=120&&localStorage.getItem("egg_success")){
+                            this.num = 120;
+                            // 换成宠物的class
+                            this.isTrue = 'bimg';
+                            // 进度条
+                            this.b_bar = false;
+                            // 进度条占比
+                            this.ber = false;
+                            // 宠物蛋
+                            this.g_egg = false;
+
+                            localStorage.removeItem("egg_success");
+                            
+                        }  
+                    }else{
+                        // 问号蛋
+                        this.ber_dan = true;
+                        // 进度条
+                        this.b_bar = false;
+                        // 进度条占比
+                        this.ber = false;
+                        // “孵化进度”字样
+                        this.see = false;
                     }
                 });
-             this.bar();
-                      
+                  
+            this.drawdata();
+            this.bar();
+            this.egg_pet();
         },
         components:{
             picker  
