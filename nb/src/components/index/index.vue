@@ -1,8 +1,10 @@
 <template>
   <div class="index">
     <ul class="heard">
-        <router-link to="/confirm" v-if="show">
-            <li class="xiaoqu">{{xiaoqu}}</li>
+
+        <router-link to="/confirm" v-if="show" @click.native="routerRefresh">
+               <li class="xiaoqu">{{xiaoqu}}</li>
+
         </router-link>
          <li class="xiaoqu" v-if="ow" >{{xiaoqu}}</li>
         <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{ggnr}}</li>
@@ -281,8 +283,11 @@ export default {
         };
     },
     methods: {
+         routerRefresh() {
+            window.location.reload();
+        },
         niubei(){
-            
+
         },
         // 自适应
         aim_show() {
