@@ -149,6 +149,7 @@
     import { MessageBox } from 'mint-ui';
     import { Popup } from 'mint-ui';
     import echarts from 'echarts';
+    import axios from 'axios'
     export default {
         name: 'pet_head',
         name: 'frame',
@@ -202,9 +203,10 @@
             }
         },
         // 后台接口获取官方通知的内容
-        created(){
-            
-            this.axios.get('http://no37.store:8080/AK/gonggao1',{
+
+        created() {
+            axios.get('http://no37.store:8080/AK/gonggao1',{
+
                 params: {
                     ggid:1,     
                 }
@@ -215,7 +217,7 @@
             alert('网络错误，不能访问');
         })
         // 校区认证
-        this.axios.get('http://no37.store:8080/AK/SelectXsID',{
+            axios.get('http://no37.store:8080/AK/SelectXsID',{
             params: {
                 yhid:localStorage.getItem("yhid")
             }
@@ -235,7 +237,7 @@
             alert('网络错误，不能访问');
         })
       //  老师认证信息
-        this.axios.get('http://no37.store:8080/AK/SelectJsID',{
+            axios.get('http://no37.store:8080/AK/SelectJsID',{
                 params: {
                     yhid:this.yhid
                 }
@@ -250,10 +252,7 @@
                 console.log(error);
                 alert('网络错误，不能访问');
             })
-
-       
         },
-
         methods:{
             bar(){
                 // 后台获取用户公里数，更新进度
@@ -344,7 +343,6 @@
                          yhid:this.yhid
                     }
                 }).then(response=>{
-                    console.log(response.data);
                     this.jcz = response.data.yhjc;
                     response.data.yhjed;
                     this.jed = response.data.yhjed;
@@ -495,13 +493,6 @@
             }, 
             // 点击宠物蛋触发
             egg_pet(){
-                // this.axios.get('http://no37.store:8080/AK/ShowPet',{
-                //     params: {
-                //         yhid:localStorage.getItem("yhid"),
-                //     }
-                // }).then(response=>{
-                //         this.num = 12*response.data.ydjl;
-                //     });
                 // 当进度条不满时
                 if(this.num<120){
                     MessageBox.confirm('当前跑步值不足孵出宠物, 是否前往跑步?', '提示', {
@@ -595,7 +586,6 @@
                        yhid:this.yhid
                     }
                 }).then(response=>{
-                      console.log(response.data.ydjl);
                        response.data.ydjl;
                         this.num = 12*response.data.ydjl;
                         // 计算进度占比
