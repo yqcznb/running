@@ -1,21 +1,24 @@
 <template>
   <div class="index">
     <ul class="heard">
-        <router-link to="/confirm" v-if="show">
+
+        <router-link to="/confirm" v-if="show" @click.native="routerRefresh">
                <li class="xiaoqu">{{xiaoqu}}</li>
+
         </router-link>
          <li class="xiaoqu" v-if="ow" >{{xiaoqu}}</li>
         <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{ggnr}}</li>
+        <li class="tong" @click="pmd" v-if="tt"><i  class="iconfont icongonggao"></i>{{msgg}}</li>
     </ul>
     <router-view></router-view>
     <div class="caochang">
         <div>
-            <img src="../../assets/img/flag.png" alt="" v-show="tea_flag" class="tea_flag" @click="aim_show">
+            <img src="../../assets/img/flag.png" alt="" class="tea_flag" @click="aim_show">
             <mt-popup v-model="popupAim" position="bottom" @touchmove.native.stop.prevent>
                 <div class="aim_box" :style="aim_style">
                     <span id="aim_area">
                         <div class="control_bar">
-                            <span><button @click="cancelUAim" class="cancelUAim">取消</button></span> <span class="caim_title">学期目标设置</span> <span> <button type="button" @click="confirmUAim"  class="mui-btn mui-btn-success confirmUAim"  :disabled="caim_disabled">完成</button>
+                            <span><button @click="cancelUAim" class="cancelUAim">{{ cancel_text }}</button></span> <span class="caim_title">学期目标</span> <span> <button type="button" @click="confirmUAim"  class="mui-btn mui-btn-success confirmUAim"  :disabled="caim_disabled"  v-show="operate_btn">完成</button>
                             </span>
                         </div>
                         <span class="input_area ">
@@ -40,7 +43,7 @@
                             <label for="run_times">跑步总次数</label>
                             <input type="text" v-model="run_all_times" placeholder="请设定跑步总次数" class="run_times"  :disabled="caim_disabled" >
                         </span>
-                        <mt-button type="primary" @click="caim_disabled = !caim_disabled"  :disabled="!caim_disabled" >修改</mt-button>
+                        <mt-button type="primary" @click="caim_disabled = !caim_disabled"  :disabled="!caim_disabled" v-show="operate_btn" >修改</mt-button>
                     </span>
                 </div>
             </mt-popup>
@@ -110,6 +113,7 @@ export default {
             xiaoqu:'未认证(点击认证)',
             id:"",
             cp:"",
+            tt:false,
             yp:"",
             xqmb:"",
             ggnr:"",
@@ -117,9 +121,10 @@ export default {
             cw:"",
             show:true,
             ow:false,
-            tea_flag: false,
             popupAim: false,
+            operate_btn: false,
             aim_style: '',
+            cancel_text: '取消',
             caim_disabled: true,
             run_all_times: '',
             run_morn_times: '',
@@ -136,8 +141,11 @@ export default {
             cpsj:"",
             ypsj:"",
             xqmb:"",
-            cpsj:"",
-            ypsj:"",
+            cpcs:"",
+            ypcs:"",
+            msg:"",
+            msgg:"",
+            intervalId:"",
         }
     },
     watch: {
@@ -150,8 +158,28 @@ export default {
     },
     created(){
         if(localStorage.getItem("yhsf") == 1) {
-            this.tea_flag = true;
+            this.operate_btn = true;
         }
+        else {
+            this.operate_btn = false;
+            this.cancel_text = '完成';
+        }
+         axios.get('http://no37.store:8080/AK/countPeople',{
+            params: {
+                yhid: localStorage.getItem("yhid"),     
+            }
+        })
+        .then(response=>{
+            // console.log(response);
+            this.msg=response.data.sum;
+            this.msgg = "今天同校区同学已跑人数为"+this.msg+"人!!!       "
+           
+            
+        })      //获取失败
+        .catch(error=>{
+            console.log(error);
+            alert("请先认证身份信息，以免影响跑步成绩！");
+        })
         //晨跑夜跑时间返回
         axios.get('http://no37.store:8080/AK/backingOutCYP',{
             params: {
@@ -173,7 +201,7 @@ export default {
         })      //获取失败
         .catch(error=>{
             console.log(error);
-            alert('网络错误，不能访问');
+            alert("请先认证身份信息，以免影响跑步成绩！");
         })
         //宠物
          axios.get('http://no37.store:8080/AK/ShowPet',{
@@ -191,7 +219,7 @@ export default {
         })      //获取失败
         .catch(error=>{
             console.log(error);
-            alert('网络错误，不能访问');
+            alert('网络错误，不能访问6');
         })
         // 主页
         axios.get('http://no37.store:8080/AK/zhuye1',{
@@ -208,7 +236,7 @@ export default {
         })      //获取失败
         .catch(error=>{
             console.log(error);
-            alert('网络错误，不能访问');
+            alert('网络错误，不能访问5');
         })
         // 公告
         axios.get('http://no37.store:8080/AK/gonggao1',{
@@ -221,7 +249,7 @@ export default {
         })      //获取失败
         .catch(error=>{
             console.log(error);
-            alert('网络错误，不能访问');
+            alert('网络错误，不能访问4');
         })
         // 学生认证信息
         if(localStorage.getItem("yhsf") == 0) {
@@ -235,11 +263,12 @@ export default {
                     this.xiaoqu = response.data.yhxx;
                     this.show = false;
                     this.ow = true;
+                    this.tt = true;
                 }
             })      //获取失败
             .catch(error=>{
                 console.log(error);
-                alert('网络错误，不能访问');
+                alert('网络错误，不能访问3');
             })
         }
         //老师认证信息
@@ -257,7 +286,7 @@ export default {
             })      //获取失败
             .catch(error=>{
                 console.log(error);
-                alert('网络错误，不能访问');
+                alert('网络错误，不能访问2');
             })
         }
         else {
@@ -267,14 +296,32 @@ export default {
         }
     },
     mounted() {
+        // 自适应监听
         window.onresize = () => {
             return(() => {
                 window.screenHeight = window.innerHeight;
                 this.screenHeight = window.screenHeight;
             })()
-        };
+        }
+          this.pmd();
     },
     methods: {
+         routerRefresh() {
+            window.location.reload();
+        },
+        pmd(){
+            {
+           this.intervalId = setInterval( () => {
+          // 获取第一个字符
+          var start = this.msgg.substring(0,1);
+          // 获取后面字符
+          var end = this.msgg.substring(1);
+          // 重新拼接的到新的字符串，并赋值给this.msg
+          this.msgg = end + start;
+        },200)
+        }
+        },
+        // 自适应
         aim_show() {
             this.popupAim = !this.popupAim;
             let uhWidth = document.body.clientWidth;
@@ -325,7 +372,7 @@ export default {
                 })      //获取失败
                 .catch(error=>{
                     console.log(error);
-                    alert('网络错误，不能访问');
+                    alert('网络错误，不能访问1');
                 })
             }
             
@@ -398,6 +445,11 @@ export default {
         background:rgb(208, 210, 211);
         padding: 3px;
     }
+    .index .heard .tong{
+        text-align: left;
+        background:rgb(208, 210, 211);
+        padding: 3px;
+    }
     .index .caochang{
         display: flex;
         justify-content: center;
@@ -436,6 +488,14 @@ export default {
         height: 10%;
         bottom: 10%;
         right: 4%;
+    }
+    .caim_title {
+        position: absolute;
+        width: 5em;
+        left: 0;
+        right: 0;
+        margin: 0 auto;
+        text-align: center;
     }
     .control_bar {
         width: 100%;

@@ -92,7 +92,7 @@ export default {
             xsxm:"",
             xsxh:"",
             xsxb:"",
-            year: '',
+            year: ' ',
             num:1,
             dateValue: '',
             // 老师认证
@@ -114,7 +114,13 @@ export default {
                     yhid:this.yhid,
                 }
             }).then(response=>{
-                if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
+                console.log(response);
+                if(response.data.yhxx==null||response.data.yhxh==null||response.data.yhxm==null||response.data.yhxb==null||response.data.yhzy==null) {
+                    this.if_stu_modify = "未认证";
+                    this.stu_disabled = false;
+                    this.tea_disabled = false;
+                }
+                else if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
                     this.stu_disabled = true,
                     this.xsxx = response.data.yhxx,
                     this.xszy = response.data.yhzy,

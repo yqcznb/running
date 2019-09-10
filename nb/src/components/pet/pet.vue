@@ -5,9 +5,10 @@
         <div class="pet_head">
             <ul class="head">
                 <router-link to="/confirm"  @click.native="routerRefresh">
-                    <li class="xiaoqu" v-if="show1">{{xiaoqu1}}</li>
+                    <li class="xiaoqu" v-if="show1">{{xiaoqu}}</li>
                 </router-link>
-                <li class="xiaoqu" v-if="!show1">{{xiaoqu}}</li>
+
+                <li class="xiaoqu" v-if="showw">{{xiaoqu}}</li>
                 <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{tongzhi}}</li>
             </ul>
         </div>
@@ -149,13 +150,13 @@
     import { MessageBox } from 'mint-ui';
     import { Popup } from 'mint-ui';
     import echarts from 'echarts';
+    import axios from 'axios'
     export default {
         name: 'pet_head',
         name: 'frame',
         data(){
             return{
-                xiaoqu: '',
-                xiaoqu1: '未认证（点击认证）',
+                xiaoqu: '未认证（点击认证）',
                 tongzhi: '',
                 visible: false,
                 visible_skill: false,
@@ -175,7 +176,7 @@
                 gensui: false,
                 bugs: false,
                 show1: true,
-                show: false,
+                showw: false,
                 value:"跟随",
                 dan_value: '1',
                 isTrue: 'bim',
@@ -203,9 +204,10 @@
             }
         },
         // 后台接口获取官方通知的内容
-        created:function(){
-            
-            this.axios.get('http://no37.store:8080/AK/gonggao1',{
+
+        created() {
+            axios.get('http://no37.store:8080/AK/gonggao1',{
+
                 params: {
                     ggid:1,     
                 }
@@ -214,20 +216,22 @@
                 }).catch(error=>{
             console.log(error);
             alert('网络错误，不能访问');
-        });
+        })
         // 校区认证
-        this.axios.get('http://no37.store:8080/AK/SelectXsID',{
+            axios.get('http://no37.store:8080/AK/SelectXsID',{
             params: {
-                yhid:this.yhid
+                yhid:localStorage.getItem("yhid")
             }
         })
         .then(response=>{
-            if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
+          
+            if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
                 this.xiaoqu = response.data.yhxx;
+                // console.log( "xq"+this.xiaoqu)
                 // 获取后隐藏认证提示
                 this.show1 = false;
                 // 显示认证的校区
-                this.show = true;
+                this.showw = true;
             }
         })      //获取失败
         .catch(error=>{
@@ -235,7 +239,7 @@
             alert('网络错误，不能访问');
         })
       //  老师认证信息
-        this.axios.get('http://no37.store:8080/AK/SelectJsID',{
+            axios.get('http://no37.store:8080/AK/SelectJsID',{
                 params: {
                     yhid:this.yhid
                 }
@@ -250,10 +254,7 @@
                 console.log(error);
                 alert('网络错误，不能访问');
             })
-
-       
         },
-
         methods:{
             bar(){
                 // 后台获取用户公里数，更新进度
@@ -344,7 +345,7 @@
                          yhid:this.yhid
                     }
                 }).then(response=>{
-                    // console.log(response.data);
+
                     this.jcz = response.data.yhjc;
                     response.data.yhjed;
                     this.jed = response.data.yhjed;
@@ -495,13 +496,6 @@
             }, 
             // 点击宠物蛋触发
             egg_pet(){
-                // this.axios.get('http://no37.store:8080/AK/ShowPet',{
-                //     params: {
-                //         yhid:localStorage.getItem("yhid"),
-                //     }
-                // }).then(response=>{
-                //         this.num = 12*response.data.ydjl;
-                //     });
                 // 当进度条不满时
                 if(this.num<120){
                     MessageBox.confirm('当前跑步值不足孵出宠物, 是否前往跑步?', '提示', {
@@ -559,9 +553,11 @@
         
             switch1(){
                  localStorage.setItem("cwgs",1)
+                alert("宠物跟随设置成功！")
             },
             switch2(){
                  localStorage.removeItem("cwgs")
+                  alert("宠物已取消跟随！")
             },
         },
         mounted(){
@@ -593,7 +589,6 @@
                        yhid:this.yhid
                     }
                 }).then(response=>{
-                      console.log(response.data.ydjl);
                        response.data.ydjl;
                         this.num = 12*response.data.ydjl;
                         // 计算进度占比

@@ -93,7 +93,7 @@ export default {
         cw:0,
         p:localStorage.getItem("p"),
         yhid:localStorage.getItem("yhid"),
-        sfcw:localStorage.getItem("cw"),
+        sfcw:"",
         cwgs:localStorage.getItem("cwgs"),
         label:{
       
@@ -144,7 +144,7 @@ export default {
                           self.visible = true;
                           self.texts[i].text=`<img style="width:25px;" src="http://no37.store/bzh.png">`,
                           self.texts[i].position = ["",""]
-                           if(this.sfcw == 1){
+                           if(self.sfcw == 0){
                              self.count = "得宠物蛋一枚！";
                              self.imgg = require("../../assets/img/dan2.png");
                              self.cw = 1;
@@ -261,6 +261,22 @@ export default {
       }
        
      },1000);
+
+   this.axios.get('http://no37.store:8080/AK/ShowPet',{
+          params: {
+              yhid:this.yhid,
+          }
+      }).then(response=>{
+             
+              this.sfcw=response.data.cw; 
+             
+              
+            })      //获取失败
+            .catch(error=>{
+                console.log(error);
+                alert('网络错误，不能访问');
+            })  
+
   },
   methods: {
     //把经纬度传到父组件
