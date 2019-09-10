@@ -289,7 +289,13 @@
             },
             // 点击宠物信息触发
             blood:function(){
-                if(localStorage.getItem("cw")==1&&this.num >= 120){
+                 this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                    params: {
+                       yhid:this.yhid
+                    }
+                }).then(response=>{
+                    response.data.cw;
+                    if(response.data.cw==1&&this.num >= 120){
                     this.visible = true;
                 }else{
                     // 没有宠物时的提示
@@ -299,10 +305,18 @@
                         
                     })
                 }  
+                });
+                
             },
             // 点击饥饿度触发
             skill(){
-                 if(localStorage.getItem("cw")==1&&this.num >= 120){
+                 this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                    params: {
+                       yhid:this.yhid
+                    }
+                }).then(response=>{
+                    response.data.cw;
+                    if(response.data.cw==1&&this.num >= 120){
                     this.visible_skill = true;
                 }else{
                     // 没有宠物时的提示
@@ -312,10 +326,18 @@
                         
                     })
                 }  
+                });
+                 
             },
             // 点击加成值触发
             force(){
-                if(localStorage.getItem("cw")==1&&this.num >= 120){
+                this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                    params: {
+                       yhid:this.yhid
+                    }
+                }).then(response=>{
+                    response.data.cw;
+                    if(response.data.cw==1&&this.num >= 120){
                     this.visible_force = true;
                     this.axios.get('http://no37.store:8080/AK/AddValue',{
                     params: {
@@ -335,9 +357,16 @@
                         
                     })
                 } 
+                });
             },
             bag(){
-                if(this.num >= 120){
+                 this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                    params: {
+                       yhid:this.yhid
+                    }
+                }).then(response=>{
+                    response.data.cw;
+                    if(this.num >= 120&&response.data.cw==1){
                     // 路由跳转-》背包界面
                     this.$router.replace('/bag');
                 }else{
@@ -348,6 +377,7 @@
                         
                     })
                 }  
+                });
             },
             routerRefresh() {
                 window.location.reload();
@@ -602,66 +632,7 @@
                         this.gensui = false;
                         this.bugs = false;
                       }
-                    });
-            // if( == 1){
-                // localStorage.getItem("cw")
-                // 宠物蛋显示
-                // this.g_egg = true;
-                // 问号蛋
-                // this.ber_dan = false;
-               
-                // this.axios.get('http://no37.store:8080/AK/ShowPet',{
-                //     params: {
-                //        yhid:this.yhid
-                //     }
-                // }).then(response=>{
-                //         this.num = 12*response.data.ydjl;
-                        // 计算进度占比
-                        // if(this.num>=120){
-                        //     this.num = 120;
-                        // }
-                        // else{
-                            // 进度条
-                            // this.b_bar = true;
-                            // 进度条占比显示
-                    //         this.ber = true;
-                    //     }
-                    //     this.ber_num = (this.num / 120)*100;
-                    //     this.ber_num = this.ber_num.toFixed(2);
-                    // });
-               
-                // “孵化进度”字样显示
-                // this.see = false;
-                
-                // 后台获取更新进度条
-                // this.axios.get('http://no37.store:8080/AK/ShowPet',{
-                //     params: {
-                //        yhid:this.yhid
-                //     }
-                // }).then(response=>{
-                //         this.num = 12*response.data.ydjl;
-                        // 计算进度占比
-    //                     if(this.num>=120){
-    //                         this.num = 120;
-    //                     }
-    //                     this.ber_num = (this.num / 120)*100;
-    //                     this.ber_num = this.ber_num.toFixed(2);
-    //                 });
-    //             this.num = 12*response.data.ydjl;
-    //             if(this.num>=120){
-    //                 this.num = 120;
-    //             }
-    //             this.Width = {
-    //                 'width': this.num + 'px',
-    //             };
-    //             if(this.num >= 120){
-    //             this.egg_pet();
-    //         };
-                
-    //         };
-            
-    //         this.bar();
-                      
+                    });              
         },
         components:{
             picker  
