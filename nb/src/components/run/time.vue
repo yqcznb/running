@@ -177,7 +177,7 @@ export default {
                      self.lines[0].path.push([self.lng, self.lat],);
                      self.center1 = [self.lng, self.lat];  
                      self.nb=2;
-                     for(let i=1;i<3;i++){
+                     for(let i=0;i<3;i++){
                         let a = Math.random()%0.003-0.0015;
                         a = a+self.lng
                         a = Math.round(a*100000)/100000; 
