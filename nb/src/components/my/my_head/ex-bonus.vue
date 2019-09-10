@@ -93,10 +93,10 @@ export default {
     watch: {
     //观察传入的数据，一旦数据发生变化，重新渲染滚动组件
         data() {
-        setTimeout(() => {
-            // this.scroll.refresh()
-            this.refresh()
-        }, 20);
+            setTimeout(() => {
+                // this.scroll.refresh()
+                this.refresh()
+            }, 20);
         }
     },
     methods: {
