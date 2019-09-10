@@ -6,6 +6,7 @@
         </router-link>
          <li class="xiaoqu" v-if="ow" >{{xiaoqu}}</li>
         <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{ggnr}}</li>
+        <button class="pbgz" v-if="laji" @click="niubei">规则</button>
     </ul>
     <router-view></router-view>
     <div class="caochang">
@@ -110,6 +111,7 @@ export default {
             xiaoqu:'未认证(点击认证)',
             id:"",
             cp:"",
+            laji:false,
             yp:"",
             xqmb:"",
             ggnr:"",
@@ -136,8 +138,8 @@ export default {
             cpsj:"",
             ypsj:"",
             xqmb:"",
-            cpsj:"",
-            ypsj:"",
+            cpcs:"",
+            ypcs:"",
         }
     },
     watch: {
@@ -173,7 +175,7 @@ export default {
         })      //获取失败
         .catch(error=>{
             console.log(error);
-            alert('网络错误，不能访问');
+            alert("请先认证身份信息，以免影响跑步成绩！");
         })
         //宠物
          axios.get('http://no37.store:8080/AK/ShowPet',{
@@ -191,7 +193,7 @@ export default {
         })      //获取失败
         .catch(error=>{
             console.log(error);
-            alert('网络错误，不能访问');
+            alert('网络错误，不能访问6');
         })
         // 主页
         axios.get('http://no37.store:8080/AK/zhuye1',{
@@ -208,7 +210,7 @@ export default {
         })      //获取失败
         .catch(error=>{
             console.log(error);
-            alert('网络错误，不能访问');
+            alert('网络错误，不能访问5');
         })
         // 公告
         axios.get('http://no37.store:8080/AK/gonggao1',{
@@ -221,7 +223,7 @@ export default {
         })      //获取失败
         .catch(error=>{
             console.log(error);
-            alert('网络错误，不能访问');
+            alert('网络错误，不能访问4');
         })
         // 学生认证信息
         if(localStorage.getItem("yhsf") == 0) {
@@ -235,11 +237,12 @@ export default {
                     this.xiaoqu = response.data.yhxx;
                     this.show = false;
                     this.ow = true;
+                    this.laji = true;
                 }
             })      //获取失败
             .catch(error=>{
                 console.log(error);
-                alert('网络错误，不能访问');
+                alert('网络错误，不能访问3');
             })
         }
         //老师认证信息
@@ -257,7 +260,7 @@ export default {
             })      //获取失败
             .catch(error=>{
                 console.log(error);
-                alert('网络错误，不能访问');
+                alert('网络错误，不能访问2');
             })
         }
         else {
@@ -275,6 +278,9 @@ export default {
         };
     },
     methods: {
+        niubei(){
+            
+        },
         aim_show() {
             this.popupAim = !this.popupAim;
             let uhWidth = document.body.clientWidth;
@@ -325,7 +331,7 @@ export default {
                 })      //获取失败
                 .catch(error=>{
                     console.log(error);
-                    alert('网络错误，不能访问');
+                    alert('网络错误，不能访问1');
                 })
             }
             
@@ -360,6 +366,14 @@ export default {
 </script>
 
 <style scoped>
+    .pbgz{
+         position: absolute;
+         z-index: 100;
+         width: 50px;
+         height: 30px;
+         top: 5px;
+         right: 10px;
+    }
     .index{
         width: 100%;
         height: 100%;
