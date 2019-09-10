@@ -289,7 +289,13 @@
             },
             // 点击宠物信息触发
             blood:function(){
-                if(localStorage.getItem("cw")==1&&this.num >= 120){
+                 this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                    params: {
+                       yhid:this.yhid
+                    }
+                }).then(response=>{
+                    response.data.cw;
+                    if(response.data.cw==1&&this.num >= 120){
                     this.visible = true;
                 }else{
                     // 没有宠物时的提示
@@ -299,10 +305,18 @@
                         
                     })
                 }  
+                });
+                
             },
             // 点击饥饿度触发
             skill(){
-                 if(localStorage.getItem("cw")==1&&this.num >= 120){
+                 this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                    params: {
+                       yhid:this.yhid
+                    }
+                }).then(response=>{
+                    response.data.cw;
+                    if(response.data.cw==1&&this.num >= 120){
                     this.visible_skill = true;
                 }else{
                     // 没有宠物时的提示
@@ -312,10 +326,18 @@
                         
                     })
                 }  
+                });
+                 
             },
             // 点击加成值触发
             force(){
-                if(localStorage.getItem("cw")==1&&this.num >= 120){
+                this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                    params: {
+                       yhid:this.yhid
+                    }
+                }).then(response=>{
+                    response.data.cw;
+                    if(response.data.cw==1&&this.num >= 120){
                     this.visible_force = true;
                     this.axios.get('http://no37.store:8080/AK/AddValue',{
                     params: {
@@ -335,9 +357,16 @@
                         
                     })
                 } 
+                });
             },
             bag(){
-                if(this.num >= 120){
+                 this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                    params: {
+                       yhid:this.yhid
+                    }
+                }).then(response=>{
+                    response.data.cw;
+                    if(this.num >= 120&&response.data.cw==1){
                     // 路由跳转-》背包界面
                     this.$router.replace('/bag');
                 }else{
@@ -348,6 +377,7 @@
                         
                     })
                 }  
+                });
             },
             routerRefresh() {
                 window.location.reload();
