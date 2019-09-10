@@ -77,7 +77,6 @@ export default {
         axios.get('http://no37.store:8080/AK/lookShop',{
             })
             .then(response=>{
-                console.log(response);
                 this.goodslist = response.data;
             })      //获取失败
             .catch(error=>{
