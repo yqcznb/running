@@ -59,14 +59,14 @@ export default {
                     if(this.num==1){
                         alert("登录成功")
                         this.$router.replace('/footer/index');
-                        this.$store.dispatch("userLogin", true);
+                        this.$store.dispatch("login", true);
                         this.$store.dispatch("yh",response.data.yhid);
-                        localStorage.setItem("Flag", "isLogin");
                         localStorage.setItem("yhid",response.data.yhid);
                         localStorage.setItem("password",this.password);
                         localStorage.setItem("yhsf",response.data.yhsf);
                         localStorage.setItem("egg_success",1)
-                        localStorage.setItem("v",false)
+                        localStorage.setItem("v",false);
+
                     }else if(this.num==0){
                         alert("账号或密码错误")
                     }

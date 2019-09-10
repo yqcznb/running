@@ -57,3 +57,33 @@ new Vue({
 Object.defineProperties(Vue.prototype, {
   echarts: { get: () => echarts }
 });
+VueRouter.beforeEach((to, from, next) => {
+  if (to.matched.some((r) => r.meta.requireAuth)) {
+    let user = JSON.parse(localStorage.getItem('login'));
+    if (user) {   //判断是否已经登录
+      console.log('这是通过拦截后到处理',from);
+        
+      next();
+    } else {
+      next({
+        path: '/login',
+        query: {redirect: to.fullPath}   //登录成功后重定向到当前页面
+      });
+    }
+  } else {
+    console.log('这是拦截');
+    next();
+  }
+  //如果本地 存在 token 则 不允许直接跳转到 登录页面
+  if(to.fullPath === "/login"){
+    if(localStorage.getItem('login')){
+      next({
+        path:from.fullPath
+      });
+    }else {
+      next();
+    }
+  }
+});
+export default VueRouter;
+
