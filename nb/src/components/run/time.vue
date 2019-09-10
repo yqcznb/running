@@ -144,7 +144,7 @@ export default {
                           self.visible = true;
                           self.texts[i].text=`<img style="width:25px;" src="http://no37.store/bzh.png">`,
                           self.texts[i].position = ["",""]
-                           if(this.sfcw == 0){
+                           if(self.sfcw == 0){
                              self.count = "得宠物蛋一枚！";
                              self.imgg = require("../../assets/img/dan2.png");
                              self.cw = 1;

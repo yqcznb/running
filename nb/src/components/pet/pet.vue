@@ -5,7 +5,7 @@
         <div class="pet_head">
             <ul class="head">
                 <router-link to="/confirm"  @click.native="routerRefresh">
-                    <li class="xiaoqu" v-if="show1">{{xiaoqu1}}</li>
+                    <li class="xiaoqu" v-if="show1">{{xiaoqu}}</li>
                 </router-link>
                 <li class="xiaoqu" v-if="show">{{xiaoqu}}</li>
                 <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{tongzhi}}</li>
@@ -154,8 +154,7 @@
         name: 'frame',
         data(){
             return{
-                xiaoqu: '',
-                xiaoqu1: '未认证（点击认证）',
+                xiaoqu: '未认证（点击认证）',
                 tongzhi: '',
                 visible: false,
                 visible_skill: false,
@@ -175,7 +174,7 @@
                 gensui: false,
                 bugs: false,
                 show1: true,
-                show: false,
+                showw: false,
                 value:"跟随",
                 dan_value: '1',
                 isTrue: 'bim',
@@ -203,7 +202,7 @@
             }
         },
         // 后台接口获取官方通知的内容
-        created:function(){
+        created(){
             
             this.axios.get('http://no37.store:8080/AK/gonggao1',{
                 params: {
@@ -214,15 +213,16 @@
                 }).catch(error=>{
             console.log(error);
             alert('网络错误，不能访问');
-        });
+        })
         // 校区认证
         this.axios.get('http://no37.store:8080/AK/SelectXsID',{
             params: {
-                yhid:this.yhid
+                yhid:localStorage.getItem("yhid")
             }
         })
         .then(response=>{
-            if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
+          
+            if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
                 this.xiaoqu = response.data.yhxx;
                 // 获取后隐藏认证提示
                 this.show1 = false;

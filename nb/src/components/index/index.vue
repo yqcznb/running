@@ -1,12 +1,11 @@
 <template>
   <div class="index">
     <ul class="heard">
-        <router-link to="/confirm" v-if="show">
+        <router-link to="/confirm" v-if="show" @click.native="routerRefresh">
                <li class="xiaoqu">{{xiaoqu}}</li>
         </router-link>
          <li class="xiaoqu" v-if="ow" >{{xiaoqu}}</li>
         <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{ggnr}}</li>
-        <button class="pbgz" v-if="laji" @click="niubei">规则</button>
     </ul>
     <router-view></router-view>
     <div class="caochang">
@@ -278,8 +277,11 @@ export default {
         };
     },
     methods: {
+         routerRefresh() {
+            window.location.reload();
+        },
         niubei(){
-            
+
         },
         aim_show() {
             this.popupAim = !this.popupAim;
