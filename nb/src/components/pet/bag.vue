@@ -930,7 +930,8 @@ export default {
                     }
                 }).then(response=>{
                         response.data[0].zbid;
-                        if(response.data[0].zbid == 1){
+                        console.log(response.data[1].zbid);
+                        if(response.data[0].zbid > 0){
                             this.yanse1_1 = 'rgb(230, 28, 163)';
                         }
                     });
@@ -939,8 +940,8 @@ export default {
                         yhid: localStorage.getItem("yhid"),
                     }
                 }).then(response=>{
-                        response.data[1].zbid;
-                        if(response.data[1].zbid == 1){
+                        console.log(response.data[1].zbid);
+                        if(response.data[1].zbid > 0){
                             this.yanse1_2 = 'rgb(230, 28, 163)';
                         }
                     }); 
@@ -950,7 +951,8 @@ export default {
                     }
                 }).then(response=>{
                         response.data[2].zbid;
-                        if(response.data[2].zbid == 1){
+                        console.log(response.data[1].zbid);
+                        if(response.data[2].zbid >0){
                             this.yanse1_3 = 'rgb(230, 28, 163)';
                         }
                     }); 
@@ -960,7 +962,8 @@ export default {
                     }
                 }).then(response=>{
                         response.data[3].zbid;
-                        if(response.data[3].zbid == 1){
+                        console.log(response.data[1].zbid);
+                        if(response.data[3].zbid >0){
                             this.yanse1_4 = 'rgb(230, 28, 163)';
                         }
                     });  
@@ -970,7 +973,8 @@ export default {
                     }
                 }).then(response=>{
                         response.data[4].zbid;
-                        if(response.data[4].zbid == 1){
+                        console.log(response.data[1].zbid);
+                        if(response.data[4].zbid >0){
                             this.yanse2_1 = 'rgb(230, 28, 28)';
                         }
                     }); 
@@ -980,7 +984,8 @@ export default {
                     }
                 }).then(response=>{
                         response.data[5].zbid;
-                        if(response.data[5].zbid == 1){
+                        console.log(response.data[1].zbid);
+                        if(response.data[5].zbid >0){
                             this.yanse2_2 = 'rgb(230, 28, 28)';
                         }
                     }); 
@@ -990,7 +995,8 @@ export default {
                     }
                 }).then(response=>{
                         response.data[6].zbid;
-                        if(response.data[6].zbid == 1){
+                        console.log(response.data[1].zbid);
+                        if(response.data[6].zbid >0){
                             this.yanse2_3 = 'rgb(230, 28, 28)';
                         }
                     }); 
@@ -1000,7 +1006,8 @@ export default {
                     }
                 }).then(response=>{
                         response.data[7].zbid;
-                        if(response.data[7].zbid == 1){
+                        console.log(response.data[1].zbid);
+                        if(response.data[7].zbid >0){
                             this.yanse2_4 = 'rgb(230, 28, 28)';
                         }
                     }); 
@@ -1010,7 +1017,8 @@ export default {
                     }
                 }).then(response=>{
                         response.data[8].zbid;
-                        if(response.data[8].zbid == 1){
+                        console.log(response.data[1].zbid);
+                        if(response.data[8].zbid >0){
                             this.yanse3_1 = 'rgb(88, 177, 236)';
                         }
                     }); 
@@ -1020,7 +1028,8 @@ export default {
                     }
                 }).then(response=>{
                         response.data[9].zbid;
-                        if(response.data[9].zbid == 1){
+                        console.log(response.data[1].zbid);
+                        if(response.data[9].zbid >0){
                             this.yanse3_2 = 'rgb(88, 177, 236)';
                         }
                     });
@@ -1030,7 +1039,8 @@ export default {
                     }
                 }).then(response=>{
                         response.data[10].zbid;
-                        if(response.data[10].zbid == 1){
+                        console.log(response.data[1].zbid);
+                        if(response.data[10].zbid >0){
                             this.yanse3_3 = 'rgb(88, 177, 236)';
                         }
                     });
@@ -1040,7 +1050,8 @@ export default {
                     }
                 }).then(response=>{
                         response.data[11].zbid;
-                        if(response.data[11].zbid == 1){
+                        console.log(response.data[1].zbid);
+                        if(response.data[11].zbid >0){
                             this.yanse3_4 = 'rgb(88, 177, 236)';
                         }
                     });
