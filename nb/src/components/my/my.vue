@@ -4,7 +4,7 @@
             <div id="my_head">
                 <div id="head_left">
                     <h4><span v-text="uname"></span> <router-link to='/confirm' @click.native="routerRefresh"><i :class="if_rz" class="iconfont iconwrz"></i></router-link></h4>
-                    <h5><router-link to="/drole">{{ uduan }}段位 》</router-link></h5>
+                    <h5><span v-text="uduan"></span>段位</h5>
                     <img :src='levelImg' class="levelimg" >
                     <router-link to="/ex_bonus" >
                         <span class="ex-bonus">我的积分 》</span>
@@ -129,7 +129,6 @@ export default {
                 yhid:localStorage.getItem("yhid"),ydrqOne:this.ydrqOne,ydrqTwo:this.ydrqTwo,
             }})
             .then(response=>{
-                // console.log(response);
                 // 运动距离
                 this.miledate.splice(0,1,Number(response.data[0].ydjl*1000));
                 this.miledate.splice(1,1,Number(response.data[1].ydjl*1000));
@@ -157,7 +156,6 @@ export default {
                 this.speeddate.splice(10,1,parseInt(response.data[10].ydsj/60));
                 this.speeddate.splice(11,1,parseInt(response.data[11].ydsj/60));
                 this.drawLine();
-                // console.log(_this.miledate);
             })      //获取失败
             .catch(error=>{
                 alert('网络错误，不能访问');
@@ -173,7 +171,6 @@ export default {
             // 图表自适应
             window.onresize = function(){myChart.resize();}
             // 绘制图表
-            console.log(this.miledate);
             let miledate = this.miledate;
             let speeddate = this.speeddate;
             myChart.setOption({
@@ -351,7 +348,7 @@ export default {
     .have_not_rz:before {
         color:lightgray;
     }
-    h5 a{
+    h5 {
         text-decoration: none;
         color: rgba(253, 185, 51, 0.89);
         /* color: #999999; */

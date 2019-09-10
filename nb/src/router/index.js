@@ -6,7 +6,6 @@ import my from '@/components/my/my'
 import tea_special from '@/components/my/tea_special'
 import backbar from '@/components/my/template/backbar'
 import pinform from '@/components/my/settings/pinform/pinform'
-import drole from '@/components/my/my_head/drole'
 import ex_bonus from '@/components/my/my_head/ex-bonus'
 import settings from '@/components/my/settings/settings'
 import idsafe from '@/components/my/settings/idsafe/idsafe'
@@ -135,11 +134,6 @@ export default new Router({
       path: '/pinform',
       name: 'pinform',
       component: pinform,
-    },
-    {
-      path: '/drole',
-      name: 'drole',
-      component: drole,
     },
     {
       path: '/ex_bonus',
