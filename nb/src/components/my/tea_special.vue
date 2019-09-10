@@ -8,8 +8,9 @@
         </div>
         <div class="list_box">
             <div class="toper">
+                <img src="../../assets/img/my/rank_list/20.png" alt="" class="toper_bonus">
+                <span v-text="stu_run_data[0].yhnc" class="nc_toper"></span>
                 <img :src="stu_run_data[0].yhtx" alt="" class="top_one">
-                {{stu_run_data[0].yhnc}}
             </div>
             <div class="tishi">
                 <span>TOP</span>
@@ -114,11 +115,16 @@ export default {
         display: flex;
         align-items: center;
     }
+    .toper_bonus {
+        width: 10%;
+        margin-right: 1ex;
+    }
     .top_one {
         position: relative;
         width: 20%;
         max-width: 80px;
         border-radius: 25%;
+        margin-left: 1em;
     }
     .tishi {
         border-radius: 7px;

@@ -130,33 +130,6 @@ export default new Router({
       path: '/backbar',
       name: 'backbar',
       component: backbar,
-      // children:[
-      //   {
-      //     path: 'idsafe',
-      //     name: 'idsafe',
-      //     component: idsafe,
-      //   },
-      //   {
-      //     path: 'privacy',
-      //     name: 'privacy',
-      //     component: privacy,
-      //   },
-      //   {
-      //     path: 'on',
-      //     name: 'on',
-      //     component: on,
-      //   },
-      //   {
-      //     path: 'ppolicy',
-      //     name:'ppolicy',
-      //     component: ppolicy,
-      //   },
-      //   {
-      //     path: 'switchid',
-      //     name: 'switchid',
-      //     component: switchid,
-      //   },
-      // ]
     },
     {
       path: '/pinform',

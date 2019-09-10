@@ -16,8 +16,9 @@
             <mt-tab-container v-model="selected">
                 <mt-tab-container-item id="1">
                     <div class="toper">
+                        <img src="../../assets/img/my/rank_list/20.png" alt="" class="toper_bonus">
+                        <span v-text="run_list[0].yhnc" class="nc_toper"></span>
                         <img :src="run_list[0].yhtx" alt="" class="top_one">
-                        {{run_list[0].yhnc}}
                     </div>
                     <div class="tishi">
                         <span>TOP</span>
@@ -41,8 +42,9 @@
                 </mt-tab-container-item>
                 <mt-tab-container-item id="2">
                     <div class="toper">
+                        <img src="../../assets/img/my/rank_list/20.png" alt="" class="toper_bonus">
+                        <span v-text="run_list[0].yhnc" class="nc_toper"></span>
                         <img :src="run_list[0].yhtx" alt="" class="top_one">
-                        {{run_list[0].yhnc}}
                     </div>
                     <div class="tishi">
                         <span>TOP</span>
@@ -66,8 +68,9 @@
                 </mt-tab-container-item>
                 <mt-tab-container-item id="3">
                     <div class="toper">
+                        <img src="../../assets/img/my/rank_list/20.png" alt="" class="toper_bonus">
+                        <span v-text="run_list[0].yhnc" class="nc_toper"></span>
                         <img :src="run_list[0].yhtx" alt="" class="top_one">
-                        {{run_list[0].yhnc}}
                     </div>
                     <div class="tishi">
                         <span>TOP</span>
@@ -213,11 +216,16 @@ export default {
         display: flex;
         align-items: center;
     }
+    .toper_bonus {
+        width: 10%;
+        margin-right: 1ex;
+    }
     .top_one {
         position: relative;
         width: 20%;
         max-width: 80px;
         border-radius: 25%;
+        margin-left: 1em;
     }
     .list_box {
         /* border: 1px solid red; */
@@ -230,6 +238,7 @@ export default {
         right: 0;
         margin: 0 auto;
         position: relative;
+        overflow-y: scroll;
     }
     ul {
         margin: 0;
