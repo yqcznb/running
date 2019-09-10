@@ -1072,6 +1072,9 @@ export default {
         background-color: rgb(83, 83, 83);
         margin-bottom: 2%;
     }
+    .back_bar a {
+        color: #dec674;
+    }
 
     .back_bar .title {
         color: rgb(222, 198, 116);

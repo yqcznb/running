@@ -3,9 +3,8 @@
         <router-link :to="{name:'pinform',params:{backey:'/footer/my'}}">
             <div id="my_head">
                 <div id="head_left">
-
                     <h4><span v-text="uname"></span> <router-link to='/confirm' @click.native="routerRefresh"><i :class="if_rz" class="iconfont iconwrz"></i></router-link></h4>
-                    <h5><router-link to="/drole">{{ uduan }}段位 》</router-link></h5>
+                    <h5><span v-text="uduan"></span>段位</h5>
                     <img :src='levelImg' class="levelimg" >
                     <router-link to="/ex_bonus" >
                         <span class="ex-bonus">我的积分 》</span>
@@ -19,9 +18,7 @@
         </router-link>
         <div id="myChart" :auto-resize='autoresize'></div>
         <div id="run_data">
-
             <router-link to="/run_data_detail">
-
                 <div id="details">
                     <i class="iconfont icontiyu-paobu"></i><span class="">跑步数据详情</span><i class="iconfont iconfanhui iconfont-right"></i>
                 </div>
@@ -33,15 +30,12 @@
                 </div>
             </router-link>
         </div>
-
         <router-link to="/tea_special">
-
             <div id="tea_special" v-show="tea_special">
                 <i class="iconfont iconxuesheng"></i><span>学生跑步数据</span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>
         </router-link>
         <router-link :to="mode">
-
             <div id="settings">
                 <i class="iconfont iconsettings"></i><span>设置</span><i class="iconfont iconfanhui iconfont-right"></i>
             </div>
@@ -125,20 +119,47 @@ export default {
         if(localStorage.getItem("yhsf") == 1) {
             this.tea_special = true;
         }
+        
+        // this.drawLine();
+    },
+    mounted(){
         // 近期跑步数据请求
         axios.get('http://no37.store:8080/AK/SelectMove',{
             params: {
                 yhid:localStorage.getItem("yhid"),ydrqOne:this.ydrqOne,ydrqTwo:this.ydrqTwo,
             }})
             .then(response=>{
-                // console.log(response);
+                // 运动距离
+                this.miledate.splice(0,1,Number(response.data[0].ydjl*1000));
+                this.miledate.splice(1,1,Number(response.data[1].ydjl*1000));
+                this.miledate.splice(2,1,Number(response.data[2].ydjl*1000));
+                this.miledate.splice(3,1,Number(response.data[3].ydjl*1000));
+                this.miledate.splice(4,1,Number(response.data[4].ydjl*1000));
+                this.miledate.splice(5,1,Number(response.data[5].ydjl*1000));
+                this.miledate.splice(6,1,Number(response.data[6].ydjl*1000));
+                this.miledate.splice(7,1,Number(response.data[7].ydjl*1000));
+                this.miledate.splice(8,1,Number(response.data[8].ydjl*1000));
+                this.miledate.splice(9,1,Number(response.data[9].ydjl*1000));
+                this.miledate.splice(10,1,Number(response.data[10].ydjl*1000));
+                this.miledate.splice(11,1,Number(response.data[11].ydjl*1000));
+                // 运动速度
+                this.speeddate.splice(0,1,parseInt(response.data[0].ydsj/60));
+                this.speeddate.splice(1,1,parseInt(response.data[1].ydsj/60));
+                this.speeddate.splice(2,1,parseInt(response.data[2].ydsj/60));
+                this.speeddate.splice(3,1,parseInt(response.data[3].ydsj/60));
+                this.speeddate.splice(4,1,parseInt(response.data[4].ydsj/60));
+                this.speeddate.splice(5,1,parseInt(response.data[5].ydsj/60));
+                this.speeddate.splice(6,1,parseInt(response.data[6].ydsj/60));
+                this.speeddate.splice(7,1,parseInt(response.data[7].ydsj/60));
+                this.speeddate.splice(8,1,parseInt(response.data[8].ydsj/60));
+                this.speeddate.splice(9,1,parseInt(response.data[9].ydsj/60));
+                this.speeddate.splice(10,1,parseInt(response.data[10].ydsj/60));
+                this.speeddate.splice(11,1,parseInt(response.data[11].ydsj/60));
+                this.drawLine();
             })      //获取失败
             .catch(error=>{
                 alert('网络错误，不能访问');
             })
-    },
-    mounted(){
-        this.drawLine();
     },
     methods: {
         routerRefresh() {
@@ -188,7 +209,7 @@ export default {
                     }
                 },
                 legend : {
-                    data : [ '里程' ,'配速']
+                    data : [ '里程/m' ,'时间/min']
                 },
                 xAxis : [ {
                     type : 'category',
@@ -243,7 +264,7 @@ export default {
                     },
                 }}],
                 series: [ {
-                    name : '里程',
+                    name : '里程/m',
                     smooth: 'true',
                     type : 'line',
                     itemStyle: {normal: { color: '#5eb5d7',lineStyle: {color: '#5eb5d7'}}},
@@ -251,7 +272,7 @@ export default {
                         color: new this.$echarts.graphic.LinearGradient(0, 0, 0, 1, [{offset: 0, color: '#84eded'},{offset: 0.8, color: '#f3fffc'}])},
                     data: miledate
                 },{
-                    name : '配速',
+                    name : '时间/min',
                     smooth: 'true',
                     type : 'line',                                itemStyle: {normal: { color: '#e56f7f'}},
                     yAxisIndex : 1,
@@ -283,7 +304,7 @@ export default {
         left: 0;
         right: 0;
         margin: 0 auto;
-        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+        background: linear-gradient(top,#bed3df,#fcefd5);
     }
     #my_head,#run_data,#settings,#tea_special {
         width: 90%;
@@ -327,7 +348,7 @@ export default {
     .have_not_rz:before {
         color:lightgray;
     }
-    h5 a{
+    h5 {
         text-decoration: none;
         color: rgba(253, 185, 51, 0.89);
         /* color: #999999; */

@@ -19,20 +19,6 @@
                 </div>
             </router-link>
         </div>
-        <div id="mode-privacy-on">
-            <router-link :to="{name:'privacy'}">
-                <div id="privacy">
-                    <span>隐私</span><i class="iconfont iconfanhui iconfont-right"></i>
-                </div>
-            </router-link>
-            <hr>
-            <router-link :to="{name:'on'}">
-                <div id="on">
-                    <span>关于</span><i class="iconfont iconfanhui iconfont-right"></i>
-                </div>
-                
-            </router-link>
-        </div>
         <div id="change-logout">
             <router-link :to="{name:'switchid'}">
                 <div id="change">
@@ -94,7 +80,7 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+        background: linear-gradient(top,#bed3df,#fcefd5);
     }
     a {
         text-decoration: none;
@@ -143,7 +129,7 @@ export default {
         right: 7%;
     }
     #mode-privacy-on {
-        height: 16%;
+        height: 8%;
         /* margin-bottom: 3%; */
         line-height: 260%; 
     }

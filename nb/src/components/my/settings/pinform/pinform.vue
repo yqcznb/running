@@ -168,7 +168,7 @@ export default {
                 var img = new Image();
                 img.src = dataURL;
                 img.onload = function() {
-                    if(Math.abs(img.width - img.height) >= 20) {
+                    if(Math.abs(img.width - img.height) >= 30) {
                         _this.popupHeadC = false;
                         MessageBox.alert('请重新选择长宽比为一的图片', '提示').then(action => {
                             _this.popupHeadC = true;
@@ -227,7 +227,7 @@ export default {
         position: absolute;
         top: 0;
         left: 0;
-        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+        background: linear-gradient(top,#bed3df,#fcefd5);
     }
     #back_bar a {
         text-decoration: none;
@@ -358,7 +358,7 @@ export default {
     }
     /* 头像修改 */
     .update_head,.update_name {
-        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
+        background: linear-gradient(top,#bed3df,#fcefd5);
         overflow: hidden;
     }
     .cancelUH,.cancelUN {

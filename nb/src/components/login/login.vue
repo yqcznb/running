@@ -3,6 +3,7 @@
         <div class="login_continue">
             <span>趣跑登录</span> 
         </div>
+        <img src="../../assets/img/logo.jpg" alt="" class="fr_logo">
         <form>
             <input type="text" placeholder="手机号" v-model="username">
             <input type="password" placeholder="登录密码"  v-model="password">
@@ -90,9 +91,11 @@ export default {
         margin: 0 auto;
         background-color: white;
     }
-    form{
-        margin-top: 60px;  
-      }
+    .fr_logo {
+        height: 15%;
+        margin: 1em auto 1ex;
+        border-radius: 50%;
+    }
     a {
         text-decoration: none;
     }
@@ -117,7 +120,7 @@ export default {
     .login_continue {
         width: 100%;
         height: 44px;
-        position: fixed;
+        position: relative;
         top: 0;
         text-align: center;
         background-color: #fffbfb;
