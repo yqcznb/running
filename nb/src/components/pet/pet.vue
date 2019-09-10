@@ -559,9 +559,11 @@
         
             switch1(){
                  localStorage.setItem("cwgs",1)
+                alert("宠物跟随设置成功！")
             },
             switch2(){
                  localStorage.removeItem("cwgs")
+                  alert("宠物已取消跟随！")
             },
         },
         mounted(){

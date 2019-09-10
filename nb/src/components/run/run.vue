@@ -227,7 +227,7 @@ export default {
            MessageBox.confirm('', { 
          message: '当前时间为不是学校规定跑步时间，你可以选择自由跑，自由跑不会关联成绩', 
          title: '提示', 
-         confirmButtonText: '晨跑', 
+         confirmButtonText: '自由跑', 
          cancelButtonText: '取消' 
          }).then(action => { 
          if (action == 'confirm') {     //确认的回调
