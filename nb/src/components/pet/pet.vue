@@ -7,6 +7,7 @@
                 <router-link to="/confirm"  @click.native="routerRefresh">
                     <li class="xiaoqu" v-if="show1">{{xiaoqu}}</li>
                 </router-link>
+
                 <li class="xiaoqu" v-if="showw">{{xiaoqu}}</li>
                 <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{tongzhi}}</li>
             </ul>
@@ -344,6 +345,7 @@
                          yhid:this.yhid
                     }
                 }).then(response=>{
+
                     this.jcz = response.data.yhjc;
                     response.data.yhjed;
                     this.jed = response.data.yhjed;
