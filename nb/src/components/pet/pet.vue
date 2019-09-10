@@ -7,7 +7,7 @@
                 <router-link to="/confirm"  @click.native="routerRefresh">
                     <li class="xiaoqu" v-if="show1">{{xiaoqu}}</li>
                 </router-link>
-                <li class="xiaoqu" v-if="show">{{xiaoqu}}</li>
+                <li class="xiaoqu" v-if="showw">{{xiaoqu}}</li>
                 <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{tongzhi}}</li>
             </ul>
         </div>
@@ -226,10 +226,11 @@
           
             if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
                 this.xiaoqu = response.data.yhxx;
+                console.log( "xq"+this.xiaoqu)
                 // 获取后隐藏认证提示
                 this.show1 = false;
                 // 显示认证的校区
-                this.show = true;
+                this.showw = true;
             }
         })      //获取失败
         .catch(error=>{
