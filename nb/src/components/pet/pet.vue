@@ -226,7 +226,7 @@
           
             if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
                 this.xiaoqu = response.data.yhxx;
-                console.log( "xq"+this.xiaoqu)
+                // console.log( "xq"+this.xiaoqu)
                 // 获取后隐藏认证提示
                 this.show1 = false;
                 // 显示认证的校区
