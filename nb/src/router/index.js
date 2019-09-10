@@ -36,16 +36,14 @@ export default new Router({
       path: '/',
       name: 'login',
       component: login,
-      meta: {
-        isLogin: false
-      }
+     
     },
     {
       path: '/confirm',
       name: 'confirm',
       component: confirm,
       meta: {
-        isLogin: false
+        requireAuth: true, 
       }
     },
     {
@@ -53,7 +51,7 @@ export default new Router({
       name: 'forget',
       component: forget,
       meta: {
-        isLogin: false
+        requireAuth: true, 
       }
     },
     {
@@ -68,32 +66,28 @@ export default new Router({
       path: '/time',
       name: 'time',
       component: time,
-      meta: {
-        isLogin: true
-      }
+      meta: {  requireAuth: true,  },
     },
     {
       path: '/footer',
       name: 'footer',
       component: footer,
       meta: {
-        isLogin: true
+        requireAuth: true, 
       },
       children:[
         {
           path: 'my',
           name: 'my',
           component: my,
-          meta: { checkLogined: true },
+          meta: {  requireAuth: true,  },
           
         },
         {
           path: 'pet',
           name: 'pet',
           component: pet,
-          meta: {
-            isLogin: true
-          },
+          meta: {  requireAuth: true,  },
           children:[
            
           ],
@@ -102,23 +96,19 @@ export default new Router({
         {
           path: '/bag',
           name: 'bag',
-          component: bag,
+          component: bag, meta: {  requireAuth: true,  },
         },
         {
           path: 'index',
           name: 'index',
           component: index,
-          meta: {
-            isLogin: true
-          },
+          meta: {  requireAuth: true,  },
           children:[
             {
               path: 'run',
               name: 'run',
               component: run,
-              meta: {
-                isLogin: false
-              }
+              meta: {  requireAuth: true,  },
             },
           ]
         },
@@ -128,47 +118,47 @@ export default new Router({
     {
       path: '/backbar',
       name: 'backbar',
-      component: backbar,
+      component: backbar, meta: {  requireAuth: true,  },
     },
     {
       path: '/pinform',
       name: 'pinform',
-      component: pinform,
+      component: pinform, meta: {  requireAuth: true,  },
     },
     {
       path: '/ex_bonus',
       name: 'ex_bonus',
-      component: ex_bonus,
+      component: ex_bonus, meta: {  requireAuth: true,  },
     },
     {
       path: '/settings',
       name: 'settings',
-      component: settings,
+      component: settings, meta: {  requireAuth: true,  },
     },
     {
       path: '/idsafe',
       name: 'idsafe',
-      component: idsafe,
+      component: idsafe, meta: {  requireAuth: true,  },
     },
     {
       path: '/switchid',
       name: 'switchid',
-      component: switchid,
+      component: switchid, meta: {  requireAuth: true,  },
     },
     {
       path: '/tea_special',
       name: 'tea_special',
-      component: tea_special,
+      component: tea_special, meta: {  requireAuth: true,  },
     },
     {
       path: '/run_data_detail',
       name: 'run_data_detail',
-      component: run_data_detail,
+      component: run_data_detail, meta: {  requireAuth: true,  },
     },
     {
       path: '/rank_list',
       name: 'rank_list',
-      component: rank_list,
+      component: rank_list, meta: {  requireAuth: true,  },
     },
   ]
 })

@@ -8,7 +8,7 @@
         </router-link>
          <li class="xiaoqu" v-if="ow" >{{xiaoqu}}</li>
         <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{ggnr}}</li>
-        <li class="tong" @click="pmd"><i  class="iconfont icongonggao"></i>{{msgg}}</li>
+        <li class="tong" @click="pmd" v-if="tt"><i  class="iconfont icongonggao"></i>{{msgg}}</li>
     </ul>
     <router-view></router-view>
     <div class="caochang">
@@ -113,6 +113,7 @@ export default {
             xiaoqu:'未认证(点击认证)',
             id:"",
             cp:"",
+            tt:false,
             yp:"",
             xqmb:"",
             ggnr:"",
@@ -262,6 +263,7 @@ export default {
                     this.xiaoqu = response.data.yhxx;
                     this.show = false;
                     this.ow = true;
+                    this.tt = true;
                 }
             })      //获取失败
             .catch(error=>{
