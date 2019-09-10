@@ -8,6 +8,7 @@
         </router-link>
          <li class="xiaoqu" v-if="ow" >{{xiaoqu}}</li>
         <li class="tongzhi"><i  class="iconfont icongonggao"></i>{{ggnr}}</li>
+        <li class="tong" @click="pmd"><i  class="iconfont icongonggao"></i>{{msgg}}</li>
     </ul>
     <router-view></router-view>
     <div class="caochang">
@@ -141,6 +142,9 @@ export default {
             xqmb:"",
             cpcs:"",
             ypcs:"",
+            msg:"",
+            msgg:"",
+            intervalId:"",
         }
     },
     watch: {
@@ -159,6 +163,22 @@ export default {
             this.operate_btn = false;
             this.cancel_text = '完成';
         }
+         axios.get('http://no37.store:8080/AK/countPeople',{
+            params: {
+                yhid: localStorage.getItem("yhid"),     
+            }
+        })
+        .then(response=>{
+            // console.log(response);
+            this.msg=response.data.sum;
+            this.msgg = "今天同校区同学已跑人数为"+this.msg+"人!!!       "
+           
+            
+        })      //获取失败
+        .catch(error=>{
+            console.log(error);
+            alert("请先认证身份信息，以免影响跑步成绩！");
+        })
         //晨跑夜跑时间返回
         axios.get('http://no37.store:8080/AK/backingOutCYP',{
             params: {
@@ -280,14 +300,24 @@ export default {
                 window.screenHeight = window.innerHeight;
                 this.screenHeight = window.screenHeight;
             })()
-        };
+        }
+          this.pmd();
     },
     methods: {
          routerRefresh() {
             window.location.reload();
         },
-        niubei(){
-
+        pmd(){
+            {
+           this.intervalId = setInterval( () => {
+          // 获取第一个字符
+          var start = this.msgg.substring(0,1);
+          // 获取后面字符
+          var end = this.msgg.substring(1);
+          // 重新拼接的到新的字符串，并赋值给this.msg
+          this.msgg = end + start;
+        },200)
+        }
         },
         // 自适应
         aim_show() {
@@ -409,6 +439,11 @@ export default {
         font-weight: bold
     }
     .index .heard .tongzhi{
+        text-align: left;
+        background:rgb(208, 210, 211);
+        padding: 3px;
+    }
+    .index .heard .tong{
         text-align: left;
         background:rgb(208, 210, 211);
         padding: 3px;
