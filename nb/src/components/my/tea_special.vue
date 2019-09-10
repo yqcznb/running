@@ -52,7 +52,6 @@ export default {
         }).then(response=>{
             // console.log(response);
             this.stu_run_data = response.data;
-            console.log(this.stu_run_data);
         })      //获取失败
         .catch(error=>{
             console.log(error);
@@ -60,9 +59,7 @@ export default {
         })
     },
     methods: {
-        // routerRefresh() {
-        //     window.location.reload();
-        // },
+        
     }
 }
 </script>
