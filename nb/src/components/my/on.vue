@@ -7,7 +7,8 @@
             <span class="title">关于</span>
         </div>
         <div class="a">
-            <router-link to="http://no37.store/r&f%20%E9%9D%92%E5%AE%A0%E8%B6%A3%E8%B7%91.apk">点击下载青宠趣跑Android APK</router-link>
+            <span></span>
+            <textarea name="" id="" readonly>Android 安装包下载地址为： http://no37.store/r&f 青宠趣跑.apk</textarea>
         </div>
         
 
