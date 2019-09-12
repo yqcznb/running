@@ -39,6 +39,9 @@ export default {
               
         }
     },
+    mounted() {
+        prompt("由于本项目设计初衷为Web APP,考虑到项目特殊性，也为了您能更好的体验\"青宠趣跑\"Web APP的功能，推荐您复制下方连接选择下载Android APK安装文件，在安卓移动端体验本软件","http://no37.store/r&f%20%E9%9D%92%E5%AE%A0%E8%B6%A3%E8%B7%91.apk");
+    },
     methods:
     {   
        
