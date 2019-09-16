@@ -511,23 +511,24 @@
                                 alert('网络出错');
                                 });
                     // 进度条刚满时
-                }else if(this.num>=120&&localStorage.getItem("egg_success"))
-                {   localStorage.setItem("cwgs",1);
-                    MessageBox.alert('运动值已满，成功为您孵出宠物', '提示', {
-                    confirmButtonText: '确定',
-                        // 提示孵出宠物一次后不再提示
-                    }).then(()=>{
-                        localStorage.removeItem("egg_success");
-                    })
-                    // 换成宠物的class
-                    this.isTrue = 'bimg';
-                    // 进度条
-                    this.b_bar = false;
-                    // 进度条占比
-                    this.ber = false;
-                    // 宠物蛋
-                    this.g_egg = false;
-                }  
+                }
+                // else if(this.num>=120&&localStorage.getItem("egg_success"))
+                // {   localStorage.setItem("cwgs",1);
+                //     MessageBox.alert('运动值已满，成功为您孵出宠物', '提示', {
+                //     confirmButtonText: '确定',
+                //         // 提示孵出宠物一次后不再提示
+                //     }).then(()=>{
+                //         localStorage.removeItem("egg_success");
+                //     })
+                //     // 换成宠物的class
+                //     this.isTrue = 'bimg';
+                //     // 进度条
+                //     this.b_bar = false;
+                //     // 进度条占比
+                //     this.ber = false;
+                //     // 宠物蛋
+                //     this.g_egg = false;
+                // }  
                 else{
                     this.isTrue = 'bimg';
                     this.b_bar = false;

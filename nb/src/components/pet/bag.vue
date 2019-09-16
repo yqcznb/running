@@ -503,7 +503,7 @@ export default {
                     }
                 }).then(response=>{
                         response.data[0].zbid;
-                         if(response.data[0].zbid == 1){
+                         if(response.data[0].zbid >0){
                             this.bq_visible = true;
                         }else{
                             MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
@@ -522,7 +522,7 @@ export default {
                     }
                 }).then(response=>{
                         response.data[1].zbid;
-                        if( response.data[1].zbid == 1){
+                        if( response.data[1].zbid >0){
                             this.bq_visible_2 = true;
                         }else{
                             MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
@@ -541,7 +541,7 @@ export default {
                     }
                 }).then(response=>{
                         response.data[2].zbid;
-                        if( response.data[2].zbid == 1){
+                        if( response.data[2].zbid >0){
                             this.bq_visible_3 = true;
                         }else{
                             MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
@@ -558,7 +558,7 @@ export default {
                     }
                 }).then(response=>{
                          response.data[3].zbid;
-                         if( response.data[3].zbid == 1){
+                         if( response.data[3].zbid >0){
                             this.bq_visible_4 = true;
                         }else{
                             MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
@@ -575,7 +575,7 @@ export default {
                     }
                 }).then(response=>{
                         response.data[4].zbid;
-                        if(response.data[4].zbid == 1){
+                        if(response.data[4].zbid >0){
                             this.ys_visible = true;
                         }else{
                             MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
@@ -592,7 +592,7 @@ export default {
                     }
                 }).then(response=>{
                         response.data[5].zbid;
-                        if(response.data[5].zbid == 1){
+                        if(response.data[5].zbid >0){
                             this.ys_visible_2 = true;
                         }else{
                             MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
@@ -609,7 +609,7 @@ export default {
                     }
                 }).then(response=>{
                         response.data[6].zbid;
-                        if(response.data[6].zbid == 1){
+                        if(response.data[6].zbid >0){
                             this.ys_visible_3 = true;
                         }else{
                             MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
@@ -626,7 +626,7 @@ export default {
                     }
                 }).then(response=>{
                         response.data[7].zbid;
-                        if(response.data[7].zbid == 1){
+                        if(response.data[7].zbid >0){
                             this.ys_visible_4 = true;
                         }else{
                             MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
@@ -643,7 +643,7 @@ export default {
                     }
                 }).then(response=>{
                         response.data[8].zbid;
-                        if(response.data[8].zbid == 1){
+                        if(response.data[8].zbid >0){
                             this.jy_visible = true;
                         }else{
                             MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
@@ -660,7 +660,7 @@ export default {
                     }
                 }).then(response=>{
                         response.data[9].zbid;
-                        if(response.data[9].zbid == 1){
+                        if(response.data[9].zbid >0){
                             this.jy_visible_2 = true;
                         }else{
                             MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
@@ -677,7 +677,7 @@ export default {
                     }
                 }).then(response=>{
                         response.data[10].zbid;
-                        if(response.data[10].zbid == 1){
+                        if(response.data[10].zbid >0){
                             this.jy_visible_3 = true;
                         }else{
                             MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
@@ -694,7 +694,7 @@ export default {
                     }
                 }).then(response=>{
                         response.data[11].zbid;
-                        if(response.data[11].zbid == 1){
+                        if(response.data[11].zbid >0){
                             this.jy_visible_4 = true;
                         }else{
                             MessageBox.alert("您还未拥有，去我的积分兑换吧").then(action => {
