@@ -442,12 +442,12 @@ export default {
     }
     .index .heard .tongzhi{
         text-align: left;
-        background:rgb(208, 210, 211);
+        background:bed3df;
         padding: 3px;
     }
     .index .heard .tong{
         text-align: left;
-        background:rgb(208, 210, 211);
+        background:bed3df;
         padding: 3px;
     }
     .index .caochang{
