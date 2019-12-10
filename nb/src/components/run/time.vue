@@ -262,20 +262,20 @@ export default {
        
      },1000);
 
-   this.axios.get('http://no37.store:8080/AK/ShowPet',{
-          params: {
-              yhid:this.yhid,
-          }
-      }).then(response=>{
+  //  this.axios.get('http://no37.store:8080/AK/ShowPet',{
+  //         params: {
+  //             yhid:this.yhid,
+  //         }
+  //     }).then(response=>{
              
-              this.sfcw=response.data.cw; 
+  //             this.sfcw=response.data.cw; 
              
               
-            })      //获取失败
-            .catch(error=>{
-                console.log(error);
-                alert('网络错误，不能访问');
-            })  
+  //           })      //获取失败
+  //           .catch(error=>{
+  //               console.log(error);
+  //               alert('网络错误，不能访问');
+  //           })  
 
   },
   methods: {
