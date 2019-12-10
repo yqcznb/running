@@ -8,7 +8,7 @@
         </div>
         <span class="datetitle">请选择日期</span> <input type="text" @click="csdate" v-model="datedata" class="datedata" readonly>
         <div id="myChart" :auto-resize='autoresize'></div>
-        <span class="chartitle">本月运动时间(h)</span>
+        <span class="chartitle">本月运动时间占比</span>
 
         <transition name="Dpicker">
             <div class="Dpicker" v-show="showdate">
@@ -58,18 +58,18 @@ export default {
             ]
         }
     },
-    // created() {
-    //     axios.get('http://no37.store:8080/AK/MoveAction',{
-    //         params: {
-    //             yhid:1,ydrqOne:2019,ydrqTwo:6,
-    //         }})
-    //         .then(response=>{
-    //             this.get_run_data = response.data;
-    //         })      //获取失败
-    //         .catch(error=>{
-    //             alert('网络错误，不能访问');
-    //         })
-    // },
+    created() {
+        // axios.get('http://no37.store:8080/AK/MoveAction',{
+        //     params: {
+        //         yhid:1,ydrqOne:2019,ydrqTwo:6,
+        //     }})
+        //     .then(response=>{
+        //         this.get_run_data = response.data;
+        //     })      //获取失败
+        //     .catch(error=>{
+        //         alert('网络错误，不能访问');
+        //     })
+    },
     mounted(){
         this.dateDefault();
     },
@@ -122,10 +122,9 @@ export default {
             let ycsize = xcsize;
             let cellSize = [xcsize, ycsize];
             let pieRadius = xcsize*3/8;
-
             function getVirtulData(daydate,dayend) {
-                var date = +echarts.number.parseDate('2017-02-01');
-                var end = +echarts.number.parseDate('2017-03-01');
+                var date = +echarts.number.parseDate(daydate);
+                var end = +echarts.number.parseDate(dayend);
                 var dayTime = 3600 * 24 * 1000;
                 var data = [];
                 for (var time = date; time < end; time += dayTime) {
@@ -136,11 +135,10 @@ export default {
                 }
                 return data;
             }
-
             function getPieSeries(scatterData, chart) {
                 return echarts.util.map(scatterData, function (item, index) {
-                    let value2 = Math.round(Math.random() * 3);
-                    let value1 = (24-value2);
+                    let value2 = Math.round(Math.random() * 6);
+                    let value1 = 24-value2;
                     var center = chart.convertToPixel('calendar', item);
                     return {
                         id: index + 'pie',
@@ -154,13 +152,12 @@ export default {
                         },
                         radius: pieRadius,
                         data: [
-                            {name: '非运动', value: Math.round(Math.random() * 24), itemStyle: {color: '#eea2a4'} },
-                            {name: '运动', value: Math.round(Math.random() * 24), itemStyle: {color: '#7bc5ae'} },
+                            {name: '非运动', value: value1, itemStyle: {color: '#eea2a4'} },
+                            {name: '运动', value: value2, itemStyle: {color: '#7bc5ae'} },
                         ]
                     };
                 });
             }
-
             function getPieSeriesUpdate(scatterData, chart) {
                 return echarts.util.map(scatterData, function (item, index) {
                     var center = chart.convertToPixel('calendar', item);
@@ -170,18 +167,13 @@ export default {
                     };
                 });
             }
-
             var scatterData = getVirtulData(this.daydate,this.dayend);
-
             // 绘制图表
             myChart.setOption({
                 tooltip : {},
                 legend: {
                     data: ['非运动', '运动'],
                     bottom: 0,
-                },
-                grid: {
-                    y: 10,
                 },
                 calendar: {
                     top: 'middle',
@@ -219,7 +211,7 @@ export default {
                             offset: [-cellSize[0] / 2 + 10, -cellSize[1] / 2 + 10],
                             textStyle: {
                                 color: '#000',
-                                fontSize: 14,
+                                fontSize: xcsize/4,
                             }
                         }
                     },
@@ -234,7 +226,6 @@ export default {
                         series: getPieSeries(scatterData, myChart)
                     });
                 }, 10);
-
                 app.onresize = function () {
                     if (pieInitialized) {
                         myChart.setOption({
@@ -256,7 +247,7 @@ export default {
         left: 0;
         right: 0;
         margin: 0 auto;
-        background: linear-gradient(top,#bed3df,#fcefd5);
+        background: linear-gradient(top,rgb(199, 195, 197),#f9f6c9);
     }
     a {
         text-decoration: none;
@@ -291,9 +282,8 @@ export default {
         text-align: center;
     }
     #myChart {
-        /* border: 1px solid red; */
         width: 100%;
-        height: 55%;
+        height: 50%;
         display: flex;
         justify-content: center;
         left: 0;

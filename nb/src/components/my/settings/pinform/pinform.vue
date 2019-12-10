@@ -131,26 +131,26 @@ export default {
             this.popupHeadC = !this.popupHeadC;
         },
         axiosFun() {
-            axios.get('http://no37.store:8080/AK/ShowMe',{
-            params: {
-                yhid:localStorage.getItem("yhid"),
-            }})
-            .then(response=>{
-                console.log(response);
-                this.headportrait = response.data.yhtx;
-                if(this.headportrait != this.before_head) {
-                    MessageBox.alert('头像更改成功', '提示');
-                }
-                else {
-                    MessageBox.alert('头像更改失败，请重试', '抱歉').then(action => {
-                        _this.popupHeadC = true;
-                    });
-                }
-            })      
-            //获取失败
-            .catch(error=>{
-                alert('网络错误，不能访问');
-            })
+            // axios.get('http://no37.store:8080/AK/ShowMe',{
+            // params: {
+            //     yhid:localStorage.getItem("yhid"),
+            // }})
+            // .then(response=>{
+            //     console.log(response);
+            //     this.headportrait = response.data.yhtx;
+            //     if(this.headportrait != this.before_head) {
+            //         MessageBox.alert('头像更改成功', '提示');
+            //     }
+            //     else {
+            //         MessageBox.alert('头像更改失败，请重试', '抱歉').then(action => {
+            //             _this.popupHeadC = true;
+            //         });
+            //     }
+            // })      
+            // //获取失败
+            // .catch(error=>{
+            //     alert('网络错误，不能访问');
+            // })
         },
         confirmUH() {
             this.popupHeadC = false;
@@ -197,20 +197,20 @@ export default {
             this.popupNameC = !this.popupNameC;
         },
         confirmUN() {
-            axios.get('http://no37.store:8080/AK/UpdateID',{
-                params: {
-                    yhid:localStorage.getItem("yhid"),yhnc:this.change_name,SelectNumber:1,
-                }
-            })
-            .then(response=>{
-                MessageBox.alert('昵称更改成功', '提示');
-                // console.log(response.data);
-            })
-            .catch(error=>{
-                console.log(error);
-            })
-            this.user_name = this.change_name;
-            this.popupNameC = !this.popupNameC;
+            // axios.get('http://no37.store:8080/AK/UpdateID',{
+            //     params: {
+            //         yhid:localStorage.getItem("yhid"),yhnc:this.change_name,SelectNumber:1,
+            //     }
+            // })
+            // .then(response=>{
+            //     MessageBox.alert('昵称更改成功', '提示');
+            //     // console.log(response.data);
+            // })
+            // .catch(error=>{
+            //     console.log(error);
+            // })
+            // this.user_name = this.change_name;
+            // this.popupNameC = !this.popupNameC;
         },
         cn_fun() {
             if(this.change_name != '') {
