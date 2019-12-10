@@ -8,7 +8,7 @@
         </div>
         <div id="headportrait">
             <div class="switchid_img">
-                <img :src="hportSrc" alt=""> <span v-text="id_name"></span>
+                <img src="../../../assets/img/my/headportrait/default.png" alt=""> <span v-text="id_name"></span>
             </div>
             <span class="iconfont icontiyu-paobu"></span>
         </div>
