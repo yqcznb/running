@@ -179,7 +179,7 @@
                 showw: false,
                 value:"跟随",
                 dan_value: '1',
-                isTrue: 'bim',
+                isTrue: 'bimg',
                 isFalse: 'egg_img',
                 f_title: '宠物信息',
                 s_title: '饥饿度',
@@ -206,179 +206,179 @@
         // 后台接口获取官方通知的内容
 
         created() {
-            axios.get('http://no37.store:8080/AK/gonggao1',{
+    //         axios.get('http://no37.store:8080/AK/gonggao1',{
 
-                params: {
-                    ggid:1,     
-                }
-            }).then(response=>{
-                    this.tongzhi=response.data.ggnr; 
-                }).catch(error=>{
-            console.log(error);
-            alert('网络错误，不能访问');
-        })
-        // 校区认证
-            axios.get('http://no37.store:8080/AK/SelectXsID',{
-            params: {
-                yhid:localStorage.getItem("yhid")
-            }
-        })
-        .then(response=>{
+    //             params: {
+    //                 ggid:1,     
+    //             }
+    //         }).then(response=>{
+    //                 this.tongzhi=response.data.ggnr; 
+    //             }).catch(error=>{
+    //         console.log(error);
+    //         alert('网络错误，不能访问');
+    //     })
+    //     // 校区认证
+    //         axios.get('http://no37.store:8080/AK/SelectXsID',{
+    //         params: {
+    //             yhid:localStorage.getItem("yhid")
+    //         }
+    //     })
+    //     .then(response=>{
           
-            if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
-                this.xiaoqu = response.data.yhxx;
-                // console.log( "xq"+this.xiaoqu)
-                // 获取后隐藏认证提示
-                this.show1 = false;
-                // 显示认证的校区
-                this.showw = true;
-            }
-        })      //获取失败
-        .catch(error=>{
-            console.log(error);
-            alert('网络错误，不能访问');
-        })
-      //  老师认证信息
-            axios.get('http://no37.store:8080/AK/SelectJsID',{
-                params: {
-                    yhid:this.yhid
-                }
-            }).then(response=>{
-                if(response.data.jsxx!=""||response.data.jsxx!=null||response.data.jsxx!=undefined){
-                    this.xiaoqu = response.data.jsxx;
-                    this.show1 = false;
-                    this.show = true;
-                }
-            })      //获取失败
-            .catch(error=>{
-                console.log(error);
-                alert('网络错误，不能访问');
-            })
+    //         if(response.data.yhxx!=""||response.data.yhxx!=null||response.data.yhxx!=undefined){
+    //             this.xiaoqu = response.data.yhxx;
+    //             // console.log( "xq"+this.xiaoqu)
+    //             // 获取后隐藏认证提示
+    //             this.show1 = false;
+    //             // 显示认证的校区
+    //             this.showw = true;
+    //         }
+    //     })      //获取失败
+    //     .catch(error=>{
+    //         console.log(error);
+    //         alert('网络错误，不能访问');
+    //     })
+    //   //  老师认证信息
+    //         axios.get('http://no37.store:8080/AK/SelectJsID',{
+    //             params: {
+    //                 yhid:this.yhid
+    //             }
+    //         }).then(response=>{
+    //             if(response.data.jsxx!=""||response.data.jsxx!=null||response.data.jsxx!=undefined){
+    //                 this.xiaoqu = response.data.jsxx;
+    //                 this.show1 = false;
+    //                 this.show = true;
+    //             }
+    //         })      //获取失败
+    //         .catch(error=>{
+    //             console.log(error);
+    //             alert('网络错误，不能访问');
+    //         })
         },
         methods:{
             bar(){
                 // 后台获取用户公里数，更新进度
-                this.axios.get('http://no37.store:8080/AK/ShowPet',{
-                    params: {
-                         yhid:this.yhid
-                    }
-                }).then(response=>{
-                        // 1公里代表进度条12px的宽度
-                        this.num = 12*response.data.ydjl;
-                    });
-                    // 更新进度条
-                this.Width = {
-                    'width': this.num + 'px',
-                };
-                this.ber_num = (this.num / 120)*100;
-                this.ber_num = this.ber_num.toFixed(2);
-                if(this.num == 0){
-                    // “孵化进度”字样显示
-                    this.see = true;
-                    // 进度条占比显示
-                    this.ber = false;
-                }
-                if(this.num >= 120){
-                    this.num = 120;
-                    this.popupVisible = false;
-                    this.b_bar = false;
-                    this.ber = false;
-                }else{
-                    this.popupVisible = true;
-                }
+                // this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                //     params: {
+                //          yhid:this.yhid
+                //     }
+                // }).then(response=>{
+                //         // 1公里代表进度条12px的宽度
+                //         this.num = 12*response.data.ydjl;
+                //     });
+                //     // 更新进度条
+                // this.Width = {
+                //     'width': this.num + 'px',
+                // };
+                // this.ber_num = (this.num / 120)*100;
+                // this.ber_num = this.ber_num.toFixed(2);
+                // if(this.num == 0){
+                //     // “孵化进度”字样显示
+                //     this.see = true;
+                //     // 进度条占比显示
+                //     this.ber = false;
+                // }
+                // if(this.num >= 120){
+                //     this.num = 120;
+                //     this.popupVisible = false;
+                //     this.b_bar = false;
+                //     this.ber = false;
+                // }else{
+                //     this.popupVisible = true;
+                // }
                 
             },
             // 点击宠物信息触发
             blood:function(){
-                 this.axios.get('http://no37.store:8080/AK/ShowPet',{
-                    params: {
-                       yhid:this.yhid
-                    }
-                }).then(response=>{
-                    response.data.cw;
-                    if(response.data.cw==1&&this.num >= 120){
-                    this.visible = true;
-                }else{
-                    // 没有宠物时的提示
-                    MessageBox.alert('您还未孵出宠物，要多跑步哦', '提示', {
-                    confirmButtonText: '确定',
-                    }).then(()=>{
+                //  this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                //     params: {
+                //        yhid:this.yhid
+                //     }
+                // }).then(response=>{
+                //     response.data.cw;
+                //     if(response.data.cw==1&&this.num >= 120){
+                //     this.visible = true;
+                // }else{
+                //     // 没有宠物时的提示
+                //     MessageBox.alert('您还未孵出宠物，要多跑步哦', '提示', {
+                //     confirmButtonText: '确定',
+                //     }).then(()=>{
                         
-                    })
-                }  
-                });
+                //     })
+                // }  
+                // });
                 
             },
             // 点击饥饿度触发
             skill(){
-                 this.axios.get('http://no37.store:8080/AK/ShowPet',{
-                    params: {
-                       yhid:this.yhid
-                    }
-                }).then(response=>{
-                    response.data.cw;
-                    if(response.data.cw==1&&this.num >= 120){
-                    this.visible_skill = true;
-                }else{
-                    // 没有宠物时的提示
-                    MessageBox.alert('您还未孵出宠物，要多跑步哦', '提示', {
-                    confirmButtonText: '确定',
-                    }).then(()=>{
+                //  this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                //     params: {
+                //        yhid:this.yhid
+                //     }
+                // }).then(response=>{
+                //     response.data.cw;
+                //     if(response.data.cw==1&&this.num >= 120){
+                //     this.visible_skill = true;
+                // }else{
+                //     // 没有宠物时的提示
+                //     MessageBox.alert('您还未孵出宠物，要多跑步哦', '提示', {
+                //     confirmButtonText: '确定',
+                //     }).then(()=>{
                         
-                    })
-                }  
-                });
+                //     })
+                // }  
+                // });
                  
             },
             // 点击加成值触发
             force(){
-                this.axios.get('http://no37.store:8080/AK/ShowPet',{
-                    params: {
-                       yhid:this.yhid
-                    }
-                }).then(response=>{
-                    response.data.cw;
-                    if(response.data.cw==1&&this.num >= 120){
-                    this.visible_force = true;
-                    this.axios.get('http://no37.store:8080/AK/AddValue',{
-                    params: {
-                         yhid:this.yhid
-                    }
-                }).then(response=>{
+                // this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                //     params: {
+                //        yhid:this.yhid
+                //     }
+                // }).then(response=>{
+                //     response.data.cw;
+                //     if(response.data.cw==1&&this.num >= 120){
+                //     this.visible_force = true;
+                //     this.axios.get('http://no37.store:8080/AK/AddValue',{
+                //     params: {
+                //          yhid:this.yhid
+                //     }
+                // }).then(response=>{
 
-                    this.jcz = response.data.yhjc;
-                    response.data.yhjed;
-                    this.jed = response.data.yhjed;
-                });
-                }else{
-                    // 没有宠物时的提示
-                    MessageBox.alert('您还未孵出宠物，要多跑步哦', '提示', {
-                    confirmButtonText: '确定',
-                    }).then(()=>{
+                //     this.jcz = response.data.yhjc;
+                //     response.data.yhjed;
+                //     this.jed = response.data.yhjed;
+                // });
+                // }else{
+                //     // 没有宠物时的提示
+                //     MessageBox.alert('您还未孵出宠物，要多跑步哦', '提示', {
+                //     confirmButtonText: '确定',
+                //     }).then(()=>{
                         
-                    })
-                } 
-                });
+                //     })
+                // } 
+                // });
             },
             bag(){
-                 this.axios.get('http://no37.store:8080/AK/ShowPet',{
-                    params: {
-                       yhid:this.yhid
-                    }
-                }).then(response=>{
-                    response.data.cw;
-                    if(this.num >= 120&&response.data.cw==1){
-                    // 路由跳转-》背包界面
-                    this.$router.replace('/bag');
-                }else{
-                    // 没有宠物时的提示
-                    MessageBox.alert('您还未孵出宠物，要多跑步哦', '提示', {
-                    confirmButtonText: '确定',
-                    }).then(()=>{
+                //  this.axios.get('http://no37.store:8080/AK/ShowPet',{
+                //     params: {
+                //        yhid:this.yhid
+                //     }
+                // }).then(response=>{
+                //     response.data.cw;
+                //     if(this.num >= 120&&response.data.cw==1){
+                //     // 路由跳转-》背包界面
+                //     this.$router.replace('/bag');
+                // }else{
+                //     // 没有宠物时的提示
+                //     MessageBox.alert('您还未孵出宠物，要多跑步哦', '提示', {
+                //     confirmButtonText: '确定',
+                //     }).then(()=>{
                         
-                    })
-                }  
-                });
+                //     })
+                // }  
+                // });
             },
             routerRefresh() {
                 window.location.reload();
@@ -585,50 +585,50 @@
                     this.ber = false;
                 } 
             this.drawdata();
-             this.axios.get('http://no37.store:8080/AK/ShowPet',{
-                    params: {
-                       yhid:this.yhid
-                    }
-                }).then(response=>{
-                       response.data.ydjl;
-                        this.num = 12*response.data.ydjl;
-                        // 计算进度占比
-                        if(this.num>=120){
-                            this.num = 120;
-                        }
-                        else{
-                            // 进度条
-                            this.b_bar = true;
-                            // 进度条占比显示
-                            this.ber = true;
-                            this.g_egg = true;
-                            this.isTrue = '';
-                            this.gensui = false;
-                            this.bugs = false;
-                        }
-                        this.ber_num = (this.num / 120)*100;
-                        this.ber_num = this.ber_num.toFixed(2);
-                      if(response.data.cw == 1){
-                           // 宠物蛋显示
-                            this.g_egg = true;
-                            // 问号蛋
-                            this.ber_dan = false;
-                            if(this.num == 0){
-                                // "孵化进度"字样
-                                this.see = true;
-                            }
-                      }else{
-                        //   问号蛋
-                          this.ber_dan = true;
-                          // 进度条
-                          this.b_bar = false;
-                            // 进度条占比显示
-                            this.ber = false;
-                        this.g_egg = false;
-                        this.gensui = false;
-                        this.bugs = false;
-                      }
-                    });              
+            //  this.axios.get('http://no37.store:8080/AK/ShowPet',{
+            //         params: {
+            //            yhid:this.yhid
+            //         }
+            //     }).then(response=>{
+            //            response.data.ydjl;
+            //             this.num = 12*response.data.ydjl;
+            //             // 计算进度占比
+            //             if(this.num>=120){
+            //                 this.num = 120;
+            //             }
+            //             else{
+            //                 // 进度条
+            //                 this.b_bar = true;
+            //                 // 进度条占比显示
+            //                 this.ber = true;
+            //                 this.g_egg = true;
+            //                 this.isTrue = '';
+            //                 this.gensui = false;
+            //                 this.bugs = false;
+            //             }
+            //             this.ber_num = (this.num / 120)*100;
+            //             this.ber_num = this.ber_num.toFixed(2);
+            //           if(response.data.cw == 1){
+            //                // 宠物蛋显示
+            //                 this.g_egg = true;
+            //                 // 问号蛋
+            //                 this.ber_dan = false;
+            //                 if(this.num == 0){
+            //                     // "孵化进度"字样
+            //                     this.see = true;
+            //                 }
+            //           }else{
+            //             //   问号蛋
+            //               this.ber_dan = true;
+            //               // 进度条
+            //               this.b_bar = false;
+            //                 // 进度条占比显示
+            //                 this.ber = false;
+            //             this.g_egg = false;
+            //             this.gensui = false;
+            //             this.bugs = false;
+            //           }
+            //         });              
         },
         components:{
             picker  

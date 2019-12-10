@@ -87,32 +87,32 @@ export default {
     this.getCase()
   },
   created(){
-     this.axios.get('http://no37.store:8080/AK/backingOutCYP',{
-            params: {
-                yhid: localStorage.getItem("yhid"),     
-            }
-        })
-        .then(response=>{
-            // console.log(response);
-            this.cpsj=response.data.cpsj;
-            this.ypsj=response.data.ypsj;
-            this.run_all_times=response.data.xqmb;
-            this.run_morn_times=response.data.cpcs;
-            this.run_even_times=response.data.ypcs;
-            this.run_morn_time1=response.data.cpsj.substring(0,2);
-            this.run_morn_time3=response.data.cpsj.substring(6,8);
-            this.run_even_time1=response.data.ypsj.substring(0,2);
-            this.run_even_time3=response.data.ypsj.substring(6,8);
-            this.run_morn_time2=response.data.cpsj.substring(3,5);
-            this.run_morn_time4=response.data.cpsj.substring(9,11);
-            this.run_even_time2=response.data.ypsj.substring(3,5);
-            this.run_even_time4=response.data.ypsj.substring(9,11);
-            console.log("this.run_morn_time1:"+this.run_morn_time1)
-        })      //获取失败
-        .catch(error=>{
-            console.log(error);
-            alert('网络错误，不能访问');
-        })
+    //  this.axios.get('http://no37.store:8080/AK/backingOutCYP',{
+    //         params: {
+    //             yhid: localStorage.getItem("yhid"),     
+    //         }
+    //     })
+    //     .then(response=>{
+    //         // console.log(response);
+    //         this.cpsj=response.data.cpsj;
+    //         this.ypsj=response.data.ypsj;
+    //         this.run_all_times=response.data.xqmb;
+    //         this.run_morn_times=response.data.cpcs;
+    //         this.run_even_times=response.data.ypcs;
+    //         this.run_morn_time1=response.data.cpsj.substring(0,2);
+    //         this.run_morn_time3=response.data.cpsj.substring(6,8);
+    //         this.run_even_time1=response.data.ypsj.substring(0,2);
+    //         this.run_even_time3=response.data.ypsj.substring(6,8);
+    //         this.run_morn_time2=response.data.cpsj.substring(3,5);
+    //         this.run_morn_time4=response.data.cpsj.substring(9,11);
+    //         this.run_even_time2=response.data.ypsj.substring(3,5);
+    //         this.run_even_time4=response.data.ypsj.substring(9,11);
+    //         console.log("this.run_morn_time1:"+this.run_morn_time1)
+    //     })      //获取失败
+    //     .catch(error=>{
+    //         console.log(error);
+    //         alert('网络错误，不能访问');
+    //     })
   },
 
   methods: {
