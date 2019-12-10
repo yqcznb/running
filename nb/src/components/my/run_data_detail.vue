@@ -58,18 +58,18 @@ export default {
             ]
         }
     },
-    created() {
-        axios.get('http://no37.store:8080/AK/MoveAction',{
-            params: {
-                yhid:1,ydrqOne:2019,ydrqTwo:6,
-            }})
-            .then(response=>{
-                this.get_run_data = response.data;
-            })      //获取失败
-            .catch(error=>{
-                alert('网络错误，不能访问');
-            })
-    },
+    // created() {
+    //     axios.get('http://no37.store:8080/AK/MoveAction',{
+    //         params: {
+    //             yhid:1,ydrqOne:2019,ydrqTwo:6,
+    //         }})
+    //         .then(response=>{
+    //             this.get_run_data = response.data;
+    //         })      //获取失败
+    //         .catch(error=>{
+    //             alert('网络错误，不能访问');
+    //         })
+    // },
     mounted(){
         this.dateDefault();
     },
@@ -124,8 +124,8 @@ export default {
             let pieRadius = xcsize*3/8;
 
             function getVirtulData(daydate,dayend) {
-                var date = +echarts.number.parseDate(daydate);
-                var end = +echarts.number.parseDate(dayend);
+                var date = +echarts.number.parseDate('2017-02-01');
+                var end = +echarts.number.parseDate('2017-03-01');
                 var dayTime = 3600 * 24 * 1000;
                 var data = [];
                 for (var time = date; time < end; time += dayTime) {
@@ -154,8 +154,8 @@ export default {
                         },
                         radius: pieRadius,
                         data: [
-                            {name: '非运动', value: value1, itemStyle: {color: '#eea2a4'} },
-                            {name: '运动', value: value2, itemStyle: {color: '#7bc5ae'} },
+                            {name: '非运动', value: Math.round(Math.random() * 24), itemStyle: {color: '#eea2a4'} },
+                            {name: '运动', value: Math.round(Math.random() * 24), itemStyle: {color: '#7bc5ae'} },
                         ]
                     };
                 });
@@ -219,7 +219,7 @@ export default {
                             offset: [-cellSize[0] / 2 + 10, -cellSize[1] / 2 + 10],
                             textStyle: {
                                 color: '#000',
-                                fontSize: xcsize/4,
+                                fontSize: 14,
                             }
                         }
                     },

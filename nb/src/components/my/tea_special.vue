@@ -45,18 +45,18 @@ export default {
         }
     },
     created() {
-        axios.get('http://no37.store:8080/AK/SelectAllxsID',{
-            params: {
-                yhid:localStorage.getItem("yhid"),
-            }
-        }).then(response=>{
-            // console.log(response);
-            this.stu_run_data = response.data;
-        })      //获取失败
-        .catch(error=>{
-            console.log(error);
-            alert('网络错误，不能访问');
-        })
+        // axios.get('http://no37.store:8080/AK/SelectAllxsID',{
+        //     params: {
+        //         yhid:localStorage.getItem("yhid"),
+        //     }
+        // }).then(response=>{
+        //     // console.log(response);
+        //     this.stu_run_data = response.data;
+        // })      //获取失败
+        // .catch(error=>{
+        //     console.log(error);
+        //     alert('网络错误，不能访问');
+        // })
     },
     methods: {
         

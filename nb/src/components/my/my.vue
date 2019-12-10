@@ -96,22 +96,22 @@ export default {
                 this.ydrqTwo = myDate.getFullYear()+'-'+dateArray[11];
             }
         // 个人信息请求
-        axios.get('http://no37.store:8080/AK/ShowMe',{
-            params: {
-                yhid:localStorage.getItem("yhid"),
-                // yhid:28,
-            }})
-            .then(response=>{
-                // console.log(response);
-                this.uname = response.data.yhnc;
-                this.headportrait = response.data.yhtx;
-                this.uduan = response.data.dwmc;
-                this.duanImg = "http://no37.store/image/duan/"+response.data.dwtp;
-                this.levelImg = "http://no37.store/image/schedual_level/"+response.data.dwjdtp;
-            })      //获取失败
-            .catch(error=>{
-                alert('网络错误，不能访问');
-            })
+        // axios.get('http://no37.store:8080/AK/ShowMe',{
+        //     params: {
+        //         yhid:localStorage.getItem("yhid"),
+        //         // yhid:28,
+        //     }})
+        //     .then(response=>{
+        //         // console.log(response);
+        //         this.uname = response.data.yhnc;
+        //         this.headportrait = response.data.yhtx;
+        //         this.uduan = response.data.dwmc;
+        //         this.duanImg = "http://no37.store/image/duan/"+response.data.dwtp;
+        //         this.levelImg = "http://no37.store/image/schedual_level/"+response.data.dwjdtp;
+        //     })      //获取失败
+        //     .catch(error=>{
+        //         alert('网络错误，不能访问');
+        //     })
         if(localStorage.getItem("yhsf") == 0 || localStorage.getItem("yhsf") == 1) {
             this.if_rz = "have_rz";
             // this.tea_special = true;

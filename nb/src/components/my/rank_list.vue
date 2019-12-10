@@ -108,31 +108,31 @@ export default {
     },
     created() {
         // 用户积分
-        axios.get('http://no37.store:8080/AK/MoveTop',{
-            params: {
-                yhid:localStorage.getItem("yhid"),TimeOne:2,
-            }})
-            .then(response=>{
-                // console.log(response);
-                this.run_list = response.data;
-            })      //获取失败
-            .catch(error=>{
-                alert('网络错误，不能访问');
-            })
+        // axios.get('http://no37.store:8080/AK/MoveTop',{
+        //     params: {
+        //         yhid:localStorage.getItem("yhid"),TimeOne:2,
+        //     }})
+        //     .then(response=>{
+        //         // console.log(response);
+        //         this.run_list = response.data;
+        //     })      //获取失败
+        //     .catch(error=>{
+        //         alert('网络错误，不能访问');
+        //     })
     },
     methods: {
         showList() {
-            axios.get('http://no37.store:8080/AK/MoveTop',{
-                params: {
-                    yhid:localStorage.getItem("yhid"),TimeOne:this.selected,
-                }})
-                .then(response=>{
-                    // console.log(response);
-                    this.run_list = response.data;
-                })      //获取失败
-                .catch(error=>{
-                    alert('网络错误，不能访问');
-                })
+            // axios.get('http://no37.store:8080/AK/MoveTop',{
+            //     params: {
+            //         yhid:localStorage.getItem("yhid"),TimeOne:this.selected,
+            //     }})
+            //     .then(response=>{
+            //         // console.log(response);
+            //         this.run_list = response.data;
+            //     })      //获取失败
+            //     .catch(error=>{
+            //         alert('网络错误，不能访问');
+            //     })
         },
     },
 }

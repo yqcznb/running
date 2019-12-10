@@ -34,50 +34,44 @@ export default {
         }
     },
     created:function(){
-        if(localStorage.getItem("yhid")){
-              this.$router.push('/footer/index');
-              
+        if(1){
+            this.$router.push('/footer/index');
         }
     },
-    mounted() {
-        prompt("由于本项目设计初衷为Web APP,考虑到项目特殊性，也为了您能更好的体验\"青宠趣跑\"Web APP的功能，推荐您复制下方连接选择下载Android APK安装文件，在安卓移动端体验本软件","http://no37.store/r&f%20%E9%9D%92%E5%AE%A0%E8%B6%A3%E8%B7%91.apk");
-    },
-    methods:
-    {   
-       
+    methods: {
         login(){
             if (this.username == '' || this.password =='') {
                     alert('请输入用户名或密码')
                     }
             else{
-                this.axios.get('http://no37.store:8080/AK/denglu1',{
-                    params: {
-                        yhzh:this.username,
-                        yhmm:this.password,
-                    }
-                }).then(response=>{
-                    this.num=response.data.jg;
-                    // console.log(response.data.yhid);
-                    console.log(response);
-                    if(this.num==1){
-                        alert("登录成功")
-                        this.$router.replace('/footer/index');
-                        this.$store.dispatch("login", true);
-                        this.$store.dispatch("yh",response.data.yhid);
-                        localStorage.setItem("yhid",response.data.yhid);
-                        localStorage.setItem("password",this.password);
-                        localStorage.setItem("yhsf",response.data.yhsf);
-                        localStorage.setItem("egg_success",1)
-                        localStorage.setItem("v",false);
+                // this.axios.get('http://no37.store:8080/AK/denglu1',{
+                //     params: {
+                //         yhzh:this.username,
+                //         yhmm:this.password,
+                //     }
+                // }).then(response=>{
+                //     this.num=response.data.jg;
+                //     // console.log(response.data.yhid);
+                //     console.log(response);
+                //     if(this.num==1){
+                //         alert("登录成功")
+                //         this.$router.replace('/footer/index');
+                //         this.$store.dispatch("login", true);
+                //         this.$store.dispatch("yh",response.data.yhid);
+                //         localStorage.setItem("yhid",response.data.yhid);
+                //         localStorage.setItem("password",this.password);
+                //         localStorage.setItem("yhsf",response.data.yhsf);
+                //         localStorage.setItem("egg_success",1)
+                //         localStorage.setItem("v",false);
 
-                    }else if(this.num==0){
-                        alert("账号或密码错误")
-                    }
-                })      //获取失败
-                .catch(error=>{
-                    // console.log(error);
-                    alert('网络错误，不能访问');
-                })
+                //     }else if(this.num==0){
+                //         alert("账号或密码错误")
+                //     }
+                // })      //获取失败
+                // .catch(error=>{
+                //     // console.log(error);
+                //     alert('网络错误，不能访问');
+                // })
             }
         }
     }
