@@ -48,7 +48,7 @@
                 </div>
             </mt-popup>
             <!-- 晨跑开始时间 -->
-            <mt-datetime-picker 
+            <mt-datetime-picker
                 v-model="timeValue1"
                 type="time"
                 ref="timePicker1"
@@ -57,7 +57,7 @@
                 @confirm="handleConfirm1" @touchmove.native.stop.prevent>
             </mt-datetime-picker>
             <!-- 晨跑结束时间 -->
-            <mt-datetime-picker 
+            <mt-datetime-picker
                 v-model="timeValue2"
                 type="time"
                 ref="timePicker2"
@@ -66,7 +66,7 @@
                 @confirm="handleConfirm2" @touchmove.native.stop.prevent>
             </mt-datetime-picker>
             <!-- 夜跑开始时间 -->
-            <mt-datetime-picker 
+            <mt-datetime-picker
                 v-model="timeValue3"
                 type="time"
                 ref="timePicker3"
@@ -75,7 +75,7 @@
                 @confirm="handleConfirm3" @touchmove.native.stop.prevent>
             </mt-datetime-picker>
             <!-- 夜跑结束时间 -->
-            <mt-datetime-picker 
+            <mt-datetime-picker
                 v-model="timeValue4"
                 type="time"
                 ref="timePicker4"
@@ -116,7 +116,7 @@ export default {
             tt:false,
             yp:"7",
             xqmb:"38",
-            ggnr:"11",
+            ggnr:"天冷注意保暖！",
             dqyp:"20",
             cw:"11",
             show:true,
@@ -140,7 +140,7 @@ export default {
             screenHeight: window.innerHeight,
             cpsj:"",
             ypsj:"",
-            xqmb:"",
+            xqmb:"30",
             cpcs:"",
             ypcs:"",
             msg:"",
@@ -166,15 +166,15 @@ export default {
         }
     //     // //  axios.get('http://no37.store:8080/AK/countPeople',{
     //     // //     params: {
-    //     // //         yhid: localStorage.getItem("yhid"),     
+    //     // //         yhid: localStorage.getItem("yhid"),
     //     // //     }
     //     // // })
     //     // .then(response=>{
     //     //     // console.log(response);
     //     //     this.msg=response.data.sum;
     //     //     this.msgg = "今天同校区同学已跑人数为"+this.msg+"人!!!       "
-           
-            
+
+
     //     // })      //获取失败
     //     // .catch(error=>{
     //     //     console.log(error);
@@ -183,7 +183,7 @@ export default {
     //     // //晨跑夜跑时间返回
     //     // axios.get('http://no37.store:8080/AK/backingOutCYP',{
     //     //     params: {
-    //     //         yhid: localStorage.getItem("yhid"),     
+    //     //         yhid: localStorage.getItem("yhid"),
     //     //     }
     //     // })
     //     // .then(response=>{
@@ -197,7 +197,7 @@ export default {
     //     //     this.run_morn_time2=response.data.cpsj.substring(6,11);
     //     //     this.run_even_time1=response.data.ypsj.substring(0,5);
     //     //     this.run_even_time2=response.data.ypsj.substring(6,11);
-            
+
     //     // })      //获取失败
     //     // .catch(error=>{
     //     //     console.log(error);
@@ -206,16 +206,16 @@ export default {
     //     // //宠物
     //     //  axios.get('http://no37.store:8080/AK/ShowPet',{
     //     //     params: {
-    //     //         yhid: localStorage.getItem("yhid"),     
+    //     //         yhid: localStorage.getItem("yhid"),
     //     //     }
     //     // })
     //     // .then(response=>{
     //     //     // console.log(response);
     //     //     this.cw=response.data.cw;
     //     //     if(this.cw==1){
-    //     //          localStorage.setItem("cw",1);    
+    //     //          localStorage.setItem("cw",1);
     //     //     }
-           
+
     //     // })      //获取失败
     //     // .catch(error=>{
     //     //     console.log(error);
@@ -224,7 +224,7 @@ export default {
     //     // // 主页
     //     // axios.get('http://no37.store:8080/AK/zhuye1',{
     //     //     params: {
-    //     //         yhid: localStorage.getItem("yhid"),     
+    //     //         yhid: localStorage.getItem("yhid"),
     //     //     }
     //     // })
     //     // .then(response=>{
@@ -241,11 +241,11 @@ export default {
     //     // // 公告
     //     // axios.get('http://no37.store:8080/AK/gonggao1',{
     //     //     params: {
-    //     //         ggid:1,     
+    //     //         ggid:1,
     //     //     }
     //     // })
     //     // .then(response=>{
-    //     //     this.ggnr=response.data.ggnr; 
+    //     //     this.ggnr=response.data.ggnr;
     //     // })      //获取失败
     //     // .catch(error=>{
     //     //     console.log(error);
@@ -255,7 +255,7 @@ export default {
     //     // if(localStorage.getItem("yhsf") == 0) {
     //     //     axios.get('http://no37.store:8080/AK/SelectXsID',{
     //     //         params: {
-    //     //             yhid:localStorage.getItem("yhid"),     
+    //     //             yhid:localStorage.getItem("yhid"),
     //     //         }
     //     //     })
     //     //     .then(response=>{
@@ -375,8 +375,8 @@ export default {
                     alert('网络错误，不能访问1');
                 })
             }
-            
-            
+
+
         },
         selecTime1 () {
                 this.$refs.timePicker1.open();
@@ -436,7 +436,7 @@ export default {
     .index .heard li i{
         padding: 5px 10px;
         color: rgb(231, 46, 170);
-        font-size: 20px; 
+        font-size: 20px;
         font-style: italic;
         font-weight: bold
     }
@@ -463,7 +463,7 @@ export default {
     }
     .index .caochang .xinxi{
         display: flex;
-        
+
         flex-direction: column;
         justify-content: center;
     }
@@ -473,7 +473,7 @@ export default {
     .index .caochang .xinxi span,.index .caochang .xinxi i{
         color:rgb(22, 156, 245);
         font-size: 20px;
-        
+
     }
     .xinxi p em{
         color:rgb(240, 190, 25);
