@@ -131,20 +131,20 @@ export default {
         },
     },
     created() {
-        axios.get('http://no37.store:8080/AK/ShowID',{
-            params: {
-                yhid:localStorage.getItem("yhid"),
-            }})
-            .then(response=>{
-                // console.log(response);
-                this.phoneNum = response.data.yhzh;
-                this.mailNum = response.data.yhyx;
-            })      //获取失败
-            .catch(error=>{
-                alert('网络错误，不能访问');
-            })
-        this.yhzh = localStorage.getItem("yhid");
-        this.passmsg = localStorage.getItem("password");
+        // axios.get('http://no37.store:8080/AK/ShowID',{
+        //     params: {
+        //         yhid:localStorage.getItem("yhid"),
+        //     }})
+        //     .then(response=>{
+        //         // console.log(response);
+        //         this.phoneNum = response.data.yhzh;
+        //         this.mailNum = response.data.yhyx;
+        //     })      //获取失败
+        //     .catch(error=>{
+        //         alert('网络错误，不能访问');
+        //     })
+        // this.yhzh = localStorage.getItem("yhid");
+        // this.passmsg = localStorage.getItem("password");
     },
     mounted() {
         window.onresize = () => {
@@ -166,28 +166,28 @@ export default {
         cancelUP() {
             this.popupPhoneC = !this.popupPhoneC;
         },
-        confirmUP() {
-            axios.get('http://no37.store:8080/AK/UpdateID',{
-                params: {
-                    yhid:localStorage.getItem("yhid"),yhzh:this.change_phone,SelectNumber:4,
-                }
-            })
-            .then(response=>{
-                // console.log(response.data);
-                this.phoneNum = this.change_phone;
-                MessageBox.alert('手机号更改成功！', '提示');
-            })
-            .catch(error=>{
-                console.log(error);
-            })
-            this.phoneNum = this.change_phone;
-            this.popupPhoneC = !this.popupPhoneC;
-        },
-        cp_fun() {
-            if(this.change_phone != '') {
-                this.cp_disabled = !this.cp_disabled;
-            }
-        },
+        // confirmUP() {
+        //     axios.get('http://no37.store:8080/AK/UpdateID',{
+        //         params: {
+        //             yhid:localStorage.getItem("yhid"),yhzh:this.change_phone,SelectNumber:4,
+        //         }
+        //     })
+        //     .then(response=>{
+        //         // console.log(response.data);
+        //         this.phoneNum = this.change_phone;
+        //         MessageBox.alert('手机号更改成功！', '提示');
+        //     })
+        //     .catch(error=>{
+        //         console.log(error);
+        //     })
+        //     this.phoneNum = this.change_phone;
+        //     this.popupPhoneC = !this.popupPhoneC;
+        // },
+        // cp_fun() {
+        //     if(this.change_phone != '') {
+        //         this.cp_disabled = !this.cp_disabled;
+        //     }
+        // },
         // 邮箱号修改
         umShow() {
             this.popupMailC =! this.popupMailC;
@@ -199,23 +199,23 @@ export default {
         cancelUM() {
             this.popupMailC = !this.popupMailC;
         },
-        confirmUM() {
-            axios.get('http://no37.store:8080/AK/UpdateID',{
-                params: {
-                    yhid:localStorage.getItem("yhid"),yhyx:this.change_mail,SelectNumber:3,
-                }
-            })
-            .then(response=>{
-                // console.log(response.data);
-                this.mailNum = this.change_mail;
-                MessageBox.alert('邮箱号更改成功！', '提示');
-            })
-            .catch(error=>{
-                console.log(error);
-            })
-            this.mailNum = this.change_mail;
-            this.popupMailC = !this.popupMailC;
-        },
+        // confirmUM() {
+        //     axios.get('http://no37.store:8080/AK/UpdateID',{
+        //         params: {
+        //             yhid:localStorage.getItem("yhid"),yhyx:this.change_mail,SelectNumber:3,
+        //         }
+        //     })
+        //     .then(response=>{
+        //         // console.log(response.data);
+        //         this.mailNum = this.change_mail;
+        //         MessageBox.alert('邮箱号更改成功！', '提示');
+        //     })
+        //     .catch(error=>{
+        //         console.log(error);
+        //     })
+        //     this.mailNum = this.change_mail;
+        //     this.popupMailC = !this.popupMailC;
+        // },
         cm_fun() {
             if(this.change_mail != '') {
                 this.cm_disabled = !this.cm_disabled;
@@ -243,21 +243,21 @@ export default {
                     this.popupCodeC = true;
                 });
             }
-            else {
-                axios.get('http://no37.store:8080/AK/UpdateID',{
-                    params: {
-                        yhid:localStorage.getItem("yhid"),yhmm:this.confirm_code,SelectNumber:2,
-                    }
-                })
-                .then(response=>{
-                    // console.log(response.data);
-                    MessageBox.alert('密码更改成功！', '提示');
-                })
-                .catch(error=>{
-                    console.log(error);
-                })
-                this.popupCodeC = !this.popupCodeC;
-            }
+            // else {
+            //     axios.get('http://no37.store:8080/AK/UpdateID',{
+            //         params: {
+            //             yhid:localStorage.getItem("yhid"),yhmm:this.confirm_code,SelectNumber:2,
+            //         }
+            //     })
+            //     .then(response=>{
+            //         // console.log(response.data);
+            //         MessageBox.alert('密码更改成功！', '提示');
+            //     })
+            //     .catch(error=>{
+            //         console.log(error);
+            //     })
+            //     this.popupCodeC = !this.popupCodeC;
+            // }
         },
         cc_fun() {
             if(this.old_code != '' &&this.new_code != '' && this.confirm_code != '') {

@@ -63,25 +63,25 @@ export default {
     },
     created() {
         // 用户积分
-        axios.get('http://no37.store:8080/AK/jf',{
-            params: {
-                yhid:localStorage.getItem("yhid"),
-            }})
-            .then(response=>{
-                this.bonus_data = response.data.yhjf;
-            })      //获取失败
-            .catch(error=>{
-                alert('网络错误，不能访问');
-            })
-        // 商品信息
-        axios.get('http://no37.store:8080/AK/lookShop',{
-            })
-            .then(response=>{
-                this.goodslist = response.data;
-            })      //获取失败
-            .catch(error=>{
-                alert('网络错误，不能访问');
-            })
+        // axios.get('http://no37.store:8080/AK/jf',{
+        //     params: {
+        //         yhid:localStorage.getItem("yhid"),
+        //     }})
+        //     .then(response=>{
+        //         this.bonus_data = response.data.yhjf;
+        //     })      //获取失败
+        //     .catch(error=>{
+        //         alert('网络错误，不能访问');
+        //     })
+        // // 商品信息
+        // axios.get('http://no37.store:8080/AK/lookShop',{
+        //     })
+        //     .then(response=>{
+        //         this.goodslist = response.data;
+        //     })      //获取失败
+        //     .catch(error=>{
+        //         alert('网络错误，不能访问');
+        //     })
     },
     mounted() {
         this.changeWH();
@@ -103,52 +103,52 @@ export default {
             let realWidth = document.getElementsByClassName("maleimg").naturalWidth;
             let reaHeight = document.getElementsByClassName("maleimg").naturalHeight;
         },
-        ex_bonus(spid,spjf) {
-            if(this.bonus_data < spjf) {
-                MessageBox.alert('积分余额不足，快去跑步赚取积分吧。', '提示');
-            }
-            else if(this.bonus_data >= spjf) {
-                axios.get('http://no37.store:8080/AK/changeZB',{
-                    params: {
-                        yhid:localStorage.getItem("yhid"),zbid:spid,
-                    }})
-                .then(response=>{
-                    if(response.data.jg == 1) {
-                        axios.get('http://no37.store:8080/AK/AddNumber',{
-                            params: {
-                                yhid:localStorage.getItem("yhid"),yhjf:-spjf,
-                            }})
-                        .then(response=>{
-                            if(response.data == 1) {
-                                this.ex_alert = true;
-                                setTimeout(()=>{
-                                    this.ex_alert = false;
-                                }, 1500);
-                                axios.get('http://no37.store:8080/AK/jf',{
-                                    params: {
-                                    yhid:localStorage.getItem("yhid"),
-                                }})
-                                .then(response=>{
-                                    this.bonus_data = response.data.yhjf;
-                                })      //获取失败
-                                .catch(error=>{
-                                    alert('网络错误，不能访问');
-                                })
-                            }
-                        })      //获取失败
-                        .catch(error=>{
-                            alert('网络错误，不能访问');
-                        })
-                    }
-                })      //获取失败
-                .catch(error=>{
-                    console.log(error);
-                    alert('网络错误，不能访问');
-                })
-            }
+        // ex_bonus(spid,spjf) {
+        //     if(this.bonus_data < spjf) {
+        //         MessageBox.alert('积分余额不足，快去跑步赚取积分吧。', '提示');
+        //     }
+        //     else if(this.bonus_data >= spjf) {
+        //         axios.get('http://no37.store:8080/AK/changeZB',{
+        //             params: {
+        //                 yhid:localStorage.getItem("yhid"),zbid:spid,
+        //             }})
+        //         .then(response=>{
+        //             if(response.data.jg == 1) {
+        //                 axios.get('http://no37.store:8080/AK/AddNumber',{
+        //                     params: {
+        //                         yhid:localStorage.getItem("yhid"),yhjf:-spjf,
+        //                     }})
+        //                 .then(response=>{
+        //                     if(response.data == 1) {
+        //                         this.ex_alert = true;
+        //                         setTimeout(()=>{
+        //                             this.ex_alert = false;
+        //                         }, 1500);
+        //                         axios.get('http://no37.store:8080/AK/jf',{
+        //                             params: {
+        //                             yhid:localStorage.getItem("yhid"),
+        //                         }})
+        //                         .then(response=>{
+        //                             this.bonus_data = response.data.yhjf;
+        //                         })      //获取失败
+        //                         .catch(error=>{
+        //                             alert('网络错误，不能访问');
+        //                         })
+        //                     }
+        //                 })      //获取失败
+        //                 .catch(error=>{
+        //                     alert('网络错误，不能访问');
+        //                 })
+        //             }
+        //         })      //获取失败
+        //         .catch(error=>{
+        //             console.log(error);
+        //             alert('网络错误，不能访问');
+        //         })
+        //     }
             
-        },
-        //初始化滚动组件
+        // },
+        // //初始化滚动组件
         _initScroll() {
             if (!this.$refs.wrapper) {
                 return

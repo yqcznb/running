@@ -27,20 +27,20 @@ export default {
     },
     created() {
         // 账号请求
-        axios.get('http://no37.store:8080/AK/ShowMe',{
-            params: {
-                yhid:localStorage.getItem("yhid"),
-                // yhid:28,
-            }})
-            .then(response=>{
-                console.log(response);
-                // this.uname = response.data.yhnc;
-                this.hportSrc = response.data.yhtx;
-                this.id_name = response.data.yhzh;
-            })      //获取失败
-            .catch(error=>{
-                alert('网络错误，不能访问');
-            })
+        // axios.get('http://no37.store:8080/AK/ShowMe',{
+        //     params: {
+        //         yhid:localStorage.getItem("yhid"),
+        //         // yhid:28,
+        //     }})
+        //     .then(response=>{
+        //         console.log(response);
+        //         // this.uname = response.data.yhnc;
+        //         this.hportSrc = response.data.yhtx;
+        //         this.id_name = response.data.yhzh;
+        //     })      //获取失败
+        //     .catch(error=>{
+        //         alert('网络错误，不能访问');
+        //     })
     }
 }
 </script>

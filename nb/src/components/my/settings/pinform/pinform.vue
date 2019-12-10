@@ -92,23 +92,23 @@ export default {
     },
     created() {
         // 用户积分
-        axios.get('http://no37.store:8080/AK/ShowMe',{
-            params: {
-                yhid:localStorage.getItem("yhid"),
-            }})
-            .then(response=>{
-                // console.log(response);
-                this.yhid = localStorage.getItem("yhid");
-                this.user_name = response.data.yhnc;
-                this.change_name = this.user_name;
-                this.headportrait = response.data.yhtx;
-                this.change_head = response.data.yhtx;
-                this.before_head = response.data.yhtx;
-            })      
-            //获取失败
-            .catch(error=>{
-                alert('网络错误，不能访问');
-            })
+        // axios.get('http://no37.store:8080/AK/ShowMe',{
+        //     params: {
+        //         yhid:localStorage.getItem("yhid"),
+        //     }})
+        //     .then(response=>{
+        //         // console.log(response);
+        //         this.yhid = localStorage.getItem("yhid");
+        //         this.user_name = response.data.yhnc;
+        //         this.change_name = this.user_name;
+        //         this.headportrait = response.data.yhtx;
+        //         this.change_head = response.data.yhtx;
+        //         this.before_head = response.data.yhtx;
+        //     })      
+        //     //获取失败
+        //     .catch(error=>{
+        //         alert('网络错误，不能访问');
+        //     })
             
     },
     mounted() {

@@ -164,136 +164,136 @@ export default {
             this.operate_btn = false;
             this.cancel_text = '完成';
         }
-         axios.get('http://no37.store:8080/AK/countPeople',{
-            params: {
-                yhid: localStorage.getItem("yhid"),     
-            }
-        })
-        .then(response=>{
-            // console.log(response);
-            this.msg=response.data.sum;
-            this.msgg = "今天同校区同学已跑人数为"+this.msg+"人!!!       "
+    //     // //  axios.get('http://no37.store:8080/AK/countPeople',{
+    //     // //     params: {
+    //     // //         yhid: localStorage.getItem("yhid"),     
+    //     // //     }
+    //     // // })
+    //     // .then(response=>{
+    //     //     // console.log(response);
+    //     //     this.msg=response.data.sum;
+    //     //     this.msgg = "今天同校区同学已跑人数为"+this.msg+"人!!!       "
            
             
-        })      //获取失败
-        .catch(error=>{
-            console.log(error);
-            alert("请先认证身份信息，以免影响跑步成绩！");
-        })
-        //晨跑夜跑时间返回
-        axios.get('http://no37.store:8080/AK/backingOutCYP',{
-            params: {
-                yhid: localStorage.getItem("yhid"),     
-            }
-        })
-        .then(response=>{
-            // console.log(response);
-            this.cpsj=response.data.cpsj;
-            this.ypsj=response.data.ypsj;
-            this.run_all_times=response.data.xqmb;
-            this.run_morn_times=response.data.cpcs;
-            this.run_even_times=response.data.ypcs;
-            this.run_morn_time1=response.data.cpsj.substring(0,5);
-            this.run_morn_time2=response.data.cpsj.substring(6,11);
-            this.run_even_time1=response.data.ypsj.substring(0,5);
-            this.run_even_time2=response.data.ypsj.substring(6,11);
+    //     // })      //获取失败
+    //     // .catch(error=>{
+    //     //     console.log(error);
+    //     //     alert("请先认证身份信息，以免影响跑步成绩！");
+    //     // })
+    //     // //晨跑夜跑时间返回
+    //     // axios.get('http://no37.store:8080/AK/backingOutCYP',{
+    //     //     params: {
+    //     //         yhid: localStorage.getItem("yhid"),     
+    //     //     }
+    //     // })
+    //     // .then(response=>{
+    //     //     // console.log(response);
+    //     //     this.cpsj=response.data.cpsj;
+    //     //     this.ypsj=response.data.ypsj;
+    //     //     this.run_all_times=response.data.xqmb;
+    //     //     this.run_morn_times=response.data.cpcs;
+    //     //     this.run_even_times=response.data.ypcs;
+    //     //     this.run_morn_time1=response.data.cpsj.substring(0,5);
+    //     //     this.run_morn_time2=response.data.cpsj.substring(6,11);
+    //     //     this.run_even_time1=response.data.ypsj.substring(0,5);
+    //     //     this.run_even_time2=response.data.ypsj.substring(6,11);
             
-        })      //获取失败
-        .catch(error=>{
-            console.log(error);
-            alert("请先认证身份信息，以免影响跑步成绩！");
-        })
-        //宠物
-         axios.get('http://no37.store:8080/AK/ShowPet',{
-            params: {
-                yhid: localStorage.getItem("yhid"),     
-            }
-        })
-        .then(response=>{
-            // console.log(response);
-            this.cw=response.data.cw;
-            if(this.cw==1){
-                 localStorage.setItem("cw",1);    
-            }
+    //     // })      //获取失败
+    //     // .catch(error=>{
+    //     //     console.log(error);
+    //     //     alert("请先认证身份信息，以免影响跑步成绩！");
+    //     // })
+    //     // //宠物
+    //     //  axios.get('http://no37.store:8080/AK/ShowPet',{
+    //     //     params: {
+    //     //         yhid: localStorage.getItem("yhid"),     
+    //     //     }
+    //     // })
+    //     // .then(response=>{
+    //     //     // console.log(response);
+    //     //     this.cw=response.data.cw;
+    //     //     if(this.cw==1){
+    //     //          localStorage.setItem("cw",1);    
+    //     //     }
            
-        })      //获取失败
-        .catch(error=>{
-            console.log(error);
-            alert('网络错误，不能访问6');
-        })
-        // 主页
-        axios.get('http://no37.store:8080/AK/zhuye1',{
-            params: {
-                yhid: localStorage.getItem("yhid"),     
-            }
-        })
-        .then(response=>{
-            // console.log(response);
-            this.dqyp=response.data.dqyp;
-            this.cp=response.data.cp;
-            this.yp=response.data.yp;
-            this.xqmb=response.data.xqmb;
-        })      //获取失败
-        .catch(error=>{
-            console.log(error);
-            alert('网络错误，不能访问5');
-        })
-        // 公告
-        axios.get('http://no37.store:8080/AK/gonggao1',{
-            params: {
-                ggid:1,     
-            }
-        })
-        .then(response=>{
-            this.ggnr=response.data.ggnr; 
-        })      //获取失败
-        .catch(error=>{
-            console.log(error);
-            alert('网络错误，不能访问4');
-        })
-        // 学生认证信息
-        if(localStorage.getItem("yhsf") == 0) {
-            axios.get('http://no37.store:8080/AK/SelectXsID',{
-                params: {
-                    yhid:localStorage.getItem("yhid"),     
-                }
-            })
-            .then(response=>{
-                if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
-                    this.xiaoqu = response.data.yhxx;
-                    this.show = false;
-                    this.ow = true;
-                    this.tt = true;
-                }
-            })      //获取失败
-            .catch(error=>{
-                console.log(error);
-                alert('网络错误，不能访问3');
-            })
-        }
-        //老师认证信息
-        else if(localStorage.getItem('yhsf') == 1) {
-            axios.get('http://no37.store:8080/AK/SelectJsID',{
-                params: {
-                    yhid:localStorage.getItem("yhid"),
-                }
-            }).then(response=>{
-                if(response.data.jsxx!=""||response.data.jsxx!=null||response.data.jsxx!=undefined){
-                    this.xiaoqu = response.data.jsxx;
-                    this.show = false;
-                    this.ow = true;
-                }
-            })      //获取失败
-            .catch(error=>{
-                console.log(error);
-                alert('网络错误，不能访问2');
-            })
-        }
-        else {
-            this.xiaoqu = "未认证(点击认证)";
-            this.show = true;
-            this.ow = false;
-        }
+    //     // })      //获取失败
+    //     // .catch(error=>{
+    //     //     console.log(error);
+    //     //     alert('网络错误，不能访问6');
+    //     // })
+    //     // // 主页
+    //     // axios.get('http://no37.store:8080/AK/zhuye1',{
+    //     //     params: {
+    //     //         yhid: localStorage.getItem("yhid"),     
+    //     //     }
+    //     // })
+    //     // .then(response=>{
+    //     //     // console.log(response);
+    //     //     this.dqyp=response.data.dqyp;
+    //     //     this.cp=response.data.cp;
+    //     //     this.yp=response.data.yp;
+    //     //     this.xqmb=response.data.xqmb;
+    //     // })      //获取失败
+    //     // .catch(error=>{
+    //     //     console.log(error);
+    //     //     alert('网络错误，不能访问5');
+    //     // })
+    //     // // 公告
+    //     // axios.get('http://no37.store:8080/AK/gonggao1',{
+    //     //     params: {
+    //     //         ggid:1,     
+    //     //     }
+    //     // })
+    //     // .then(response=>{
+    //     //     this.ggnr=response.data.ggnr; 
+    //     // })      //获取失败
+    //     // .catch(error=>{
+    //     //     console.log(error);
+    //     //     alert('网络错误，不能访问4');
+    //     // })
+    //     // // 学生认证信息
+    //     // if(localStorage.getItem("yhsf") == 0) {
+    //     //     axios.get('http://no37.store:8080/AK/SelectXsID',{
+    //     //         params: {
+    //     //             yhid:localStorage.getItem("yhid"),     
+    //     //         }
+    //     //     })
+    //     //     .then(response=>{
+    //     //         if(response.data.yhxx!=""&&response.data.yhxx!=null&&response.data.yhxx!=undefined){
+    //     //             this.xiaoqu = response.data.yhxx;
+    //     //             this.show = false;
+    //     //             this.ow = true;
+    //     //             this.tt = true;
+    //     //         }
+    //     //     })      //获取失败
+    //     //     .catch(error=>{
+    //     //         console.log(error);
+    //     //         alert('网络错误，不能访问3');
+    //     //     })
+    //     // }
+    //     //老师认证信息
+    //     else if(localStorage.getItem('yhsf') == 1) {
+    //         axios.get('http://no37.store:8080/AK/SelectJsID',{
+    //             params: {
+    //                 yhid:localStorage.getItem("yhid"),
+    //             }
+    //         }).then(response=>{
+    //             if(response.data.jsxx!=""||response.data.jsxx!=null||response.data.jsxx!=undefined){
+    //                 this.xiaoqu = response.data.jsxx;
+    //                 this.show = false;
+    //                 this.ow = true;
+    //             }
+    //         })      //获取失败
+    //         .catch(error=>{
+    //             console.log(error);
+    //             alert('网络错误，不能访问2');
+    //         })
+    //     }
+    //     else {
+    //         this.xiaoqu = "未认证(点击认证)";
+    //         this.show = true;
+    //         this.ow = false;
+    //     }
     },
     mounted() {
         // 自适应监听
