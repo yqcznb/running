@@ -11,7 +11,7 @@
                 <div id="photo">
                     <span class="head_left head_title">头像</span>
                     <span class="head_right">
-                        <img :src='headportrait' class="headportrait"><i class="iconfont iconfanhui iconfont-right"></i>
+                        <img src='../../../../assets/img/my/headportrait/default.png' class="headportrait"><i class="iconfont iconfanhui iconfont-right"></i>
                     </span>
                 </div>
             </router-link>
@@ -36,7 +36,7 @@
                     <label for="choose_img">
                         <img src="../../../../assets/img/my/headportrait/1.png" alt="" class="choose_head">
                     </label>
-                    <img :src="change_head" alt="" class="head_preview">
+                    <img src="../../../../assets/img/my/headportrait/default.png" alt="" class="head_preview">
                     <input type="file" name="file" id="choose_img" @change="ch_fun" accept="image/png,image/jpeg,image/gif" style="display:none;" ref="inputImage">
                     <input type="text" :value="yhid" name="yhid" style="display:none;">
                 </form>
@@ -65,7 +65,7 @@ export default {
     data() {
         return{
             yhid: '',
-            headportrait: '',
+            headportrait: '../../../../assets/img/my/headportrait/default.png',
             before_head: '',
             // 头像修改
             change_head: '',
@@ -75,8 +75,8 @@ export default {
             uhStyle: '',
             ch_disabled: true,
             // 昵称修改
-            user_name: '',
-            change_name: '',
+            user_name: '青宠趣跑',
+            change_name: '青宠趣跑',
             popupNameC: false,
             unStyle: '',
             cn_disabled: true,

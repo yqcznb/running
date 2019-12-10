@@ -102,14 +102,14 @@ export default {
             popupPhoneC: false,
             upStyle: '',
             cp_disabled: true,
-            change_phone: '',
-            phoneNum: '',
+            change_phone: '15611111111',
+            phoneNum: '15611111111',
             // 邮箱号修改
             popupMailC: false,
             umStyle: '',
             cm_disabled: true,
-            change_mail: '',
-            mailNum: '',
+            change_mail: 'babala@gmgg.com',
+            mailNum: 'babala@gmgg.com',
             // 密码修改
             yhzh: '',
             popupCodeC: false,
