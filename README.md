@@ -1,6 +1,4 @@
-# running# runing
-
-> A Vue.js project
+# vue实现跑步寻宝webapp
 
 前后端分离的构建移动端大学生跑步软件
 
@@ -14,13 +12,13 @@
 
 ![image-20200218195658438](README/image-20200218195658438.png)
 
-#基本功能：
-    跑步打卡
-    萌宠大战
-    语音控制
-    乐跑夺宝
+### 基本功能：
+   + 跑步打卡
+   + 萌宠大战
+   + 语音控制
+   + 乐跑夺宝
 
-#开发环境版本校准
+### 开发环境版本校准
 node v10.15.3
 
 npm 6.9.0
@@ -58,4 +56,4 @@ vue 2.9.6
 ##2019.12.10
 关闭后台接口，添加假数据，交Android作业
 
-#图片素材来源于千图网https://www.58pic.com，千库网 https://588ku.com，阿里巴巴矢量图标库 https://www.iconfont.cn
+# 图片素材来源于千图网https://www.58pic.com，千库网 https://588ku.com，阿里巴巴矢量图标库 https://www.iconfont.cn
